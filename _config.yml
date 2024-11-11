@@ -1,8 +1,8 @@
-title: Just the Docs Template
-description: A starter template for a Jeykll site using the Just the Docs theme!
+title: Buhfur's Wiki 
+description: The wiki for all things linux / IT / Tech related. 
 theme: just-the-docs
 
-url: https://just-the-docs.github.io
-
+url: https://ryanm.dev/wiki
+docs_dir: _docs
 aux_links:
   Template Repository: https://github.com/just-the-docs/just-the-docs-template
