@@ -1,6 +1,6 @@
 title: Buhfur's Wiki 
 description: The wiki for all things linux / IT / Tech related. 
-remote_theme: just-the-docs
+remote_theme: just-the-docs/just-the-docs
 
 url: https://ryanm.dev/wiki
 docs_dir: _docs
