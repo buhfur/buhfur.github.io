@@ -6,3 +6,17 @@ url: https://ryanm.dev/wiki
 docs_dir: _docs
 aux_links:
   Template Repository: https://github.com/just-the-docs/just-the-docs-template
+
+
+just_the_docs:
+  # Enable hierarchical navigation
+  show_nav: true
+  collections:
+    - label: "Linux"
+      docs:
+        - _docs/linux.md
+        - _docs/docker.md
+    - label: "Networking"
+      docs:
+        - _docs/networking.md
+

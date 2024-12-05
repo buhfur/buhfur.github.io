@@ -1,78 +1,174 @@
----
 
-title: Linux notes for reference
-nav_order: 1
-
----
+# Linux notes for reference
 
 In this document I have added various bash snippets ,tips , and other useful pieces of knowledge that might help me navigate the insane POWAH of linux.
 
+---
 
 # Table of contents 
 
+- [System Info](#system-info)
 - [Command & Bash snippets](#command--bash-snippets)
 - [System Tools and 3rd party utilities command snippets](#system-tools-and-3rd-party-utilities-command-snippets)
-    - [Xinitrc](#xinitrc)
-    - [Tips & tricks](#tips--tricks)
-    - [ProtonVPN connections](#protonvpn-connections)
-    - [Setting up torrent server vm](#setting-up-torrent-server-vm)
-    - [Redirect both STDOUT and STDERR](#redirect-both-stdout-and-stderr)
-    - [Piping](#piping)
-    - [Tar](#tar)
-    - [Systemd](#systemd)
-    - [Rc.local](#rclocal)
-    - [systemd unit file](#systemd-unit-file)
-    - [Crontab](#crontab)
-    - [init.d](#initd)
-    - [chkconfig: 345 99 10](#chkconfig-345-99-10)
-    - [xrandr](#xrandr)
-    - [move monitor to the right of another](#move-monitor-to-the-right-of-another)
-    - [change refresh rate of monitor](#change-refresh-rate-of-monitor)
-    - [Change background picture with feh](#change-background-picture-with-feh)
-    - [bash difference between $() and ${}](#bash-difference-between--and-)
-    - [use find to only list dotfiles](#use-find-to-only-list-dotfiles)
-    - [Change extensions of all files in dir](#change-extensions-of-all-files-in-dir)
-    - [add text to specific line with sed](#add-text-to-specific-line-with-sed)
-    - [nmcli & Networking](#nmcli--networking)
-    - [SELinux](#selinux)
-    - [DNF](#dnf)
-    - [Adguard Home](#adguard-home)
-    - [Firewalld](#firewalld)
-    - [NFS](#nfs)
-    - [NTP](#ntp)
-    - [Podman](#podman)
-    - [User management](#user-management)
-    - [Package management with DNF](#package-management-with-dnf)
-    - [Logical Volume Management](#logical-volume-management)
-    - [CIFS](#cifs)
-    - [NMAP](#nmap)
-    - [GRUB](#grub)
-    - [Common errors and small fixes](#common-errors-and-small-fixes)
-    - [Docker](#docker)
-    - [Sed](#sed)
-    - [Oracle SBC](#oracle-sbc)
-    - [TrueNAS](#truenas)
-    - [Grep](#grep)
-    - [Find](#find)
-    - [System Clipboard](#system-clipboard)
-    - [Unzip](#unzip)
-    - [Display Management](#display-management)
-    - [Git](#git)
-    - [Xorg](#xorg)
-    - [Rclone](#rclone)
-    - [ChatGPT CLI](#chat-gpt-cli)
-    - [Du](#du)
-    - [Ranger](#ranger)
-    - [Markdown](#markdown)
-    - [Youtube downloading](#youtube-downloading)
-    - [Serial Communication](#serial-communication)
-    - [Jekyll](#jekyll)
-    - [ChatGPT CLI](#chatgpt-cli)  
-    - [Rust](#rust)
+- [Xinitrc](#xinitrc)
+- [Tips & tricks](#tips--tricks)
+- [ProtonVPN connections](#protonvpn-connections)
+- [Setting up torrent server vm](#setting-up-torrent-server-vm)
+- [Redirect both STDOUT and STDERR](#redirect-both-stdout-and-stderr)
+- [Piping](#piping)
+- [Tar](#tar)
+- [Systemd](#systemd)
+- [xrandr](#xrandr)
+- [Packet Capturing](#packet-capturing)
+- [nmcli & Networking](#nmcli--networking)
+- [SELinux](#selinux)
+- [DNF](#dnf)
+- [Adguard Home](#adguard-home)
+- [Firewalld](#firewalld)
+- [NFS](#nfs)
+- [NTP](#ntp)
+- [Podman](#podman)
+- [User management](#user-management)
+- [Package management with DNF](#package-management-with-dnf)
+- [Logical Volume Management](#logical-volume-management)
+- [CIFS](#cifs)
+- [NMAP](#nmap)
+- [GRUB](#grub)
+- [Common errors and small fixes](#common-errors-and-small-fixes)
+- [Docker](#docker)
+- [Sed](#sed)
+- [Oracle SBC](#oracle-sbc)
+- [TrueNAS](#truenas)
+- [Grep](#grep)
+- [Find](#find)
+- [System Clipboard](#system-clipboard)
+- [Unzip](#unzip)
+- [Display Management](#display-management)
+- [Git](#git)
+- [Xorg](#xorg)
+- [Rclone](#rclone)
+- [Du](#du)
+- [Ranger](#ranger)
+- [Markdown](#markdown)
+- [Youtube downloading](#youtube-downloading)
+- [Serial Communication](#serial-communication)
+- [Jekyll](#jekyll)
+- [ChatGPT CLI](#chatgpt-cli)  
+- [Rust](#rust)
+- [Zsh](#zsh)
+    - [Installing Zsh](#installing-zsh)
+- [Password encryption](#password-encryption)
+# Package managers 
+
+## Apt  
+
+- Query PPA for packages 
+    ```bash
+    apt-cache search <package-name>
+    ```
+- Query PPA for NVIDIA package 
+    ```bash
+    apt-cache search nvidia
+    ```
 
 
-## Command & Bash snippets 
+## RHEL 
 
+To be continued 
+
+--- 
+
+# System info 
+
+## Create drive for mounting usb using fdisk 
+
+- For UEFI systems 
+    * Partition Table : GPT 
+    * Partition Type : EFI System Partition
+    * Filesystem: FAT32 
+
+- For BIOS systems 
+    * Partition Table : MBR 
+    * Partition Type : Primary 
+    * Filesystem: FAT32 or ext4 (FAT32 preferred ) 
+
+- For everything else 
+    * Partition Table : MBR 
+    * Partition Type : Primary 
+    * Filesystem: FAT32 
+
+
+    
+## Downgrading kernel 
+
+* Install Image, Headers , and generic Headers for the kernel version you are choosing 
+
+* Install all 3 files , last time I was downgrading an ubuntu 24.04 distro using Kernel Version : 6.8.0-48-generic down to 5.8.5
+
+* Update grub config 
+
+## System Memory 
+
+- Using /proc/meminfo  
+    ```bash
+    cat /proc/meminfo 
+    ```
+
+- Using free 
+    ```bash
+    free -h
+    ```
+
+- Using vmstat 
+    ```bash
+    vmstat -s
+    ```
+- Using dmidecode 
+    ```bash
+    sudo dmidecode -t memory 
+    ```
+
+- Using inxi 
+    1. install inxi 
+        ```bash
+        sudo apt install inxi 
+        ```
+    2. Run following command 
+        ```bash
+        inxi -m 
+        ```
+
+## Swap files 
+
+When setting up swap files , the size of the partition used for a swap file depends on the size of the host systems memory. 
+
+* If your system has 2 GB or less , the swap file should be 2-4 times the amount of ram 
+
+* If your system has 4-8 GB of ram , the swap file size only needs to be 1-2 times the amount of RAM 
+
+* If your system has 8-16 GB of ram , the swap file size should be 0.5-1 times the amount of ram 
+
+## UEFI & Legacy BIOS mode 
+
+- Check if you're booted into UEFI using /sys/firmware 
+    ```bash
+    ls /sys/firmware/efi 
+    ```
+- Check if you're booted into UEFI using efibootmgr ( only works in UEFI mode )
+    ```bash
+    sudo efibootmgr
+    ```
+
+> Note: If you see any contents in the /sys/firmware/efi directory , then you will know you are currently using UEFI mode 
+
+
+# Command & Bash snippets 
+
+
+- Write iso image to usb 
+    ```bash
+    sudo dd if=/path/to/distro.iso of=/dev/sdX bs=4M status=progress oflag=sync
+    ```
 - Bash difference between $() and ${}
 
 > "${}" : Used for referencing variables in a script 
@@ -235,6 +331,22 @@ The best information can be found on the man page. Use man ln for further detail
     ```
 
 
+
+- Get UUID of drive 
+    ```bash
+    lsblk -f 
+
+    or 
+
+    sudo blkid
+
+    or 
+
+    vim /etc/fstab
+
+    ```
+
+
 - Reduce text entering sensitivity
 
     1. Enter this line in your xinitrc , or just copy the xinitrc from the ~/dotfiles directory to your local .xinitrc
@@ -246,11 +358,18 @@ The best information can be found on the man page. Use man ln for further detail
 
 This will reduce the sensitivity 
 
+---
 
 # System Tools and 3rd party utilities command snippets
 
 The below section should include tools and snippets from various tools i've used.
 
+## Minecraft 
+
+- Download location for minecraft shader packs 
+
+    - If you're using UltimMC , 
+        `/home/$USER/UltimMC/instances/1.21.3/.minecraft/shaderpacks`
 ## Find 
 
 
@@ -637,6 +756,12 @@ Simply delete all lines in /etc/network/interfaces and re-install the package an
 
 # nmcli & Networking 
 
+- Check for openports 
+    ```bash
+    netstat -tulnp
+
+    ss -tulnp 
+    ```
 
 - Change subnet mask of existing connection using nmcli 
 
@@ -711,17 +836,41 @@ Simply delete all lines in /etc/network/interfaces and re-install the package an
 
 # Packet Capturing 
 
-- Capture traffic on specified interface using tshark 
+## Tshark 
+
+- Capture traffic on specified interface 
     ```bash
     tshark -i <interface> 
     ```
-- Capture & Save traffic on specified interface using tshark
+- Capture & Save traffic on specified interface to a file
     ```bash
     tshark -i <interface> -w capture.pcap
     ```
 - View capture from file 
     ```bash
     tshark -r capture.pcap
+    ```
+- Search for specific port in capture 
+    ```bash
+    tshark -r path_to_file.pcap -Y "tcp.port == 6881 || tcp.port == 6889 || tcp.port == 51413"
+    ```
+
+## TCPDUMP
+
+- Search for specific port in capture 
+    ```bash
+    sudo tcpdump -r path_to_file.pcap 'tcp port 6881 or tcp port 6889 or tcp port 51413'
+    ```
+
+    To specify a port range 
+
+    ```bash
+    sudo tcpdump -r path_to_file.pcap 'tcp portrange 6881-6991'
+    ```
+
+- Check if Wake-on-LAN port is open 
+    ```bash
+    tcpdump -i <interface-name> udp port 9 
     ```
 
 ---
@@ -1424,6 +1573,32 @@ Some containers contain a "usage" line that may say how the container needs to r
 
 # GRUB 
 
+- Re-add windows to grub 2 boot menu 
+- Enable os-prober
+    1. Open grub config on local host 
+        ```bash
+        sudo vim /etc/default/grub
+        ```
+    2. Add the following line to the end of the file 
+        ```bash
+        GRUB_DISABLE_OS_PROBER=false
+        ```
+    3. Once you are done , update grub config ( Ubuntu )
+        ```bash
+        sudo update-grub
+        ```
+- Error : "Unable to mount root fs on unknown block"
+
+1. Check grub config for image 
+Check the configuration of the target in the grub menu , if the root filesystem is pointed to a "/dev/sda" drive,  this is likely the issue. In general you want to use UUID's as they are hard coded identifiers for each specific drive. 
+
+2. Update GRUB config
+
+Find the UUID of the drive where your root filesystem is mounted, add this UUID into your grub config under "GRUB\_CMDLINE\_LINUX\_DEFAULT" or "GRUB\_CMDLINE\_LINUX". Replace the value within with the UUID of the drive.
+
+
+> Note : os-prober is disabled by default on ubuntu for security, this is most likely why your grub is not showing your windows installation if you're dual booting. 
+
 - Reset root password without access to wheel group
 
     1. Boot into GRUB boot args 
@@ -1615,6 +1790,22 @@ Some containers contain a "usage" line that may say how the container needs to r
 
 # Docker 
 
+- Connect docker container to network 
+    ```bash
+    docker network connect <network-name> <container-name-or-id>
+    ```
+- View docker network configuration 
+
+    ```bash
+    docker network inspect <container-id-or-name>
+    ```
+
+- Create docker network 
+    ```bash
+    docker network create <network-name>
+    ```
+
+
 - Re-Attach to docker container
     ```bash
     docker attach <container-id-or-name>
@@ -1785,6 +1976,32 @@ inxi -Gxx | grep compositor
 
 # Git 
 
+- Get upstream URL for local branch 
+    ```bash
+    git rev-parse --abbrev-ref --symbolic-full-name @{u}
+    ```
+- Get remote branches from git repo 
+    ```bash
+    git ls-remote --heads <repo-url>
+    ```
+- Clone specifc remote branch to local 
+    ```bash
+    git clone -b branch-name <repo-url>
+    ```
+- Delete remote branch on local machine 
+    ```bash
+    git push origin --delete branch-name 
+    ```
+- Create new local branch and add to remote 
+    ```bash
+    git checkout -b <branch-name> 
+    git branch -u origin <branch-name>
+    git push -u origin <branch-name> 
+    ```
+- Change URL used for "origin" remote 
+    ```bash
+    git remote set-url origin <link-here> 
+    ```
 - Ignore vim swap files
     ```bash
     *~
@@ -1902,18 +2119,32 @@ du -k *
 >
 > 
 
-**List largest files in current directory**
+- List largest files in current directory
 
 ```bash
 du . | sort -nr | head -n10
 ```
 
-**List largest directories in current directory**
+- List largest directories in current directory
 
 ```bash
 du -s * | sort -nr | head -n10
 ```
 
+- List disk size of all dotfiles 
+    ```bash
+    du -sh .??*
+    ```
+- Exclude files below a certain size threshhold 
+    ```bash
+    du -t 1K
+    ```
+- Exclude files above a certain size threshhold 
+    ```bash
+    du -t -1K
+    ```
+
+> Note : Read the Du manual under the SIZE section for valid formats for the threshhold size
 
 ---
 
@@ -2027,3 +2258,28 @@ yt-dlp --verbose --skip-download --write-subs --write-auto-subs --sub-lang en --
     ```bash
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
     ```
+
+---
+
+# Zsh 
+
+## Install ZSH 
+
+- Using curl 
+    ```bash
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    ```
+
+- Using wget 
+    ```bash
+    sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    ```
+
+- Using fetch 
+    ```bash
+    sh -c "$(fetch -o - https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    ```
+
+
+> Note: All of this was taken from the README.md for Zsh on their Github. I'll paste a link below for easy reference
+> ![Link here](https://github.com/ohmyzsh/ohmyzsh)

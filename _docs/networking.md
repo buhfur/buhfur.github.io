@@ -147,3 +147,23 @@ You can see a picture of a 802.1Q frame below
 - What is a Proxy?
 
 > Note: A regular proxy sits between a client and server and forwards requests from the client to the server.
+
+
+---
+
+
+# SLIP : Serial line over IP 
+
+* used in microcontrollers 
+* replaced by PPP ( Point-to-Point protocol )
+* Encapsulates data from serial ports and routers 
+* small overhead compared to PPP
+
+
+
+---
+
+
+# NAT Reflection ( NAT Hairpinning )
+
+* Allows hosts on a LAN to access each other through an external IP ( public IP , WAN IP ) 

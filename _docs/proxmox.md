@@ -78,3 +78,10 @@ This document represents the changelog for my proxmox hypervisor
 # 11/9/2024 
 
 * changed ip of ens18 connection on redhat vm , changed to 192.168.3.104/22
+
+
+# 11/29/2024 
+
+* Added encrypted firefox passwords to backups truenas share under /mnt/backups/backups/passwords. File is a CSV file which has been encrypted using openssl. Openssl will be needed to encrypt the password in the future  
+
+
