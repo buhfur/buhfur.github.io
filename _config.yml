@@ -1,22 +1,17 @@
 title: Buhfur's Wiki 
 description: The wiki for all things linux / IT / Tech related. 
 remote_theme: just-the-docs/just-the-docs
-
+color_scheme: dark
 url: https://ryanm.dev/wiki
+nav_enabled: true
 docs_dir: _docs
+include:
+  - _docs
 aux_links:
   Template Repository: https://github.com/just-the-docs/just-the-docs-template
 
 
 just_the_docs:
-  # Enable hierarchical navigation
-  show_nav: true
-  collections:
-    - label: "Linux"
-      docs:
-        - _docs/linux.md
-        - _docs/docker.md
-    - label: "Networking"
-      docs:
-        - _docs/networking.md
-
+  nav:
+    - title: "Linux"
+      url: "/docs/linux/"
