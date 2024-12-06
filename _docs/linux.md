@@ -1,3 +1,11 @@
+---
+
+layout: default
+title: "Linux"
+nav_order: 1
+
+---
+
 
 # Linux notes for reference
 
