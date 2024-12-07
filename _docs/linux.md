@@ -380,6 +380,10 @@ The below section should include tools and snippets from various tools i've used
         `/home/$USER/UltimMC/instances/1.21.3/.minecraft/shaderpacks`
 ## Find 
 
+- List largest files on the system , exclude the /mnt directory 
+```bash
+sudo find / -path /mnt -prune -o -type f -exec du -b {} + 2>/dev/null | sort -rn | head -n 20
+```
 
 - List files with specified extension
     ```bash
