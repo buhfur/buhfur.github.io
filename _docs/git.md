@@ -1,6 +1,15 @@
 
 # Git CLI snippets  
 
+- Merge two local branches together 
+    1. Switch to target branch you want to merge changes into 
+        ```bash
+        git checkout <branch-name>
+        ```
+    2. Merge branch and resolve conflicts 
+        ```bash
+        git merge <branch-with-changes>
+        ```
 
 - Get upstream URL for local branch 
     ```bash
