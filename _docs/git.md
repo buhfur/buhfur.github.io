@@ -1,48 +1,104 @@
 
-# Git info 
-
-- remote branches use the "main" name as default unless it was created a while ago when they changed the default 
-name from "master" to "main".
+# Git CLI snippets  
 
 
+- Get upstream URL for local branch 
+    ```bash
+    git rev-parse --abbrev-ref --symbolic-full-name @{u}
+    ```
+- Get remote branches from git repo 
+    ```bash
+    git ls-remote --heads <repo-url>
+    ```
+- Clone specifc remote branch to local 
+    ```bash
+    git clone -b branch-name <repo-url>
+    ```
+- Delete remote branch on local machine 
+    ```bash
+    git push origin --delete branch-name 
+    ```
+- Create new local branch and add to remote 
+    ```bash
+    git checkout -b <branch-name> 
+    git branch -u origin <branch-name>
+    git push -u origin <branch-name> 
+    ```
+- Change URL used for "origin" remote 
+    ```bash
+    git remote set-url origin <link-here> 
+    ```
+- Ignore vim swap files
+    ```bash
+    *~
+    ```
 
-**Store git credentials permanantly**
+> Note: Add this to your .gitignore and commit changes 
 
-`git config --global credential.helper store`
+- Cache ( store ) git credentials 
+    ```bash
+    git config credential.helper store
+    ```
 
-
-**undo recent changes ( commits )**
-
-`git reset --hard HEAD`
-
-
-NOTE : This throws away all your recent uncommited changes
-
-
-**Create new local branch and push to remote repo**
-
-`git checkout -b <branch name> `
-
-Branch is automatically created when you push the branch to the remote server. Most times I substiute `<remote-name>` with "origin"
-
-`git push <remote-name> <local-branch-name>:<remote-branch-name>`
+- Reset all changes made on branch to HEAD
+    ```bash
+    git reset --hard HEAD
+    ```
 
 
-WARNING: DO NOT omit the `:<remote-branch-name>` or the remote branch will be DELTED
+- Store git credentials permanantly
+    ```bash
+    git config --global credential.helper store
+    ```
 
 
-**Get branch name**
+- Undo recent changes ( commits )
+    ```bash
+    git reset --hard HEAD
+    ```
 
-`git rev-parse --abbrev-ref HEAD`
+> Note : This throws away all your recent uncommited changes
 
-**Push all local branches to remote**
 
-This is handy if you aren't sharing a repo with someone, I might use this more often than not since i'm a hobbyist with no partners on my projects. ( As of yet ) 
+- Create new local branch 
+    ```bash
+    git checkout -b <branch name> 
+    ```
+- Push local branch to remote repo as separate branch 
+```bash
+git push <remote-name> <local-branch-name>:<remote-branch-name>
+```
 
-`git push --all -u`
+> WARNING: DO NOT omit the `:<remote-branch-name>` or the remote branch will be DELTED
 
-**Change default editor for commits**
 
-This sets the default editor to vim 
+- Get branch name
+```bash
+git rev-parse --abbrev-ref HEAD
+```
 
-`git config --global core.editor vim`
+- Push all local branches to remote
+    ```bash
+    git push --all -u
+    ```
+
+> Note : This is handy if you aren't sharing a repo with someone, I might use this more often than not since i'm a hobbyist with no partners on my projects. ( As of yet ) 
+
+
+- Change default editor for commits
+    ```bash
+    git config --global core.editor vim
+    ```
+
+> Note : This sets the default editor to vim 
+
+---
+
+# Notes & Additional information 
+
+## Where are my creds stored when using `git config credential.helper store` ?
+
+The credentials are stored on disk in a text file in the home directory of the user , this location is consistent when using both `--global` and `--system` arguments  , this file by default only gives read / write permissions to the user who initiated the command. The file is stored under `~/.git-credentials`. Do note however that this file is in plain text so anyone who can compromise your account ( or malicious NPM modules ) will be able to view your password and token. 
+
+
+

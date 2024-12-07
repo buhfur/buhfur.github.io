@@ -1986,50 +1986,6 @@ inxi -Gxx | grep compositor
 
 --- 
 
-# Git 
-
-- Get upstream URL for local branch 
-    ```bash
-    git rev-parse --abbrev-ref --symbolic-full-name @{u}
-    ```
-- Get remote branches from git repo 
-    ```bash
-    git ls-remote --heads <repo-url>
-    ```
-- Clone specifc remote branch to local 
-    ```bash
-    git clone -b branch-name <repo-url>
-    ```
-- Delete remote branch on local machine 
-    ```bash
-    git push origin --delete branch-name 
-    ```
-- Create new local branch and add to remote 
-    ```bash
-    git checkout -b <branch-name> 
-    git branch -u origin <branch-name>
-    git push -u origin <branch-name> 
-    ```
-- Change URL used for "origin" remote 
-    ```bash
-    git remote set-url origin <link-here> 
-    ```
-- Ignore vim swap files
-    ```bash
-    *~
-    ```
-
-> Note: Add this to your .gitignore and commit changes 
-
-- Cache ( store ) git credentials 
-    ```bash
-    git config credential.helper store
-    ```
-
-- Reset all changes made on branch to HEAD
-    ```bash
-    git reset --hard HEAD
-    ```
 
 # Xorg 
 
