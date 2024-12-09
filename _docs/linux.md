@@ -23,8 +23,6 @@ In this document I have added various bash snippets ,tips , and other useful pie
 - [ProtonVPN connections](#protonvpn-connections)
 - [Setting up torrent server vm](#setting-up-torrent-server-vm)
 - [Redirect both STDOUT and STDERR](#redirect-both-stdout-and-stderr)
-- [Piping](#piping)
-- [Tar](#tar)
 - [Systemd](#systemd)
 - [xrandr](#xrandr)
 - [Packet Capturing](#packet-capturing)
@@ -378,32 +376,6 @@ The below section should include tools and snippets from various tools i've used
 
     - If you're using UltimMC , 
         `/home/$USER/UltimMC/instances/1.21.3/.minecraft/shaderpacks`
-## Find 
-
-- List largest files on the system , exclude the /mnt directory 
-```bash
-sudo find / -path /mnt -prune -o -type f -exec du -b {} + 2>/dev/null | sort -rn | head -n 20
-```
-
-- List files with specified extension
-    ```bash
-    find . -name \*.md
-    ```
-
-> Note: Replace "." with the directory you are searching in and replace "md" with the extension you are trying to search for. 
-
-- Use find to only list dotfiles 
-    ```bash
-    find . -maxdepth 1 -type f -name ".*" 
-    ```
-
-- Change extensions of all files in dir
-    ```bash
-    find . -name '*.txt' -exec sh -c 'mv "$0" "${0%.txt}.txt_bak"' {} \;
-    ```
-
-> Note: Replace .txt with the current ext and replace .txt\_bak with the ext you are trying to set it to 
-
 ## Xinitrc 
 
 > Note: The xinitrc file is used for loading additional configurations and settings when the Xorg server starts.
@@ -508,67 +480,6 @@ Simply delete all lines in /etc/network/interfaces and re-install the package an
         ```bash
         sudo apt install openvpn-systemd-resolved
         ```
-
-- Piping Reference
-
-> 0> = STDIN
->
-> 1> = STDOUT 
-> 
-> &> = STDOUT & STDERR
-> 
-> 2> = STDERR
-
-
-# Tar
-
-- Archive top level directories with tar
-    ```bash
-    sudo tar czf interfaces.tar -C / etc/network/interfaces
-    ```
-
-- Restore backup from drive
-    ```bash
-    tar --overwrite -xzvf backup.tar.gz --directory /
-    ```
-
-- List contents of archive
-    ```bash
-    tar -tf archive.tar
-    ```
-
-- Add file to archive
-    ```bash
-    tar -rf backup.tar file
-    ```
-
-- Backup entire system with timestamp
-    ```bash
-    tar pzvxf --exclude=mnt/ --exclude=sys/ --exclude=proc/ /backup/"$(date '+%Y-%m-%d').tar.gz" --one-file-system /
-    ```
-
-> Note : it's a good idea to exclude sys, mnt , and proc as they can cause a backup to freeze. None of these directories should be necessary for archival anyways 
-
-- Add timestamp to tar archive
-    ```bash
-    tar -zcvf "$(date '+%Y-%m-%d').tar.gz" 
-    ```
-
-- Extract tar archive to specific directory
-    ```bash
-    tar -xf archive.tar -C /path/to/extract/to
-    ```
-
-- Extract specific file from archive( Example)
-    1. (Optional) List contents of archive 
-        ```bash
-        tar -tf archive.tar
-        ```
-    2. Extract file using path from output 
-        ```bash
-        tar -xf archive.tar /path/in/archive/to/file
-        ```
-
 
 ---
 
@@ -1869,18 +1780,6 @@ In your compose.yml file , add the following
     ```
 ---
 
-# Sed 
-
-
-- Add text to specific line with sed 
-    ```bash
-    sed -e '/auth-user-pass/ s/$/ \/opt\/scripts\/login.conf/' ./*
-    ```
-
-- Replace /bin/sh with /bin/bash for all files in a dir
-    ```bash
-    sed -i 's/\#!\/bin\/sh/\#!\/bin\/bash/g' *
-    ```
 
 
 --- 
@@ -2115,18 +2014,6 @@ du -s * | sort -nr | head -n10
 > Note : Read the Du manual under the SIZE section for valid formats for the threshhold size
 
 ---
-
-# Ranger
-
-**hidden files config**
-
-> Open up ~/.config/ranger/rc.conf ( or where ever your config file is located )
-> 
-> # Add this line :
-> 
-> ```bash
-> set show_hidden true 
-> ```
 
 
 ---

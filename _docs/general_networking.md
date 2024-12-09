@@ -36,3 +36,10 @@
 # Broadcast forwarding 
 
 * Allows forwarding broadcast traffic from one network segment to another 
+
+
+# DIA : Dedicated Internet Access :
+
+* ISP's will run fiber from a router from their central office to your building 
+
+* Guarantees on bandwidth , uptime , latency , jitter 
