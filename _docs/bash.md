@@ -355,3 +355,72 @@ These techniques can help make your Bash scripts more robust and capable of hand
 ## 11. Parameter expansion in bash 
 
 Parameter expansion allows you to modify and manipulate the values of variables.
+
+
+---
+
+# Bash Shortcuts Cheat Sheet
+
+## Navigating the Command Line
+- `Ctrl+A`: Move to the beginning of the line.
+- `Ctrl+E`: Move to the end of the line.
+- `Alt+F`: Move forward one word.
+- `Alt+B`: Move backward one word.
+- `Ctrl+L`: Clear the screen (same as `clear` command).
+
+## Editing Commands
+- `Ctrl+U`: Cut (delete) from the cursor to the beginning of the line.
+- `Ctrl+K`: Cut (delete) from the cursor to the end of the line.
+- `Ctrl+W`: Cut (delete) the word before the cursor.
+- `Alt+D`: Cut (delete) the word after the cursor.
+- `Ctrl+Y`: Paste the last cut text (yank).
+- `Ctrl+T`: Swap the last two characters before the cursor.
+- `Alt+T`: Swap the last two words before the cursor.
+- `Ctrl+_`: Undo the last editing action.
+
+## Searching and Reusing Commands
+- `Ctrl+R`: Reverse search through command history.
+- `Ctrl+S`: Forward search through command history (if enabled).
+- `Ctrl+G`: Cancel search in history.
+- `Up Arrow`: Scroll backward through command history.
+- `Down Arrow`: Scroll forward through command history.
+- `!!`: Repeat the last command.
+- `!<n>`: Execute command number `<n>` from history.
+- `!<prefix>`: Execute the most recent command starting with `<prefix>`.
+
+## Controlling Processes
+- `Ctrl+C`: Kill the current process.
+- `Ctrl+Z`: Suspend the current process.
+- `jobs`: List suspended or background processes.
+- `fg`: Resume the most recent suspended process in the foreground.
+- `bg`: Resume the most recent suspended process in the background.
+
+## Moving and Manipulating Text
+- `Ctrl+Left Arrow`: Move to the beginning of the previous word (if enabled).
+- `Ctrl+Right Arrow`: Move to the beginning of the next word (if enabled).
+- `Alt+.`: Insert the last argument of the previous command.
+
+## Shell Features
+- `Ctrl+D`: Log out of the current shell session.
+- `Ctrl+P`: Scroll backward through history (same as up arrow).
+- `Ctrl+N`: Scroll forward through history (same as down arrow).
+- `Ctrl+X Ctrl+E`: Open the current command in your default editor.
+- `Tab`: Autocomplete files, directories, or commands.
+
+## Terminal Control
+- `Ctrl+S`: Pause terminal output.
+- `Ctrl+Q`: Resume terminal output.
+- `Ctrl+Z`: Suspend the current foreground process.
+- `Ctrl+D`: Send EOF (end of file) to the terminal, often used to log out or close the terminal.
+
+## Special Characters
+- `Ctrl+V`: Insert the next character literally (e.g., type `Ctrl+V Tab` to insert a literal Tab character).
+- `Ctrl+O`: Execute the command and bring the next one from history.
+
+## Debugging
+- `Ctrl+X Ctrl+V`: Print the version of Bash.
+
+## Miscellaneous
+- `Ctrl+G`: Exit the current editing mode or cancel a command.
+
+
