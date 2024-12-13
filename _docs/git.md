@@ -1,6 +1,15 @@
 
 # Git CLI snippets  
 
+- Move recent changes into a separate local branch 
+    ```bash
+    git stash 
+    git checkout -b <branch-name>
+    git stash pop 
+    ```
+
+> Note: You don't need to include `-b` if the local branch you are checking out to already exists. 
+
 - Merge two local branches together 
     1. Switch to target branch you want to merge changes into 
         ```bash

@@ -7,9 +7,7 @@ nav_order: 1
 ---
 
 
-# Linux notes for reference
-
-In this document I have added various bash snippets ,tips , and other useful pieces of knowledge that might help me navigate the insane POWAH of linux.
+# Linux notes for reference ( WORK IN PROGRESS )
 
 ---
 

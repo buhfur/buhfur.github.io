@@ -2,9 +2,6 @@
 
 # Network Manager 
 
-
-
-
 ## Enable wake on LAN for machine 
 
 
