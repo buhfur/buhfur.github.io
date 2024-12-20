@@ -483,6 +483,24 @@ Simply delete all lines in /etc/network/interfaces and re-install the package an
 
 # Systemd 
 
+- Change default editor for systemd edit and other sudo commands 
+
+    1. Set environment variables and add to your terminals config file 
+        ```
+        export EDITOR = /usr/bin/vim 
+        export SYSTEMD_EDITOR = /usr/bin/vim 
+        export VISUAL = /usr/bin/vim 
+        ```
+    2. Then add the following lines in your visudo configuration 
+
+     Run `sudo visudo` and add the following lines 
+
+         ```
+         Defaults env_keep += "EDITOR VISUAL SYSTEMD_EDITOR"
+         Defaults editor = /usr/bin/vim
+         ```
+
+     Then re-log into root user and test 
 
 -  Stop the service 
     ```bash
