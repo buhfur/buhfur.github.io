@@ -812,6 +812,12 @@ Simply delete all lines in /etc/network/interfaces and re-install the package an
     tcpdump -i <interface-name> udp port 9 
     ```
 
+- Scan interface for SYN port scans 
+
+```bash
+tcpdump -i <interface> 'tcp[tcpflags] & tcp-syn != 0'
+```
+
 ---
 
 # SELinux 
