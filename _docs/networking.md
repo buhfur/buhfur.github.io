@@ -5,7 +5,17 @@ This page is dedicated to all my notes / research dedicated to learning the foun
 
 # Big Endian vs Little endian 
 
-hosts send bytes in *host byte order*
+Networks send bytes in Big Endian or *Network Byte Order* , meaning the bytes are read as they are stored in memory. Therefore in the example below is a memory address. 
+
+`0x12345678`
+
+This address is stored in memory as : 
+
+12 34 56 78 
+
+The most signifigant bit ( MSB ) is sent first ( 12 ). If you were to read the bits as a computer reading them in host byte order, you would read them left to right.
+
+Little Endian or *Host Byte Order* is the opposite. Reading bytes from right to left.  
 
 # Autonegotiation 
 
