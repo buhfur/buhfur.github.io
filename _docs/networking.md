@@ -3,6 +3,9 @@
 
 This page is dedicated to all my notes / research dedicated to learning the foundational concepts of computer networking. My intention with this page is to serve as a reference while working on my hypervisor and implementing new tools / technologies to make my setup more complex in what it can do.
 
+# Big Endian vs Little endian 
+
+hosts send bytes in *host byte order*
 
 # Autonegotiation 
 
@@ -263,5 +266,6 @@ You can see a picture of a 802.1Q frame below
 
 
 # ARP attacks 
+
 
 
