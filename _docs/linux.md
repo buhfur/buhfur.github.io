@@ -43,7 +43,6 @@ nav_order: 1
 - [Sed](#sed)
 - [Oracle SBC](#oracle-sbc)
 - [TrueNAS](#truenas)
-- [Grep](#grep)
 - [Find](#find)
 - [System Clipboard](#system-clipboard)
 - [Unzip](#unzip)
@@ -1828,21 +1827,6 @@ In your compose.yml file , add the following
     ```
 
 ---
-
-# Grep 
-
-- Grep for specific file extension
-    ```bash
-    grep ".*\.md
-    ```
-
-> Note: Replace "md" with whichever extension you are trying to grep for.
-
-- Grep for certain word in entire directory
-    ```bash
-    grep -rni "string" * 
-    ```
-
 
 ---
 
