@@ -167,6 +167,11 @@ When setting up swap files , the size of the partition used for a swap file depe
 
 # Command & Bash snippets 
 
+- Turn off TCP Segmentation Offload and Generic Receive Offload
+    ```bash
+    sudo ethtool -K <interface> tso off gro off 
+    ```
+
 
 - Write iso image to usb 
     ```bash
@@ -816,6 +821,11 @@ Simply delete all lines in /etc/network/interfaces and re-install the package an
 ```bash
 tcpdump -i <interface> 'tcp[tcpflags] & tcp-syn != 0'
 ```
+
+- Sniff for SYN packets 
+    ```bash
+    sudo tcpdump -i <interface> 'tcp[tcpflags] & (tcp-syn) != 0'
+    ```
 
 ---
 
