@@ -819,7 +819,7 @@ Simply delete all lines in /etc/network/interfaces and re-install the package an
 - Scan interface for SYN port scans 
 
 ```bash
-tcpdump -i <interface> 'tcp[tcpflags] & tcp-syn != 0'
+tcpdump -i <interface> 'tcp[tcpflags] & (tcp-syn) != 0'
 ```
 
 - Sniff for SYN packets 
