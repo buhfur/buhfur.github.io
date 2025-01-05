@@ -7,6 +7,13 @@
 
 * Configuration file is located in : /etc/rsyslog.conf
 
+* By default,  logs are stored in /var/log/messages
+
+## Change save location for log files  
+
+```bash
+*.* /your/new/dir/here
+```
 
 ## Send logs to remote server 
 
@@ -42,3 +49,25 @@ Verify the service is listening on port 514
 ```bash
 ss -tunlp | grep 514
 ```
+
+## Filtering logs by source or severity 
+
+Add to config 
+
+```bash
+if $syslogseverity-text == 'error' then /var/log/error.log
+& stop
+```
+
+## Using log templates 
+
+```bash
+template(name="CustomFormat" type="string" string="%timestamp% %hostname% %msg%\n")
+```
+
+## Log testing 
+
+```bash
+logger "Test msg !"
+```
+
