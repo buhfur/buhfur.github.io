@@ -77,6 +77,7 @@ nav_order: 1
 
 ## RHEL 
 
+
 - Change default python3 version 
 
 RHEL uses alternatives to manage different python3 versions , change the default using the commands below 
@@ -84,6 +85,17 @@ RHEL uses alternatives to manage different python3 versions , change the default
     ```bash
     sudo alternatives --install /usr/bin/python3 python3 /usr/bin/pythonx.x 1
     sudo alternatives --install /usr/bin/python3 python3 /usr/bin/pythonx.xx 2
+    ```
+
+- Check config 
+    ```bash
+    sudo alternatives --config python3
+    ```
+
+- Ensure pip is updated to pythonx.xx 
+    ```bash
+    pythonX -m ensurepip --upgrade 
+    pythonX -m pip install --upgrade pip
     ```
 
 --- 
