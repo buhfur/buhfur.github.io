@@ -1,5 +1,13 @@
 # Fortigate Firewall configuration 
 
+# Linux firewall related commands 
+
+## iptables 
+
+- Allow SYN packets 
+```bash
+iptables -A INPUT -p tcp --dport <dest-port> --tcp-flags SYN SYN -j ACCEPT
+```
 ## IPv4 Policy 
 
 * Changed Name to "LAN to WAN "

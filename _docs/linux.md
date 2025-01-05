@@ -817,10 +817,9 @@ Simply delete all lines in /etc/network/interfaces and re-install the package an
     ```
 
 - Scan interface for SYN port scans 
-
-```bash
-tcpdump -i <interface> 'tcp[tcpflags] & (tcp-syn) != 0'
-```
+    ```bash
+    tcpdump -i <interface> 'tcp[tcpflags] & (tcp-syn) != 0'
+    ```
 
 - Sniff for SYN packets 
     ```bash
@@ -836,7 +835,7 @@ tcpdump -i <interface> 'tcp[tcpflags] & (tcp-syn) != 0'
     selinux=0
     ```
 
-> Note: Put this line into your kernel boot args 
+Note: Put this line into your kernel boot args 
 
 - Put Selinux into enforcing mode in grub
     ```bash
@@ -868,7 +867,7 @@ tcpdump -i <interface> 'tcp[tcpflags] & (tcp-syn) != 0'
         setenforce 1
         ```
 
-- Switch modes persistantl
+- Switch modes persistantly
 
 > Note: Modify /etc/sysconfig or add kernel boot arg 
 
@@ -876,7 +875,6 @@ tcpdump -i <interface> 'tcp[tcpflags] & (tcp-syn) != 0'
         ```bash
         sestatus
         ```
-
 
 
 - Get selinux status 
