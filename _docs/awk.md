@@ -85,3 +85,10 @@ awk '/BEGIN_PATTERN/,/END_PATTERN/' file.txt
 
 ```bash
 ```
+
+- Group and list files by extension 
+    ```bash
+    ls -1 | awk -F. '/\./ {ext[$NF]++} END {for (e in ext) print e}' | sort
+    ```
+
+
