@@ -39,7 +39,6 @@
 - Create new local branch and add to remote 
     ```bash
     git checkout -b <branch-name> 
-    git branch -u origin <branch-name>
     git push -u origin <branch-name> 
     ```
 - Change URL used for "origin" remote 
