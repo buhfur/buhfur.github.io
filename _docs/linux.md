@@ -159,6 +159,13 @@ RHEL uses alternatives to manage different python3 versions , change the default
         ```bash
         inxi -m 
         ```
+## Check OS distribution 
+
+```bash
+lsb_release 
+cat /etc/os-release
+
+```
 
 ## Swap files 
 

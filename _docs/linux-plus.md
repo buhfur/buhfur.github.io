@@ -12,7 +12,7 @@
 journalctl -b 
 ```
 
-# BIOS POST phase 
+## BIOS POST phase 
 
 System Boot Process : 
 
@@ -33,7 +33,7 @@ SystemD:
     - initialize system 
 
 
-- 
+ 
 
 ## MBR 
 
@@ -172,20 +172,172 @@ logout or /sbin/reboot -f
 ```bash
 systemctl get-default
 ```
+## The Kernel Initialization Phase 
 
-## UEFI
+* Bootloader loads vmlinux ( system kernel ) 
+* Bootloader then loads the initial RAM filesystem `initramfs` 
+* GRUB2 then loads the compressed linux kernel `vmlinuz`
+* Then the kernel decompresses and mounts initrd or initramfs 
+* the RAM filesystem contains kernel modules and apps needed to boot the operating system 
+* initrd.img and initramfs.img are created from mkinitrd 
+* mkinitrd uses dracut to generate ram disk files 
+* Kernel then initializes memory and configures attached hardware using drivers found in initrd 
+* After the drivers are loaded , the kernel mounts the filesystem in read-write mode and begins the OS initialization.  
 
-* Uses FAT32 partitions which contain bootloader code ,apps , device drivers 
+## System V init 
 
-**Where is EFI mounted**
+* Once the kernel is running , initrd is unmounted and the init process starts the system scheduler 
+* The system scheduler is assigned the PID of 0. The first process on the system 
+* The init process is the last step in booting. 
+* `/sbin/init` is started which is assigned the PID of 1. 
+* `/sbin/init` reads the `/etc/inittab` configuration file 
+* You can use the `init` command to change runlevels 
+* Use the `runlevel` command to find out which level you are on currently 
 
-The EFI partition are usually mounted on /boot/efi
+
+### SystemV Run levels 
+
+0 - halt the system 
+1 - single user ( maint mode )
+2 - multiuser client ( network client ) 
+3 - multiuser server ( network server )
+4 - not used ( user customizable )
+5 - graphics mode ( multiuser server mode )
+6 - reboot ( sets system level to 0 and back to default runlevel )
+
+## Shutting down the system 
+`init 0 ` - halts the system 
+`init 6` - set runlevel to 6 , rebooting the system and setting runlevel to default 
+`halt` - Shuts down the system 
+`reboot` - Reboots system 
+`reboot -f` 
+`/sbin/reboot -f` 
+
+The `shutdown` command allows you to shutdown the system at a specific time. 
+
+The syntax for the command is shown below 
+
+`shutdown +m -h|-r <message> `
+
+* `+m` : specifies time in minutes when the system should go down. Can also be replaced with the `now` keyword which will shutdown the system instantly. You can also replace this with a time in the format of `hh:mm`
+
+* `-h` : specifies that the system should be halted instead of shutting down 
+
+* `-r` : specifies that the system should be rebooted.
+
+* `<message>` : text message that will be displayed to other users on the system, alerting them of the shutdown 
+
+* To cancel a shutdown , use the `shutdown -c` command in the prompt
+
+* You can also use the `wall` command to send messages to users about system events. You must send the message to the `stdin` of the wall command. See the example below.
+
+```bash
+echo "KNOCK KNOCK SYSTEM SHOCK" | wall
+```
+
+## Systemd init phase 
+
+* takes advantage of UUID's and TPM's 
+* default units are located in `/usr/lib/systemd/system`
+* custom units are in `/etc/systemd/system`
+* Units in `/etc/systemd/system` override units in `/usr/lib/systemd/system`
+* `list-units --type=<unit-type>` to display units by their type 
+* `systemctl list-dependencies <unit_name>` : Lists units the `unit_name` depends on 
+* `systemctl list-dependencies --reverse <unit_name>` : lists units that depend on `unit_name`
+* `systemctl --failed`: lists all failed units
+* `systemctl --failed --type=<unit_type>`: lists all failed units of a specific type 
 
 
-## Mount 
+## Systemd unit types 
 
-Syntax : mount /dev/sdX  /mount/point
+service 
+socket
+busname
+target
+snapshot
+device
+mount
+automount
+swap
+timer
+path
+slice
+scope
 
+## Systemd unit syntax 
+
+```bash
+[Unit]
+
+Description=    # Description of unit 
+After=          # Unit that should run before this unit runs 
+Before=         # Unit that should run after this unit 
+Requires=       # Required units that have to be started , else this unit will not run 
+Wants=          # Units that are desired but if not started, the unit will continue to run regardless
+Conflicts=      # Units that cannot run alongside this unit 
+
+[Service]       # Can change according to type of unit , see Type for examples 
+
+Type=           # target, service, device , mount, slice, timer, socket, scope
+ExecStart=      # Absolute Path for commands and arguments used to start service
+ExecStartPre=   # commands run before ExecStart
+ExecStartPost=  # Commands run after ExecStart
+ExecStop=       # Commands run to stop the srevice , if not present, process for unit will be killed
+ExecStopPost=   # Commands run after ExecStop 
+User=           # User privellege to run service as 
+
+
+[Install]
+
+Alias=          # list of alternative names for the unit 
+RequiredBy=     # List of units required by the unit , aka units that have this one set to Requires in the Unit section   
+WantedBy=       # List of units that name this unit in their Wants  
+Also=           # Contains list of units that will be installed when the unit is started 
+and uninstalled with the unit is removed 
+
+---
+
+# Mount unit directives 
+
+[Mount]         # Mount units also contain Install and Unit stanza 
+What=           # Absolute path of device to mount 
+Where=          # Absolute path of mount point  
+Type=           # Optional setting, filesystem type 
+Options=        # Comma separated list of mounting options 
+
+
+```
+## Systemd Unit status definitions 
+
+loaded: Loaded into memory 
+inactive (dead): unit not running 
+active (running): running with one or more active processes 
+active (exited): Completed configuration 
+active (waiting): Running and listening for request
+enabled: Will start when system boots 
+disabled: Will not start when system boots 
+static: Must be started by another service 
+
+## Systemd Controlling Services 
+
+`systemctl enable <unit>`: Turns on service when system is booted
+`systemctl disable <unit>`: Does not turn on service at boot 
+`systemctl start <unit>`: Starts service immediately 
+`systemctl stop <unit>`: Stops service immediately 
+`systemctl restart <unit>`: Stops and starts unit 
+`systemctl reload <unit>`: Re-reads configuration and continues running 
+`systemctl mask <unit>`: Makes a unit available by creating a symbolic link to `/dev/null`
+`systemctl unmask <unit>`: Removes mask 
+
+## Systemd runlevels 
+
+(0) runlevel0.target, poweroff.target
+(1) runlevel1.target, rescue.target
+(2) runlevel2.target, multi-user.target
+(3) runlevel3.target, multi-user.target
+(4) runlevel4.target, multi-user.target ( not used in SystemV )
+(5) runlevel5.target, graphical.target
+(6) runlevel6.target, reboot.target
 
 # Managing Kernel Modules 
 
