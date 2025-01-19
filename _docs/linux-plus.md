@@ -320,14 +320,14 @@ Options=        # Comma separated list of mounting options
 
 ## Systemd Controlling Services 
 
-`systemctl enable <unit>`: Turns on service when system is booted
-`systemctl disable <unit>`: Does not turn on service at boot 
-`systemctl start <unit>`: Starts service immediately 
-`systemctl stop <unit>`: Stops service immediately 
-`systemctl restart <unit>`: Stops and starts unit 
-`systemctl reload <unit>`: Re-reads configuration and continues running 
-`systemctl mask <unit>`: Makes a unit available by creating a symbolic link to `/dev/null`
-`systemctl unmask <unit>`: Removes mask 
+* `systemctl enable <unit>`: Turns on service when system is booted
+* `systemctl disable <unit>`: Does not turn on service at boot 
+* `systemctl start <unit>`: Starts service immediately 
+* `systemctl stop <unit>`: Stops service immediately 
+* `systemctl restart <unit>`: Stops and starts unit 
+* `systemctl reload <unit>`: Re-reads configuration and continues running 
+* `systemctl mask <unit>`: Makes a unit available by creating a symbolic link to `/dev/null`
+* `systemctl unmask <unit>`: Removes mask 
 
 ## Systemd runlevels 
 
