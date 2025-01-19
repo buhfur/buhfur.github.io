@@ -250,19 +250,19 @@ echo "KNOCK KNOCK SYSTEM SHOCK" | wall
 
 ## Systemd unit types 
 
-service 
-socket
-busname
-target
-snapshot
-device
-mount
-automount
-swap
-timer
-path
-slice
-scope
+* service 
+* socket
+* busname
+* target
+* snapshot
+* device
+* mount
+* automount
+* swap
+* timer
+* path
+* slice
+* scope
 
 ## Systemd unit syntax 
 
@@ -309,14 +309,14 @@ Options=        # Comma separated list of mounting options
 ```
 ## Systemd Unit status definitions 
 
-loaded: Loaded into memory 
-inactive (dead): unit not running 
-active (running): running with one or more active processes 
-active (exited): Completed configuration 
-active (waiting): Running and listening for request
-enabled: Will start when system boots 
-disabled: Will not start when system boots 
-static: Must be started by another service 
+* loaded: Loaded into memory 
+* inactive (dead): unit not running 
+* active (running): running with one or more active processes 
+* active (exited): Completed configuration 
+* active (waiting): Running and listening for request
+* enabled: Will start when system boots 
+* disabled: Will not start when system boots 
+* static: Must be started by another service 
 
 ## Systemd Controlling Services 
 
@@ -331,13 +331,13 @@ static: Must be started by another service
 
 ## Systemd runlevels 
 
-(0) runlevel0.target, poweroff.target
-(1) runlevel1.target, rescue.target
-(2) runlevel2.target, multi-user.target
-(3) runlevel3.target, multi-user.target
-(4) runlevel4.target, multi-user.target ( not used in SystemV )
-(5) runlevel5.target, graphical.target
-(6) runlevel6.target, reboot.target
+* (0) runlevel0.target, poweroff.target
+* (1) runlevel1.target, rescue.target
+* (2) runlevel2.target, multi-user.target
+* (3) runlevel3.target, multi-user.target
+* (4) runlevel4.target, multi-user.target ( not used in SystemV )
+* (5) runlevel5.target, graphical.target
+* (6) runlevel6.target, reboot.target
 
 # Managing Kernel Modules 
 
