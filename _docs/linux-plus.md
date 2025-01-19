@@ -197,13 +197,13 @@ systemctl get-default
 
 ### SystemV Run levels 
 
-0 - halt the system 
-1 - single user ( maint mode )
-2 - multiuser client ( network client ) 
-3 - multiuser server ( network server )
-4 - not used ( user customizable )
-5 - graphics mode ( multiuser server mode )
-6 - reboot ( sets system level to 0 and back to default runlevel )
+* 0 - halt the system 
+* 1 - single user ( maint mode )
+* 2 - multiuser client ( network client ) 
+* 3 - multiuser server ( network server )
+* 4 - not used ( user customizable )
+* 5 - graphics mode ( multiuser server mode )
+* 6 - reboot ( sets system level to 0 and back to default runlevel )
 
 ## Shutting down the system 
 `init 0 ` - halts the system 
