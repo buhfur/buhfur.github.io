@@ -800,8 +800,28 @@ Simply delete all lines in /etc/network/interfaces and re-install the package an
     ```bash
     nmcli con up <con-name> 
     ```
-
+- Add custom IPv4 route to connection
+    ```bash
+    nmcli conn modify "Connection name" +ipv4.routes "<network-addr>/<prefix> <gateway-ip> [metric]"
+    # Example 
+    nmcli con mod "eth0" +ipv4.routes "192.168.3.0/24 192.168.3.1"
+    ```
+    * The `metric` is an optional command which determines the priority of the route  
+    
+- Create static connection manually ( Example )
+    ```bash
+    nmcli con modify "eth0" \
+    ipv4.addresses "192.168.3.100/24" \
+    ipv4.gateway "192.168.3.1" \
+    ipv4.dns "1.1.1.1" \
+    ipv4.method manual
+    ```
 ---
+
+- Disable IPv6 
+    ```bash
+    sysctl -w net.ipv6.conf.all.disable_ipv6=1
+    ```
 
 # Packet Capturing 
 
