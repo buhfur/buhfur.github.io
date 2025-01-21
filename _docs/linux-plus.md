@@ -436,10 +436,43 @@ dmesg | grep usb
 * Transfer speeds of `12M` indicate USB1.0 
 * Transfer speeds of `480M` indicate USB2.0 
 * Transfer speeds of `5000M` indicate USB3.0 
+* The output of the ID's are in the format `<manufacturer:device_id>`
+* Table of known manufacturer and device ID's can be found at ![this link](http://www.linux-usb.org/usb.ids)
+* `/dev/bus/usb/` -> location for USB device files and contains a directory for each Bus, 
+* In each directory for a USB Bus, there are device files for each Device 
+ 
 
-* `-t` -> view USB device tree 
 
+### View info based on bus number and device number 
 
+```bash
+lsusb -D /dev/bus/usb/<bus_number>/<device_number>
+```
+
+The output to this command is similar to the output of `lsusb -v`
+
+## The USB Root Hub 
+
+* First USB device on a linux system. 
+* responsible for communicating with devices attached to hub ports and the hub controller.
+* The hub controller monitors removed and newly added devices 
+* manages power for devices on host ports 
+* manages communication on the controllers bus. 
+
+## lspci 
+
+* Peripheral Component Interconnect 
+* supports 32-bit or 64-bit addressing 
+* supports ultra DMA burst mode for PATA. 
+* can auto detect PCI peripheral boards 
+* multiple PCI busses can be joined using bridges 
+* 256 busses max per system 
+* Larger systems use domains if more than 256 is needed 
+* Each bus can host up to 32 devices 
+* PCI bus hierarchy starts at bus(0) 
+* `Bus:Device:Function Class Vendor name` -> Format of output from `lspci`
+* `lspci -D` -> displays domain number in `Domain:Bus:Device:Function` format
+* without `-D` domain is assumed to be 0000.
 
 ## lsmod 
 
