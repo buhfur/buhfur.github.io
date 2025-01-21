@@ -339,14 +339,113 @@ Options=        # Comma separated list of mounting options
 * (5) runlevel5.target, graphical.target
 * (6) runlevel6.target, reboot.target
 
-# Managing Kernel Modules 
+## Systemd targets
+
+* Targets are a group of units and other targets  
+* These targets provide a specific function 
+* `systemctl --type=target`: Lists all activated targets 
+* `systemctl --type=target --all`: Lists all available targets 
+* `default.target`: Link to default runlevel target file
+* `systemctl get-default`: Prints the default runlevel target file 
+* `systemctl set-default`: Command that sets the default runlevel target file referenced by `default.target`
+* `systemctl isolate <runlevel-target-file>`: Changes runlevel , used to stop anything that is not apart of the target runlevel 
+
+## Systemd boot errors 
+
+* "Can't find hard drive" -> Hard drive is missing or BIOS/UEFI is misconfigured 
+* "Can't find bootloader" -> GRUB2 is incorrectly configured, or misconfigured 
+* "Can't load kernel" -> GRUB2 misconfiguration or kernel misconfiguration
+* "Web service failed to start" -> Boot successful , some applications may be misconfigured 
+
+## Kernel panic 
+
+* Protective measure to prevent data loss / corruption when an unrecoverable error is encountered 
+* Can be caused by configuration or software issues : missing, misconfigured, failed hardware , failed hardware drivers , system resource problems  
+* `kexec` , `kdump`, `crash` are utilities used for storing logs and troubleshooting kernel panics. These tools may not be installed by default 
+* `kdump` saves logs to memory and can even send the logs to a remote machine 
+* during the boot process memory is reserved for logs `kdump` generates.
+* This process is set by the `crashkernel` directive on the GRUB command line 
+* The specific size of memory reserved is dependent on the type of hardware and to the total system memory available. 
+* You can change the allocation size of the `crashkernel` directive in the
+* The `kexec` boots the kernel from another kernel but does not use BIOS to preserve the system state and allow you to analyze the crash dump datausing the `crash` command.
+
+---
+
+# Managing Hardware Under Linux  
+
+* Only topics "Discovering Devices" and "Managing Kernel Modules" are covered on the exam 
+
+## Discovering Devices 
+
+* Discovery starts during the boot process with searching through system busses for devices.   
+* When a device is found , it's properties are discovered and named so applications can access the device. 
+* Bus is a system device used to transfer data between devices 
+* Ports are physical connections to a Bus 
+* Devices are system components capable of receiving or providing data 
+* Drivers are files or groups of files used to control a hardware device 
+* The kernel ring buffer can be displayed with `dmesg` 
+* USB detection with `lsusb`
+* PCI detection with `lspci`
+
+## Displaying the Kernel Ring Buffer with dmesg   
+
+* Kernel ring buffer is a cyclical storage space containing kernel log messages.  
+* Once all data reserved is used , data is overwritten starting from the beginning of the buffer. 
+* Data from the ring buffer is handled by syslog 
+* dmesg use term "level" to describe syslog prio 
+
+## Syslog facilities & syslog Priorities 
+
+Left side is facilities , right is priorities or "levels".
+
+* kern   -> emerg 
+* user   -> alert 
+* mail   -> crit 
+* daemon -> err
+* auth   -> warn
+* syslog -> notice
+* lpr    -> info 
+* news   -> debug 
+
+## dmesg
+
+```bash
+dmest -T -f <FACILITY> -l <PRIO-LEVEL> 
+```
+
+* `-T` -> timestamp 
+* `-f` -> syslog facility option  
+Other options include 
+* `-L` -> adds color to output 
+* `H` -> Human readable output 
+
+**Search for USB events**
+
+```bash
+dmesg | grep usb 
+```
+
+## lsusb 
+
+* Allows you to list all available USB devices 
+* Scans for USB busses 
+* uses udev hardware DB to associated human readable name to vendor ID and product ID 
+* `lsusb` will tell about the USB hub , driver , and transfer speed 
+* transfer is in megabits 
+* man page is the best reference for options 
+* Transfer speeds of `12M` indicate USB1.0 
+* Transfer speeds of `480M` indicate USB2.0 
+* Transfer speeds of `5000M` indicate USB3.0 
+
+* `-t` -> view USB device tree 
+
+
 
 ## lsmod 
 
 * lsmod shows currently loaded kernel modules , this data is pulled from /proc/modules 
 * If a device driver is loaded and and working , but not showing up in lsmod , that means the device has support compiled into the kernel. 
 
-## rmmod 
 
 
 
