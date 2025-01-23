@@ -436,10 +436,13 @@ dmesg | grep usb
 * Transfer speeds of `12M` indicate USB1.0 
 * Transfer speeds of `480M` indicate USB2.0 
 * Transfer speeds of `5000M` indicate USB3.0 
+* Transfer speeds of `10000M` indicate USB3.1 Gen 2(USB3.2 Gen 2x2) 
+* Transfer speeds of `20000M` indicate USB3.2 
 * The output of the ID's are in the format `<manufacturer:device_id>`
-* Table of known manufacturer and device ID's can be found at ![this link](http://www.linux-usb.org/usb.ids)
+* Table of known manufacturer and device ID's can be found at http://www.linux-usb.org/usb.ids
 * `/dev/bus/usb/` -> location for USB device files and contains a directory for each Bus, 
 * In each directory for a USB Bus, there are device files for each Device 
+* File of known USB ID's are stored in `/usr/share/hwdata/usb.ids`
  
 
 
@@ -473,6 +476,75 @@ The output to this command is similar to the output of `lsusb -v`
 * `Bus:Device:Function Class Vendor name` -> Format of output from `lspci`
 * `lspci -D` -> displays domain number in `Domain:Bus:Device:Function` format
 * without `-D` domain is assumed to be 0000.
+* File of known USB ID's are stored in `/usr/share/hwdata/pci.ids`
+* `lspci -vv` -> displays additional bus information 
+* `lspci -t` -> displays tree 
+* In the output of `lspci -v` you can see the class ID's for each device in the format of `<vendor:device>`
+
+## Host Bus Adapter (HBA)
+
+* Used to connect multiple devies using a single controller 
+* Examples of host adapters : IDE , SCSI, SATA , iSCSI, Fiber channel, Network Controllers
+* `lspci -nn | grep -i hba` -> Shows HBA adapters
+* `systool -c <adapter-class>` -> Needs `sysfsutils` installed 
+* You can also view HBA adapter info in `/sys/class`
+
+## Managing Kernel Modules 
+
+* `lsmod` -> Lists all currently loaded kernel modules 
+
+* `lsmod` pulls data from `/proc/modules` and outputs in human-readble format  
+
+* To blacklist kernel modules,  add them to the `/etc/modprobe.d/blacklist.conf` file
+
+* `echo "blacklist joydev" >> /etc/modprobe.d/blacklist.conf` -> Blacklists `joydev` kernel module 
+
+* `modinfo <module-name>` -> View info about loaded module 
+
+* `depmod` -> Used to build dependency file to load kernel modules 
+
+* `depmod` Builds a file named `modules.dep` and stores in `/lib/modules/<kernel_version>/`
+
+* `ls /lib/modules/$(uname -r)` -> lists kernel modules for current linux kernel version being used.  
+
+* `modules.dep` -> file that shows dependencies between kernel modules 
+
+* This file also helps kernel utilities ensure dependent modules are loaded.  
+
+* Once the `modules.dep` file is generated , you can use `insmod` to load the module 
+
+* `insmod <module_filename>`
+
+* `<module_filename` -> Module file located in `/lib/modules/<kernel_version>/kernel`
+
+* `insmod` Doesn't install module dependencies found by `depmod`
+
+* `modprobe` -> Preferred Alternative to `insmod`, loads kernel module dependencies by default 
+
+* `modprobe <module_name>` -> Loads kernel module 
+
+* modules loaded with `modprobe` are not persistent after restarts 
+
+* modprobe is run every time the kernel loads to automatically detect devices 
+
+* `/etc/modprobe.d/*.conf` -> Files that determine which kernel modules are loaded at startup
+
+* `rmmod <module_name>` -> Unloads a kernel module , will not work if device using the module is in use.
+
+* `rmmod` does not take dependencies into account 
+
+* `modprobe -r <module_name>` -> unloads module and takes dependencies into account 
+
+## Modprobe directives 
+
+These are lines you can add into your `/etc/modprobe.d/*.conf` files to manage kernel modules during startup 
+
+* `install <module-name>` -> tells `modprobe` to load specified module  
+
+* `alias <alias_name> <module_name>` -> alias which can be referenced from shell prompt 
+
+* `options <module_name> options` -> List of options for the `<module_name>`. examples are `irq=` and `io=` which are used when the module loads 
+
 
 ## lsmod 
 
