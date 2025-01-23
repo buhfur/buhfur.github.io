@@ -43,6 +43,8 @@ SystemD:
 
 - the last 2 bytes contain the disk signature which contains the /boot directory 
 
+- Boot partitions should be around 100M to 200M in space 
+
 ## PXE ( Preboot Execution Environment )
 
 Client / Server facility used to remotely boot operating systems or provision computer systems from a network server. 
@@ -545,12 +547,54 @@ These are lines you can add into your `/etc/modprobe.d/*.conf` files to manage k
 
 * `options <module_name> options` -> List of options for the `<module_name>`. examples are `irq=` and `io=` which are used when the module loads 
 
+## Finding block devices 
 
-## lsmod 
+```bash 
+lshw -short -class volume
+```
 
-* lsmod shows currently loaded kernel modules , this data is pulled from /proc/modules 
-* If a device driver is loaded and and working , but not showing up in lsmod , that means the device has support compiled into the kernel. 
+```bash 
+ls -l /sys/block
+```
 
+```bash 
+lshw -short -class volume
+```
 
+# Shell scripting 
+
+* `exit 0` -> 0 means success 
+* `PATH=$PATH:.` -> sets path to current working directory, this poses a security risk as hackers could place malicious applications with similar names as common util scripts `passwd` for examples,  in your current directory.
+
+## Globbing Wildcard Characters 
+
+* Allows you to filter for different output based on patterns , very similar to regex  
+
+## Wildcards 
+
+`*` -> matches any one character , or the beginning character 
+
+`?` -> matches any single character after the expression 
+
+`[ahp]` -> Matches single character between the brackets 
+
+`[D-H]` -> Matches single character within the range  
+
+### Globbing snippets 
+
+```bash
+ls [nf]*0 
+```
+Only lists files that start with n or f , and end with zero.
+
+```bash
+ls f*1 
+```
+Only files that start with f and end with 1.
+
+```bash
+ls ????
+```
+Only lists files with 4 characters 
 
 
