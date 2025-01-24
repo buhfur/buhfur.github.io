@@ -563,8 +563,17 @@ lshw -short -class volume
 
 # Shell scripting 
 
+## Highlights 
+
 * `exit 0` -> 0 means success 
+
 * `PATH=$PATH:.` -> sets path to current working directory, this poses a security risk as hackers could place malicious applications with similar names as common util scripts `passwd` for examples,  in your current directory.
+
+* `cat /etc/shells or chsh -l` -> outputs list of available command line interpreters 
+
+* Interpreter is defined by login account.
+
+* Strings defined in Integer variables are assigned the value of 0
 
 ## Globbing Wildcard Characters 
 
@@ -597,4 +606,74 @@ ls ????
 ```
 Only lists files with 4 characters 
 
+```bash
+touch file note {file,note}{0..20}
+```
+Generates 20 files with filenames matching `file0..file20` and `note0..note20`.
 
+## Sequencing 
+
+`||` -> runs command if previous command fails 
+
+`&&` -> runs command if previous command was successful
+
+`;` -> runs next command regardless of success or failure
+
+`echo $?` -> retrieves the exit code of the last command run 
+* Unsuccessful programs send exit code of 1 
+
+## Command substitution 
+
+* \`command\` usable 
+
+* `$()` -> usable 
+
+### Examples 
+
+```bash
+ls /lib/modules/$(uname -r) 
+```
+Outputs the kernel modules directory with a substituted command that retrieves the kernel version.
+
+```bash
+echo "Current time : `date +%m/%d/%y" "%R`"
+```
+Outputs the time with the current date in 24-hour time. 
+
+## Variables 
+
+* Can use the `declare -p` command to print out the attributes of a defined variable 
+
+* `declare -i <variable_name>=<value>` -> declares integer variable
+
+* Output of `declare` is in the format of `typset -<type> <var_name>=<value>`
+
+## Reading user input 
+
+* `read` -> command used to read user input 
+* If no variable argument is supplied, the response from the user is stored in the variable REPLY
+
+## Positional parameters 
+
+* Command line arguments can be referenced in the order they are sent , see examples below 
+
+* `$0` -> Name of command or script 
+
+* `$#` -> number of command line arguments 
+
+* `$*` -> list of command line arguments 
+
+* `$$` -> Current process PID 
+
+* `$!` -> PID of last background job 
+
+* `$?` -> Command exit status code  
+
+
+  
+### Examples 
+
+```bash
+#!/bin/bash
+echo "$1"
+```
