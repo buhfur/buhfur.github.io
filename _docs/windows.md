@@ -291,5 +291,52 @@ This error indicates the user does not have the execution policy set for a speci
 > Even when the Scope is set to 'Unrestricted' , you will still be prompted 
 > 
 
-
 ---
+
+# Command prompt snippets 
+
+## USB devices 
+
+```bash
+wmic path Win32_USBControllerDevice get Dependent 
+```
+Get info on USB drivers 
+```bash
+wmic path CIM_LogicalDevice where "Description like 'USB%'" get DeviceID,Description
+```
+Lists more detailed info about connected USB devices 
+```bash
+driver query /FO TABLE | findstr /I "usb"
+```
+Lists USB drivers. 
+
+## Sound devices 
+
+```bash
+wmic sounddev get Caption, DeviceID, Status
+```
+Gets Name, Device ID , and status of audio devices  
+
+```bash
+wmic sounddev where "Status='OK'" get Caption, DeviceID
+```
+Shows only enabled audio devices 
+
+```bash
+driverquery /FO TABLE | findstr /I "audio"
+```
+
+```bash
+sc query type= driver | findstr /I "RUNNING" 
+```
+Lists all running drivers 
+
+```bash
+sc queryx type= driver
+```
+Lists detailed info on each driver 
+
+```bash
+sc query "Driver Name"
+```
+Get info for specific driver 
