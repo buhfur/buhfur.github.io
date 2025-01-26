@@ -677,3 +677,36 @@ Outputs the time with the current date in 24-hour time.
 #!/bin/bash
 echo "$1"
 ```
+
+## File testing operators 
+
+* -a or -e Does the file exist?  [ -a /root/George ]
+
+* -s Is the file size greater than 0?  [ -s /etc/bashrc ]
+
+* -f Is the file a text file?  [ -f /etc/bashrc ]
+
+* -d Is the file a directory?  [ -d /etc ]
+
+* -b Is the file a block device?  [ -b /dev/sda ]
+
+* -c Is the file a character device?  [ -c /dev/tty1 ]
+
+* -p Is the file a named pipe?  [ -p /run/dmeventd-client ]
+
+* -L or -h Is the file a symbolic link? 
+
+* -r Does the file have read permissions for the user executing the test?
+
+* -w Does the file have write permissions for the user executing the test?  -x Does the file have execute permissions for the user executing the test?
+
+* -u Does the file have SUID applied?
+
+* -g Does the file have SGID applied?
+
+* -k Does the file have sticky bit applied?
+
+* -O <username> Is the file owned by the user specified by the argument <username>?
+
+* -G <group_name> Is the file owned by the user specified by the argument <group_name>?
+
