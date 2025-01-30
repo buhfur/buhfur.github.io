@@ -710,3 +710,266 @@ echo "$1"
 
 * -G <group_name> Is the file owned by the user specified by the argument <group_name>?
 
+## Testing conditionals 
+
+* In bash , the `test` statement can be used to test conditions
+
+* `test <expression>` -> syntax 
+
+### Examples 
+
+```bash
+test $EUID -eq 0; echo 
+```
+
+## Functions 
+
+* Function paramater arguments are referenced the same way command line arguments are for example `$1`
+
+```bash
+function function_name(){
+}
+    
+```
+## Text processing 
+
+
+# Configuring Network Settings 
+
+* FTP listens on port 20 ( data transfer ) and 21 ( control connection ) 
+
+* Ports range from 0-65536 , host ephemeral ports 
+
+* Reserved ports range from 0-1023 , well known ports 
+
+* ICANN reserves ports 1024-49151, special purposes for orgs  
+
+* Dynamic ports are 49152-65535, used for any network service 
+## Known ports 
+
+* Ports 20 and 21: FTP
+
+* Port 22: Secure Shell (SSH, SCP, SFTP, STelnet)
+
+* Port 23: Telnet
+
+* Port 25: SMTP
+
+* Port 53: DNS
+
+* Port 80: HTTP
+
+* Port 110: POP3
+
+* Port 123: NTP (time synchronization)
+
+* Ports 137, 138, and 139: NetBIOS
+
+* Port 143: IMAP
+
+* Port 389: LDAP
+
+* Port 443: HTTPS
+
+* Port 514: Syslog remote logging
+
+## IP classes 
+
+* Class A : 126 possible networks 16.7 million possible addresses , first octet must be between 1-126
+
+* Class B : 16,384 possible networks , 65,534 possible hosts 
+
+* Class C : values of 192-223 , 2,097,152 possible networks , 254 hosts per network. 
+
+* To calculate number of hosts per network , the zeroes in the subnet as "Z" use this formula 
+
+> `N = 2^Z - 2`
+
+* Subnet mask CIDR notation integers represent the total 1-bits used for the subnet mask 
+ 
+* If you're given the CIDR notation , use the formula below 
+
+`N  = 2^(32-CIDR) - 2`
+
+
+## Configuring Network Addressing Parameters 
+
+* Onboard network adapter is assigned an index number provided by the BIOS
+
+* `ethtool` -> allows you to list and alter NIC settings 
+
+## Network config snippets and commands  
+
+* `ip addr add <ip> dev <device>` -> Adds IP to existing network interface 
+* `ip addr del <ip> dev <device>` -> Removes IP from existing network interface  
+
+* `ip link set <interface> down` -> Disables network interface 
+
+* `ip link set <interface> up` -> Enables network interface 
+
+* `systemctl restart network` -> Restarts network interfaces on Red hat systems 
+
+* `systemctl restart networking` -> Restarts network interfaces on debian systems 
+
+* `ip link` -> Shows MAC addresses , L2 info 
+
+* `ip route` -> Shows configured L3 routes, default gateways  
+
+* `/etc/sysconfig/network-scripts/ifcfg-<interface>/` -> Location of network interface configuration file 
+
+* `/etc/network/interfaces` -> Network interface configuration on debian systems 
+
+* `route` -> shows kernel IP routing table , stored in RAM 
+
+## Interface configuration 
+
+> Add these changes to the config file in the `/etc/sysconfig/network-scripts/ifcfg-<interface>` file. 
+
+
+**To configure DHCP**
+
+* IPADDR , NETMASK , NETWORK, BROADCAST are not required if using DHCP 
+
+```bash
+BOOTPROTO='dhcp'
+NAME='<name>'
+NETMASK=''
+NETWORK=''
+```
+
+## DHCP 
+
+* /etc/hostname -> config file for hostname , can be made persistent through using `hostnamectl set-hostname <hostname>`
+
+* /etc/dhcpd.conf -> Config file for DHCP , including the lease time. 
+
+* In /etc/dhcpd.conf  , modify `max-lease-time` to get shorter or longer lease times. 
+
+* If DHCP server cannot be reached , run `dhclient <interface> -v` to retrieve IP 
+
+
+## Nmcli 
+
+* `nmcli con show <interface>` -> shows info about specified interface 
+
+* `nmcli con modify <interface> +ipv4.addresses <ip_addr>/<CIDR>` -> adds new IPv4 address to interface. 
+
+* `nmcli con modify <interface> -ipv4.addresses <ip_addr>/<CIDR>` -> removes IPv4 address on interface. 
+
+* `nmcli con up <interface>` -> brings up network interface 
+
+## Routing 
+
+* `route add -net <network_address> netmask <netmask> gw <router_address>` -> adds new L3 route 
+
+* `route add -net <network_address> netmask <netmask> gw <router_address>`-> removes L3 route
+
+* `route add default gw <ip>` -> adds default route 
+
+* Changes made with `route` and `ip route` are not persistent after reboot 
+* `ip route add <ip>/<CIDR> via <router_addr> dev <interface>` -> adds route 
+
+* `ip route del <ip>/<CIDR>` -> deletes route
+
+## DNS 
+
+* `/etc/hosts` -> first file used for name resolution. 
+
+* DNS is only used if record for the domain is not in the `/etc/hosts` file. 
+
+* `<IP_address>     <host_name>     <alias>` -> Syntax for `/etc/hosts` file.
+
+* A dns server is authoritive if it contains a record for the requested domain in it's DB of name mappings.
+
+* DNS servers cache previously resolved domains for a period of time so they can respond directly to the client than repeat the resolution process.
+
+* `/etc/resolv.conf` -> configuration file which specifies DNS servers to be used 
+
+* There are two keywords used in the `/etc/resolv.conf` file , `search` and `nameserver`
+
+* `search` -> entry which specifies how to handle imcomplete domain names 
+
+* `nameserver` -> entry which specifies IP for DNS server 
+
+* `/etc/nsswitch.conf` -> defines the order of which services will be used for name resolution 
+
+### DNS process 
+
+1. Client sends DNS request to DNS server on port 53. If server is authoritive , the IP of the domain is sent to the host. If not , continue to step 2.  
+
+2. DNS server sends request to root level DNS server, which are able to resolve top level domains like .gov , .com , .edu etc.
+
+3. DNS server sends IP of domain to host , which then contacted using this IP 
+
+## /etc/nsswitch.conf
+
+file determines priority and method for which services are used for name resolution. 
+
+```bash
+hosts:     files dns
+networks:  files dns
+```
+These two lines dictate that the `/etc/hosts` file will be consulted first , afterwards `/etc/resolv.conf` will be consulted for name resolution. 
+
+## IPv6 
+
+* uses 128-bit addresses 
+
+* 8 4-character hexadecimal number make up each of the hextets
+
+* Zeroe's in the addresses can be abbreviated , but a hextet of `0000` can only be abbreviated once.
+
+* IPv6 uses DHCPv6 
+
+* each hextet can be represented between 0-FFFF.
+
+# Troubleshooting Network problems 
+
+## Ping 
+
+If you can ping another host and receive a timely response you know 3 things. 
+
+1. The network interface is working correctly 
+
+2. The destination system is up and working correctly 
+
+3. The network hardware on both ends is working correctly  
+
+
+## Netstat 
+
+* can be used to list network connections 
+
+* Can display the routing table 
+
+* Can display info about the network interface 
+
+* Has been replaced by `ss` or "show sockets"
+
+### Nestat snippets 
+
+* `netstat -a` -> lists all listening and nonlistening sockets 
+
+* `netstat -i` -> display statistics for network interface 
+
+* `netstat -r` -> displays routing table 
+
+## nc 
+
+* `nc -l 2388` -> opens listening socket on port 2388 
+
+* `nc 192.168.3.104 2388` -> initiates connection to IP on port 2388. 
+
+## Network based filesystems 
+
+* `showmount -e system5` -> lists possible shares on "server5" server that's available to clients  
+
+* `mount -t nfs <hostname>:/<share_name> /mnt/<mount_dir>` -> mounts the `<share_name>` share on `/mnt/<mount_dir>`.
+
+* Nfs has a feature called automounting which automatically remounts the shared filesystem once it's availble. 
+
+## samba 
+
+* `smbclient -L <server_hostname> -U <username> ` -> view shared filesystems 
+
+
