@@ -973,3 +973,133 @@ If you can ping another host and receive a timely response you know 3 things.
 * `smbclient -L <server_hostname> -U <username> ` -> view shared filesystems 
 
 
+---
+
+# Understanding Network Security 
+
+
+## Symmetric Encryption 
+
+* Single private key 
+
+* Same key used for encryption and de-cryption 
+
+* Both sender and receiver must have exact same key 
+
+* Examples : Blowfish , 3DES , AES 
+
+* Also called "Secret Key Encryption" 
+
+## Asymmetric Encryption 
+
+* Uses 2 keys , public & private 
+
+* The public key is known to everyone , while the private key is only known to the owner 
+
+* Public key is used for encryption 
+
+* Private key is used for decryption 
+
+* Data is signed with the public key 
+
+* Data is verified with the private key 
+
+* Examples : RSA , DSA , Diffie-Hellman 
+
+* You can use the senders public key to verify the data did come from the actual sender 
+
+* Data is sent with the users private key 
+
+* Very difficult to break  
+
+* Commonly used in online shopping to hide users payment info or social security number. 
+
+* Certificate Authorities are used to verify a website is legit 
+
+* Examples: Verisign , Entrust, DigiCert 
+
+* Verifies site is not a spoofed site 
+
+* PKI: Public Key infrastructure 
+
+* PII: Personally Identifiable Information 
+
+* Some examples of PII are: Account numbers, Residential Addresses, Tax identification numbers. 
+
+* PII is encrypted with SSL ( Secure Sockets Layer) / TLS ( Transport Layer Security )
+
+* When you see a lock on a webpage you are visiting , this indicates the site is being accessed through HTTPS. Which uses Transport Layer Security ( TLS ) or formerly ( Secure Sockets Layer ). 
+
+* `openssl s_client -connect mysite.com:443` -> command which retrieves info on hashing algorithms or digital certificates being used by the site. Also verifies that it's using either SSL/TLS to begin with.
+
+* Admins can mint their own certs which can be used to encrypt both network transmissions and files in the filesystem. These certificates are called "self-signed certificates"  
+
+* Wildcard certificates can be a cost effective way to sign certificates for both domains and subdomains
+
+* For example a wildcard certificate for "suss.com" can be used for "cap.suss.com" and "amogus.suss.com"
+
+## Integrity Checking Via Hashing 
+
+* Used to verify a file that has not been altered 
+
+* One way encryption or hashing is used 
+
+* File integrity checking is done by ensuring the downloaded files hash matches the vendors hash  
+
+* MD5 & SHA are the two most popular tools 
+
+* Use `md5sum` to output the MD5 hash of a file 
+
+* SHA-256 is less likely to produce the same hash for two different files , also called a collision 
+
+* If the hash differs from the vendors , this may indicate the file is only a partial download or infected with malware ( altered )
+
+* `sha256sum` -> command to output SHA-256 hash of a file.
+
+* `sha1sum` -> command to output SHA hash of a file.
+
+* `sha512sum` -> command to output SHA hash of a file.
+
+
+## Implementing Secured Tunnel Networks 
+
+* older tools which lacked encryption and no longer used on public networks 
+    - telnet 
+
+    - rlogin 
+
+    - rsh 
+
+    - rcp or FTP 
+
+## SSH 
+
+* sshd -> ssh daemon 
+
+* ssh -> ssh client used to connect to SSH server 
+
+* scp -> secure copy files between systems 
+
+* sftp -> secure copy , imitates FTP 
+
+* slogin -> LIke SSH , access shell prompt remotely 
+
+* ssh-keygen -> used to create users public / private keys. Also makes self signed certificates 
+
+* ssh uses both asymmetric and symmetric encryption 
+
+* Private key is stored at : `/etc/ssh/ssh_host_key`
+
+* Public key is stored at : `/etc/ssh/ssh_host_key.pub`
+
+
+
+
+### SSH connection process 
+
+1. SSH client creates connection to SSH server. The SSH server is assumed to be listening on Port 22.
+
+2. SSH server sends public key to client 
+
+3. 
+
