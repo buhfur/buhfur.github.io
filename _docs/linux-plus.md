@@ -1072,7 +1072,7 @@ If you can ping another host and receive a timely response you know 3 things.
 
     - rcp or FTP 
 
-## SSH 
+## Chapter highlights
 
 * sshd -> ssh daemon 
 
@@ -1092,8 +1092,21 @@ If you can ping another host and receive a timely response you know 3 things.
 
 * Public key is stored at : `/etc/ssh/ssh_host_key.pub`
 
+* Public keys for remote systems are stored at : `/etc/ssh/ssh_known_hosts` or `~/.ssh/known_hosts`
 
+* The privelleged port for ssh is defined in the `/etc/services` file.
 
+* `ssh -l <username> <server-ip> [OPTIONS] /sbin/ip addr` -> runs a command on a remote system through ssh. 
+
+* `scp file.txt <user-name>@<ip-or-hostname-of-server>:/install/dir` -> Syntax for scp 
+
+* `sftp <username>@<ip-or-hostame>` -> sftp syntax 
+
+* `get /file/on/server /host/dir` -> sftp CLI syntax 
+
+* `rsync` -> backup tool which uploads file updates rather than duplicates. Uses SSH to encrypt data transfers
+
+* `rsync -av /file/dir/* user@remote:/filedir` -> Syntax template for syncing the contents of a directory to a remote machine using SSH. 
 
 ### SSH connection process 
 
@@ -1101,5 +1114,75 @@ If you can ping another host and receive a timely response you know 3 things.
 
 2. SSH server sends public key to client 
 
-3. 
+3. Client receives public key and checks if it already has a copy of the servers public key. 
 
+4. If the Client does not have public key from the server in either `/etc/ssh/ssh_known_hosts` or `~/.ssh/known_hosts`. The user client is prompted to add it.
+
+5. After the public key from the server is found or added , the client now trusts the remote system and generates the symmetric key.
+
+6. Client then uses the servers public key to encrypt the new secret key and sends it to the server.
+
+7. The server descrypts the symmetric key using it's own private key. The result of this is now both systems now have the same secret key. 
+
+8. Now that both the client and server have the same secret key , they can now use faster asymmetric encryption during the rest of the SSH session.
+
+9. The user is then prompted to login securely now that everything the user types is sent in an encrypted format.
+
+10. After the secure channel is negotiated , and the user has been authenticated. Data can now be sent securely. 
+
+## Configuring SSH 
+
+* openssh package is required , includes the sshd daemon and ssh client.
+
+* `/etc/ssh/sshd_config` -> config file for ssh servers 
+
+* `/etc/ssh/ssh_config` or `~/.ssh/config` -> Config file for ssh clients
+
+### Server configuration options 
+
+* AllowUsers -> Restricts login to specified users , space separated list
+
+* DenyUsers -> Opposite of AllowUsers , space separated list.
+
+* PermitRootLogin -> Yes or no value which allows or disallows the root user to authenticate through ssh server
+
+### Client configuration options 
+
+* Port -> Port used by server to connect through.
+
+* User -> Specified user to authenticate as.
+
+* `/etc/ssh/ssh_config` applies to all users, can be overridden by `~/.ssh/config` for a specific user 
+
+* Can also configure ssh client options through ssh command line options  
+* If no user is specified in command line arguments like `-l` , the system will try to authenticate as $USER.
+
+* Type `exit` to terminate the connection 
+
+## Logging into SSH without a password
+
+* Token based authentication 
+
+* Use `ssh-copy-id` to copy the clients public key to the `/etc/authorized_keys` on the servers filesystem.  
+
+* `ssh-keygen` -> command used to create public/private keys on client system.
+
+### Public key authentication setup 
+
+### Step by step process 
+
+1. On client , use `ssh-keygen -t [rsa,dsa]` to create keys. Could use both , RSA for encryption and DSA for decryption.  
+
+2. Use default directory for storing keys , `~/.ssh/id_rsa` and `~/.ssh/id_dsa`. 
+
+3. Assign passphrase to the key , making the key useless if the passphrase is not known to an attacker.
+
+4. Securely copy key to server using the command in step 5.
+
+5. `scp ~/.ssh/<keyname>.pub user@remote:/filename`
+
+6. Then append contents of public key to `~/.ssh/authorized_keys` file on the server.
+
+7. To avoid entering the passphrase everytime you authenticate with the server, use the `ssh-agent` command which caches the key passphrase with the `ssh-add` command. This passphrase is cached in memory.  
+
+8. 
