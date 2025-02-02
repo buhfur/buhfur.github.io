@@ -745,6 +745,9 @@ function function_name(){
 * ICANN reserves ports 1024-49151, special purposes for orgs  
 
 * Dynamic ports are 49152-65535, used for any network service 
+
+* `/etc/services` ->  List of default ports used for services
+
 ## Known ports 
 
 * Ports 20 and 21: FTP
@@ -1061,7 +1064,7 @@ If you can ping another host and receive a timely response you know 3 things.
 * `sha512sum` -> command to output SHA hash of a file.
 
 
-## Implementing Secured Tunnel Networks 
+# Implementing Secured Tunnel Networks 
 
 * older tools which lacked encryption and no longer used on public networks 
     - telnet 
@@ -1088,12 +1091,6 @@ If you can ping another host and receive a timely response you know 3 things.
 
 * ssh uses both asymmetric and symmetric encryption 
 
-* Private key is stored at : `/etc/ssh/ssh_host_key`
-
-* Public key is stored at : `/etc/ssh/ssh_host_key.pub`
-
-* Public keys for remote systems are stored at : `/etc/ssh/ssh_known_hosts` or `~/.ssh/known_hosts`
-
 * The privelleged port for ssh is defined in the `/etc/services` file.
 
 * `ssh -l <username> <server-ip> [OPTIONS] /sbin/ip addr` -> runs a command on a remote system through ssh. 
@@ -1107,6 +1104,21 @@ If you can ping another host and receive a timely response you know 3 things.
 * `rsync` -> backup tool which uploads file updates rather than duplicates. Uses SSH to encrypt data transfers
 
 * `rsync -av /file/dir/* user@remote:/filedir` -> Syntax template for syncing the contents of a directory to a remote machine using SSH. 
+
+## Key locations 
+
+* `/etc/ssh/ssh_host_key` -> SSH server private key. Should never be shared. 
+
+* `/etc/ssh/ssh_host_key.pub` -> SSH server public key. Given to clients 
+
+* `/etc/ssh/ssh_known_hosts` && `~/.ssh/known_hosts` -> Public keys for SSH servers. 
+
+* `/etc/ssh/id_rsa` -> SSH Clients private key using RSA encryption .  
+
+* `/etc/ssh/id_rsa.pub` -> SSH Clients public key using RSA encryption .  
+
+* `~/.ssh/authorized_keys` -> File on Client which contains authorized public keys for various SSH servers such as `id_rsa.pub` and similar keys. Stored in users home directory on client machine. 
+
 
 ### SSH connection process 
 
