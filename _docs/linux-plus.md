@@ -840,6 +840,24 @@ NETMASK=''
 NETWORK=''
 ```
 
+## FreeBSD Network Interface Configuration 
+
+* `/etc/rc.conf` -> Config file for interfaces 
+
+* `sudo service netif restart` -> restarts networking service 
+
+* `sudo service routing restart` -> restarts routing service.
+
+### Config file syntax 
+
+```bash
+hostname="trueNAS"
+ifconfig_vtnet0="inet 192.168.x.x netmask 255.255.255.0"
+defaultrouter="192.168.x.1"
+```
+
+This configures the `vtnet0` interface with a static IP and a persistent default route.
+
 ## DHCP 
 
 * /etc/hostname -> config file for hostname , can be made persistent through using `hostnamectl set-hostname <hostname>`
@@ -1111,7 +1129,9 @@ If you can ping another host and receive a timely response you know 3 things.
 
 * `/etc/ssh/ssh_host_key.pub` -> SSH server public key. Given to clients 
 
-* `/etc/ssh/ssh_known_hosts` && `~/.ssh/known_hosts` -> Public keys for SSH servers. 
+* `/etc/ssh/ssh_known_hosts` -> Client Public keys for SSH servers. 
+
+* `~/.ssh/known_hosts` -> Public keys for SSH clients that have connected to the system. Located in users home dir. Can be added when connecting to host server 
 
 * `/etc/ssh/id_rsa` -> SSH Clients private key using RSA encryption .  
 
