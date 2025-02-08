@@ -1315,7 +1315,7 @@ ifconfig eth0:2 inet 192.168.5.2/24
 
 **On host 1**
 
-1. `ifconfig eth0:0 192.168.2.2/24`
+1. `ifconfig eth0:0 inet 192.168.2.2/24`
 
 2. `brctl addbr br0`
 
@@ -1327,7 +1327,7 @@ ifconfig eth0:2 inet 192.168.5.2/24
 
 **On host 2**
 
-1. `ifconfig eth0:0 192.168.2.3/24`
+1. `ifconfig eth0:0 inet 192.168.2.3/24`
 
 2. `brctl addbr br0`
 
