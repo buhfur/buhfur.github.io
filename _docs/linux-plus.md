@@ -1319,7 +1319,7 @@ ifconfig eth0:2 inet 192.168.5.2/24
 
 2. `brctl addbr br0`
 
-3. `brctl addif eth0:0`
+3. `brctl addif br0 eth0:0`
 
 4. `ip link set br0 up`
 
@@ -1331,7 +1331,7 @@ ifconfig eth0:2 inet 192.168.5.2/24
 
 2. `brctl addbr br0`
 
-3. `brctl addif eth0:0`
+3. `brctl addif br0 eth0:0`
 
 4. `ip link set br0 up`
 
@@ -1374,3 +1374,65 @@ BONDING_OPTS="mode=1 miimon=100"
 * Load-balancing -> 5, Traffic is equally balanced over all NIC's 
 
 
+## Single Sign ON ( SSO )
+
+* Uses one-time passwords  
+
+### RADIUS 
+
+
+* RADIUS -> Remote Authentication Dial-In service
+
+* RADIUS authentication is done by a central server  
+
+* Once a user authenticates , they are granted an IP and access to the network  
+
+* RADIUS uses ports 1812/udp , 1813/udp
+
+### LDAP 
+
+* LDAP -> Open source active directory 
+
+* LDAP uses the X.500 standard 
+
+* LDAPv3 uses TLS 
+
+* LDAP uses ports 389 , 636 if using TLS 
+
+### Kerberos 
+* Kerberos -> Preferred on public networks 
+
+* No passwords , encrypted or otherwise are sent across the network 
+
+* Kerberos uses tickets which expire after a set time. 
+
+* Time must by synced between clients/servers to work. 
+
+* Kerberos uses port 88
+
+* `kinit <username>@<hostname>` -> starts kerberos session 
+
+* `kinit -a` -> View addresses associated with current kerberos tickets 
+
+* `kinit -v` -> details on tickets, length , expiration times , renewal times. 
+
+### TACACS+ 
+
+* TACACS+ -> combines auth , authorization , and accounting 
+
+* Entire transaction is encrypted 
+
+* Can be placed on 3 different servers 
+
+* not compatible with older versions 
+
+* Uses TCP port 49 , 
+
+* originally designed for Cisco 
+
+
+## Defending against Network Attacks 
+
+* Disabling unused services ,
+
+* Installing security updates   
