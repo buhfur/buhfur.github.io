@@ -852,7 +852,7 @@ NETWORK=''
 
 ```bash
 hostname="trueNAS"
-ifconfig_vtnet0="inet 192.168.x.x netmask 255.255.255.0"
+ifconfig_vtnet1="inet 192.168.x.x netmask 255.255.255.0"
 defaultrouter="192.168.x.1"
 ```
 
@@ -991,8 +991,17 @@ If you can ping another host and receive a timely response you know 3 things.
 
 ## samba 
 
+* `smbd -V` -> outputs SMB version ( not proto version for clients ).
+
+* `/etc/local/smb4.conf` -> config file on TrueNAS for SMB. 
+
+* `/conf/base/etc/local/smb4.conf` -> global base config file for SMB 
+
+* `grep "server min protocol" /etc/local/smb4.conf` -> Command to find minimum SMB version used by clients.
+
 * `smbclient -L <server_hostname> -U <username> ` -> view shared filesystems 
 
+* `mount -t cifs -o //192.168.x.x/Share /mnt/point -o username=<username>,...,password=<password> ...` -> command to mount smb share 
 
 ---
 
@@ -1217,4 +1226,151 @@ If you can ping another host and receive a timely response you know 3 things.
 
 7. To avoid entering the passphrase everytime you authenticate with the server, use the `ssh-agent` command which caches the key passphrase with the `ssh-add` command. This passphrase is cached in memory.  
 
-8. 
+8. You can also use `ssh-copy-id` which will automatically add the public key to the servers `~/.ssh/authorized_keys` file  
+
+---
+
+# Virtual Private Networks 
+
+* Allows users to connect to remote servers over untrusted networks. 
+
+* Encryption and tunneling protocols are used. 
+
+* IPSec -> tunneling protocol 
+
+* DTLS -> Datagram Transport Layer Security. 
+
+* VPN's can be used for workers at home to connect to the office's network securly over an untrusted public network.  
+
+* Types of VPN's -> SSH , SSL( Not really SSL , Uses TLS but the term stayed the same )
+
+* SSL VPN's use TLS for encryption 
+
+* If VPN settings are correct but the system won't connect , check firewall rules and make sure the ports used are open. 
+
+## SSH Port Forwarding 
+
+* Allows tunneling of unencrypted services over encrypted SSH channel. 
+
+* Example: Accessing web server in DMZ via a jump server 
+
+* An SSH jumpserver is a hardened server with intrusion detection that serves protocols running in a DMZ more efficiently.
+
+* The `-L` option in `ssh` command allows you to connect through a jump server and forward requests to the intended destination. 
+
+* `ssh -L 80:web.server.com:80 jump.server.com` -> connects to SSH jump server which then forwards requests to web server. 
+
+## SSH Dynammic Port Forwarding. 
+
+* Allows forwarding requests to a server through an SSH proxy. Which would use an encrypted SSH connection.
+
+* For example , you can use this to forward requests to a web server through an encrypted SSH connection. Using the command below 
+
+* `ssh -D 55555 shah@ssh.server.com` -> Opens proxy on local machine which forwards requests to a web server using port 55555.
+
+## High Availability Networking   
+
+* Network bridging can enhance availability. Converts local LAN adapter.  
+* Dual homes two or more netowrks for fault tolerance.  
+
+* Bonding dual-homes network segments to boost network throughput. 
+
+## Redundant Networks 
+
+* Network Bridge Control -> bridge two networks together ( fault tolerance )
+
+* Network Bonding -> Bond network segments ( Boost throughput )
+
+* Overlay networks allow admins to configure mutliple L3 addresses to a local network card. Making it act like act like multiple network cards.  
+
+* On both debian and centos systems , install the "net-tools" and "bridge-utils" packages. 
+
+* On centos systems,  make sure to install the "epel-release" package. 
+
+## Configure overlay network IP's 
+
+```bash
+ifconfig <interface> inet <ip-address>/<CIDR>
+```
+
+Examples 
+
+```bash
+ifconfig eth0:0 inet 192.168.2.2/24
+ifconfig eth0:1 inet 192.168.4.2/24
+ifconfig eth0:2 inet 192.168.5.2/24
+```
+
+## Bridging configuration 
+
+* `brctl` -> base command to configure bridging , is installed with `bridge-utils` package. 
+
+* `brctl addbr <name>` -> create bridge and assign name 
+
+* `brctl addif <interface> ` -> Adds interface to network bridge, can add overlay network IP. 
+
+* `ip link set <bridge-name> up ` -> enables bridge 
+
+### Steps to create and add a bridge for two hosts  
+
+**On host 1**
+
+1. `ifconfig eth0:0 192.168.2.2/24`
+
+2. `brctl addbr br0`
+
+3. `brctl addif eth0:0`
+
+4. `ip link set br0 up`
+
+5. `ping 192.168.2.3`
+
+**On host 2**
+
+1. `ifconfig eth0:0 192.168.2.3/24`
+
+2. `brctl addbr br0`
+
+3. `brctl addif eth0:0`
+
+4. `ip link set br0 up`
+
+5. `ping 192.168.2.2`
+
+
+## Network Bonding
+
+* `/etc/sysconfig/network-scripts/ifcfg-bond0` -> script for defining interface bond 
+
+* Make sure to add these parameters below to configure the bond 
+
+```
+MASTER=bond0
+SLAVE=yes 
+```
+
+### Bond Interface configuration 
+
+```bash
+DEVICE=bond0
+NAME=bond0
+TYPE=Bond
+BONDING_MASTER=yes
+IPADDR=x.x.x.x
+PREFIX=24
+ONBOOT=yes
+BOOTPROTO=none
+BONDING_OPTS="mode=1 miimon=100"
+```
+
+## Bonding modes 
+
+* Round-Robin -> 0, Packets are sent in order across all NIC's , default
+
+* Active-Passive -> 1 , One NIC sleeps and activates if another fails 
+
+* Aggregation -> 4, NIC's act as one , resulting in higher throughput 
+
+* Load-balancing -> 5, Traffic is equally balanced over all NIC's 
+
+
