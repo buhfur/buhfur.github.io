@@ -1307,7 +1307,7 @@ ifconfig eth0:2 inet 192.168.5.2/24
 
 * `brctl addbr <name>` -> create bridge and assign name 
 
-* `brctl addif <interface> ` -> Adds interface to network bridge, can add overlay network IP. 
+* `brctl addif <bridge-name> <interface> ` -> Adds interface to network bridge, can add overlay network IP. 
 
 * `ip link set <bridge-name> up ` -> enables bridge 
 
