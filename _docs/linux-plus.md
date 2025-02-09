@@ -801,14 +801,17 @@ function function_name(){
 
 * `ethtool` -> allows you to list and alter NIC settings 
 
-## Network config snippets and commands  
+## Network Config Snippets And Commands  
 
 * `ip addr add <ip> dev <device>` -> Adds IP to existing network interface 
+
 * `ip addr del <ip> dev <device>` -> Removes IP from existing network interface  
 
 * `ip link set <interface> down` -> Disables network interface 
 
 * `ip link set <interface> up` -> Enables network interface 
+
+* `ip addr flush dev <interface` -> Resets changes 
 
 * `systemctl restart network` -> Restarts network interfaces on Red hat systems 
 
@@ -1271,9 +1274,11 @@ If you can ping another host and receive a timely response you know 3 things.
 ## High Availability Networking   
 
 * Network bridging can enhance availability. Converts local LAN adapter.  
+
 * Dual homes two or more netowrks for fault tolerance.  
 
 * Bonding dual-homes network segments to boost network throughput. 
+
 
 ## Redundant Networks 
 
@@ -1287,13 +1292,14 @@ If you can ping another host and receive a timely response you know 3 things.
 
 * On centos systems,  make sure to install the "epel-release" package. 
 
-## Configure overlay network IP's 
+## Configure overlay network IP's ( Legacy )
+
+Please note that these are legacy methods, `nmcli` and `ip` have replaced ifconfig and therefore do not use the older aliases e.g "eth0:0" , current tools list the newly added IP's under the interface rather than use aliases for each.
 
 ```bash
 ifconfig <interface> inet <ip-address>/<CIDR>
 ```
 
-Examples 
 
 ```bash
 ifconfig eth0:0 inet 192.168.2.2/24
@@ -1433,6 +1439,123 @@ BONDING_OPTS="mode=1 miimon=100"
 
 ## Defending against Network Attacks 
 
-* Disabling unused services ,
+* Disabling unused services 
 
 * Installing security updates   
+
+* `systemctl list-unit-files` -> list each service and status 
+
+* `chkconfig <service> off` -> legacy tool used for disabling services 
+
+* `netstat -l` -> shows listening ports 
+
+* `lsof -i` -> lists network services and their ports 
+
+* Firewalls filter incoming and outgoing traffic between private and public networks
+
+* Firewalls compare the origin address, origin port, destination address, destination port, type of packet, and protocol used against an Access Control List ( ACL ) to decide whether to forward or drop the traffic. 
+
+* Packet filtering firewalls are stateless, they do not know the state of the connection.  
+
+* Stateful firwalls maintain state of connection , commonly used. 
+
+* `echo 1 > /proc/sys/net/ipv4/ip_forward` -> enables Ipv4 port forwarding 
+
+* `echo 1 > /proc/sys/net/ipv6/ip_forward` -> enables Ipv4 port forwarding 
+
+* `echo 1 > /proc/sys/net/ipv6/conf/all/forwarding` -> enables forwarding for all network interfaces on system 
+
+
+## Firwalld Notes and Snippets 
+
+* `firewall-cmd --get-default-zone` -> gets default zone 
+
+* `firewall-cmd --set-default-zone=internal` -> sets default zone 
+
+* `firewall-cmd --list-all` 
+
+* Review firewall-cmd zones in book , page 508 
+
+## Iptables 
+
+* netfilter -> used by kernel to filter packets 
+
+* chain -> firewall rule for incoming packets 
+
+* Filter table -> used for creating packet filtering rules 
+
+* iptables can add, delete , insert , append rules 
+
+* First rule in chain is labeled "1" 
+
+* `iptables -t <table> <command> <chain> <options>` -> iptables syntax 
+
+* `iptables -L` -> list all rules in chain 
+
+* `iptables -N <chain_name>` -> Create new chain 
+
+* `iptables -I <chain_name>` -> Inserts rule in chain 
+
+* `iptables -R <chain_name>` -> Replaces rule in chain 
+
+* `iptables -D <chain_name>` -> Deletes rule in chain 
+
+* `iptables -F <chain_name>` -> Deletes all rules in chain 
+
+* `iptables -P <chain_name>` -> Sets dfault policy for chain 
+
+* `iptables -p` -> specifies protocol , can use "all", "tcp", "udp", "icmp"
+
+* `iptables -s <ip/mask>` -> specify source address 
+
+* `iptables -s 0/0` -> Checks all source addresses 
+
+* `iptables -d <ip/mask>` -> specify destination address 
+
+* `iptables -d 0/0` -> Checks all destination addresses 
+
+* `iptables -j <target>` -> tells iptables what to do when packet matches a rule , ACCEPT, REJECT, DROP, LOG
+
+* `iptables -i <interface>` -> Specifies interface where packet is received. Only applies to INPUT and FORWARD chains. 
+
+* `iptables -o <interface>` -> Specifies interface where packet is to be sent , only applies to OUTPUT and FORWARD chains 
+
+* `iptables-save` -> save changes to firewall tables 
+
+* `iptables-restore` -> resotre tables from file created 
+
+* `iptables -D FORWARD 1` -> Delete first rule in FORWARD chain 
+
+* `iptables -t filter -F` -> deletes all rules from filter table 
+
+* `iptables -P INPUT DROP` -> Sets default policy for INPUT chain to DROP all incoming packets 
+
+* `iptables -P FORWARD DROP` -> Sets default policy for FORWARD chain to drop all forwarded packets
+
+* `iptables -A INPUT -s 0/0 -p icmp -j DROP` -> Appens rule to chain for all incoming ICMP packets for any address to be dropped. Tl;dr all incoming ICMP packets from any address are dropped.
+
+* `iptables -A INPUT -i eth0 -s 192.168.2.0/24 -j DROP` -> Appends rule to INPUT chain which drops packets received on the eth0 interface from any address on the 192.168.2.0/24 subnet. 
+
+
+### Default chains ( rules )  
+
+* FORWARD: Packets transferred between networks  
+
+* INPUT: Packets sent to local linux system 
+
+* OUTPUT: Packets sent from local linux system 
+
+Each chain has 4 policies 
+
+* ACCEPT 
+
+* DROP
+
+* QUEUE
+
+* REJECT
+
+
+## UFW 
+
+* `/etc/ufw` -> location for before.rules and after.rules files which define firewall rules. 
