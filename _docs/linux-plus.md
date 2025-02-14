@@ -1559,3 +1559,167 @@ Each chain has 4 policies
 ## UFW 
 
 * `/etc/ufw` -> location for before.rules and after.rules files which define firewall rules. 
+
+
+
+## nftables 
+
+* made to improve performance issues with iptables 
+
+### nftables snippets 
+
+* `iptables-translate` -> tool to translate iptables rules into nftables rules.
+
+* `nft add rule ip filter INPUT tcp dport 22 ct state new,established counter accept` -> allow ssh 
+
+* `nft add rule ip filter INPUT ip protocol tcp dport {80,443} ct state new,established counter accept` -> allows HTTP & HTTPS traffic 
+
+
+## GPG 
+
+* Gnu Privacy Guard , open source version of OpenPGP 
+
+* `~/.gnupg` -> local directory , stores user keys and config file. 
+
+* `gpg --gen-key` -> generates key 
+
+* secring.gpg -> secret key 
+
+* pubring.gpg -> public key 
+
+* trustdb.gpg -> GPG trust database o
+
+
+## Securing the OS 
+
+* `nohup <command> &` -> command that specifies a process to ignore any hangup signals it receives , such as a user logging out. 
+
+* `find -name named &` -> finds command loaded with `nohup`
+
+* Disabling USB ports , protects data. 
+
+* `rm /lib/modules/$(uname -r)/kernel/drivers/usb/storage/usb-storage.ko.xz` -> Disables USB ports by removing USB driver. 
+
+* Perform security scans 
+
+* Disable FTP and Telnet ( unencrypted communication protocols )
+
+* Remove unused packages and applications 
+
+* Use host firewalls , UFW , firewalld 
+
+* Secure service accounts with `nologin` enabled in `/etc/passwd`
+
+## Controlling User Access 
+
+* Password attempts -> Lockout 
+
+* Failed auth -> Lockout 
+
+* User limits 
+
+* Disabling user login
+
+* Security auditing using `find`
+
+## Root account configuration 
+
+* pkexec 
+
+* only use root when absolutely necessary 
+
+* su -> substitute user 
+
+* `su <options> <user-account>`
+
+* `su -` -> loads target users profile. 
+
+* `su -c ` -> temporarily switches to target users account , runs command , and returns to original account 
+
+* `su -m` -> switches to target user account but preserves existing profile 
+
+
+
+* sudo  
+
+* `/etc/sudoers` -> File which configures which users are authorized to run commands. 
+
+## Sudoers file 
+
+* `User_Alias` -> Specifies which user accounts are allowed to run commands  
+
+* `User_Alias <alias> = <user1> <user2>...`
+
+* All alias names in /etc/sudoers must start with a capital letter 
+
+* `Cmnd_Alias` -> Specifies which commands the users can run 
+
+* `Cmnd_Alias KILLPROCS = /bin/kill, /usr/bin/kilall` ->  Syntax , allows sudoers to use kill and killall commands, must specify absolute path. 
+
+* `Host_Alias` -> Specifies the hosts that users can run commands on 
+
+* `Runas_Alias` -> Specifies the usernames that commands can be run as 
+
+* Then once aliases are done , tie them together as shown below 
+
+* `User_Alias Host_Alias = (<user>) Cmnd_Alias` -> Syntax for defining aliases behvior  
+
+* `amos ALL = NOPASSWD: /bin/kill, PASSWD: /usr/bin/lprm` -> Allows the user amos to run kill command without password 
+
+* By default , sudo is configured so users only need to enter their password instead of the root account password ( e.g `su`)
+
+* `sudo -e /etc/sudoers` 
+
+* `sudoedit /etc/sudoers`
+
+* `visudo`
+
+* `EDITOR`, `VISUAL` , `SUDO_EDITOR` -> environment variables for changing editor used with the 3 above commands to edit the sudoers file 
+
+
+## pkexec 
+
+* `pkexec -user allen cat /etc/hosts ` -> Outputs contents of /etc/hosts file as user "allen". The user running this command will need to enter their account
+
+## Setting strong passwords 
+
+* 12 or more characters 
+
+* Combo of letters , numbers , special characters 
+
+* Words not in the dictionary 
+
+* For password ageing , average time span before changes is 27-30 days , 90 days at max. 
+
+* with 2fa , annual password changes are recommended 
+
+* `chage` -> command to change lifetime of passwords 
+
+* `chage -m` -> minimum days before changes 
+
+* `chage -M` -> maximum days before changes 
+
+* `chage -W` -> warning days before a password change is required 
+
+## PAM 
+
+* Pluggable Authentication Modules 
+
+* Can be used to enforce password requirements such as strength & length , characters.  
+
+* Can also disallow users from logging in from specific terminals 
+
+* `/etc/pam.d` -> directory with configuration files for services 
+
+## PAM Configuration files 
+
+### Auth tasks ( first column ) 
+
+* account -> account verification , access to services 
+
+* auth -> auth user , request password , setup creds.
+
+* password -> request user for replacement password when updating password 
+
+* session -> setup , cleanup of services , resource limits 
+
