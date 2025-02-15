@@ -1636,6 +1636,8 @@ Each chain has 4 policies
 
 * `su -c ` -> temporarily switches to target users account , runs command , and returns to original account 
 
+* `su -c "echo 'hello'" ryan` -> example , runs echo "hello" as user ryan 
+
 * `su -m` -> switches to target user account but preserves existing profile 
 
 
@@ -1722,4 +1724,115 @@ Each chain has 4 policies
 * password -> request user for replacement password when updating password 
 
 * session -> setup , cleanup of services , resource limits 
+
+
+### Control keywords ( second column )
+
+* required -> if fails ,entire operation fails after running through all other modules 
+
+* requisite -> if fails , op fails immediately 
+
+* sufficient -> if successful , enough to satisfy reqs of service 
+
+* optional -> op will fail if only module in stack 
+
+* The third column displays module that gets invoked 
+
+---
+
+## PAM Continued 
+
+* `pam_nologin.so` -> if /etc/nologin exists , prevents non-admin users from logging in 
+
+* `pam_selinux.so` -> default security context with selinux 
+
+* `pam_tally2.so` -> login counter for failed login attempts 
+
+* `onerr=fail` -> locks user account after 3 failures with `deny=3`
+
+* `pam_tally2 -u <user> -r` -> resets account to allow login 
+
+### Deny access after 3 failed login attempts through ssh
+
+```bash
+auth required pam_tally2.so deny=3 onerr=fail
+account required pam_tally2.so 
+```
+
+## faillock 
+
+* can track password attempts on screensavers 
+
+* `faillock --user <user> ` -> displays failed login attempts 
+
+* `faillock --user <user> --reset` -> resets user account to allow logins 
+* ssh and login need to use `pam_faillock.so` 
+
+## Configuring User limits 
+
+* ulimit , `pam_limits` -> restricts access to resources   
+
+* ulimit is restricted to programs launched from the shell prompt 
+
+* `ulimit <options> <limit>` -> ulimit syntax 
+
+* `ulimit -c ` -> max size of core files in blocks. if 0 , core dumps for the user are disabled 
+
+* `ulimit -f` -> max size (in blocks ) of files created by the shell 
+
+* `ulimit -n` -> limit on max number of open file descriptors 
+
+* `ulimit -t` -> limit on max ammount of CPU time a process may use 
+
+* `ulimit -u` -> limit on max number of processes available to single user 
+
+* `ulimit -a` -> view current value for all resource limits 
+
+### PAM limits module 
+
+* /etc/security/limits.conf -> configures pam module for resource limiting 
+
+* `<domain>  <type>  <item>  <value> ` -> syntax for limits.conf 
+
+* domain -> can be a `user` or `@group_name` , `*` specifies all users 
+
+* type -> defines hard or soft limit , soft limits can be temporarily exceeded 
+
+* item -> resource being limited 
+
+* value -> value for limit 
+
+
+## Disabling User Login 
+
+* `w` -> shows all user currently logged in 
+
+* `lsof +D <directory>` -> show processes being run on a specific directory 
+
+* `pkill -KILL -u <username>` -> forcefully logoff user 
+
+* `/etc/nologin` -> if this file exists , only root user will be allowed to login. Any text in this file will be displayed when any other user tries to login  
+
+* `printf "System is going down today"` -> print out message to all users on the system to notify them the server will be shutting down. 
+
+* `auth requisite pam_nologin.so` -> checks if /etc/nologin file exists 
+
+## Security Auditing using find 
+
+* Check for files for SUID and SGID set on files owned by root.
+
+* files owned by root with SUID and SGID are security vulnerabilities , very dangerous. Processes created with these files execute with root permissions  
+
+* `rwSr-xr-x` -> files with SUID set 
+
+* `rw-r-Sr-x` -> files with SGID set 
+
+* `systemctl mask ctrl-alt-del.target` -> prevent users from shutting down the server using the famous key combo 
+
+* `find / -type f -perm -u=s -ls ` -> find files on system with SUID 
+
+* `find / -type f -perm -g=s -ls ` -> find files on system with SGID 
+
+
+
 
