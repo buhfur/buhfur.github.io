@@ -1,6 +1,15 @@
 
 # Linux + study guide 
 
+# Basic Configuration & Installation 
+
+## Time management 
+
+* `timedatectl` -> command used to configure time and timezones 
+
+* `/etc/timezone` -> file used to change timezones on debian systems 
+
+* `/usr/share/zoneinfo ` -> Directory which contains info about timezones 
 # Managing the linux boot process 
 
 **Show logs from last boot**
@@ -1833,6 +1842,171 @@ account required pam_tally2.so
 
 * `find / -type f -perm -g=s -ls ` -> find files on system with SGID 
 
+
+## Managing System Logs 
+
+Log files are stored in /var/log 
+
+## /var/log files 
+
+* faillog -> failed auth attempts 
+
+* firewalld -> Firewall log entries 
+
+* kern.log -> Kernel log entries 
+
+* lastlog -> Last login info 
+
+* maillog -> logging messages generated from sendmail and postfix daemons 
+
+* messages -> logs from running processes 
+
+* secure -> ssh login auth , failed ssh logins 
+
+* wtmp -> list of users who have already authenticated.  
+
+## rsyslogd 
+
+* `/etc/rsyslog.conf` -> Config file for syslog 
+
+* init systems use rsyslogd , while other systems may use syslog-ng or syslogd 
+
+### rsyslog.conf syntax 
+
+```bash
+<facility>.<priority>   <file>
+```
+
+### Facilities 
+
+* authpriv -> used by services associated with system security and authorization 
+
+* cron -> messages from cron and at 
+
+* daemon -> daemons that have do not have their own facility  
+
+* kern -> kernel log messages 
+
+* lpr -> handles messages from printing system 
+
+* mail -> mail logging , postfix , sendmail 
+
+* news -> news daemon 
+
+* rsyslog -> internal messages from rsyslog daemon 
+
+* user -> user-related log messages , failed login attempts 
+
+* uucp -> logging messages from uucp daemon 
+
+* local0-7 -> log messages from user-created application 
+
+
+### Priorities 
+
+* debug 
+
+* info 
+
+* notice 
+
+* warn
+
+* err
+
+* crit 
+
+* alert 
+
+* emerg 
+
+* none 
+
+## logrotate 
+
+* `/etc/logrotate.conf` -> contains defaults for logrotate utility , such as how often the logs are rotated 
+
+* cron daemon is used by default to rotate logs 
+
+* The defaults in the /etc/logrotate.conf can be overridden by scripts for specific daemons in the /etc/logrotate.d  directory 
+
+* maxage -> defines lifetime of logfiles before they are removed 
+
+* dataext -> configures logfiles to use a data extension 
+
+* rotate -> configures max rotations of logfiles 
+
+* size -> defines max or min size of logfiles 
+
+* notifempty -> Will not be rotated if non-empty 
+
+* missingok -> No error will be generated 
+
+* create -> defines permissons and user/group ownership 
+
+* postrotate -> scripts executed after logs are rotated 
+
+* `logger -p <facility>.<priority> "<log_message>"` -> CLI tool which can be used to manually make entries and test. 
+
+## Journald 
+
+* Used by systemd systems by default 
+
+* journal log entries are lost at reboot 
+
+* `journalctl -b` -> Outputs logs from most recent boot 
+
+* `journalctl -b <int>` -> Outpus logs from a specified boot 
+
+* `journalctl -u <service>` -> Outputs logs from a specified service.  
+
+* `journalctl -f <service>` -> Outputs last few entries from the journal 
+
+* `/etc/systemd/journald.conf` -> Config file for journald. 
+
+* ForwardToSyslog -> forwards logs from journald to rsyslog
+
+* MaxLevelStore -> max log level to be logged in journal , log levels less than or equal to are logged while anything greater is dropped. 
+
+* `/run/log/journal` is a binary file and therefore cannot be read by text manipulation utilities.  
+
+
+### Make journal logs persistent 
+
+1. `mkdir -p /var/log/journal `
+
+2. `systemd-tmpfiles --create --prefix /var/log/journal`
+
+## Using log files to Detect Intruders 
+
+* `/var/log/wtmp` -> log file of users who have authenticated to the system 
+
+* `last` -> outputs logging of recently authenticated users , sourced from /var/log/wtmp. 
+
+* `/var/log/faillog` -> contains list of failed auth attempts 
+
+* Can view login attempts in /var/log/messages or /var/log/journal 
+
+* `grep login /var/log/messages | more `
+
+
+## More on security 
+
+* confidentiality , integrity , availability 
+
+* Most systems prefer availability 
+
+* Discretionary Access Control ( DAC ) -> rules set at admins discretion 
+
+* DAC works for most corporate environments 
+
+* Importance on delivering data ASAP 
+
+* Mandatory Access Control ( MAC ) 
+
+* MAC , used for military environments  
+
+* Unclassified -> Confidential -> Secret -> Top Secret. 
 
 
 
