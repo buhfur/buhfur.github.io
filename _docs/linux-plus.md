@@ -2009,4 +2009,26 @@ Log files are stored in /var/log
 * Unclassified -> Confidential -> Secret -> Top Secret. 
 
 
+## SELinux 
 
+* Made by the NSA 
+
+* Comes with Red Hat 7 , Centos 7 and above by default 
+
+* operations , least priviellege possible 
+
+* actions not explicitly allowed , are denied by default 
+
+* Subject -> User , applications 
+
+* Object -> Socket , file , app 
+
+* Reference Monitor -> Checks rights dependent on context label  
+
+* `ls -Z` -> Command to show selinux contexts on files 
+
+* `ps -Z` -> Command to show selinux contexts on commands  
+
+* `/etc/selinux/config` -> config file for selinux 
+
+* `setenforce` -> Command , sets mode for selinux 
