@@ -2032,3 +2032,83 @@ Log files are stored in /var/log
 * `/etc/selinux/config` -> config file for selinux 
 
 * `setenforce` -> Command , sets mode for selinux 
+
+* a "." at the end of the file perms in `ls -l` shows that the file/dir is using SELinux context labels 
+
+* selinux-policy-minimum allows users to interact with their linux system in an unconfined state 
+
+* SELINUX -> Variable in SELinux config that dictates selinux mode 
+
+* `touch /.autorelabel` -> command to relabel entire filesystem , afterwards reboot 
+
+* `restorecon` -> restore specific files and directories 
+
+* `/etc/selinux/targeted/contexts/files/file_contexts` -> File which contains default contexts. 
+
+* `semanage` -> command used to modify SELinux contexts 
+
+### Contexts 
+
+> Legend: u=user, r=role, t=type 
+
+- unconfined_[u,r,t]
+    - GUI
+    - su/sudo 
+    - execute in /home & /tmp 
+    - Network 
+
+- sysadm_[u,r,t]
+    - GUI
+    - su/sudo 
+    - execute in /home & /tmp 
+    - Network 
+
+- staff_[u,r,t]
+    - GUI
+    - sudo 
+    - execute in /home & /tmp 
+    - Network 
+
+- user_[u,r,t]
+    - GUI
+    - execute in /home & /tmp 
+    - Network 
+
+- xguest_[u,r,t] 
+    - GUI
+    - Network: Firefox only  
+
+- guest_[u,r,t]
+
+
+### Semanage 
+
+* `semanage -s ` -> specifies user 
+
+* `semanage -a -s ` -> adds constraining context for specified user 
+
+* `semanage login -a -s user_u gosia` 
+
+## Selinux Modes 
+
+* Enforcing -> Denies access to users based on selinux policies 
+
+* Permissive -> Logs actions that would have been denied under enforcing mode 
+
+* `getenforce` -> shows current mode 
+
+* `setenforce` -> sets mode 
+
+* `/etc/sysconfig/selinux/` `/etc/selinux/config` -> config file locations for setting default values 
+
+* default policy mode is "targeted" , which allows tuning contexts for specific processes. This minimizes buffer overflow attacks  
+
+* network services are targeted , but systemd and init user processes are not 
+
+* MLS uses the Bell-LaPadula model used by the DOD 
+
+* install the `selinux-policy-mls` 
+
+* `semanage boolean -l ` -> list policy booleans 
+
+* `getsebool` -> Another command for displaying policy booleans 
