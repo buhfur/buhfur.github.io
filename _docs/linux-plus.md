@@ -2112,3 +2112,30 @@ Log files are stored in /var/log
 * `semanage boolean -l ` -> list policy booleans 
 
 * `getsebool` -> Another command for displaying policy booleans 
+
+* `setsebool <name> [on|off]` -> Syntax for enabling specified selinux booleans  
+
+* `setsebool -P` -> makes change persistent across reboots 
+
+* `/sys/fs/selinux/booleans` -> Directory which contains commonly used selinux booleans 
+
+
+
+## SELinux auditing 
+
+* download `setroubleshoot-server` -> Package for auditing selinux , tracks selinux notifiactions 
+
+* `/var/log/audit/audit.log` -> Location for storing notifications from SELinux 
+
+* `sealert -a /var/log/audit/audit.log` -> command to read the contents of audit.log 
+
+* `audit2why < /var/log/audit/audit.log` -> Gives details on why an operation failed 
+
+* `audit2allow < /var/log/audit/audit.log ` -> Outputs a policy that would allow operations in /var/log/audit.log to succeed 
+
+
+## Implementing AppArmor 
+
+
+
+
