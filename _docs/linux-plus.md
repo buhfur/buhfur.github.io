@@ -2137,5 +2137,301 @@ Log files are stored in /var/log
 ## Implementing AppArmor 
 
 
+- Implements MAC ( Mandatory Access Control) 
+
+- Observes app behaviors and sets profiles so apps can run safely 
+
+- Similar to selinux 
+
+- profiles limit how apps interconnect with files and processes 
+
+- profiles are located in `/etc/apparmor.d`
+
+- can be tuned using tunables 
+
+- `/etc/apparmor.d/tunables` -> location for tunables 
+
+- Profiles can be in enforce mode or complain mode 
+
+- Complain mode is similar to permissive mode in selinux 
+
+- Enforce mode runs at minimum permissions 
+
+- `apparmor_status` -> gets status of apparmor 
+
+- `aa-complain /etc/apparmor.d/*` -> switches all or one specified profile to complain mode. 
+
+- `aa-enforce  /etc/apparmor.d/*` -> switches all or one specified profile to enforce mode. 
+
+- `aa-disable  /etc/apparmor.d/*` -> switches all or one specified profile to disabled. 
+
+- `aa-unconfined` -> view all processes not protected by apparmor 
+
+
+# Automation and Orchestration 
+
+* `/etc/netplan` -> Directory for configuring network orchestration. 
+
+* Building infrastructure automatically is called orchestration 
+
+* Build Automation -> Automation of deploying operating system installations 
+
+
+## DevOps Collab tools 
+
+* Flarum -> Forum 
+
+* Jekyll -> Static site generator 
+
+* Kubernetes -> orchestration , automates software deployment and management 
+
+* OpenAPI Initiative -> Linux Foundation , REST API descriptions 
+
+## DevOps process tools 
+
+* Flynn -> PasS , running apps in prod envs 
+
+* Jenkins -> Automated build, test , deployment of apps. CI/CD 
+
+* Spinnaker -> CD , release software changes 
+
+* Vagrant -> Builds and maintains portable VM's 
+
+## DevOps inventory tools 
+
+* Ansible -> Config mgmt , app deployment 
+
+* CFEngine -> automates large-scale , mission-critical IT infra 
+
+* Chef -> config mgmt tool , streamline servfer config and maint 
+
+* Puppet -> Infra life cycle tool , patches and installs apps 
+
+* SaltStack -> IaC solution for data centers , includes config automation
+
+* Terraform -> IaC solution defines and provisions data centers , uses JSON  
+
+
+## Infrastructure as Code tools & snippets 
+
+### Terraform 
+
+* Uses JSON files 
+
+```json
+terraform{
+required_providers{
+aws = {
+    source = "jordanteam/aws "
+}
+}
+}
+provider "aws" {
+    ...
+
+```
+
+### Ansible 
+
+* Uses YAML files 
+
+* Used to build virtual computer instances 
+
+
+```yaml
+- hosts: localhost
+    gather_facts: False
+    vars_files:
+- credentials.yml
+    tasks: 
+- name: Provision an Instance 
+
+```
+
+
+# Virtualization and the Cloud 
+
+## Hypervisors 
+
+- Virtual Machine managers 
+
+- Types : Embedded , Type 1 , Type 2 
+
+### Type 1 Hypervisors 
+
+* Bare metal 
+
+* direct access to the hardware 
+
+* Each VM appears as a guest but shares system resources with the host 
+
+* Examples : Linux Kernel Virtual Machine ( KVM ) , Microsoft Hyper-V , Linux Foundation Xen 
+
+### Type 2 Hypervisors 
+
+* Hosted HV 
+
+* Application stored on host server 
+
+* System resources are accessed via system calls 
+
+* Runs on top of an already installed host OS 
+
+### Embedded hypervisors 
+
+* Embedded systems 
+
+* Embedded systems are independent integrated devices 
+
+* Devices contain Real Time Operating System ( RTOS ) 
+
+* controller and app software designed for a specific task 
+
+* Embedded HV's are programmed directly onto a processor 
+
+
+## Thin Vs Thick Provisioning 
+
+* Defines how storage space is allocated on a hard disk 
+
+* Thick provisioning allocates entire drive 
+
+* Thick is better when the full storage is expected to be used 
+
+* Thin dynamically allocates disk space as needed and sets a default limit. 
+
+* Thin is more cost efficient , however requires monitoring 
+
+
+
+## Virtualization file formats 
+
+* HDD -> Virtual hard disk file , used with parallels para-virt application 
+
+* OVA -> Open Virtual Application , archive( tar file ) of OVF file. Supported by VMWare and Oracle Virtual Box. 
+
+* OVF -> Open Virtualization Format , created by DTMF , provides platform independent method to archive and share VM's. Contains single directory with multiple configuration files. Includes manifest written in XML. The manifest file ( OVF descriptor ) contains network , storage , and other metadata used to configure VM.     
+
+* QCOW -> QEMY copy on write , disk image file. Superceeded by QCOW2 
+
+* VDI -> Default VirtualBox storage files 
+
+* VMDK -> designed by VMWare , used by QEMU and VirtualBox 
+
+* VHD -> Virtual Hard Disk format made my microsoft , superceeded by VHDX 
+
+
+## Managing Virtual Machines with virsh 
+
+## Virtual Networking   
+
+- Managed by libvirt 
+
+### NAT & IP Masquerading  
+
+* Changes source address to Public IP. 
+
+* Reversed when packet is returned 
+
+* NAT permits one connection to the public IP at a time 
+
+* IP masquerading permits multiple connections to the public IP at a time  
+
+### Bridge 
+
+* Connects multiple segments of a network  
+
+* Used to split a network into subnetworks. 
+
+* bridges do not forward , filter , or analyze messages
+
+* bridges != routers 
+
+* Some routers have bridging capability though.
+
+### Overlay Networks 
+
+* Networks sitting on top of another using logical links 
+
+* Example : A virtual network with two hosts bridged to a physical network
+
+* The virtual network in this case is the overlay network 
+
+### Dual-Home Networks 
+
+* Multiple NIC's connected to the same network 
+
+* Used as primary / secondary connections for fault tolerance and redundancy. 
+
+* Only one NIC is connected at a time. 
+
+### Bonding Interfaces 
+
+- Bonding 2 NIC's 
+
+- Create file in /etc/sysconfig/network-scripts/ directory named "bond#" or whatever name you would like to choose 
+
+- Change `"MASTER=<bondname>"` in interface config ( not bond interface config ) 
+
+- Change `"NM_CONTROLLED=no"` -> Tells NetworkManager not to configure interface 
+
+- `cat /proc/net/bonding/bon#` -> Verifies if bond was made, replace "bond#" with the name of your bond config 
+
+
+
+## BLOB storage 
+
+* Binary Large Objects 
+
+* Collection of binary data that is transmitted via HTTP 
+
+* Blobs are grouped into containers assigned to a user account  
+
+* Blob Types: Block , Append,  page 
+
+* Speicic types of storage are identified by a unique ETag 
+
+### Block BLOBS 
+
+- data streaming and storage 
+
+- each block may store up to 100MB 
+
+- A block BLOB may store up to 50,000 blocks 
+
+- changes to data must be committed , otherwise it is deleted after a week 
+
+### Append BLOBS 
+
+- Max of 50,000 4MB blocks 
+
+- used for logging 
+
+- Existing blocks may not be deleted or modified 
+
+- Data appended is always written to the end of the blob 
+
+### Page BLOBS
+
+- 512 Byte pages 
+
+- used for random reads and writes 
+
+- max size is 8TB 
+
+
+## Virtual Machine Shortcomings 
+
+- large sizes , GB or TB's in size , provisioned in a computer image 
+
+- slow to boot 
+
+- as more resources are used , performance drops 
+
+- Cloud VM instance = server in the cloud 
+
+- cloud-init -> config tool for cloud resources 
+
+- /etc/cloud/cloud.cfg -> config file for cloud instance 
 
 
