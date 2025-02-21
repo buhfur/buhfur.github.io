@@ -2259,6 +2259,9 @@ provider "aws" {
 
 ### Type 1 Hypervisors 
 
+![bare-metal-hv.png](images/bare-metal-hv.png)
+
+
 * Bare metal 
 
 * direct access to the hardware 
@@ -2268,6 +2271,8 @@ provider "aws" {
 * Examples : Linux Kernel Virtual Machine ( KVM ) , Microsoft Hyper-V , Linux Foundation Xen 
 
 ### Type 2 Hypervisors 
+
+![hosted-hv.png](images/hosted-hv.png)
 
 * Hosted HV 
 
@@ -2433,5 +2438,10 @@ provider "aws" {
 - cloud-init -> config tool for cloud resources 
 
 - /etc/cloud/cloud.cfg -> config file for cloud instance 
+
+
+## Containers 
+
+![container-arch.png](images/container-arch.png)
 
 
