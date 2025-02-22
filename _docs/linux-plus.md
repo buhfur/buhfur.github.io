@@ -2610,3 +2610,80 @@ ps -> list running containers , use `-a` to view all containers including ones t
 - used by redhat 
 
 - Anaconda -> system installer for red hat distros 
+
+
+# Troubleshooting 
+
+## Swap drives/files 
+
+* `swapon -s` ->  List swap files 
+
+* `swapoff /home/<user>/swapfile` -> disable swap file 
+
+**Create swap file using dd**
+
+`sudo dd if=/dev/zero of=~/swapfile bs=1M count=1024`
+
+`swapon /home/<user>/swapfile`
+
+
+## Storage performance 
+
+* `iostat -z <seconds-interval> <outputs>`
+
+* `ioping /dev/sdx `
+
+* `ioping -c 5 .` -> measures disk latency 
+
+## File Related Issues 
+
+* `df -i /boot` -> View stats on ext4 partition, if out of inodes, problems ocurr 
+
+* Back up all data and double inodes 
+
+* `mkfs.ext4 -N 1000000 /dev/sdx` -> doubles inode count 
+
+* XFS filesystems automatically build new inodes 
+
+## Directory related issues 
+
+* `chmod -t sales` -> removes sticky bit 
+
+* `chmod +t sales` -> adds sticky bit 
+
+## Keyboard maps 
+
+* `localctl set-keymap us` -> changes keyboard to US mapping 
+
+* `localctl` -> views keyboard localization 
+
+## Printers 
+
+* CUPS uses ports 631/tcp 
+
+* `lsof -i tcp:631`
+
+* `netstat | grep ipp `
+
+## Graphics cards 
+
+* `lspci -v | grep -i vga `
+
+* `lshw -class display `
+
+
+## Network issues 
+
+* `sysctl -a | grep ipv4.ip_forward` -> verifies if IP forwarding is enabled 
+
+* IP forwarding must be enabled for the machine to act as a router or gateway 
+
+## Validate User Connections 
+
+* /etc/login.defs -> only affect shadow utilities 
+
+* /etc/pam.d/passwd -> only affect a specific command 
+
+* /etc/login.defs -> specifies min/max length for password 
+
+* /etc/pam.d/passwd -> Overrides password length in /etc/login.defs 
