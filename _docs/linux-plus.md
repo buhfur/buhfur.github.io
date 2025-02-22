@@ -2440,8 +2440,173 @@ provider "aws" {
 - /etc/cloud/cloud.cfg -> config file for cloud instance 
 
 
-## Containers 
+# Containers 
 
 ![container-arch.png](images/container-arch.png)
 
+- runtime environment 
 
+- consist of files ,  libraries , depdencies , and configurations 
+
+- Hypervisor not required 
+
+- Shares resources from the host OS 
+
+- LXC, LXD , LXCFS, LinuxKit, Docker, Podman
+
+- Isolated at application level 
+
+- Errors at the application level do not affect the host 
+
+- Smaller in size, faster to boot , more efficient , can handle more applications 
+
+## Override Definitions 
+
+- multiple processes form a container , but ideally contain one process 
+
+- containers may need external helper services which are called ambassador containers 
+
+- multiple containers form a pod 
+
+- containers within a pod share the same network and other resources 
+
+- pods should ideally contain one container 
+
+- for example , one container running sshd and one container running https 
+
+- pods may need helper containers , called sidecars which ride along the pods process 
+
+- multiple pods make up a deployment 
+
+- deployment monitors , starts,  and restarts pods that may have died 
+
+- multiple nodes = servers , desktops networked together form a cluster.
+
+- CPU's and RAM is shared within the cluster and sources from various nodes 
+- deployments of pods are launched within the cluster 
+
+- cluster controls multiple pods , which are managed by docker or podman 
+
+- Kubernetes manages docker clusters and duplicates them to various regions in the world 
+
+- file storage is not shared within the cluster and cached instead.
+
+- when programs restart , the data is lost. 
+
+## Persistent Volumes 
+
+- To avoid lost data , persistent storage must be used 
+
+- A storage volume is a storage location on the host 
+
+- The storage volume is removed when the container is removed 
+
+- Persistent storage isn't removed when the container is removed 
+
+## Container Markup Languages 
+
+- Kubernetes can use JSON or YAML , best practice is YAML 
+
+- Docker also uses YAML 
+
+
+## Managing Containers with Docker and Kubernetes 
+
+
+### Podman and Docker commands 
+
+attach -> attach pod to running container  
+
+build -> buld container image from containerfile 
+
+commit -> create new image based on modified container  
+
+images -> list container images loaded on host computer 
+
+inspect -> list object config details  
+
+logs -> list container image logging 
+
+port -> display port mappings 
+
+pull -> pull container from image registry 
+
+push -> push a container image to a spcified location 
+
+restart -> restart one or more containers 
+
+rm  -> remove one or more containers 
+
+rmi -> remove one or more container images from host 
+
+run -> run a command in a new container 
+
+save -> save a container image to an archive 
+
+start -> start one or more containers 
+
+stop -> stop one or more containers 
+
+top -> display running processes of a container image 
+
+tag -> create alias for container 
+
+ps -> list running containers , use `-a` to view all containers including ones that have been stopped. 
+
+### Docker or podman options 
+
+`-it` -> access container interactive terminal 
+
+`-d` -> run container in background 
+
+`-ai` -> run container and attach to interactive terminal. 
+
+`--priveleged` -> runs priveleged container,  needed to map directories 
+
+`-v` -> Flag to mount directories onto container 
+
+### Examples 
+
+**Create tag for container** 
+
+`docker tag <image-id> <name>`
+
+**Run container in the background** 
+
+`docker run -d <image-id-or-tag> `
+
+**Access docker container interactive terminal**
+
+`docker run -it <image-id> `
+
+**Map directory on host to container**
+
+`docker run -it --privileged -v /media:/mnt jellyfin/jellyfin /bin/bash`
+
+**Run container and attach to interactive terminal**
+
+`docker run -at jellyfin/jellyfin `
+
+
+
+## Configuring Persistent storage 
+
+- containers will need to "map" the storage location on the host and it's location on the containers filesystem 
+
+- must use absolute file paths 
+
+
+## Removing Containers
+
+- first stop the container with the `stop` command. 
+
+- then remove with `rm` command.  
+
+- remove the container image with `rmi` command 
+
+
+## Automating installations with Kickstart 
+
+- used by redhat 
+
+- Anaconda -> system installer for red hat distros 
