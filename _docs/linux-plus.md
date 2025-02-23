@@ -1,6 +1,10 @@
 
 # Linux + study guide 
 
+# Managing storage 
+
+* ext3 is a journaled filesystem , unlike ext2 
+
 # Basic Configuration & Installation 
 
 ## Time management 
@@ -167,6 +171,7 @@ linux16 /vmlinuz-3.10.0-957.el7.x86_64 root=/dev/mapper/rhel-root ro crashkernel
 4. Press `Ctrl+x` to start the system into shell mode. Which is similar to emergency mode except it doesn't ask for a root password 
 5. Once you've reached the shell , run the following commands below to change the root password
 
+
 ```bash
 
 chroot /sysroot
@@ -208,13 +213,14 @@ systemctl get-default
 
 ### SystemV Run levels 
 
-* 0 - halt the system 
-* 1 - single user ( maint mode )
-* 2 - multiuser client ( network client ) 
-* 3 - multiuser server ( network server )
+* 0 - halt the system ( poweroff.target)
+* 1 - single user ( rescue.target ) 
+* 3 - multiuser server ( multi-user.target )
 * 4 - not used ( user customizable )
-* 5 - graphics mode ( multiuser server mode )
-* 6 - reboot ( sets system level to 0 and back to default runlevel )
+* 5 - graphics mode ( graphical.target )
+* 6 - reboot ( reboot.target ) 
+
+emergency.target
 
 ## Shutting down the system 
 `init 0 ` - halts the system 
@@ -812,6 +818,9 @@ function function_name(){
 
 ## Network Config Snippets And Commands  
 
+
+### Ip commands  
+
 * `ip addr add <ip> dev <device>` -> Adds IP to existing network interface 
 
 * `ip addr del <ip> dev <device>` -> Removes IP from existing network interface  
@@ -822,6 +831,13 @@ function function_name(){
 
 * `ip addr flush dev <interface` -> Resets changes 
 
+* `ip route change` -> Change route 
+
+* `ip route flush cache` -> updates routing table with new changes. Flushes routing table  
+
+* `ip route show` -> Shows route table info 
+
+### Systemctl network related commands 
 * `systemctl restart network` -> Restarts network interfaces on Red hat systems 
 
 * `systemctl restart networking` -> Restarts network interfaces on debian systems 
@@ -834,7 +850,12 @@ function function_name(){
 
 * `/etc/network/interfaces` -> Network interface configuration on debian systems 
 
+### route commands 
+
 * `route` -> shows kernel IP routing table , stored in RAM 
+
+* `route add -host <ip> reject` -> Create route to prevent traffic from reaching `<ip>`
+
 
 ## Interface configuration 
 
@@ -1460,6 +1481,8 @@ BONDING_OPTS="mode=1 miimon=100"
 
 * `lsof -i` -> lists network services and their ports 
 
+
+
 * Firewalls filter incoming and outgoing traffic between private and public networks
 
 * Firewalls compare the origin address, origin port, destination address, destination port, type of packet, and protocol used against an Access Control List ( ACL ) to decide whether to forward or drop the traffic. 
@@ -1711,6 +1734,10 @@ Each chain has 4 policies
 * `chage -M` -> maximum days before changes 
 
 * `chage -W` -> warning days before a password change is required 
+
+* `chage -E -1 <accountname>` -> Remove expiration date of user account 
+
+
 
 ## PAM 
 
@@ -2678,6 +2705,10 @@ ps -> list running containers , use `-a` to view all containers including ones t
 
 * IP forwarding must be enabled for the machine to act as a router or gateway 
 
+### Domain can't be resolved 
+
+If a domain can't be resolved, check the routes in the routing table via `ip route show` , if there's no default gateway entry listed. This could likely be the cause 
+
 ## Validate User Connections 
 
 * /etc/login.defs -> only affect shadow utilities 
@@ -2687,3 +2718,12 @@ ps -> list running containers , use `-a` to view all containers including ones t
 * /etc/login.defs -> specifies min/max length for password 
 
 * /etc/pam.d/passwd -> Overrides password length in /etc/login.defs 
+
+
+## lsof & netstat commands 
+
+`lsof -lt` 
+
+`netstat -pn` -> View processes listening on a network port  
+
+
