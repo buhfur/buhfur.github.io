@@ -188,6 +188,13 @@ logout or /sbin/reboot -f
 ```bash
 systemctl get-default
 ```
+
+**List Failed units**
+
+```bash
+systemctl list-units --state=failed
+```
+
 ## The Kernel Initialization Phase 
 
 * Bootloader loads vmlinux ( system kernel ) 
@@ -221,6 +228,8 @@ systemctl get-default
 * 6 - reboot ( reboot.target ) 
 
 emergency.target
+:q
+
 
 ## Shutting down the system 
 `init 0 ` - halts the system 
@@ -1568,6 +1577,11 @@ BONDING_OPTS="mode=1 miimon=100"
 
 * `iptables -A INPUT -i eth0 -s 192.168.2.0/24 -j DROP` -> Appends rule to INPUT chain which drops packets received on the eth0 interface from any address on the 192.168.2.0/24 subnet. 
 
+**Redirect HTTP traffic to proxy to new port / destination**
+
+```bash
+iptables -t nat -A PREROUTING -p tcp --dport 80 -j DNAT --to-destination <ip>:<port>
+```
 
 ### Default chains ( rules )  
 
@@ -2726,4 +2740,8 @@ If a domain can't be resolved, check the routes in the routing table via `ip rou
 
 `netstat -pn` -> View processes listening on a network port  
 
+
+## Enabling IP forwarding 
+
+`echo 1 > /proc/sys/net/ipv4/ip_forward`
 
