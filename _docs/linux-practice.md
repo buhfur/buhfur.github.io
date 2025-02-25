@@ -324,3 +324,548 @@ Below are 60 practical tasks to help you learn and work with SELinux on a Linux 
 59. **Configure SELinux for a Container:** If you have Docker or another container engine, launch a container with SELinux enabled and verify its file contexts.
 60. **Document Your SELinux Changes:** Create and maintain a log file documenting all SELinux configuration changes made during these tasks.
 
+
+---
+
+# Text Manipulation Tool Tasks
+
+## tr
+1. Convert all uppercase letters in a file to lowercase using `tr`.
+2. Convert all lowercase letters in a file to uppercase using `tr`.
+3. Replace all spaces with underscores using `tr`.
+4. Delete all digits from the input using `tr`.
+5. Replace newline characters with commas using `tr`.
+6. Replace all vowels with `*` using `tr`.
+7. Delete all punctuation marks using `tr`.
+8. Replace all occurrences of the letter “a” with “z” using `tr`.
+9. Delete all non‐alphabetic characters using `tr`.
+10. Squeeze multiple spaces into a single space using `tr -s`.
+11. Replace tab characters with four spaces using `tr`.
+12. Delete all instances of the character “e” using `tr`.
+13. Replace all digits with “#” using `tr`.
+14. Remove all control characters using `tr -d` (with an appropriate set).
+15. Translate the set `[abc]` to `[xyz]` using `tr`.
+16. Squeeze repeated alphabetic characters using `tr -s` (applied to a set).
+17. Perform ROT13 encoding using `tr`.
+18. Remove all vowels from a file using `tr -d`.
+19. Replace the vowels “aeiou” with “@@@@@” using `tr`.
+20. Replace all punctuation with a space using `tr`.
+21. Convert carriage returns (CR) to line feeds (LF) using `tr`.
+22. Replace a specific symbol (e.g. “$”) with another (e.g. “%”) using `tr`.
+23. Delete all occurrences of the letter “x” using `tr`.
+24. Replace lowercase letters from “m” through “z” with their uppercase equivalents using `tr`.
+25. Remove characters outside the printable ASCII range using `tr -cd`.
+26. Map the characters “ABC” to “123” using `tr`.
+27. Squeeze multiple exclamation marks into one using `tr -s`.
+28. Replace newline characters with a space using `tr`.
+29. Replace underscores with hyphens using `tr`.
+30. Remove all non‐numeric characters using `tr -cd`.
+31. Replace multiple punctuation marks with a single period using `tr` (possibly in two steps).
+32. Change tab characters to a single space using `tr`.
+33. Delete all non‐alphanumeric characters using `tr -cd`.
+34. Remove extra white space by squeezing spaces using `tr -s`.
+35. Convert CRLF to LF by deleting carriage returns using `tr -d`.
+36. Substitute a range of characters with a given symbol using `tr` (e.g. map all a–z to “*”).
+37. Remove vowels and punctuation simultaneously using `tr -d`.
+38. Replace multiple spaces with a single underscore using `tr` (using a pipeline if needed).
+39. Remove all non‐ASCII characters using `tr -cd`.
+40. Convert each line of a file to lowercase using `tr`.
+41. Delete all dash (“-”) characters using `tr -d`.
+42. Remove all occurrences of the letter “b” using `tr -d`.
+43. Delete both digits and punctuation using `tr -d '0-9[:punct:]'`.
+44. Squeeze repeated digits into a single digit using `tr -s`.
+45. Map hexadecimal letters (a–f) to uppercase using `tr`.
+46. Replace newline characters with semicolons using `tr`.
+47. Delete all non‐printable characters using `tr -cd '[:print:]'`.
+48. Translate the set “123456” to “abcdef” using `tr`.
+49. Delete a range of characters (e.g. from “p” to “t”) using `tr -d`.
+50. Map one character set to another to simulate encoding conversion using `tr`.
+
+## cut
+1. Extract the first comma-separated field from each line using `cut -d',' -f1`.
+2. Extract the second tab-delimited field using `cut -d$'\t' -f2`.
+3. Extract characters 1–5 from each line using `cut -c1-5`.
+4. Extract fixed-width columns from a file using `cut -c…` (specify column ranges as needed).
+5. Extract the first 10 characters from each line using `cut -c1-10`.
+6. Extract the first colon-separated field using `cut -d':' -f1`.
+7. Extract the last field of each line (assume a known number of fields) using `cut`.
+8. Extract fields separated by spaces using `cut -d' '`.
+9. Extract bytes 1–3 from each line using `cut -b1-3`.
+10. Extract a specific range of characters using `cut -c` with custom positions.
+11. Extract the first word from each line using `cut -d' ' -f1`.
+12. Extract all fields except the first using `cut --complement`.
+13. Remove the first field from a colon-separated file using `cut --complement -d':' -f1`.
+14. Extract multiple fields (e.g. fields 2 and 3) using `cut -d',' -f2,3`.
+15. Extract a date field from a log file using `cut` with the appropriate delimiter.
+16. Extract and display a specific field for further processing using `cut`.
+17. Use `cut` to extract fields when the delimiter is a semicolon using `-d';'`.
+18. Extract a substring from each line using `cut -c` with the proper range.
+19. Extract the first field from a pipe-delimited file using `cut -d'|' -f1`.
+20. Extract the second and third fields using `cut -d',' -f2-3`.
+21. Extract fields from a CSV file (assuming no embedded commas) using `cut -d','`.
+22. Extract fields from a tab-delimited file using `cut -f` (the default delimiter is tab).
+23. Remove a specific field from each line using `cut --complement` with the proper delimiter.
+24. Extract the first 2 bytes of each line using `cut -b1-2`.
+25. Extract a specific range of bytes using `cut -b` with the desired positions.
+26. Extract the username field from `/etc/passwd` using `cut -d':' -f1`.
+27. Extract the home directory from `/etc/passwd` using `cut -d':' -f6`.
+28. Extract the shell field from `/etc/passwd` using `cut -d':' -f7`.
+29. Extract the domain name from an email address field using `cut -d'@' -f2`.
+30. Extract the file extension from filenames using `cut -d'.' -f2`.
+31. Extract the first word from each line (space-delimited) using `cut -d' ' -f1`.
+32. Extract a middle substring from each line using `cut -c5-15`.
+33. Extract the last N characters from each line using a pipeline (e.g. with `rev` and `cut`).
+34. Extract a specific field when lines use a complex delimiter (e.g. `cut -d'|' -f2`).
+35. Combine multiple fields into one output using `cut -d',' -f1,3`.
+36. Extract log file columns using `cut -d' '` (with appropriate field numbers).
+37. Extract the third field from a space-delimited log file using `cut -d' ' -f3`.
+38. Extract a fixed column range from each line using `cut -c10-20`.
+39. Extract specific fields from a colon-separated configuration file using `cut -d':'`.
+40. Extract the second field from a colon-separated file using `cut -d':' -f2`.
+41. Remove the first three characters from each line using `cut -c4-`.
+42. Extract fixed-width segments from each line using `cut -c` with proper ranges.
+43. Extract a substring from each line using `cut -c` (choose start–end positions).
+44. Remove a prefix from each line by cutting off a fixed number of characters using `cut -c`.
+45. Extract fields from a semicolon-separated file using `cut -d';'`.
+46. Extract a specific byte range (e.g. 5–10) using `cut -b5-10`.
+47. Extract fields from a pipe-delimited file using `cut -d'|'`.
+48. Output specific columns from a text file using `cut` (choose delimiter and fields).
+49. Extract fields even if some lines have missing delimiters using `cut`.
+50. Extract a field and combine it with sort (demonstrating pipelining) using `cut` piped to `sort`.
+
+## nl
+1. Number all lines in a file using `nl file.txt`.
+2. Number non-empty lines only using `nl -b a file.txt`.
+3. Number lines starting from 10 using `nl -v 10 file.txt`.
+4. Number lines with an increment of 5 using `nl -i 5 file.txt`.
+5. Number lines with a custom format using `nl -n rz file.txt`.
+6. Number lines and pad with zeros using `nl -n rz file.txt`.
+7. Skip blank lines while numbering using `nl -b t file.txt`.
+8. Number lines with a custom delimiter using `nl -s ': ' file.txt`.
+9. Use a custom numbering format (e.g. left justified) with `nl` options.
+10. Number lines of a log file using `nl logfile.txt`.
+11. Add line numbers to a script file using `nl script.sh`.
+12. Number lines and (simulate) print a header using `nl file.txt`.
+13. Format numbering with a custom width using `nl -w 3 file.txt`.
+14. Number lines with a colon separator using `nl -s ': ' file.txt`.
+15. Number lines using an alternate numbering style with `nl -n ln file.txt`.
+16. Number lines using a custom starting value using `nl -v 1 file.txt`.
+17. Remove any preexisting numbers by re‐numbering using `nl file.txt`.
+18. Start numbering at 100 using `nl -v 100 file.txt`.
+19. Right justify line numbers using `nl -n r file.txt`.
+20. Left justify line numbers using `nl -n l file.txt`.
+21. Number lines with fixed width using `nl -w 4 file.txt`.
+22. Redirect the numbered output to a new file using `nl file.txt > numbered.txt`.
+23. Number lines read from standard input using `cat file.txt | nl`.
+24. Number lines and write the result to another file using `nl file.txt > output.txt`.
+25. Ignore leading whitespace and number lines using `nl -b p file.txt`.
+26. Insert a delimiter between line numbers and text using `nl -s ' | ' file.txt`.
+27. (Simulate) Number lines with a custom prefix using `nl` with formatting.
+28. Number lines in a file that contains blank lines using `nl -b t file.txt`.
+29. (Simulate) Add a suffix to line numbers using `nl` (combine with other tools).
+30. Combine `grep` and `nl` to number only matching lines.
+31. Use `nl` to number lines for diff comparison.
+32. (Simulate) Number paragraphs in a text file using `nl` (may need preprocessing).
+33. (Simulate) Number only lines that contain a specific pattern (pre-filter then nl).
+34. Number lines with a dash as a separator using `nl -s ' - ' file.txt`.
+35. (Simulate) Add a custom prefix to line numbers using formatting.
+36. Number lines with a custom column width using `nl -w 5 file.txt`.
+37. Remove extra spaces (preprocess) and then number lines using `nl`.
+38. (Simulate) Number lines with a hash prefix using `nl` (combine with sed).
+39. Start numbering at 100 using `nl -v 100 file.txt`.
+40. Number lines in a multi‐column file using `nl`.
+41. Number lines from piped input using `cat file.txt | nl`.
+42. (Simulate) Number lines in reverse order by combining `tac` and `nl`.
+43. Number lines with indentation using appropriate `nl` formatting.
+44. (Simulate) Append trailing line numbers (combine with paste).
+45. (Simulate) Use a custom fill character (with sed) after numbering.
+46. Skip comment lines (pre-filter then nl) and number the rest.
+47. Number lines in a file with leading spaces using `nl -b t file.txt`.
+48. Merge the original file with numbered output using `paste`.
+49. Combine `nl` with `sort` to sort the numbered lines.
+50. Use `nl` to number lines and then compare with another file’s numbered output.
+
+## od
+1. Display a file in octal format using `od -o file.txt`.
+2. Display file contents in hexadecimal using `od -x file.txt`.
+3. Display file contents in decimal using `od -d file.txt`.
+4. Display file contents as ASCII characters using `od -c file.txt`.
+5. Display the first 16 bytes of a file using `od -N 16 file.txt`.
+6. Display file contents in “binary” (simulate using hex output) with `od -t x1 file.txt`.
+7. Set the number of bytes per line using `od -w16 file.txt`.
+8. Display file offsets using `od -An file.txt`.
+9. Display file contents in canonical format using `od -c file.txt`.
+10. Display both hex and ASCII using `od -Ax -tx1z file.txt`.
+11. (Simulate) Display in little-endian order using appropriate options.
+12. Use a custom format specifier with `od -t o2 file.txt`.
+13. Display file contents with address offsets using `od -A x file.txt`.
+14. Start displaying a file from a given offset using `od -j 10 file.txt`.
+15. (Simulate) Display in octal and decimal simultaneously using two commands.
+16. Set the number of columns using `od -w8 file.txt`.
+17. Group bytes in hex with two-byte groups using `od -t x2 file.txt`.
+18. Skip a specified number of bytes using `od -j 20 file.txt`.
+19. Limit output to 32 bytes using `od -N 32 file.txt`.
+20. Display in octal with canonical representation using `od -c file.txt`.
+21. Use a custom format string with the `-t` option in `od`.
+22. Show ASCII alongside hex using `od -tx1z file.txt`.
+23. Dump a binary file in hex using `od -A x -t x1 file.bin`.
+24. Dump a binary file in octal using `od -A o -t o1 file.bin`.
+25. Output file contents in blocks (64 bytes per block) using `od -N 64 file.txt`.
+26. Display only the header bytes (first 8 bytes) using `od -N 8 file.txt`.
+27. Group output in two-byte blocks using `od -t x2 file.txt`.
+28. Show decimal values for each byte using `od -t d1 file.txt`.
+29. (Simulate) Display hex values with a delimiter (preprocess if needed).
+30. Display octal output with addresses using `od -A x -t o1 file.txt`.
+31. (Combine) Hex and octal output by running two od commands.
+32. Use a custom format specifier (e.g. `od -t x4 file.txt`).
+33. Display hex output with decimal offsets using `od -A d -t x1 file.txt`.
+34. Display octal output with 8 bytes per line using `od -w8 -t o1 file.txt`.
+35. Display hex output with 16 bytes per line using `od -w16 -t x1 file.txt`.
+36. Combine hex and ASCII output using `od -tx1z file.txt`.
+37. Start output from a specific offset using `od -j 5 file.txt`.
+38. Format output in a structured style using `od` (with appropriate options).
+39. Ensure the output ends with a newline (default behavior).
+40. Skip an initial header using `od -j 10 file.txt`.
+41. Display hex without addresses using `od -An -t x1 file.txt`.
+42. Group output by 2 bytes using `od -t x2 file.txt`.
+43. (Combine) Hex and octal options as needed.
+44. Redirect output to another file using `od file.txt > dump.txt`.
+45. Set a custom block size using `od -N 32 file.txt`.
+46. Display in different numeral bases by changing the `-t` option.
+47. Set a custom column width using `od -w8 file.txt`.
+48. Output in a compact format using `od -v file.txt`.
+49. Use custom formatting flags with `od` as needed.
+50. Display file in hex with offset in hex using `od -Ax -tx1 file.txt`.
+
+## sed
+1. Replace the first occurrence of “foo” with “bar” using:
+   `sed 's/foo/bar/' file.txt`
+2. Replace all occurrences of “cat” with “dog” using:
+   `sed 's/cat/dog/g' file.txt`
+3. Delete lines containing “error” using:
+   `sed '/error/d' file.txt`
+4. Insert a line “Header” before lines matching “START” using:
+   `sed '/START/i Header' file.txt`
+5. Append a line “Footer” after lines matching “END” using:
+   `sed '/END/a Footer' file.txt`
+6. Perform an in-place substitution of “old” with “new” using:
+   `sed -i 's/old/new/g' file.txt`
+7. Print only lines containing “success” using:
+   `sed -n '/success/p' file.txt`
+8. Perform multiple substitutions in one command using:
+   `sed -e 's/foo/bar/g' -e 's/baz/qux/g' file.txt`
+9. Replace “apple” with “orange” only on line 3 using:
+   `sed '3s/apple/orange/' file.txt`
+10. Delete all blank lines using:
+    `sed '/^$/d' file.txt`
+11. Replace all digits with “#” using:
+    `sed 's/[0-9]/#/g' file.txt`
+12. Insert “Start of File” at the beginning using:
+    `sed '1i Start of File' file.txt`
+13. Append “End of File” at the end using:
+    `sed '$a End of File' file.txt`
+14. Change the delimiter (using `|` instead of `/`) with:
+    `sed 's|foo|bar|g' file.txt`
+15. Replace “test” with “exam” ignoring case using GNU sed:
+    `sed 's/test/exam/Ig' file.txt`
+16. Print matching lines with their line numbers using a two‑step command:
+    `sed -n '=' file.txt | sed 'N;s/\n/ /'`
+17. Remove leading and trailing whitespace using:
+    `sed 's/^[ \t]*//;s/[ \t]*$//' file.txt`
+18. Duplicate each line using:
+    `sed 'p' file.txt`
+19. Delete the first line using:
+    `sed '1d' file.txt`
+20. Delete the last line using:
+    `sed '$d' file.txt`
+21. Replace “foobar” with “foobaz” using a captured group with:
+    `sed 's/\(foo\)bar/\1baz/' file.txt`
+22. Perform a global substitution of “old” with “new” using:
+    `sed 's/old/new/g' file.txt`
+23. Insert a blank line after each line using:
+    `sed 'G' file.txt`
+24. Comment out lines containing “DEBUG” using:
+    `sed '/DEBUG/s/^/# /' file.txt`
+25. Uncomment lines starting with “#” using:
+    `sed 's/^# //' file.txt`
+26. Swap the words “first” and “second” using:
+    `sed 's/\(first\)\(.*\)\(second\)/\3\2\1/' file.txt`
+27. Remove duplicate spaces using:
+    `sed 's/  */ /g' file.txt`
+28. Add line numbers to each line using:
+    `sed = file.txt | sed 'N;s/\n/\t/'`
+29. Replace tab characters with four spaces using:
+    `sed 's/\t/    /g' file.txt`
+30. Change the case of “hello” to uppercase using GNU sed:
+    `sed 's/hello/\U&/g' file.txt`
+31. Extract a substring (matching “pattern”) using:
+    `sed -n 's/.*\(pattern\).*/\1/p' file.txt`
+32. Replace punctuation with “~” using:
+    `sed 's/[[:punct:]]/~/g' file.txt`
+33. Insert “Line Start” at line 5 using:
+    `sed '5i Line Start' file.txt`
+34. Remove all digits using:
+    `sed 's/[0-9]//g' file.txt`
+35. Replace multiple spaces with a single space using:
+    `sed 's/ \{2,\}/ /g' file.txt`
+36. Delete lines starting with a digit using:
+    `sed '/^[0-9]/d' file.txt`
+37. Convert a CSV file by replacing commas with semicolons using:
+    `sed 's/,/;/g' file.csv`
+38. Remove leading whitespace using:
+    `sed 's/^[ \t]*//' file.txt`
+39. Delete lines that do not contain “INFO” using:
+    `sed '/INFO/!d' file.txt`
+40. Replace only the second occurrence of “foo” per line (using a more complex script).
+41. Append a suffix “ -- end” to each line using:
+    `sed 's/$/ -- end/' file.txt`
+42. Remove the suffix “.txt” from filenames using:
+    `sed 's/\.txt$//' file.txt`
+43. Add a prefix “START: ” to each line using:
+    `sed 's/^/START: /' file.txt`
+44. Remove the prefix “DEBUG: ” from each line using:
+    `sed 's/^DEBUG: //' file.txt`
+45. Enclose the word “error” in brackets using:
+    `sed 's/error/[error]/g' file.txt`
+46. Replace “begin” with “start” only at the beginning of a line using:
+    `sed 's/^begin/start/' file.txt`
+47. Replace “end” with “finish” only at the end of a line using:
+    `sed 's/end$/finish/' file.txt`
+48. Merge two consecutive lines into one using:
+    `sed 'N;s/\n/ /' file.txt`
+49. Split a long line at each comma (inserting a newline) using:
+    `sed 's/,/,\n/g' file.txt`
+50. Remove all non-alphanumeric characters using:
+    `sed 's/[^a-zA-Z0-9]//g' file.txt`
+
+## awk
+1. Print the first field of each line using:
+   `awk '{print $1}' file.txt`
+2. Print the second field using:
+   `awk '{print $2}' file.txt`
+3. Print lines where the third field is greater than 100 using:
+   `awk '$3 > 100' file.txt`
+4. Sum the values in the second column using:
+   `awk '{sum+=$2} END {print sum}' file.txt`
+5. Calculate the average of the first column using:
+   `awk '{sum+=$1; count++} END {print sum/count}' file.txt`
+6. Print the last field of each line using:
+   `awk '{print $NF}' file.txt`
+7. Print only lines matching “success” using:
+   `awk '/success/' file.txt`
+8. Specify a comma as the field separator using:
+   `awk -F, '{print $1}' file.txt`
+9. Print a header then the file contents using:
+   `awk 'BEGIN {print "Header"} {print}' file.txt`
+10. Print line numbers along with each line using:
+    `awk '{print NR, $0}' file.txt`
+11. Count the number of lines using:
+    `awk 'END {print NR}' file.txt`
+12. Print lines where the first field matches a regex using:
+    `awk '$1 ~ /pattern/' file.txt`
+13. Replace the second field with a computed value using:
+    `awk '{$2 = $2 * 2; print}' file.txt`
+14. Reformat a CSV file using:
+    `awk -F, '{print $1 " - " $2}' file.csv`
+15. Print the first and third fields using:
+    `awk '{print $1, $3}' file.txt`
+16. Print fields in reverse order using:
+    `awk '{for(i=NF;i>0;i--) printf $i " "; print ""}' file.txt`
+17. Print fields separated by a colon using:
+    `awk 'BEGIN {OFS=":"} {print $1, $2}' file.txt`
+18. Filter lines based on multiple conditions using:
+    `awk '$1=="foo" && $2>50' file.txt`
+19. Print only non-empty lines using:
+    `awk 'NF' file.txt`
+20. Print the sum and average of a numeric column using:
+    `awk '{sum+=$2; count++} END {print sum, sum/count}' file.txt`
+21. Print numbers with two‑decimal formatting using:
+    `awk '{printf "%.2f\n", $1}' file.txt`
+22. Count occurrences of “error” using:
+    `awk '/error/ {count++} END {print count}' file.txt`
+23. Print lines conditionally using:
+    `awk '{if($1=="foo") print $0}' file.txt`
+24. Process a tab-delimited file using:
+    `awk -F'\t' '{print $1}' file.txt`
+25. Print only unique lines using:
+    `awk '!seen[$0]++' file.txt`
+26. Perform arithmetic on fields using:
+    `awk '{print $1 * $2}' file.txt`
+27. Concatenate the first two fields with a hyphen using:
+    `awk '{print $1 "-" $2}' file.txt`
+28. Print fields with fixed width using:
+    `awk '{printf "%-10s %-10s\n", $1, $2}' file.txt`
+29. Extract a column from a log file using:
+    `awk '{print $3}' file.txt`
+30. (Simulate) Format dates from a file using an appropriate awk script.
+31. Count words in a file using:
+    `awk '{ total += NF } END { print total }' file.txt`
+32. Print only the header row of a CSV file using:
+    `awk 'NR==1 {print}' file.csv`
+33. Skip the header row and process the rest using:
+    `awk 'NR>1 {print}' file.csv`
+34. Replace commas with spaces using:
+    `awk '{gsub(/,/, " "); print}' file.txt`
+35. Print lines where the number of fields equals 5 using:
+    `awk 'NF==5' file.txt`
+36. Print the first two columns separated by a colon using:
+    `awk '{print $1 ":" $2}' file.txt`
+37. Multiply the first and second fields and print the result using:
+    `awk '{print $1 * $2}' file.txt`
+38. Print a field as a percentage using:
+    `awk '{printf "%.2f%%\n", $1}' file.txt`
+39. Convert a field to uppercase using:
+    `awk '{print toupper($1)}' file.txt`
+40. Convert a field to lowercase using:
+    `awk '{print tolower($1)}' file.txt`
+41. Compute a running total for a column using:
+    `awk '{sum+=$1; print sum}' file.txt`
+42. Print rows where the first field is empty using:
+    `awk '$1==""' file.txt`
+43. Print the maximum value in the first column using:
+    `awk 'BEGIN {max=0} {if($1>max) max=$1} END {print max}' file.txt`
+44. Print the minimum value in the first column using:
+    `awk 'BEGIN {min=999999} {if($1<min) min=$1} END {print min}' file.txt`
+45. Print lines where the second field equals a specific value using:
+    `awk '$2=="value"' file.txt`
+46. Print a formatted report using:
+    `awk '{printf "Field1: %s, Field2: %s\n", $1, $2}' file.txt`
+47. Output data in JSON format (simulated) using:
+    `awk 'BEGIN {print "["} {print "{\"field\":\"" $1 "\"},"} END {print "]"}' file.txt`
+48. Process a file and save the output using:
+    `awk '{print $1}' file.txt > output.txt`
+49. Print the second field from a colon-separated file using:
+    `awk -F: '{print $2}' file.txt`
+50. Process a file and perform multiple actions using:
+    `awk '{print $1; print $2}' file.txt`
+
+## sort
+1. Sort a file alphabetically using:
+   `sort file.txt`
+2. Sort a file in reverse order using:
+   `sort -r file.txt`
+3. Sort a file numerically using:
+   `sort -n file.txt`
+4. Sort a file by the second field using:
+   `sort -k2 file.txt`
+5. Sort a CSV file by the third column using:
+   `sort -t',' -k3 file.csv`
+6. Sort lines ignoring case using:
+   `sort -f file.txt`
+7. Sort lines by length (using awk to prepend length) using:
+   `awk '{print length, $0}' file.txt | sort -n | cut -d" " -f2-`
+8. Sort a file and remove duplicate lines using:
+   `sort -u file.txt`
+9. Sort a file with a custom delimiter using:
+   `sort -t':' -k2 file.txt`
+10. Sort a file based on a numeric field using:
+    `sort -t',' -k2n file.txt`
+11. Sort lines then reverse the order using:
+    `sort file.txt | sort -r`
+12. Sort in human-numeric order using:
+    `sort -h file.txt`
+13. Sort a tab-delimited file by the third column using:
+    `sort -t$'\t' -k3 file.txt`
+14. Sort version numbers using:
+    `sort -V file.txt`
+15. Sort by multiple keys using:
+    `sort -k1,1 -k2,2 file.txt`
+16. (Simulate) Sort lines based on the last field by first extracting it.
+17. Sort lines while preserving the order of duplicates using:
+    `sort -s file.txt`
+18. Sort a file with blank lines at the end using:
+    `sort file.txt`
+19. Sort a file and output only unique lines using:
+    `sort -u file.txt`
+20. Sort a file ignoring leading blanks using:
+    `sort -b file.txt`
+21. Sort in parallel (if supported) using:
+    `sort --parallel=4 file.txt`
+22. Write sorted output to a new file using:
+    `sort file.txt -o sorted.txt`
+23. Check if a file is already sorted using:
+    `sort -c file.txt`
+24. Use a temporary directory with sort using:
+    `sort -T /tmp file.txt`
+25. Sort a file with mixed numeric and alphabetic keys (use appropriate options).
+26. Sort a file containing dates using:
+    `sort -k1,1M file.txt`
+27. Sort by month name order using:
+    `sort -k1,1M file.txt`
+28. Sort ignoring case and numerically using:
+    `sort -f -n file.txt`
+29. (Simulate) Sort by the last character (requires preprocessing).
+30. Sort by the first three characters using:
+    `sort -k1.1,1.3 file.txt`
+31. Sort with a custom locale using:
+    `LC_ALL=C sort file.txt`
+32. Perform a stable sort using:
+    `sort -s file.txt`
+33. Sort a file with zero-terminated lines using:
+    `sort -z file.txt`
+34. Reverse sort on a numeric column using:
+    `sort -k2,2nr file.txt`
+35. Sort a file and then add line numbers using:
+    `sort file.txt | nl`
+36. (Simulate) Merge sort using:
+    `sort --merge file.txt`
+37. (Simulate) Sort while ignoring non-printable characters.
+38. Sort by word count per line (using awk to count words) then sort.
+39. (Note: Random sort isn’t done with sort; use shuf instead.)
+40. Sort by multiple comma-separated fields using:
+    `sort -t',' -k1,1 -k2,2 file.txt`
+41. Sort a file containing mixed numeric and string data using:
+    `sort -n file.txt`
+42. Sort ignoring case differences using:
+    `sort -f file.txt`
+43. (Simulate) Sort ignoring punctuation (preprocess if needed).
+44. Reverse sort and output to another file using:
+    `sort -r file.txt -o rev_sorted.txt`
+45. (Simulate) Sort and then extract the first field using a pipeline.
+46. (Simulate) Sort using a custom comparator (use available options).
+47. Enable debug mode in sort using:
+    `sort --debug file.txt`
+48. Sort with human-readable numbers using:
+    `sort -h file.txt`
+49. (Simulate) Sort with a custom dictionary order using available keys.
+50. Sort based on the first 5 characters using:
+    `sort -k1.1,1.5 file.txt`
+
+## split
+1. Split a file into equal-sized parts (100 lines each) using:
+   `split -l 100 file.txt`
+2. Split a file into parts with 100 lines each using:
+   `split -l 100 file.txt`
+3. Split a file into parts with a specified prefix using:
+   `split -l 50 -a 2 file.txt part_`
+4. Split a file by bytes (1 KB per part) using:
+   `split -b 1K file.txt`
+5. Split a large log file into smaller files using:
+   `split -l 1000 logfile.txt`
+6. Split a file and add numeric suffixes using:
+   `split -d file.txt`
+7. Split a file with a custom suffix length (3 characters) using:
+   `split -a 3 file.txt`
+8. Split a file at a specific line number (200 lines per file) using:
+   `split -l 200 file.txt`
+9. Split a file into 1 KB chunks using:
+   `split -b 1K file.txt`
+10. (Simulate) Split a file into parts while preserving the header (requires extra scripting).
+11. Split a file into a specified number of files using:
+    `split -n 5 file.txt`
+12. Split a file using a numeric suffix using:
+    `split -d file.txt`
+13. Split a file into parts of 500 bytes each using:
+    `split -b 500 file.txt`
+14. Split a file with a custom prefix using:
+    `split -d -a 2 file.txt mypart_`
+15. Split a file and store the parts in a specific directory (change directory first).
+16. Split a file with verbose output using:
+    `split -v file.txt`
+17. Split a file and then list the created parts using:
+    `split file.txt && ls x*`
+18. Split a file into 5 equal parts using:
+    `split -n 5 file.txt`
+19. Split a file with a numeric suffix length of 3 using:
+    `split -d -a 3 file.tx
+
