@@ -7,8 +7,8 @@ nav_enabled: true
 docs_dir: _docs
 include:
   - _docs
-aux_links:
-  Template Repository: https://github.com/just-the-docs/just-the-docs-template
+    #aux_links:
+    #Template Repository: https://github.com/just-the-docs/just-the-docs-template
 
 
 just_the_docs:
