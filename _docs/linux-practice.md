@@ -256,3 +256,71 @@ Topic 10: System Resource Monitoring
 19. Create a summary report of system resource data over a period.
 20. Outline and implement a comprehensive plan for ongoing system performance monitoring.
 
+
+---
+
+# SELinux Hands-On Practice Tasks for Linux+ Exam Preparation
+
+Below are 60 practical tasks to help you learn and work with SELinux on a Linux machine. Each task is designed to be performed directly on your system.
+
+1. **Check SELinux Status:** Run the command to display the current SELinux mode and active policy.
+2. **Switch to Permissive Mode Temporarily:** Change SELinux mode to permissive using the appropriate command.
+3. **Switch Back to Enforcing Mode:** Revert SELinux back to enforcing mode.
+4. **Display File Security Context:** Use a command to display the SELinux context of a common file (e.g., `/etc/passwd`).
+5. **Change File Context Using chcon:** Create a test file and modify its SELinux context using `chcon`.
+6. **Restore File Context to Default:** Reset the test file’s context to its default value using the proper restoration command.
+7. **List All SELinux Booleans:** Display all available SELinux booleans on your system.
+8. **Temporarily Modify an SELinux Boolean:** Change a boolean (for example, `httpd_enable_homedirs`) without making a permanent change.
+9. **Permanently Modify an SELinux Boolean:** Change an SELinux boolean permanently using the appropriate flag.
+10. **Add a New File Context Rule:** Use `semanage fcontext` to add a file context rule for a test directory.
+11. **Apply the New File Context Rule:** Run the command that applies the new file context rule to the test directory.
+12. **Check Active SELinux Policies:** Verify which SELinux policy is active (e.g., targeted or strict).
+13. **List Running Processes with SELinux Contexts:** Display all running processes along with their SELinux contexts.
+14. **Inspect a Specific Process Context:** Identify a process (e.g., `sshd`) and check its SELinux context (via `/proc/<pid>/attr/current` or similar).
+15. **Map a Linux User to an SELinux User:** Create a mapping between a Linux user and an SELinux user using the appropriate command.
+16. **List SELinux User Mappings:** Display the current SELinux user mappings.
+17. **Generate an SELinux Audit Report:** Use the SELinux audit tool to generate a human-readable audit report.
+18. **Filter SELinux Audit Messages:** Filter recent SELinux audit log entries using `ausearch` or a similar command.
+19. **Generate a Custom Policy Module:** Simulate a denial and use `audit2allow` to generate a custom SELinux policy module.
+20. **Load the Custom Policy Module:** Install the module generated in Task 19 using the SELinux module loader.
+21. **Remove an SELinux Module:** Uninstall the custom module using the appropriate command.
+22. **Trigger a Full Filesystem Relabel:** Create the necessary file to trigger a full filesystem relabel on the next reboot.
+23. **Create a Test File and Change Its Context:** Create a test file (e.g., in `/tmp`) and manually assign a new SELinux context.
+24. **Verify the File Context Change:** Confirm that the test file’s context has been changed.
+25. **List Installed SELinux Modules:** Display a list of all currently installed SELinux modules.
+26. **Adjust a Boolean Affecting a Service:** Modify a boolean (e.g., `httpd_can_network_connect`) that impacts a service, then test the service.
+27. **Edit the SELinux Configuration File:** Open and modify `/etc/selinux/config` to change SELinux mode settings.
+28. **Reboot to Apply Configuration Changes:** Reboot the system and verify that the changes in SELinux mode are applied.
+29. **Add a New Port Context:** Use `semanage port` to add a context for a new TCP port (choose an available port).
+30. **Verify the New Port Context:** List port contexts to confirm that your new port has been added.
+31. **Confirm Targeted Policy Usage:** Ensure that your system is using the targeted policy by checking the configuration.
+32. **Identify an Unconfined Process:** Use process listing commands to find processes running with an unconfined SELinux context.
+33. **Simulate a Denial Scenario:** Create a situation (e.g., incorrect file context for a service) that triggers an SELinux denial and inspect the audit log.
+34. **Use audit2allow on Denial Logs:** Process the denial logs with `audit2allow` to generate a sample policy rule.
+35. **Load the Generated Policy Rule:** Install the custom policy module from Task 34 and verify that the denial is resolved.
+36. **Compare System Behavior with SELinux Disabled:** Temporarily disable SELinux and note differences in system behavior (be cautious and revert this change).
+37. **Inspect a Web Server Directory:** Check the SELinux file contexts in a web server directory (e.g., `/var/www/html`).
+38. **Change a Web Directory Context:** Modify the security context of the web server directory using `chcon` and verify the change.
+39. **Create a Custom File Labeling Policy:** Use `semanage fcontext` to define a custom labeling rule for a new directory.
+40. **Apply and Verify the Custom Labeling Policy:** Run the restoration command on the directory and confirm the applied labels.
+41. **Recursively List File Contexts:** Use a command to list SELinux contexts for all files in a directory (e.g., `/var/www`).
+42. **Simulate a Process Context Modification:** If applicable, simulate changing a process’s context (e.g., via startup options) and check the result.
+43. **Quickly Check the Current Mode:** Use `getenforce` to display the current SELinux mode.
+44. **Toggle and Verify an SELinux Boolean:** Change a boolean’s state and then confirm its value with the appropriate query command.
+45. **List Detailed SELinux Policy Modules:** Run a command that lists policy modules with detailed information.
+46. **Simulate a Service Denial:** Attempt to start a service that SELinux restricts, then review the resulting denial in the audit log.
+47. **Reset a Misconfigured File Context:** Create a file with an incorrect context and then use the restoration command to reset it.
+48. **Practice Changing Modes with setenforce:** Toggle SELinux modes using `setenforce` and verify each change.
+49. **Inspect Network Port Contexts:** List all network port contexts to understand which ports are associated with which types.
+50. **Modify and Revert a File Context:** Change the context of a non-critical file, then revert it back to the default.
+51. **Verify a Service’s SELinux Context:** Check that a service (e.g., `nginx` or `sshd`) is running with the correct context using process listing.
+52. **Investigate SELinux Log Errors:** Use audit tools to examine SELinux log entries for errors and document your findings.
+53. **Create a Custom Policy Rule for an Application:** Simulate an application denial and generate a custom rule using `audit2allow`.
+54. **Compare Targeted vs. Strict Policies:** Research and document differences between targeted and strict SELinux policies using command outputs and file inspection.
+55. **Explore SELinux Policy Files:** Navigate to `/etc/selinux` and review the available policy files and directories.
+56. **Backup Current SELinux Modules:** Create a backup (or log) of the list of installed SELinux modules.
+57. **Simulate and Resolve a File Access Block:** Create a scenario where file access is blocked by SELinux and resolve it using appropriate context commands.
+58. **Test File Access with SELinux Enforced vs. Permissive:** Compare file access behavior in enforcing mode versus permissive mode.
+59. **Configure SELinux for a Container:** If you have Docker or another container engine, launch a container with SELinux enabled and verify its file contexts.
+60. **Document Your SELinux Changes:** Create and maintain a log file documenting all SELinux configuration changes made during these tasks.
+
