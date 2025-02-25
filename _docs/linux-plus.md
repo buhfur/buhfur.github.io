@@ -1585,11 +1585,11 @@ iptables -t nat -A PREROUTING -p tcp --dport 80 -j DNAT --to-destination <ip>:<p
 
 ### Default chains ( rules )  
 
-* FORWARD: Packets transferred between networks  
+* FORWARD: For packets being routed through the box   
 
-* INPUT: Packets sent to local linux system 
+* INPUT: For packets destined to local sockets 
 
-* OUTPUT: Packets sent from local linux system 
+* OUTPUT: For locally generated packets  
 
 Each chain has 4 policies 
 
@@ -1600,6 +1600,11 @@ Each chain has 4 policies
 * QUEUE
 
 * REJECT
+
+### Default Tables with chains 
+
+Filter -> INPUT , FORWARD 
+
 
 
 ## UFW 
