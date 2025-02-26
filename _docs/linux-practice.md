@@ -4,6 +4,102 @@
 
 ## iptables 
 
+# Iptables Practice Tasks
+
+Below are 30 tasks/scenarios designed to help you practice various iptables configurations and use cases.
+
+1. **Block a Specific IP:**
+   Create an iptables rule to block all incoming traffic from IP address `192.168.1.100`.
+
+2. **SSH Access Restriction:**
+   Allow incoming SSH (port 22) connections only from the subnet `10.0.0.0/24` while denying others.
+
+3. **Block Outgoing SMTP:**
+   Block outgoing traffic to port 25 (SMTP) to prevent unauthorized mail relay.
+
+4. **Allow Established Connections:**
+   Write a rule to allow all established and related incoming connections.
+
+5. **Permit Web Traffic:**
+   Allow incoming HTTP (port 80) and HTTPS (port 443) traffic.
+
+6. **Default DROP Policy:**
+   Set the default policy for the INPUT chain to DROP, ensuring only explicitly allowed traffic is accepted.
+
+7. **Log Dropped Packets:**
+   Create a rule that logs dropped packets with a custom log prefix.
+
+8. **Block a Country’s IP Range:**
+   Using an ipset (or equivalent method), block traffic from a specified country’s IP range.
+
+9. **Block Ping Requests:**
+   Drop all ICMP echo-request (ping) packets to prevent ping sweeps.
+
+10. **Selective ICMP Handling:**
+    Allow outgoing ICMP traffic but drop incoming ICMP echo requests.
+
+11. **Port Forwarding:**
+    Forward incoming TCP traffic on port 8080 to port 80 using NAT.
+
+12. **Block by MAC Address:**
+    Write a rule to block all traffic coming from a specific MAC address.
+
+13. **Rate Limiting (SYN Flood Protection):**
+    Limit the rate of new TCP connection requests from a single IP address to mitigate SYN flood attacks.
+
+14. **Drop Suspicious TCP Flag Packets:**
+    Create rules to drop packets that use unusual TCP flag combinations (e.g., for detecting Xmas or Null scans).
+
+15. **Custom Chain for Logging & Dropping:**
+    Create a new chain called `LOG_DROP` that logs and then drops packets. Then, direct matching packets to this chain.
+
+16. **Save Current Rules:**
+    Demonstrate how to save the current iptables configuration to a file.
+
+17. **VPN Interface Restriction:**
+    Allow incoming traffic only if it comes via a specific VPN interface (e.g., `tun0`).
+
+18. **Redirect Traffic to a Different Port:**
+    Redirect all incoming traffic on port 8080 to port 80 (using NAT) – similar to port forwarding but with redirection.
+
+19. **Loopback Interface Traffic:**
+    Ensure that all traffic on the loopback interface (`lo`) is accepted.
+
+20. **Block a Subnet:**
+    Drop all incoming traffic from a particular subnet (e.g., `192.168.2.0/24`).
+
+21. **Mark Packets for QoS:**
+    Mark packets destined for a specific port (e.g., port 80) for Quality of Service (QoS) handling.
+
+22. **Allow FTP Traffic:**
+    Allow incoming FTP traffic on port 21.
+
+23. **Allow Only Established New Connections:**
+    Allow traffic if the connection is already established; reject other new connections by default.
+
+24. **Drop Invalid Packets:**
+    Write a rule to drop packets that are marked as invalid by the connection tracking system.
+
+25. **Selective New Connection Acceptance:**
+    Accept new connections from a specific IP (e.g., `192.168.1.50`) and drop all other new connection attempts.
+
+26. **Log and Block Telnet Attempts:**
+    Log incoming Telnet (port 23) connection attempts before dropping them.
+
+27. **Enable NAT for a Local Network:**
+    Set up a NAT rule to allow machines on a local network (e.g., `192.168.1.0/24`) to access the internet via a public interface (e.g., `eth0`).
+
+28. **Block UDP Traffic from a Specific Port:**
+    Drop all UDP packets originating from a specific source port (choose any port, e.g., 12345).
+
+29. **Accept DNS Traffic:**
+    Allow incoming DNS queries (port 53) over both TCP and UDP.
+
+30. **Flush and Reset iptables:**
+    Write a set of commands to flush all iptables rules, delete any user-defined chains, and set the default policies to ACCEPT.
+
+--- 
+
 - [ ] Block a Specific IP: Define rules to block all traffic from a particular IP address and log any attempts.
 
 - [ ] Allow HTTP/HTTPS Traffic Only: Configure rules that allow incoming traffic on ports 80 and 443 while denying all other incoming connections.
