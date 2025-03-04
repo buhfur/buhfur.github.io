@@ -100,6 +100,8 @@ the NIC looks for a DHCP server to receive an address and then provides a locati
 * `grub2-install /dev/sda` reinstalls config files to the `/boot/grub2` directory on the first hard drive
 * `/etc/default/grub` file is used for build the `/boot/grub2/grub.cfg` file when `grub2-mkconfig` is ran
 
+* vmlinuz is the compressed linux kernel that is loaded into de-compressed and loaded into memory during boot  
+
 **GRUB2 variables**
 
 `GRUB_TIMEOUT`: Boots default entry in *n* number of seconds if no options are selected. 
@@ -861,6 +863,9 @@ function function_name(){
 
 ### route commands 
 
+
+### route commands 
+
 * `route` -> shows kernel IP routing table , stored in RAM 
 
 * `route add -host <ip> reject` -> Create route to prevent traffic from reaching `<ip>`
@@ -1531,13 +1536,14 @@ BONDING_OPTS="mode=1 miimon=100"
 
 * `iptables -t <table> <command> <chain> <options>` -> iptables syntax 
 
+* `iptables -t <table> -A <policy> -j <policy>  ` -> Syntax to add rules to a chain 
 * `iptables -L` -> list all rules in chain 
 
 * `iptables -N <chain_name>` -> Create new chain 
 
 * `iptables -I <chain_name>` -> Inserts rule in chain 
 
-* `iptables -R <chain_name>` -> Replaces rule in chain 
+* `iptables -R <chain_name> <rule-num>` -> Replaces rule in chain , first rule is 1.
 
 * `iptables -D <chain_name>` -> Deletes rule in chain 
 
@@ -1576,6 +1582,12 @@ BONDING_OPTS="mode=1 miimon=100"
 * `iptables -A INPUT -s 0/0 -p icmp -j DROP` -> Appens rule to chain for all incoming ICMP packets for any address to be dropped. Tl;dr all incoming ICMP packets from any address are dropped.
 
 * `iptables -A INPUT -i eth0 -s 192.168.2.0/24 -j DROP` -> Appends rule to INPUT chain which drops packets received on the eth0 interface from any address on the 192.168.2.0/24 subnet. 
+
+* `iptables -L -nvx` -> View counters on all chains 
+
+* `iptables -A INPUT -p icmp -j LOG --log-prefix="[DROPPED]" --log-level=7` -> creates a rule for inbound packets , logs all icmp traffic into the kernel debug logs.  
+
+* Loggging from IPtables is stored in the kernel logs by default 
 
 **Redirect HTTP traffic to proxy to new port / destination**
 
@@ -1923,6 +1935,27 @@ Log files are stored in /var/log
 <facility>.<priority>   <file>
 ```
 
+### Change logging for iptables  
+
+1. Using iptables , use the `--log-prefix='[DROPPED]'` when configuring you're logging policy 
+
+2. Set log level to the desired level , refer to the system facilities and priorities section. 7 = debug for example , this puts the logs into the kernel debug logs , you can view this with `dmesg -f kern -l debug` 
+
+3. However, if you want to keep these in a separate file , create a config file in `/etc/rsyslog.d/` named `00-iptables.conf`
+
+4. In this file , add the following below 
+
+```bash
+:msg,contains,"[DROPPED]"   -/var/log/iptables.log
+& stop 
+```
+5. Or alternatively , you could redirect all debug kernel logs to a specific file , see below 
+
+In /etc/rsyslog.conf 
+
+```bash
+kern.debug      -/var/log/iptables.log
+```
 ### Facilities 
 
 * authpriv -> used by services associated with system security and authorization 

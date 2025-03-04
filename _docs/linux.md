@@ -17,7 +17,6 @@ nav_order: 1
 - [Command & Bash snippets](#command--bash-snippets)
 - [System Tools and 3rd party utilities command snippets](#system-tools-and-3rd-party-utilities-command-snippets)
 - [Xinitrc](#xinitrc)
-- [Tips & tricks](#tips--tricks)
 - [ProtonVPN connections](#protonvpn-connections)
 - [Setting up torrent server vm](#setting-up-torrent-server-vm)
 - [Redirect both STDOUT and STDERR](#redirect-both-stdout-and-stderr)
