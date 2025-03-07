@@ -276,3 +276,54 @@ wc -> outputs number lines , words , and characters
 `sed -i -e '2d' file.txt ` -> deletes specific line from file , in this example line 2 
 
 `sed -i -e '2d;5,10d' file.txt` -> deletes lines 2 and 5 through 10 
+
+`ps aux --sort=-%mem` -> sorts the mem column of sort 
+
+
+
+## emergency reset 
+
+`echo b > /proc/sysrq-trigger`
+
+
+## User and Group management 
+
+chmod -> change permissions for directories and files  
+
+chgrp -> change group owner of file  
+
+chage -> change password age of users password 
+
+chown -> change user and group ownership of files   
+
+id -> get UID, GID , and groups of users via their username 
+
+`id -u <username>`  -> just UID 
+
+`id -u <username>`  -> just GID 
+
+
+## usermod 
+
+`usermod -aG wheel <user>` -> adds user to wheel group to make them admin privs 
+
+## useradd 
+
+`useradd -m -u 1201 -G sales,ops linda` -> creates user with home dir and UID of 1201 , adds user to groups sales & ops 
+## sudo file 
+
+`<username> ALL=/usr/sbin/useradd, /usr/sbin/passwd` -> give user the ability to execute useradd and passwd commands without requiring root privs. User still needs to prepend 'sudo' before running command   
+
+`Defaults timestamp_timeout=240` -> sets sudo token timeout  
+
+`ALL=/usr/bin/useradd, /usr/bin/passwd, ! /usr/bin/passwd root` -> prevents users granted passwd execution from changing the password of the root user 
+
+`sudo sh -c "<command> | <command> ` -> syntax for piping sudo commands 
+
+`pkexec visudo` -> allows changing the visudo file if access is unavailable 
+
+`vipw` -> allows changing config files for users directly in /etc/passwd and /etc/shadow 
+
+`vigr` -> same as vipw but for changing configs for groups 
+
+
