@@ -404,3 +404,30 @@ Umask changes default permissions for all users
 You could also change the default umask by changing /etc/profile 
 
 For individual users you could also add a .profile file in the /etc/skel directory and change the umask there 
+
+## User-extended attributes 
+
+> Package: e2fsprogs 
+
+A -> file access time , makes sure it's not modified 
+
+a -> allows file to be added but not removed  
+
+c -> if volume-level compression is supported, assures files are compressed when the compression engine starts  
+
+D -> changes to files are written to disk immediately and not cached first, important for databases  
+
+d -> makes sure the file is not backed up when the dump utility is used 
+
+I -> enables indexing for the directory where it's enabled 
+
+i -> makes file immutable , good for security 
+
+s -> overwrites blocks where file was stored with 0's after file is deleted , makes sure recovery of the file is not possible after deletion. 
+
+u -> saves undelete info , allows a utility that can work with that info to salvage deleted files  
+
+
+`chattr +s somefile` -> adds s attribute to file 
+
+`chattr -s somefile` -> removes s attribute from file 
