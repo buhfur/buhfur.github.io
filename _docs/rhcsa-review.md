@@ -298,10 +298,19 @@ chown -> change user and group ownership of files
 
 id -> get UID, GID , and groups of users via their username 
 
+groupmod -> change GID of group 
+
+groupmems -> view users apart of a specific group 
+
+`groupmems -g dudes -l` -> view members of a specific group  
+
 `id -u <username>`  -> just UID 
 
 `id -u <username>`  -> just GID 
 
+* /etc/default/useradd -> defaults for users 
+
+* /etc/login.defs  -> defaults for users 
 
 ## usermod 
 
@@ -325,5 +334,70 @@ id -> get UID, GID , and groups of users via their username
 `vipw` -> allows changing config files for users directly in /etc/passwd and /etc/shadow 
 
 `vigr` -> same as vipw but for changing configs for groups 
+
+
+## chage & passwd  
+
+`passwd -n 30 -w 3 -x 90 linda ` -> sets minimal password usage to 30 days , with 3 days of warning , expires after 90 days 
+
+`chage -m 30 -W 3 -M 90 linda ` -> same thing but using chage instead of apasswd  
+
+`chage -E 2025-12-31 bob` -> sets bobs account to expire at a certain date 
+`chage -l` -> view current password management settings  
+
+
+## Special permissions basics 
+
+SUID -> on files , files are executed with the permissions of of the file owner 
+
+SGID -> on files , files are executed with permissions of group owner 
+on directories , newly created files are assigned group owner 
+
+Sticky bit -> prevents users from deleting files from other users 
+
+## chmod 
+
+4 -> read 
+
+2 -> write 
+
+1 -> execute 
+
+s -> SGID and execute are set 
+
+S -> only SGID is set 
+
+t -> sticky bit and execute are set 
+
+T -> only sticky bit is set 
+
+
+`chmod 755 file.txt` -> user has full rwx , group has rx , others has rx 
+
+`chmod -R a+X /home/somedir` -> sets execute perm for all users and sub dirs contained within 
+
+`chmod 4755 /somedir` -> set SUID on dir 
+
+`chmod u+s /somedir` 
+
+
+`chmod 2755 /somdir` -> set SGID on dir  
+
+`chmod g+s /somedir` 
+
+
+`chmod 1755 /somedir ` -> set sticky 
+
+`chmod +t /somedir`
+
+
+## umask 
+
+> Subtract perm values 
+
+
+`umask 777 somedir ` -> defaults for directories 
+
+`umask 666 somefile ` -> defaults for files 
 
 
