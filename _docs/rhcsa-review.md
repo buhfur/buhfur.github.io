@@ -6,15 +6,9 @@ This document mainly contains command snippets of the various CLI tools used for
 
 
 
-## unsorted 
+## unrelated helpful snippets  
 
-vigr -> opens /etc/group config file 
-
-type -> gets what type the command is , like an alias 
-
-which -> get path of command being used 
-
-time -> gets system time used for command 
+`echo "password" | sudo -S dnf update` -> pipes password into sudo commandfrom STDIN  
 
 ## output redirection & piping 
 
@@ -363,9 +357,9 @@ Sticky bit -> prevents users from deleting files from other users
 
 1 -> execute 
 
-s -> SGID and execute are set 
+s -> on directories , SGID and execute are set , on files , SUID and execute are set 
 
-S -> only SGID is set 
+S -> on directories,only SGID is set  , on files , only SUID is set 
 
 t -> sticky bit and execute are set 
 
@@ -390,14 +384,23 @@ T -> only sticky bit is set
 
 `chmod +t /somedir`
 
+## groupmems 
+
+`groupmems -l -g workers` -> lists users in workers group 
 
 ## umask 
 
 > Subtract perm values 
+
+Umask changes default permissions for all users 
 
 
 `umask 777 somedir ` -> defaults for directories 
 
 `umask 666 somefile ` -> defaults for files 
 
+/etc/profile.d/umask.sh -> file for setting default umask permissions for all users that login to the server , root user created 
 
+You could also change the default umask by changing /etc/profile 
+
+For individual users you could also add a .profile file in the /etc/skel directory and change the umask there 
