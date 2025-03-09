@@ -10,6 +10,13 @@ This document mainly contains command snippets of the various CLI tools used for
 
 `echo "password" | sudo -S dnf update` -> pipes password into sudo commandfrom STDIN  
 
+`for x in $(groupmems -l -g groupname); do mkdir /mnt/somedir/$x; done` -> snippet which creates a directory for all users in the "groupname" group 
+
+`for x in /mnt/somedir/*; do chown -R $(basename $x):$(basename $x) $x; done` -> recursively assign ownership for all subdirectories where the subdir is the name of the user. 
+
+
+`. /usr/share/bash-completion/bash_completion` -> Add this line to your bashrc to enable bash-completion 
+
 ## output redirection & piping 
 
 STDIN:
@@ -80,6 +87,19 @@ F= Files , D=Directories
 `find / -user <user>`
 
 `find / -group <group>`
+
+
+`find / -perm -u=s ` -> finds all files with SUID permission bit set  
+
+`find / -perm -4000` -> same as above but in octal notation 
+
+
+`find / -perm -g=s` -> finds all files with SGID perm bit set 
+
+`find / -perm -2000` -> octal notation for above 
+
+
+`find / -perm -1000` -> finds all files with sticky bit set 
 
 
 ## Variables 
@@ -313,6 +333,9 @@ groupmems -> view users apart of a specific group
 ## useradd 
 
 `useradd -m -u 1201 -G sales,ops linda` -> creates user with home dir and UID of 1201 , adds user to groups sales & ops 
+
+`useradd -aG <group-name> [user1..userx]` -> syntax for adding one or multiple users to a group  
+
 ## sudo file 
 
 `<username> ALL=/usr/sbin/useradd, /usr/sbin/passwd` -> give user the ability to execute useradd and passwd commands without requiring root privs. User still needs to prepend 'sudo' before running command   
@@ -411,7 +434,7 @@ For individual users you could also add a .profile file in the /etc/skel directo
 
 A -> file access time , makes sure it's not modified 
 
-a -> allows file to be added but not removed  
+a -> allows file to be added but not removed, can even prevent root user from deleting file 
 
 c -> if volume-level compression is supported, assures files are compressed when the compression engine starts  
 
@@ -421,7 +444,7 @@ d -> makes sure the file is not backed up when the dump utility is used
 
 I -> enables indexing for the directory where it's enabled 
 
-i -> makes file immutable , good for security 
+i -> makes file immutable , good for security , also can't be changed by root user 
 
 s -> overwrites blocks where file was stored with 0's after file is deleted , makes sure recovery of the file is not possible after deletion. 
 
@@ -431,3 +454,77 @@ u -> saves undelete info , allows a utility that can work with that info to salv
 `chattr +s somefile` -> adds s attribute to file 
 
 `chattr -s somefile` -> removes s attribute from file 
+
+`lsattr <somefile>` -> view attributes of file or all files in current directory  
+
+
+## classed networks   
+
+10.0.0.0/8 -> a single A class network 
+
+172.16.0.0/12 -> 16 class B networks 
+
+192.168.0.0/16 -> 256 Class C networks 
+
+## nmcli
+
+> Tip: make sure the bash-completion package is installed and the lines mentioned in "unrelated helpful snippets" is put into your bashrc 
+
+> Configs for network cards : /etc/NetworkManager/system-connections
+
+`nmcli` -> basic network interface overview 
+
+`nmcli general permissions` -> view gen perms 
+
+`nmcli con show` -> show specific connections  
+
+**Create ipv4 connection using DHCP** 
+
+`nmcli con add con-name <name> type <type> ifname <ifname> ipv4.method auto` -> creates a connection using the ipv4.method which uses DHCP
+
+**Create static ipv4 connection with gateway** 
+
+`nmcli con add con-name <name> type <type> ifname <ifname> autoconnect no type ethernet ip4 <ip>/<cidr> gw4 <gw-ip> ipv4.method manual` -> creates a new network connection with static IP and gateway 
+
+**Configure DNS to not use DHCP**
+
+`nmcli con mod <con-name> ipv4.ignore-auto-dns yes`
+
+**Add dns IP to existing connection**
+
+`nmcli con mod <con-name> +ipv4.dns <ip>`
+
+
+**Make changes persist after reboot**
+
+1. change the config in either /etc/sysconfig/network-scripts/ or /etc/NetworkManager/system-connections 
+
+
+
+> Tip: man nmcli-examples 
+
+> Tip: use nm-connection-editor
+
+
+## hostname 
+
+`hostnamectl set-hostname <hostname>` -> changes hostname 
+
+`hostnamectl` -> shows basic info about machine , including hostname and kernel version 
+
+
+
+## ip 
+
+`ip -s link show ` -> show links and packet transmissions 
+
+`ip addr add 10.0.0.10/24 dev <devname>` -> add new ip to interface 
+
+
+## ss 
+
+`ss -lt` -> listening TCP sockets 
+
+`ss -tul` -> listening TCP and UDP ports 
+
+
