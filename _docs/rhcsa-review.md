@@ -470,6 +470,10 @@ u -> saves undelete info , allows a utility that can work with that info to salv
 
 > Tip: make sure the bash-completion package is installed and the lines mentioned in "unrelated helpful snippets" is put into your bashrc 
 
+> Tip: man nmcli-examples 
+
+> Tip: use nm-connection-editor
+
 > Configs for network cards : /etc/NetworkManager/system-connections
 
 `nmcli` -> basic network interface overview 
@@ -501,9 +505,6 @@ Change the config in either /etc/sysconfig/network-scripts/ or /etc/NetworkManag
 
 
 
-> Tip: man nmcli-examples 
-
-> Tip: use nm-connection-editor
 
 
 ## hostname 
