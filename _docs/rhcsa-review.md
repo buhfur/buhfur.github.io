@@ -497,7 +497,7 @@ u -> saves undelete info , allows a utility that can work with that info to salv
 
 **Make changes persist after reboot**
 
-1. change the config in either /etc/sysconfig/network-scripts/ or /etc/NetworkManager/system-connections 
+Change the config in either /etc/sysconfig/network-scripts/ or /etc/NetworkManager/system-connections 
 
 
 
