@@ -529,3 +529,66 @@ Change the config in either /etc/sysconfig/network-scripts/ or /etc/NetworkManag
 `ss -tul` -> listening TCP and UDP ports 
 
 
+## dnf 
+
+**basic repo file syntax**
+
+```bash
+[label]
+name=<string>
+baseurl=<url>
+metalink=<url>
+gpgcheck=<1|0>
+```
+
+`dnf config-manager` -> command to create repo client file 
+
+
+`dnf config-manager --add-repo=file:///repo/BaseOS` -> if the installation disk files have been copied to /repo , use this command to create a client repo file using the BaseOS 
+
+
+`dnf info <package>`
+
+`dnf group list` -> list diff packages groups which are bundles of packages you can install at the same time 
+
+`dnf list installed` -> lists all installed packages 
+
+`dnf clean all` -> remove stored meta data 
+
+`dnf provides <name>` -> use to search what packages supply a specific file 
+
+`dnf list kernel` -> get kernel version installed and show versions of the kernel that can be installed. 
+
+`dnf update kernel` -> does not directly update the kernel but installs new versions which can be selected during boot.
+
+`dnf groupinstall <package-group-name>` -> install package group 
+
+`dnf history` -> shows recent history of package installs 
+
+`dnf history undo <number>` -> undo's a recent installation in the dnf history 
+
+`dnf module list` -> list modules 
+
+`dnf module info <module-name> ` -> get info about specific module , like dependencies and versioning. 
+
+## rpm 
+
+`rpm -q --scripts ` -> query for scripts in package 
+
+`rpm -qp <pkg>` -> query RPM files instead of the RPM database 
+
+`rpm -qR` -> show dependencies for a specific package 
+
+`rpm -V ` -> shows which parts of a package have been changed since installation 
+
+`rpm -Va` -> verifies all installed packages and shows which parts of each package have changed since installation.   
+
+`rpm -qa` -> list all packages that are installed on the server. 
+
+`yumdownloader` -> download package to local directory  
+
+`rpm -qp --scripts httpd-2.4.6-19.el7.centosx86_64.rpm` -> queries RPM package for scripts.  
+
+> Packages: dnf-utils for repoquery tool
+
+`repoquery <repo-or-package> ` -> scans repo or package before installing it. 
