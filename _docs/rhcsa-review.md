@@ -592,3 +592,25 @@ gpgcheck=<1|0>
 > Packages: dnf-utils for repoquery tool
 
 `repoquery <repo-or-package> ` -> scans repo or package before installing it. 
+
+## ps 
+
+`ps -ef ` -> show command used to start process  
+
+`ps fax` -> show  parent child relationships between processes 
+
+`echo 0 > /sys/bus/cpu/devices/cpu1/online` -> shut down CPU core
+
+`systemctl set-property system.slice CPUWeight=800` -> sets CPUWeight of all processes in the system slice to be 8x higher
+
+`ps aux | grep defunct` -> checks for zombie processes 
+
+## tuned 
+
+`systemctl enable --now tuned` -> enables tuned daemon 
+
+`tuned-adm list` -> view all possible profiles  
+
+`tuned-adm recommend` -> view which profile is recommended for the system  
+`tuned-adm profile <profile-name>` -> enable specific profile 
+
