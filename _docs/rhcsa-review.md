@@ -614,3 +614,9 @@ gpgcheck=<1|0>
 `tuned-adm recommend` -> view which profile is recommended for the system  
 `tuned-adm profile <profile-name>` -> enable specific profile 
 
+
+## systemctl 
+
+`systemctl --failed -t service` -> lists failed services 
+
+``
