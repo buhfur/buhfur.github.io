@@ -619,6 +619,25 @@ gpgcheck=<1|0>
 
 `systemctl --failed -t service` -> lists failed services 
 
-``
 
-## 
+## Journalctl 
+
+`journalctl -f` -> Live view of logs 
+
+`journalctl -n 20` -> last 20 lines in journal  
+
+`journalctl --since yesterday -p err ` -> get error logs from the day before up to now 
+
+`journalctl -o verbose` -> verbose logs from journal
+
+`journalcttl _SYSTEMD_UNIT=sshd.service -o verbose` -> get verbose logging from specified systemd unit. 
+
+`journalctl -b` -> show logs from last boot
+
+`journalctl -u sshd` -> see logs for specific unit 
+
+- journal is stored in /run/log/journal, cleared when system reboots 
+
+- to   make journal persistent through reboots , create /var/log/journal directory 
+
+- /etc/systemd/journald.conf -> config file for journal 

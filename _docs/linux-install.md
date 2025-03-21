@@ -4,7 +4,7 @@
 
 ## Requested features 
 
-- LVM , /var, /home, /
+- LVM , /var, /home, /tmp ? 
 - Xorg Display server for now but experiment with Wayland display 
 - sddm display manager
 - encrypted nvme disk 
@@ -21,3 +21,9 @@
 - rsync 
 - openssh 
 - docker 
+- wikiman 
+
+## How will I test this ? 
+
+I will setup an arch linux VM which will be my testing ground for installing all the new software.
+
