@@ -82,3 +82,28 @@ nvme0n1     259:0    0 931.5G  0 disk
 ├─nvme0n1p4 259:4    0   768M  0 part 
 ├─nvme0n1p6 259:5    0 325.3G  0 part /
 └─nvme0n1p7 259:6    0   977M  0 part [SWAP]
+
+
+## gdisk partition table listing 
+
+```
+Command (? for help): p
+Disk /dev/nvme0n1: 1953525168 sectors, 931.5 GiB
+Model: CT1000T500SSD8
+Sector size (logical/physical): 512/512 bytes
+Disk identifier (GUID): 43FAD633-41CE-4C18-8A8C-A68BF0F02253
+Partition table holds up to 128 entries
+Main partition table begins at sector 2 and ends at sector 33
+First usable sector is 34, last usable sector is 1953525134
+Partitions will be aligned on 2048-sector boundaries
+Total free space is 61445485 sectors (29.3 GiB)
+
+Number  Start (sector)    End (sector)  Size       Code  Name
+   1            2048          206847   100.0 MiB   EF00  EFI system partition
+   2          206848          239615   16.0 MiB    0C01  Microsoft reserved ...
+   3          239616      1206231039   575.1 GiB   0700  windows
+   4      1951948800      1953521663   768.0 MiB   2700
+   6      1206231040      1888507903   325.3 GiB   8300  debian
+   7      1888507904      1890508799   977.0 MiB   8200
+
+```
