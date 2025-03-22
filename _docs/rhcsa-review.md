@@ -521,6 +521,9 @@ Change the config in either /etc/sysconfig/network-scripts/ or /etc/NetworkManag
 
 `ip addr add 10.0.0.10/24 dev <devname>` -> add new ip to interface 
 
+`ip route add default via <ip> dev <interface>` -> add default route using ip tool
+
+
 
 ## ss 
 
