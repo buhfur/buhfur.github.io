@@ -60,3 +60,12 @@ I will setup an arch linux VM which will be my testing ground for installing all
 **Add multilib for pacman for 32-bit libraries**
 
 
+
+## Partitioning scheme 
+
+I plan on using an LVM partitioning scheme for the /home, /tmp, /etc 
+
+
+### Current partitions on Debian host 
+
+
