@@ -5,9 +5,11 @@
 
 ## Finalized features 
 
+File system: BTRFS 
+
 File manager: Thunar 
 
-Desktop Environment: KDE
+Desktop Environment: Bwpsm 
 
 Display Manager: sddm 
 
@@ -63,7 +65,29 @@ I will setup an arch linux VM which will be my testing ground for installing all
 
 ## Partitioning scheme 
 
-I plan on using an LVM partitioning scheme for the /home, /tmp, /etc 
+
+`/`: 
+    - Type: 83 "Linux"
+    - Size: 
+
+`/boot`: 
+    - Type: ea00 "XBOOTLDR"
+    - Size: 4GiB
+
+`/home`: 
+    - Type: 8302 "Linux home"
+    - Size: 150GiB
+
+
+`/var`:
+    - Type: 8310 "Linux /var"
+    - Size: 32Gib 
+    
+`/swap`:
+    - Type: 82 "Swap"
+
+
+
 
 
 ### Current partitions on Debian host 
@@ -84,26 +108,16 @@ nvme0n1     259:0    0 931.5G  0 disk
 └─nvme0n1p7 259:6    0   977M  0 part [SWAP]
 
 
-## gdisk partition table listing 
 
-```
-Command (? for help): p
-Disk /dev/nvme0n1: 1953525168 sectors, 931.5 GiB
-Model: CT1000T500SSD8
-Sector size (logical/physical): 512/512 bytes
-Disk identifier (GUID): 43FAD633-41CE-4C18-8A8C-A68BF0F02253
-Partition table holds up to 128 entries
-Main partition table begins at sector 2 and ends at sector 33
-First usable sector is 34, last usable sector is 1953525134
-Partitions will be aligned on 2048-sector boundaries
-Total free space is 61445485 sectors (29.3 GiB)
+## Execution plan 
 
-Number  Start (sector)    End (sector)  Size       Code  Name
-   1            2048          206847   100.0 MiB   EF00  EFI system partition
-   2          206848          239615   16.0 MiB    0C01  Microsoft reserved ...
-   3          239616      1206231039   575.1 GiB   0700  windows
-   4      1951948800      1953521663   768.0 MiB   2700
-   6      1206231040      1888507903   325.3 GiB   8300  debian
-   7      1888507904      1890508799   977.0 MiB   8200
+1. Download Arch image and burn to USB 
 
-```
+2. Backup EFI system partition 
+
+3. Begin arch installation process 
+
+4. Follow installation guide and adhere to partition scheme 
+
+5. Before anything else, create boot part and copy over contents from backup of /boot from earlier 
+
