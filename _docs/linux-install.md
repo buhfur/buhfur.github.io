@@ -77,6 +77,7 @@ I will setup an arch linux VM which will be my testing ground for installing all
         - /@home
         - /@var
         - /@steam -> for steam apps , to not be included in snapshots 
+        - /@snapshots
          
 
 `/boot`: 
