@@ -67,24 +67,22 @@ I will setup an arch linux VM which will be my testing ground for installing all
 
 
 `/`: 
-    - Type: 83 "Linux"
-    - Size: 
+    - Type: 8304 "Linux"
+    - Size: 50Gib
+    - File System: Btrfs , zstd compression, COW , 
+
+    Subvolumes:
+
+        - /@
+        - /@home
+        - /@var
+        - /@steam -> for steam apps , to not be included in snapshots 
+         
 
 `/boot`: 
     - Type: ea00 "XBOOTLDR"
     - Size: 4GiB
 
-`/home`: 
-    - Type: 8302 "Linux home"
-    - Size: 150GiB
-
-
-`/var`:
-    - Type: 8310 "Linux /var"
-    - Size: 32Gib 
-    
-`/swap`:
-    - Type: 82 "Swap"
 
 
 
