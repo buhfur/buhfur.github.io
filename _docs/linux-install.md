@@ -120,3 +120,102 @@ nvme0n1     259:0    0 931.5G  0 disk
 
 5. Before anything else, create boot part and copy over contents from backup of /boot from earlier 
 
+
+---
+
+
+# Problems installing arch 
+
+I've encountered a serious issue while installing arch , the issue is during the initiation which never boots to the root shell. It hangs while performing start jobs for udev init , Network config. In this document I will write out all steps i've taken to mend the issue.
+
+
+## Known errors 
+
+
+### Host System USB Errors 
+
+Anytime during boot I see the following errors during boot for the USB hub 1-5 , which shows a -110 error. This occurs during boot with both debian and Arch. This never interrupts boot with debian , however it has made me suspicious if it's interfering with the launch.  
+
+
+
+
+## Actions taken 
+
+### Installation Medium Actions ( can be skipped ) 
+
+For my installation medium , i've been using two different USB sticks. From all my tests, none except for the most obvious issues ( partition table mismatch with BIOS/UEFI ), have indicated any issues. 
+
+1. San Cruze Glide 16GB , No ventoy 
+
+2. Pny USB 16GB , with Ventoy installed on non EFI partition  
+
+
+### USB Actions  
+
+I found an article which could offer another attempt at fixing this , the link is below , the error might stem from AMD USB issues , which can allegedly , be turned off in the UEFI menu. See the quote below 
+
+"
+
+I had the same error message. If you examine your ports (buses?), you may find that more are indicated than you expect. I found a setting in my UEFI related to AMD that had a USB submenu. I turned off the last one and that solved it for me. I will reboot and report back with some more specifics.
+
+In my UEFI I found it here:
+
+AMD CBS > FCH Common Options > USB Configuration Options
+
+There is a vertical list:
+USB0
+USB1
+USB2
+etc
+
+I set USB2 to disabled and my system no longer includes the offending bus (bus 12 and bus 11 are gone).
+
+Essentially, it looks like the UEFI is trying to assign ports to a hub that doesn't exist. If anyone has more info please advise.
+"
+
+
+
+
+### Ventoy Actions 
+
+1. Attempted booting all combinations of installation mediums in memdisk 
+
+2. Attempted booting all combinations of installation mediums in Grub2  
+
+3. Attempted booting all combinations of installation mediums in normal  
+
+
+### BIOS/UEFI/Hardware Actions 
+
+1. Disabled Fast Boot 
+
+2. Enabled/Disabled XHCI passthrough 
+
+3. Enabled/Disabled CSM Compatibility mode  
+
+4. Enabled/Disabled PCIe power state settings, ASPM 
+
+5. Updated ASRock UEFI to version 3.20 ( latest ) using Instant Flash 
+
+6. Checked physical connections to TT controller , enabled 4 switches for fans 
+
+
+### Kernel Option Actions
+
+- iommu=soft 
+
+- pcie\_aspm=off
+
+- pci=noaer
+
+- nomodeset  
+
+- panic=0 ( not tried ) 
+
+- loglevel=7 ( not tried )
+
+- maxcpus=1 ( not tried )
+
+- bluetooth.blacklist=yes ( not tried )
+
+- modprobe.blacklist=mt7921e ( not tried )
