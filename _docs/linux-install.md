@@ -223,3 +223,15 @@ Essentially, it looks like the UEFI is trying to assign ports to a hub that does
 ### FIXED 
 
 Turns out the modprobe.blacklist=mt7921e option in GRUB2 mode resolved the issue, not sure why , but it works !! 
+
+
+## Ricing 
+
+### Editor: Neovim  
+
+Plugin manager: 
+
+
+### Compositor: Picom 
+
+
