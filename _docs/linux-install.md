@@ -219,3 +219,7 @@ Essentially, it looks like the UEFI is trying to assign ports to a hub that does
 - bluetooth.blacklist=yes ( not tried )
 
 - modprobe.blacklist=mt7921e ( not tried )
+
+### FIXED 
+
+Turns out the modprobe.blacklist=mt7921e option in GRUB2 mode resolved the issue, not sure why , but it works !! 
