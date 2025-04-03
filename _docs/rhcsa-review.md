@@ -693,9 +693,9 @@ gpgcheck=<1|0>
 5. (optional) `vgcreate <name> /dev/sdxY -s 8M` to change the physical extent size of the VG. 
 
 6. Create the logical volume with an absolute size or relative size using commands below 
-    1. `lvcreate -n <lvname> -l 100M <vgname> ` to create a volume with an absolute size
+    1. `lvcreate -n <lvname> -L 100M <vgname> ` to create a volume with an absolute size
     2. `lvcreate -n <lvname> -l 100 <vgname> ` to create a volume and specify the amount of extents 
-    3. `lvcreate -n <lvname> -L 50%FREE <vgname> ` to create a volume with an relative size
+    3. `lvcreate -n <lvname> -l 50%FREE <vgname> ` to create a volume with an relative size
 
 7. After creating the logical volume, use `mkfs` to create a filesystem on top of it 
 
