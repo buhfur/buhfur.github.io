@@ -278,6 +278,8 @@ wc -> outputs number lines , words , and characters
 
 `lsblk -o +UUID` -> view UUID of disks 
 
+`lsblk -o +UUID,FSTYPE` -> view UUID and filesystem type of disks 
+
 ## awk 
 
 `awk -F : '{ print $4 }' /etc/passwd` -> prints out the 4th column of the /etc/passwd file , uses ":" as a delimeter.  
@@ -605,7 +607,7 @@ gpgcheck=<1|0>
 
 > Packages: dnf-utils for repoquery tool
 
-`repoquery <repo-or-package> ` -> scans repo or package before installing it. 
+`repoquery <repo-or-package>` -> scans repo or package before installing it. 
 
 ## ps 
 
@@ -656,12 +658,48 @@ gpgcheck=<1|0>
 
 - /etc/systemd/journald.conf -> config file for journal 
 
-## LVM 
+---
+
+# LVM Snippets  
 
 
-### Steps to create a LVM 
+
+## pvcreate 
+
+`pvcreate /dev/sdxY` -> mark partition as physical volume 
+
+## lvcreate 
+
+`lvcreate -n <lvname> -l <size> <vgname> ` -> create logical volume with absolute size 
+
+## vgcreate 
+
+`vgcreate <name> /dev/sdxY` -> create volume group on LVM partition 
+
+
+# LVM Creation  Step by step process
+
+
+## Steps to create a LVM 
 
 1. Create a LVM partition on the block device with type "8e00" if using gdisk , and "8E" if using fdisk , or in fdisk just type "LVM"
 
-2.
+2. `pvcreate /dev/sdxY` to Mark partition as physical volume.
+
+3. Run `pvs` command to verify physical volume was created. 
+
+4. `vgcreate <name> /dev/sdxY` to Create and assign physical volume to volume group using command.
+
+5. (optional) `vgcreate <name> /dev/sdxY -s 8M` to change the physical extent size of the VG. 
+
+6. Create the logical volume with an absolute size or relative size using commands below 
+    1. `lvcreate -n <lvname> -l 100M <vgname> ` to create a volume with an absolute size
+    2. `lvcreate -n <lvname> -l 100 <vgname> ` to create a volume and specify the amount of extents 
+    3. `lvcreate -n <lvname> -L 50%FREE <vgname> ` to create a volume with an relative size
+
+7. After creating the logical volume, use `mkfs` to create a filesystem on top of it 
+
+### Brief explanation of LVM's 
+
+Physical volumes are broken into chunks , these chunks are called *physical extents* , these physical extents map one to one to *logical extents*. The size determines how big these chunks are. A logical volume size is always a size that is a multiple of the physical extent size. Therefore if you require bigger logical volumes , it is more efficient to create larger physical extent size since the LVM would require less physical extents to store larger data, thus leading to quicker seek times( how long it takes the LVM to locate the relevant extents needed to store the data )
 
