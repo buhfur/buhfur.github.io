@@ -17,6 +17,7 @@ This document mainly contains command snippets of the various CLI tools used for
 
 `. /usr/share/bash-completion/bash_completion` -> Add this line to your bashrc to enable bash-completion 
 
+
 ## output redirection & piping 
 
 STDIN:
@@ -44,6 +45,7 @@ STDERR:
 `ls /home/ryan 1> /dev/tty1` -> redirects output to console on server
 
 `ls /home/ryan 2>&1 > /dev/null` -> redirects STDERR to same location as stdout and sends to /dev/null device file. 
+
 
 ## chmod 
 
@@ -124,7 +126,7 @@ F= Files , D=Directories
 
 `apropos`
 
-`mandb` -> updated mandb 
+`mandb` -> update mandb 
 
 
 ## mount & mount related commands   
@@ -270,6 +272,12 @@ wc -> outputs number lines , words , and characters
 `(..)` -> parentheses are used to group multiple characters in the expression  
 
 
+## lsblk 
+
+`lsblk -f ` -> view info about filesystems 
+
+`lsblk -o +UUID` -> view UUID of disks 
+
 ## awk 
 
 `awk -F : '{ print $4 }' /etc/passwd` -> prints out the 4th column of the /etc/passwd file , uses ":" as a delimeter.  
@@ -277,6 +285,9 @@ wc -> outputs number lines , words , and characters
 `awk -F ' /ryan/ { print $3 }' /etc/passwd ` -> Gets the UID of the user "ryan" from the /etc/passwd file 
 
 `ps aux | awk -F" " '{print $2"\t"$4}` -> Prints out the PID and MEM columns from `ps aux` command. 
+
+
+`lsblk -o +UUID | tail -n1 | awk -F " " '{print $7}'` -> used this snippet to get the UUID of the installation disk 
 
 
 ## sed 
@@ -644,3 +655,13 @@ gpgcheck=<1|0>
 - to   make journal persistent through reboots , create /var/log/journal directory 
 
 - /etc/systemd/journald.conf -> config file for journal 
+
+## LVM 
+
+
+### Steps to create a LVM 
+
+1. Create a LVM partition on the block device with type "8e00" if using gdisk , and "8E" if using fdisk , or in fdisk just type "LVM"
+
+2.
+
