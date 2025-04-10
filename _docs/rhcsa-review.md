@@ -47,6 +47,11 @@ STDERR:
 `ls /home/ryan 2>&1 > /dev/null` -> redirects STDERR to same location as stdout and sends to /dev/null device file. 
 
 
+## crontab 
+
+- /var/spool/cron/username -> crontab for user 
+- do man 5 crontab for possible combinations 
+
 ## chmod 
 
 SUID -> chmod u+s , chmod 4XXX
@@ -103,6 +108,7 @@ F= Files , D=Directories
 
 `find / -perm -1000` -> finds all files with sticky bit set 
 
+`find / -user <user> -type f -exec cp --parents -a {} /somedir \;` -> copy all files owned by specific user to directory 
 
 ## Variables 
 
@@ -375,7 +381,21 @@ groupmems -> view users apart of a specific group
 `chage -E 2025-12-31 bob` -> sets bobs account to expire at a certain date 
 `chage -l` -> view current password management settings  
 
+### Change users shell and only let them change password 
 
+1. Create a script in /usr/local/bin/change-pass.sh
+
+2. put this line in the script "passwd <username> "
+
+3. then change the users shell using the tool of your preference 
+
+```bash
+#!/bin/bash
+/usr/bin/passwd
+exit
+```
+
+4. User will only be able to change their own password 
 ## Special permissions basics 
 
 SUID -> on files , files are executed with the permissions of of the file owner 
@@ -470,6 +490,9 @@ u -> saves undelete info , allows a utility that can work with that info to salv
 
 `lsattr <somefile>` -> view attributes of file or all files in current directory  
 
+## firewalld && firewall-cmd 
+
+- `/usr/lib/firewalld/services` -> default location for xml service files for built in services 
 
 ## classed networks   
 
@@ -677,10 +700,18 @@ gpgcheck=<1|0>
 `vgcreate <name> /dev/sdxY` -> create volume group on LVM partition 
 
 
-# LVM Creation  Step by step process
+# Volume naming scheme 
+
+Volumes are named by the device mapper and can be referenced two ways shown below 
+
+`/dev/mapper/<vgname>-<lvname>`
+
+or 
+
+`/dev/<vgname>/<lvname>`
 
 
-## Steps to create a LVM 
+# Steps to create a LVM 
 
 1. Create a LVM partition on the block device with type "8e00" if using gdisk , and "8E" if using fdisk , or in fdisk just type "LVM"
 
@@ -697,9 +728,295 @@ gpgcheck=<1|0>
     2. `lvcreate -n <lvname> -l 100 <vgname> ` to create a volume and specify the amount of extents 
     3. `lvcreate -n <lvname> -l 50%FREE <vgname> ` to create a volume with an relative size
 
-7. After creating the logical volume, use `mkfs` to create a filesystem on top of it 
+7. After creating the logical volume, use `mkfs` to create a filesystem on top of it , using the naming scheme of the logical volume `/dev/<vgname>/<lvname>`
 
 ### Brief explanation of LVM's 
 
 Physical volumes are broken into chunks , these chunks are called *physical extents* , these physical extents map one to one to *logical extents*. The size determines how big these chunks are. A logical volume size is always a size that is a multiple of the physical extent size. Therefore if you require bigger logical volumes , it is more efficient to create larger physical extent size since the LVM would require less physical extents to store larger data, thus leading to quicker seek times( how long it takes the LVM to locate the relevant extents needed to store the data )
+
+
+---
+
+
+# Podman
+
+- Registries config file location 
+    ```bash
+    /etc/containers/registries.conf
+
+    ~/.config/containers/registries.conf
+    ```
+
+- Run container in detached mode
+    ```bash
+    podman run -d nginx
+    ```
+
+- Run container in TTY mode
+    ```bash
+    podman run -it nginx /bin/sh
+    ```
+
+- View running containers
+    ```bash
+    podman ps
+    ```
+
+- View all inactive and active containers
+    ```bash
+    podman ps -a
+    ```
+
+- Attach to running container
+    ```bash
+    podman attach <name>
+    ```
+
+- Stop running container
+    ```bash
+    podman stop <name>
+    ```
+
+- Search which registries are currently used
+    ```bash
+    podman info
+    ```
+
+- Filter images in search
+    ```bash
+    podman search --filter official=true alpine
+
+    or 
+
+    podman search --filter stars=5 alpine
+    ```
+
+- Pull image
+    ```bash
+    podman pull <image>
+    ```
+
+
+- Build custom image
+    ```bash
+    podman build -t imagename:tag -f /path/to/Containerfile
+    ```
+
+    - Example  
+        ```bash
+        podman build -t mymap:1.0
+        ```
+
+
+- Verify custom image was built
+    ```bash
+    podman images
+    ```
+
+- Remove images with None tag
+    ```bash
+    podman image prune
+    ```
+
+
+
+- Send SIGTERM signal to the container , 
+        ```bash
+        podman stop
+        ``` 
+
+> Note : If no results after 10 seconds , the SIGKILL signal is sent.
+
+- Kill container
+    ```bash
+    podman kill
+    ``` 
+
+> Note: Immediately sends the SIGKILL command 
+
+- Restart container
+    ```bash
+    podman restart
+    ``` 
+
+- Remove container
+    ```bash
+    podman rm
+    ``` 
+
+> Note: Removes container files written to the writable layer 
+
+- Run container and delete container files automatically 
+    ```bash
+    podman run --rm
+    ``` 
+
+- Running Commands inside containers
+    ```bash
+    podman exec mycontainer uname -r
+    ```
+
+    - TTY MODE
+        ```bash
+        podman exec -it mycontainer /bin/bash
+        ```
+
+- Managing Container Ports
+    ```bash
+    podman run --name nginxport -d -p <hostport>:<containerport> nginx
+    ```
+
+- Bind directory to container for persistent storage 
+    ```bash
+    podman run -it -v /hostdir:/container/dir:Z ( use ":Z" if container is owned by user running container )
+    ```
+
+> Note: bind options must come before image name is passed in order of arguments 
+
+- Configure bind mount to be owned by running user for mounting storage 
+    ```bash
+    semanage fcontext -a -t container_file_t "hostdir(/.*)?"; restorecon
+    ```
+
+- Rename container 
+    ```bash
+    podman container rename <id> 
+    ```
+
+
+- Generate systemd service for container , then copy to /etc/systemd/system
+    ```bash
+    podman generate systemd --name containername --files 
+    ```
+
+> Note: You must first generate the  ~/.config/systemd/"user" directory before running the command. 
+
+
+# NFS 
+
+## Summary 
+
+- download nfs-utils package 
+- default version is version 4 
+- mount option 'nfsvers'
+- use /etc/exports for defining exported directories 
+- start nfs-server service 
+- add nfs, rpc-bind, mountd services to firewall-cmd, should be builtin
+- in nfs version 4 you can use root mounts to mount the root directory of the server and only see shares you have access to 
+
+## /etc/exports example
+
+```bash
+/nfsdata *(rw,no_root_squash)
+/users *(rw,no_root_squash)
+```
+
+`no_root_squash` -> maps root UID "0" to nobody or anonymous UID , this option disables that feature, therefore the root user on the client would have root privilleges on files in the shares. Be very careful with this.  
+
+## Get list of exported directories from NFS server  
+
+`showmount -e nfsserver` -> show shares that are available  
+
+## Mounting NFS share through fstab 
+
+```bash
+servername:/sharename /nfs/mount/point nfs sync 0 0 
+```
+
+## autofs summary 
+
+- no root perms required 
+- setup on both client and server 
+- wildcard mounts supported 
+- define mount points and secondary file for configuration in /etc/auto.master 
+- in secondary file , you specify name of subdir to be created , mount opts , and servername:share
+- use wildcard mounts for mounting home directories 
+
+## Autofs Configuration Example 
+
+### /etc/auto.master ( non home exported directory )
+
+```bash
+/dirname    /etc/auto.dirname
+```
+
+### /etc/auto.dirname  
+
+```bash
+subdirname -rw servername:/sharename
+```
+### Wildcard Mount Setup on Server Machine 
+
+- /etc/exports
+    ```bash
+    /users *(rw,no_root_squash)
+    ```
+
+### Wildcard Mount Setup on Client Machine 
+
+- /etc/auto.master
+    ```bash
+    /users  /etc/auto.users
+    ```
+
+- /etc/auto.users 
+    ```bash
+    *   -rw     servername:/users/& 
+    ```
+
+> Note: the '\*' represents the local mount point on the client machine configured in auto.users, the "\&" represents the 
+
+---
+
+
+# Setting up NFS server for user home directories step by step, including autofs 
+
+
+- on nfs-server , created /users/anna and /users/linda  directories 
+
+- on nfs-client , added nfs-server ip and name to /etc/hosts 
+
+- on nfs-server, added exports: 
+    ```bash
+    /users *(rw,no_root_squash)
+    ```
+- on nfs-server, enabled nfs-server.service 
+
+- on nfs-client , modified /etc/auto.master file 
+    ```bash
+    /home /etc/auto.home
+    ```
+- on nfs-client , modified /etc/auto.home
+    ```bash
+    users -rw nfs-server:/users/&
+    ```
+- on nfs-client , restarted autofs service 
+
+- on nfs-client , enabled autofs service ( forgot to do so prior )
+
+- on nfs-client , created users anna & linda 
+    ```bash
+    useradd linda -d /home/users/linda -s /bin/bash
+    useradd anna -d /home/users/anna -s /bin/bash
+    ```
+- on nfs-client , received error
+    ```bash
+    -bash: cd: users: No such file or directory 
+    ```
+- on nfs-client , modified /etc/auto.master to : 
+    ```bash
+    /home/users /etc/auto.home
+    ```
+- on nfs-client, restart autofs service 
+
+- got error showing no matching maps , could not create directory /home/users 
+
+- on nfs-client, modified /etc/auto.home to : 
+    ```bash
+    * -rw nfs-server:/users/&
+    ```
+
+- on nfs-client, restart autofs service, permission denied to create /home/users on root user , disabled autofs service and rebooted 
+
+- on nfs-client , was able to make /home/users directory , then enabled and started autofs service.  
 

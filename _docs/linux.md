@@ -76,6 +76,11 @@ nav_order: 1
 
 ## RHEL 
 
+- Reinstall all packages on system 
+    ```bash
+    dnf reinstall $(rpm -qa)
+    ```
+
 
 - Change default python3 version 
 
