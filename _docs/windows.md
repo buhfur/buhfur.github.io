@@ -340,3 +340,9 @@ Lists detailed info on each driver
 sc query "Driver Name"
 ```
 Get info for specific driver 
+
+---
+
+Shutdown station through telnet 
+
+`shutdown /r /t 0`

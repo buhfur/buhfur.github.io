@@ -1,4 +1,10 @@
+---
 
+layout: default
+title: "Linux"
+nav_order: 2
+
+---
 
 # Review notes for RHCSA 
 

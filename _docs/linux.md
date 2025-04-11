@@ -2202,3 +2202,10 @@ yt-dlp --verbose --skip-download --write-subs --write-auto-subs --sub-lang en --
 
 > Note: All of this was taken from the README.md for Zsh on their Github. I'll paste a link below for easy reference
 > ![Link here](https://github.com/ohmyzsh/ohmyzsh)
+
+
+---
+
+# Curl 
+
+`curl -L https://somedir.com` -> used to follow links using https, "-L" option tells curl to follow redirects  
