@@ -1,7 +1,7 @@
 ---
 
 layout: default
-title: "Linux"
+title: "RHCSA Review"
 nav_order: 2
 
 ---
@@ -977,6 +977,7 @@ subdirname -rw servername:/sharename
 
 # Setting up NFS server for user home directories step by step, including autofs 
 
+> Note : Make sure to disable SElinux , or set context label for the directory as mounting using nfs shares for users home will not be allowed by default.  
 
 - on nfs-server , created /users/anna and /users/linda  directories 
 
@@ -1025,4 +1026,7 @@ subdirname -rw servername:/sharename
 - on nfs-client, restart autofs service, permission denied to create /home/users on root user , disabled autofs service and rebooted 
 
 - on nfs-client , was able to make /home/users directory , then enabled and started autofs service.  
+
+- on nfs-client , changed changed ownership of /home/users/x with x being linda,anna. Both users are now able to create modify and delete files , can also make scripts executable  
+
 
