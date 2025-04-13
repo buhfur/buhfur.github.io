@@ -1,3 +1,10 @@
+---
+
+layout: default
+title: "Linux Plus"
+nav_order: 3
+
+---
 
 # Linux + study guide 
 
