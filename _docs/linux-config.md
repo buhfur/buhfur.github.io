@@ -19,3 +19,13 @@ Run this line below. This will copy the default config files for ranger into you
 ```bash
 ranger --copy-config=all
 ```
+
+
+## bspwm 
+
+Restart window manager 
+
+```bash
+bspc wm -r 
+```
+
