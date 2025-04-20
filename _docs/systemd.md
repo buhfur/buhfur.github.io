@@ -238,6 +238,11 @@ Persistent=true
 WantedBy=timers.target
 ```
 
+## Specific Day Timer
+
+```bash
+
+```
 ## Combined Daily, Weekly, Monthly timers 
 
 ```bash
@@ -309,6 +314,23 @@ OnCalendar=*:30:00
 OnCalendar=02:15:00
 
 # catch up missed runs after downtime
+Persistent=true
+
+[Install]
+WantedBy=timers.target
+```
+
+## Specific Day of Month Timer
+
+```bash
+# /etc/systemd/system/march15.timer
+[Unit]
+Description=Timer: run march15.service on March 15th each year
+
+[Timer]
+# Fires on March 15 at 00:00:00 local time
+OnCalendar=Mar 15
+# If the system was powered off on Mar 15, run immediately on next boot
 Persistent=true
 
 [Install]
