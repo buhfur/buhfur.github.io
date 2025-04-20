@@ -140,6 +140,8 @@ Options=        # Comma separated list of mounting options
 
 # Template Timers
 
+Timer units by default will act as the timer for the unit that contains the same name. Otherwise you can add `Unit=<yourunit>.[service,mount,socket]` below the "Timer" section to specify a alternate unit. 
+
 ## Daily timer 
 
 ```bash
