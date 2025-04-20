@@ -53,6 +53,139 @@ Options=        # Comma separated list of mounting options
 
 ```
 
+# Template Units
+---
+
+## Oneshot Unit
+
+```bash
+# /etc/systemd/system/echo@.service
+[Unit]
+Description=One‑shot echo of “Hello %i”
+After=network.target
+
+[Service]
+Type=oneshot
+# %i is the instance name, e.g. “foo” if you run echo@foo
+ExecStart=/usr/bin/echo "Hello %i"
+```
+
+## Simple Unit 
+
+```bash
+# /etc/systemd/system/myapp@.service
+[Unit]
+Description=MyApp instance %i
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+# run as dedicated user/group
+User=myapp
+Group=myapp
+# load a per-instance config file named /etc/myapp/<instance>.conf
+ExecStart=/usr/bin/myapp --config /etc/myapp/%i.conf
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target
+```
+
+## Forking Unit
+
+```bash
+# /etc/systemd/system/yourdaemon@.service
+[Unit]
+Description=YourDaemon instance %i
+After=network.target
+Wants=network-online.target
+
+[Service]
+Type=forking
+# If you have an environment file per instance:
+# EnvironmentFile=/etc/yourdaemon/%i.env
+User=youruser
+Group=yourgroup
+# PID file must match what the daemon writes
+PIDFile=/var/run/yourdaemon/%i.pid
+# Pass the instance name into your daemon as needed (e.g. to select a config)
+ExecStart=/usr/bin/yourdaemon --config /etc/yourdaemon/%i.conf
+# How to reload (if supported)
+ExecReload=/bin/kill -HUP $MAINPID
+# How to stop gracefully
+ExecStop=/bin/kill -TERM $MAINPID
+# Restart automatically on failure
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target
+```
+
+## Docker Unit
+
+```bash
+# /etc/systemd/system/container@.service
+[Unit]
+Description=Docker container %i
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+# start/stop the container by name
+ExecStart=/usr/bin/docker start %i
+ExecStop=/usr/bin/docker stop %i
+
+[Install]
+WantedBy=multi-user.target
+```
+
+## Podman Unit 
+
+> Note: You can always use "podman generate systemd -f " to generate a systemd unit for a podman container 
+
+```bash
+# /etc/systemd/system/podman-container@.service
+[Unit]
+Description=Podman container %i
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+# restart the container if it exits non-zero
+Restart=on-failure
+RestartSec=10s
+
+# Run as rootless if you drop this file into a rootful system; you can also adjust User= to a non‑root user
+#User=someuser
+#Group=somegroup
+
+# Pull image if missing, then run in detached mode.
+# Replace "myrepo/%i:latest" with your repo/pattern
+ExecStartPre=/usr/bin/podman pull docker.io/myrepo/%i:latest
+ExecStart=/usr/bin/podman run \
+    --name %i \
+    --rm \
+    -d \
+    -p 80:80 \
+    docker.io/myrepo/%i:latest
+
+# Stop the container gracefully, then remove it
+ExecStop=/usr/bin/podman stop -t 10 %i
+ExecStopPost=/usr/bin/podman rm %i
+
+# Ensure the unit stays “active” after ExecStart (since the container runs in the background)
+Type=notify
+NotifyAccess=main
+
+[Install]
+WantedBy=multi-user.target
+```
+
 
 # Template Timers
 ---
