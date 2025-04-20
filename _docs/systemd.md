@@ -53,10 +53,9 @@ Options=        # Comma separated list of mounting options
 
 ```
 
-# Templates 
----
 
-## Template Timers
+# Template Timers
+---
 
 Timer units by default will act as the timer for the unit that contains the same name. Otherwise you can add `Unit=<yourunit>.[service,mount,socket]` below the "Timer" section to specify a alternate unit. 
 
@@ -182,7 +181,9 @@ Persistent=true
 [Install]
 WantedBy=timers.target
 ```
+
 # Template Mounts 
+---
 
 ## Ext4 mount 
 
@@ -291,7 +292,9 @@ Options=defaults,noatime,discard
 [Install]
 WantedBy=multi-user.target
 ```
+
 # Template Sockets 
+---
 
 ## TCP Socket Unit 
 
