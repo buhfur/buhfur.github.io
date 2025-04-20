@@ -23,7 +23,7 @@ Conflicts=      # Units that cannot run alongside this unit
 
 [Service]       # Can change according to type of unit , see Type for examples 
 
-Type=           # target, service, device , mount, slice, timer, socket, scope
+Type=           # simple,forking,oneshot,dbus,notify,idle
 ExecStart=      # Absolute Path for commands and arguments used to start service
 ExecStartPre=   # commands run before ExecStart
 ExecStartPost=  # Commands run after ExecStart
