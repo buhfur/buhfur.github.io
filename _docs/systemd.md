@@ -6,39 +6,11 @@ nav_order: 4
 
 ---
 
-# Systemd 
 
+# Templates 
+---
 
-## Systemd init phase 
-
-* takes advantage of UUID's and TPM's 
-* default units are located in `/usr/lib/systemd/system`
-* custom units are in `/etc/systemd/system`
-* Units in `/etc/systemd/system` override units in `/usr/lib/systemd/system`
-* `list-units --type=<unit-type>` to display units by their type 
-* `systemctl list-dependencies <unit_name>` : Lists units the `unit_name` depends on 
-* `systemctl list-dependencies --reverse <unit_name>` : lists units that depend on `unit_name`
-* `systemctl --failed`: lists all failed units
-* `systemctl --failed --type=<unit_type>`: lists all failed units of a specific type 
-
-
-## Systemd unit types 
-
-* service 
-* socket
-* busname
-* target
-* snapshot
-* device
-* mount
-* automount
-* swap
-* timer
-* path
-* slice
-* scope
-
-## Systemd unit syntax 
+# Systemd unit syntax 
 
 ```bash
 [Unit]
@@ -81,62 +53,6 @@ Options=        # Comma separated list of mounting options
 
 
 ```
-## Systemd Unit status definitions 
-
-* loaded: Loaded into memory 
-* inactive (dead): unit not running 
-* active (running): running with one or more active processes 
-* active (exited): Completed configuration 
-* active (waiting): Running and listening for request
-* enabled: Will start when system boots 
-* disabled: Will not start when system boots 
-* static: Must be started by another service 
-
-## Systemd Controlling Services 
-
-* `systemctl enable <unit>`: Turns on service when system is booted
-* `systemctl disable <unit>`: Does not turn on service at boot 
-* `systemctl start <unit>`: Starts service immediately 
-* `systemctl stop <unit>`: Stops service immediately 
-* `systemctl restart <unit>`: Stops and starts unit 
-* `systemctl reload <unit>`: Re-reads configuration and continues running 
-* `systemctl mask <unit>`: Makes a unit available by creating a symbolic link to `/dev/null`
-* `systemctl unmask <unit>`: Removes mask 
-
-## Systemd runlevels 
-
-* (0) runlevel0.target, poweroff.target
-* (1) runlevel1.target, rescue.target
-* (2) runlevel2.target, multi-user.target
-* (3) runlevel3.target, multi-user.target
-* (4) runlevel4.target, multi-user.target ( not used in SystemV )
-* (5) runlevel5.target, graphical.target
-* (6) runlevel6.target, reboot.target
-
-## Systemd targets
-
-* Targets are a group of units and other targets  
-* These targets provide a specific function 
-* `systemctl --type=target`: Lists all activated targets 
-* `systemctl --type=target --all`: Lists all available targets 
-* `default.target`: Link to default runlevel target file
-* `systemctl get-default`: Prints the default runlevel target file 
-* `systemctl set-default`: Command that sets the default runlevel target file referenced by `default.target`
-* `systemctl isolate <runlevel-target-file>`: Changes runlevel , used to stop anything that is not apart of the target runlevel 
-
-## Systemd boot errors 
-
-* "Can't find hard drive" -> Hard drive is missing or BIOS/UEFI is misconfigured 
-* "Can't find bootloader" -> GRUB2 is incorrectly configured, or misconfigured 
-* "Can't load kernel" -> GRUB2 misconfiguration or kernel misconfiguration
-* "Web service failed to start" -> Boot successful , some applications may be misconfigured 
-
-
----
-
-# Template Units 
-
-
 
 # Template Timers
 
@@ -434,3 +350,88 @@ Accept=no
 [Install]
 WantedBy=sockets.target
 ```
+
+# Systemd Info/Notes
+---
+
+## Systemd init phase 
+
+* takes advantage of UUID's and TPM's 
+* default units are located in `/usr/lib/systemd/system`
+* custom units are in `/etc/systemd/system`
+* Units in `/etc/systemd/system` override units in `/usr/lib/systemd/system`
+* `list-units --type=<unit-type>` to display units by their type 
+* `systemctl list-dependencies <unit_name>` : Lists units the `unit_name` depends on 
+* `systemctl list-dependencies --reverse <unit_name>` : lists units that depend on `unit_name`
+* `systemctl --failed`: lists all failed units
+* `systemctl --failed --type=<unit_type>`: lists all failed units of a specific type 
+
+
+## Systemd unit types 
+
+* service 
+* socket
+* busname
+* target
+* snapshot
+* device
+* mount
+* automount
+* swap
+* timer
+* path
+* slice
+* scope
+
+## Systemd Unit status definitions 
+
+* loaded: Loaded into memory 
+* inactive (dead): unit not running 
+* active (running): running with one or more active processes 
+* active (exited): Completed configuration 
+* active (waiting): Running and listening for request
+* enabled: Will start when system boots 
+* disabled: Will not start when system boots 
+* static: Must be started by another service 
+
+## Systemd Controlling Services 
+
+* `systemctl enable <unit>`: Turns on service when system is booted
+* `systemctl disable <unit>`: Does not turn on service at boot 
+* `systemctl start <unit>`: Starts service immediately 
+* `systemctl stop <unit>`: Stops service immediately 
+* `systemctl restart <unit>`: Stops and starts unit 
+* `systemctl reload <unit>`: Re-reads configuration and continues running 
+* `systemctl mask <unit>`: Makes a unit available by creating a symbolic link to `/dev/null`
+* `systemctl unmask <unit>`: Removes mask 
+
+## Systemd runlevels 
+
+* (0) runlevel0.target, poweroff.target
+* (1) runlevel1.target, rescue.target
+* (2) runlevel2.target, multi-user.target
+* (3) runlevel3.target, multi-user.target
+* (4) runlevel4.target, multi-user.target ( not used in SystemV )
+* (5) runlevel5.target, graphical.target
+* (6) runlevel6.target, reboot.target
+
+## Systemd targets
+
+* Targets are a group of units and other targets  
+* These targets provide a specific function 
+* `systemctl --type=target`: Lists all activated targets 
+* `systemctl --type=target --all`: Lists all available targets 
+* `default.target`: Link to default runlevel target file
+* `systemctl get-default`: Prints the default runlevel target file 
+* `systemctl set-default`: Command that sets the default runlevel target file referenced by `default.target`
+* `systemctl isolate <runlevel-target-file>`: Changes runlevel , used to stop anything that is not apart of the target runlevel 
+
+## Systemd boot errors 
+
+* "Can't find hard drive" -> Hard drive is missing or BIOS/UEFI is misconfigured 
+* "Can't find bootloader" -> GRUB2 is incorrectly configured, or misconfigured 
+* "Can't load kernel" -> GRUB2 misconfiguration or kernel misconfiguration
+* "Web service failed to start" -> Boot successful , some applications may be misconfigured 
+
+
+
