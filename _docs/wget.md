@@ -1,3 +1,10 @@
+---
+
+layout: default
+title: "Wget Snippets"
+nav_order: 16
+
+---
 # Useful `wget` Snippets
 
 The `wget` utility is a powerful tool for downloading files and interacting with web resources from the command line. Here are some practical snippets to make your workflow more efficient.

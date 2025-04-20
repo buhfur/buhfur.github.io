@@ -1,4 +1,10 @@
+---
 
+layout: default
+title: "RHCSA Old notes"
+nav_order: 5
+
+---
 # Notes about RHCSA 
 
 

@@ -1,3 +1,10 @@
+---
+
+layout: default
+title: "Grep Snippets"
+nav_order: 9
+
+---
 
 # Useful `grep` Snippets
 

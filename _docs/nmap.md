@@ -1,4 +1,10 @@
+---
 
+layout: default
+title: "NMAP Snippets"
+nav_order: 14
+
+---
 # Useful `nmap` Snippets
 
 ---

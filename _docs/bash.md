@@ -1,3 +1,10 @@
+---
+
+layout: default
+title: "Bash Scripting Snippets"
+nav_order: 20
+
+---
 
 # Bash Notes 
 

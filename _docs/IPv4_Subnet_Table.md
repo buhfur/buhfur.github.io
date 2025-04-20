@@ -1,3 +1,10 @@
+---
+
+layout: default
+title: "IPv4 Subnet Table"
+nav_order: 10
+
+---
 
 # IPv4 Subnet Table
 

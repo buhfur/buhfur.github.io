@@ -1,3 +1,11 @@
+---
+
+layout: default
+title: "Fortigate Firewall Changelog"
+nav_order: 6
+
+---
+
 # Fortigate Firewall configuration 
 
 # Linux firewall related commands 

@@ -1,3 +1,10 @@
+---
+
+layout: default
+title: "Awk Snippets"
+nav_order: 19
+
+---
 
 # Awk snippets 
 

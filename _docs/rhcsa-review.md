@@ -898,6 +898,16 @@ Physical volumes are broken into chunks , these chunks are called *physical exte
 > Note: You must first generate the  ~/.config/systemd/"user" directory before running the command. 
 
 
+- Run container under specific user 
+    ```bash
+    podman run --user <uid-or-username
+    ```
+
+- Change environment variable of container 
+    ```bash
+    podman run -e SOME_VARIABLE=something ...
+    ```
+
 # NFS 
 
 ## Summary 

@@ -1,7 +1,7 @@
 ---
 
 layout: default
-title: "Linux"
+title: "General Linux Snippets / Notes"
 nav_order: 1
 
 ---

@@ -1,3 +1,10 @@
+---
+
+layout: default
+title: "Windows Snippets"
+nav_order: 17
+
+---
 
 # Windows 10 notes **WORK IN PROGRESS**
 

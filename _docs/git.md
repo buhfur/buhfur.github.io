@@ -1,4 +1,10 @@
+---
 
+layout: default
+title: "Git Snippets"
+nav_order: 8
+
+---
 # Git CLI snippets  
 
 - Move recent changes into a separate local branch 

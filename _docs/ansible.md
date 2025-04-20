@@ -1,3 +1,10 @@
+---
+
+layout: default
+title: "Ansible Notes"
+nav_order: 18
+
+---
 
 # Ansible notes 
 
