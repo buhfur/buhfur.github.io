@@ -174,7 +174,6 @@ Let's say we wanted to change the alias for Changing the execution policy for th
     ```
 
 > Note : Aliases in powershell were intended for executing cmdlets and not executing scripts. To get around this you may need to define functions with the command used to execute your script using an alias. Please see the above example for how to do this.
----
 
 # Useful cmdlets 
 
