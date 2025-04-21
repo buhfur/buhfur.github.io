@@ -12,6 +12,7 @@ title: "General Linux Snippets / Notes"
 
 # TOC 
 
+1. TOC
 {:toc}
 
 # Package managers 
