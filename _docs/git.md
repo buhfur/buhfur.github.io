@@ -4,6 +4,12 @@ layout: default
 title: "Git Snippets"
 
 ---
+
+# TOC 
+
+1. TOC 
+{:toc}
+
 # Git CLI snippets  
 
 - Move recent changes into a separate local branch 

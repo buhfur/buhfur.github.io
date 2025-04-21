@@ -6,6 +6,11 @@ nav_order: 20
 
 ---
 
+# TOC 
+
+1. TOC 
+{:toc}
+
 # Bash Notes 
 
 This page is dedicated to info regarding bash scripting  

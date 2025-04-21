@@ -7,6 +7,10 @@ title: "Syslog Notes"
 
 # Syslog 
 
+# TOC 
+
+1. TOC 
+{:toc}
 
 # Configuration 
 

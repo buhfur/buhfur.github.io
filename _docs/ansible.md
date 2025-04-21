@@ -5,6 +5,11 @@ title: "Ansible Notes"
 
 ---
 
+# TOC 
+
+1. TOC 
+{:toc}
+
 # Ansible notes 
 
 ## Ansible configuration & Important locations 

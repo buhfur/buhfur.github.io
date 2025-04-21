@@ -5,6 +5,11 @@ title: "RHCSA Review"
 
 ---
 
+# TOC 
+
+1. TOC 
+{:toc}
+
 # Review notes for RHCSA 
 
 This document mainly contains command snippets of the various CLI tools used for the exam 

@@ -7,6 +7,11 @@ title: "RHCSA Old notes"
 # Notes about RHCSA 
 
 
+# TOC 
+
+1. TOC 
+{:toc}
+
 
 # Mananging disks
 

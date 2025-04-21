@@ -5,6 +5,11 @@ title: "Awk Snippets"
 
 ---
 
+# TOC 
+
+1. TOC 
+{:toc}
+
 # Awk snippets 
 
 Cool snippets i've found online. Most of which i've gathered from ChatGPT 

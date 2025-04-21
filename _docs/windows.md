@@ -8,26 +8,10 @@ nav_order: 17
 
 # Windows 10 notes **WORK IN PROGRESS**
 
-## Table of Contents 
+# TOC 
 
-# Table of Contents
-
-1. [Managing Files](#managing-files)
-2. [Environment Variables](#environment-variables)
-   - [Command Snippets](#command-snippets)
-3. [Powershell Configuration](#powershell-configuration)
-4. [Useful Cmdlets](#useful-cmdlets)
-    - [System Cmdlets](#system-cmdlets)
-    - [File and Directory Cmdlets](#file-and-directory-cmdlets)
-    - [Networking Cmdlets](#networking-cmdlets)
-    - [User and Group Cmdlets](#user-and-group-cmdlets)
-    - [System Monitoring Cmdlets](#system-monitoring-cmdlets)
-    - [Automation and Scripting Cmdlets](#automation-and-scripting-cmdlets)
-    - [Security Cmdlets](#security-cmdlets)
-    - [Windows Update Cmdlets](#windows-update-cmdlets)
-    - [Help and Support Cmdlets](#help-and-support-cmdlets)
-5. [Troubleshooting](#troubleshooting)
-    - [Disabled Running Scripts](#disabled-running-scripts)
+1. TOC 
+{:toc}
 
 ## Managing files  
 

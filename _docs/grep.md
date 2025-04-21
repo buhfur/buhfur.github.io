@@ -7,6 +7,11 @@ title: "Grep Snippets"
 
 # Useful `grep` Snippets
 
+# TOC 
+
+1. TOC 
+{:toc}
+
 ---
 
 ### **Basic Search**

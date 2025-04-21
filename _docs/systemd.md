@@ -6,6 +6,10 @@ title: "Systemd Info & Templates"
 ---
 
 
+# TOC 
+
+1. TOC 
+{:toc}
 
 # Systemd unit syntax 
 ---

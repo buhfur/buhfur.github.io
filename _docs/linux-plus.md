@@ -7,6 +7,11 @@ title: "Linux Plus"
 
 # Linux + study guide 
 
+# TOC 
+
+1. TOC 
+{:toc}
+
 # Managing storage 
 
 * ext3 is a journaled filesystem , unlike ext2 

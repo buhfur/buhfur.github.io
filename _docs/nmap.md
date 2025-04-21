@@ -6,6 +6,11 @@ title: "NMAP Snippets"
 ---
 # Useful `nmap` Snippets
 
+# TOC 
+
+1. TOC 
+{:toc}
+
 ---
 
 ### **Basic Scans**

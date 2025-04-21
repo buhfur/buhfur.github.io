@@ -5,6 +5,11 @@ title: "Fortigate Firewall Changelog"
 
 ---
 
+# TOC 
+
+1. TOC 
+{:toc}
+
 # Fortigate Firewall configuration 
 
 # Linux firewall related commands 
