@@ -2,7 +2,6 @@
 
 layout: default
 title: "RHCSA Review"
-nav_order: 2
 
 ---
 

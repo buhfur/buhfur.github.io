@@ -2,7 +2,6 @@
 
 layout: default
 title: "Fortigate Firewall Changelog"
-nav_order: 6
 
 ---
 

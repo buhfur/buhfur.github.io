@@ -2,7 +2,6 @@
 
 layout: default
 title: "Linux File Permissions"
-nav_order: 11
 
 ---
 

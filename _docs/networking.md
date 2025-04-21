@@ -2,7 +2,6 @@
 
 layout: default
 title: "Networking"
-nav_order: 13 
 
 ---
 

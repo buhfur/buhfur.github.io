@@ -2,7 +2,6 @@
 
 layout: default
 title: "Markdown Syntax Guide"
-nav_order: 12
 
 ---
 

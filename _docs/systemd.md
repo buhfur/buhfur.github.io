@@ -2,7 +2,6 @@
 
 layout: default
 title: "Systemd Info & Templates"
-nav_order: 4
 
 ---
 

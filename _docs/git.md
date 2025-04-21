@@ -2,7 +2,6 @@
 
 layout: default
 title: "Git Snippets"
-nav_order: 8
 
 ---
 # Git CLI snippets  

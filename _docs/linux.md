@@ -2,7 +2,6 @@
 
 layout: default
 title: "General Linux Snippets / Notes"
-nav_order: 1
 
 ---
 
@@ -11,55 +10,10 @@ nav_order: 1
 
 ---
 
-# Table of contents 
+# TOC 
 
-- [System Info](#system-info)
-- [Command & Bash snippets](#command--bash-snippets)
-- [System Tools and 3rd party utilities command snippets](#system-tools-and-3rd-party-utilities-command-snippets)
-- [Xinitrc](#xinitrc)
-- [ProtonVPN connections](#protonvpn-connections)
-- [Setting up torrent server vm](#setting-up-torrent-server-vm)
-- [Redirect both STDOUT and STDERR](#redirect-both-stdout-and-stderr)
-- [Systemd](#systemd)
-- [xrandr](#xrandr)
-- [Packet Capturing](#packet-capturing)
-- [nmcli & Networking](#nmcli--networking)
-- [SELinux](#selinux)
-- [DNF](#dnf)
-- [Adguard Home](#adguard-home)
-- [Firewalld](#firewalld)
-- [NFS](#nfs)
-- [NTP](#ntp)
-- [Podman](#podman)
-- [User management](#user-management)
-- [Package management with DNF](#package-management-with-dnf)
-- [Logical Volume Management](#logical-volume-management)
-- [CIFS](#cifs)
-- [NMAP](#nmap)
-- [GRUB](#grub)
-- [Common errors and small fixes](#common-errors-and-small-fixes)
-- [Docker](#docker)
-- [Sed](#sed)
-- [Oracle SBC](#oracle-sbc)
-- [TrueNAS](#truenas)
-- [Find](#find)
-- [System Clipboard](#system-clipboard)
-- [Unzip](#unzip)
-- [Display Management](#display-management)
-- [Git](#git)
-- [Xorg](#xorg)
-- [Rclone](#rclone)
-- [Du](#du)
-- [Ranger](#ranger)
-- [Markdown](#markdown)
-- [Youtube downloading](#youtube-downloading)
-- [Serial Communication](#serial-communication)
-- [Jekyll](#jekyll)
-- [ChatGPT CLI](#chatgpt-cli)  
-- [Rust](#rust)
-- [Zsh](#zsh)
-    - [Installing Zsh](#installing-zsh)
-- [Password encryption](#password-encryption)
+{:toc}
+
 # Package managers 
 
 ## Apt  

@@ -2,7 +2,6 @@
 
 layout: default
 title: "Syslog Notes"
-nav_order: 15
 
 ---
 

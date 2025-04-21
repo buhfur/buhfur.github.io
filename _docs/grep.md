@@ -2,7 +2,6 @@
 
 layout: default
 title: "Grep Snippets"
-nav_order: 9
 
 ---
 
