@@ -15,6 +15,17 @@ title: "RHCSA Review"
 This document mainly contains command snippets of the various CLI tools used for the exam 
 
 
+## Managing disks
+
+### Change label of disk 
+
+`dosfslabel` -> Used for changing labels on dos filesystems 
+
+`e2label` -> used for changing labels on ext[1-4] disks 
+
+`fatlabel` -> set or get label on dos filesystem 
+
+
 
 ## unrelated helpful snippets  
 
@@ -55,6 +66,34 @@ STDERR:
 `ls /home/ryan 1> /dev/tty1` -> redirects output to console on server
 
 `ls /home/ryan 2>&1 > /dev/null` -> redirects STDERR to same location as stdout and sends to /dev/null device file. 
+
+## swapfiles
+
+### Swapfile as file 
+
+Create a 32G swapfile 
+
+`dd if=/dev/zero of=/swapfile bs=1G count=32` 
+
+`mkswap /swapfile`
+
+`swapon /swapfile`
+
+
+### Swapfile As Partition 
+
+1. Create partition on disk using fdisk or gdisk 
+
+2. Make type of partition 8200 ( gdisk ) , 19 ( fdisk)
+
+3. Run partprobe if the partition doesn't show up in lsblk or blkid 
+
+4. `mkswap /dev/sdxY` , formats partition as swap 
+
+5. Add disk by PARTLABEL or UUID into fstab 
+
+6. `swapon /dev/sdxY to activate swapfile`
+
 
 
 ## crontab 
@@ -413,7 +452,9 @@ SUID -> on files , files are executed with the permissions of of the file owner
 SGID -> on files , files are executed with permissions of group owner 
 on directories , newly created files are assigned group owner 
 
-Sticky bit -> prevents users from deleting files from other users 
+Sticky bit -> prevents users from deleting files from other users
+
+> Tip: Don't use sticky bit on files, it's ignored. Use on directories.
 
 ## chmod 
 
@@ -739,6 +780,39 @@ or
     3. `lvcreate -n <lvname> -l 50%FREE <vgname> ` to create a volume with an relative size
 
 7. After creating the logical volume, use `mkfs` to create a filesystem on top of it , using the naming scheme of the logical volume `/dev/<vgname>/<lvname>`
+
+# Resizing LVM's  
+---
+
+> Tip: unmount volumes that are being shrunk 
+
+## Resizing Physical Volumes 
+
+`pvresize /dev/sdX` -> resize physical volume 
+
+## Resizing Logical Volumes 
+
+> Tip: If using proxmox , you may need to delete the partition non-destructively and create a new one with the updated size. 
+
+`lvextend -L +10G /dev/vgname-lvname` -> extend size of logical volume by 10G. 
+
+`lvextend -l +100%FREE /dev/vgname-lvname` -> extend size of logical volume with all remaining freespace.
+
+`lvreduce -L 10G /dev/vgname/lvname` -> Shrink logical volume. 
+
+## Resizing Filesystems 
+
+### Ext4 
+
+`resize2fs /dev/mapper/vgname-lvname` -> Grow ext4 filesystem 
+
+`sudo e2fsck -f /dev/vgname/lvname` -> Check ext4 filesystem
+
+`sudo resize2fs /dev/vgname/lvname 10G` -> Shrink filesystem 
+
+### Xfs 
+
+`xfs_growfs /mount/point`
 
 ### Brief explanation of LVM's 
 
