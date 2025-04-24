@@ -790,9 +790,14 @@ or
 
 `pvresize /dev/sdX` -> resize physical volume 
 
+
+
 ## Resizing Logical Volumes 
 
 > Tip: If using proxmox , you may need to delete the partition non-destructively and create a new one with the updated size. 
+
+> Tip: When creating the new partition , make sure to not use the LVM type for the partition. This has made my VM unbootable in the past. Also make sure to run 'partprobe' after making changes  
+
 
 `lvextend -L +10G /dev/vgname-lvname` -> extend size of logical volume by 10G. 
 
