@@ -763,6 +763,7 @@ or
 
 
 # Steps to create a LVM 
+---
 
 1. Create a LVM partition on the block device with type "8e00" if using gdisk , and "8E" if using fdisk , or in fdisk just type "LVM"
 
@@ -781,6 +782,7 @@ or
 
 7. After creating the logical volume, use `mkfs` to create a filesystem on top of it , using the naming scheme of the logical volume `/dev/<vgname>/<lvname>`
 
+
 # Resizing LVM's  
 ---
 
@@ -790,7 +792,7 @@ or
 
 `pvresize /dev/sdX` -> resize physical volume 
 
-
+> Tip: Make sure to expand the filesystem using the logical volume 
 
 ## Resizing Logical Volumes 
 
@@ -800,21 +802,27 @@ or
 
 `lvreduce -L 10G /dev/vgname/lvname` -> Shrink logical volume. 
 
-## Resizing Logical Volumes on Proxmox 
+## Resizing Root Logical Volume on Proxmox 
 
 1. After updating size of disk , rescan the disk for the updated space , replace 'sdx' with the name of the block device. 
 
-`echo 1 > /sys/class/block/sdx/device/rescan`
+    `echo 1 > /sys/class/block/sdx/device/rescan`
 
 2. Delete the partition , DON'T format , create new partition with LVM type ( use fdisk , cfdisk , parted)
 
 3. Expand the physical volume 
 
-`pvresize /dev/sdxY`
+    `pvresize /dev/sdxY`
 
 4. Expand the logical volume using lvextend 
 
-5. expand the filesystem using resize2fs or xfs\_growfs 
+    `lvextend -l +100%FREE /dev/mapper/vgname-lvname`
+
+5. expand the filesystem 
+
+    `resize2fs /dev/mapper/vgname-lvname` 
+
+    `xfs_growfs /`
 
 6. reboot and verify changes have been made 
 
