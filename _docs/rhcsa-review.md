@@ -15,6 +15,18 @@ title: "RHCSA Review"
 This document mainly contains command snippets of the various CLI tools used for the exam 
 
 
+## Resetting Root Password 
+
+1. Reboot to grub menu 
+
+2. Add `init=/bin/sh` to the end of the kernel arguments 
+
+3. `mount -o remount,rw /` , to remount the filesystem 
+
+4. `passwd root` 
+
+5. `touch /.autorelabel` , if using selinux 
+
 ## Managing disks
 
 ### Change label of disk 
@@ -809,6 +821,8 @@ or
     `echo 1 > /sys/class/block/sdx/device/rescan`
 
 2. Delete the partition , DON'T format , create new partition with LVM type ( use fdisk , cfdisk , parted)
+
+> Tip: before using gdisk , check to make sure your boot partition is MBR or GPT. gdisk should say at the top after opening it.   
 
 3. Expand the physical volume 
 
