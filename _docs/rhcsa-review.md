@@ -794,16 +794,29 @@ or
 
 ## Resizing Logical Volumes 
 
-> Tip: If using proxmox , you may need to delete the partition non-destructively and create a new one with the updated size. 
-
-> Tip: When creating the new partition , make sure to not use the LVM type for the partition. This has made my VM unbootable in the past. Also make sure to run 'partprobe' after making changes  
-
-
 `lvextend -L +10G /dev/vgname-lvname` -> extend size of logical volume by 10G. 
 
 `lvextend -l +100%FREE /dev/vgname-lvname` -> extend size of logical volume with all remaining freespace.
 
 `lvreduce -L 10G /dev/vgname/lvname` -> Shrink logical volume. 
+
+## Resizing Logical Volumes on Proxmox 
+
+1. After updating size of disk , rescan the disk for the updated space , replace 'sdx' with the name of the block device. 
+
+`echo 1 > /sys/class/block/sdx/device/rescan`
+
+2. Delete the partition , DON'T format , create new partition with LVM type ( use fdisk , cfdisk , parted)
+
+3. Expand the physical volume 
+
+`pvresize /dev/sdxY`
+
+4. Expand the logical volume using lvextend 
+
+5. expand the filesystem using resize2fs or xfs\_growfs 
+
+6. reboot and verify changes have been made 
 
 ## Resizing Filesystems 
 
