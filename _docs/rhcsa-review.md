@@ -1146,23 +1146,33 @@ Mls:
 
 ## General Commands / Snippets 
 
-`semanage` -> SELinux policy management tool 
+`semanage`:
+    SELinux policy management tool 
 
-`ls -Z` -> view selinux context label on object. 
+`semanage port -a -t ssh_port_t -p tcp <port>`:
+    enable non-traditional port for ssh 
 
-`user:role:type:level` -> full security context label , or context. "User" is the SELinux user ( not linux user , They're different ). "Role" is the role the selinux user can transition to. "Type" is the SELinux type , which is used for access control decisions. "Level" is the optional field used for an MLS label. 
+`ls -Z`:
+    view selinux context label on object. 
 
-`/var/log/audit/audit.log` -> Location where SELinux logs are stored. 
+`user:role:type:level`:
+    full security context label , or context. "User" is the SELinux user ( not linux user , They're different ). "Role" is the role the selinux user can transition to. "Type" is the SELinux type , which is used for access control decisions. "Level" is the optional field used for an MLS label. 
 
-`/etc/sysconfig/selinux` -> File used to change default selinux mode when booting.
+`/var/log/audit/audit.log`:
+    Location where SELinux logs are stored. 
 
-`grubby --update-kernel ALL --args selinux=0` -> disables SELinux post RHEL 8 at boot
+`/etc/sysconfig/selinux`:
+    File used to change default selinux mode when booting.
 
-`grubby --update-kernel ALL --remove-args selinux` -> reverts change from previous command.
+`grubby --update-kernel ALL --args selinux=0`:
+    disables SELinux post RHEL 8 at boot
+
+`grubby --update-kernel ALL --remove-args selinux`:
+    reverts change from previous command.
+
 
 ## Updating SSH port 
 
-`semanage port -a -t ssh_port_t -p tcp <port>`
 
 
 
