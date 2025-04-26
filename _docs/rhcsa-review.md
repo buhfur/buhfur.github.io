@@ -1100,7 +1100,7 @@ subdirname -rw servername:/sharename
     *   -rw     servername:/users/& 
     ```
 
-> Note: the '\*' represents the local mount point on the client machine configured in auto.users, the "\&" represents the 
+> Note: the '\*' represents the local mount point on the client machine configured in auto.users, the "&" is a placeholder that gets replaced by the key of the current mount request. 
 
 
 # SELinux 
