@@ -5,7 +5,9 @@ title: "RHCSA Review"
 
 ---
 
-# TOC 
+# Table of Contents 
+
+{: .no_toc }
 
 1. TOC 
 {:toc}
@@ -1100,4 +1102,67 @@ subdirname -rw servername:/sharename
 
 > Note: the '\*' represents the local mount point on the client machine configured in auto.users, the "\&" represents the 
 
+
+# SELinux 
 ---
+
+## Terminology 
+
+**Source Domain:** In a SELinux Policy , represents the object trying to access something. For example a process( PID ) or user( UID ).
+
+**Target Domain:** Object that the source domain is attempting to access. Can represent a file , directory , or network port. 
+
+**Context:** Security label that is used to categorize objects in SELinux.  
+
+**Labels( Context Labels ):** Used to define which source domain has access to which target domain.
+
+**Rule:** Part of a policy that determines which source domain has which access permissions to which target domain.  
+
+## Notes 
+
+By default , all system calls are denied when SELinux is enabled. To allow a system call through , SELinux policies are used. Each policy defines which source domains are allowed to access which target domains.
+
+Up to RHEL 8 , SELINUX=disabled would also disable selinux at boot. You can also use grubby to persistently set the bootloader to boot with selinux=0. You can also add selinux=0 at the end of the kernel command line arguments to disable selinux at boot
+
+### SELinux Modes
+
+Enforcing Mode: 
+    SELinux is fully operational and enforcing all SELinux rules in the policy.
+ 
+Permissive Mode: 
+    All SELinux activity is logged, however no access is blocked. Best used for troubleshooting , however your system will be insecure temporarily.   
+
+
+### SELinux types 
+
+Targeted: 
+    Targeted processes are protected 
+
+Minimum: 
+    Modification of targeted policy. Only selected processes are protected.
+
+Mls:
+    Multi Level Security Protection.  
+
+## General Commands / Snippets 
+
+`semanage` -> SELinux policy management tool 
+
+`ls -Z` -> view selinux context label on object. 
+
+`user:role:type:level` -> full security context label , or context. "User" is the SELinux user ( not linux user , They're different ). "Role" is the role the selinux user can transition to. "Type" is the SELinux type , which is used for access control decisions. "Level" is the optional field used for an MLS label. 
+
+`/var/log/audit/audit.log` -> Location where SELinux logs are stored. 
+
+`/etc/sysconfig/selinux` -> File used to change default selinux mode when booting.
+
+`grubby --update-kernel ALL --args selinux=0` -> disables SELinux post RHEL 8 at boot
+
+`grubby --update-kernel ALL --remove-args selinux` -> reverts change from previous command.
+
+## Updating SSH port 
+
+`semanage port -a -t ssh_port_t -p tcp <port>`
+
+
+
