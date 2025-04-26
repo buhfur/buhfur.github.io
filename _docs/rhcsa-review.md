@@ -1171,7 +1171,22 @@ Mls:
     reverts change from previous command.
 
 
+`selinux=0`:
+    Kernel argument for disabling selinux at boot.
+
+`enforcing=0`:
+    Kernel argument for setting permissive mode at boot.
+
+`getenforce`:
+    View current mode of SELinux if enabled 
+
+`setenforce 0`:
+    Temporarily puts SELinux in permissive mode. 
+
+`setenforce 1`:
+    Temporarily puts SELinux in enforcing mode. 
 
 
-
+`sestatus -v`:
+    If used with -v , this command shows detailed info about the current status of SELinux. Shows the current version of the policy and the context labels for some critical parts of the system.
 
