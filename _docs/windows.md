@@ -290,15 +290,22 @@ This error indicates the user does not have the execution policy set for a speci
 ```bash
 wmic path Win32_USBControllerDevice get Dependent 
 ```
-Get info on USB drivers 
+    Get info on USB drivers 
+
 ```bash
 wmic path CIM_LogicalDevice where "Description like 'USB%'" get DeviceID,Description
 ```
-Lists more detailed info about connected USB devices 
+    Lists more detailed info about connected USB devices 
+
 ```bash
 driver query /FO TABLE | findstr /I "usb"
 ```
-Lists USB drivers. 
+    Lists USB drivers. 
+
+```bash
+wmic path Win32_PnPEntity where "PNPDeviceID like 'USB%'" get Name,PNPDeviceID
+```
+    Gets PNP USB audio devices , shows vendor name / id 
 
 ## Sound devices 
 
