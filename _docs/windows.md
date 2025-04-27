@@ -281,33 +281,39 @@ This error indicates the user does not have the execution policy set for a speci
 > Even when the Scope is set to 'Unrestricted' , you will still be prompted 
 > 
 
+
+
+
+# USB Info
 ---
 
-# Command prompt snippets 
-
-## USB devices 
+## Get info on USB drivers 
 
 ```bash
 wmic path Win32_USBControllerDevice get Dependent 
 ```
-    Get info on USB drivers 
+
+## Lists more detailed info about connected USB devices 
 
 ```bash
 wmic path CIM_LogicalDevice where "Description like 'USB%'" get DeviceID,Description
 ```
-    Lists more detailed info about connected USB devices 
+
+## Lists USB drivers. 
 
 ```bash
 driver query /FO TABLE | findstr /I "usb"
 ```
-    Lists USB drivers. 
+
+## Gets PNP USB audio devices , shows vendor name / id 
 
 ```bash
 wmic path Win32_PnPEntity where "PNPDeviceID like 'USB%'" get Name,PNPDeviceID
 ```
-    Gets PNP USB audio devices , shows vendor name / id 
 
-## Sound devices 
+
+# Sound devices 
+---
 
 ```bash
 wmic sounddev get Caption, DeviceID, Status
