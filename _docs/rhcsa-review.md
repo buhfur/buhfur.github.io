@@ -1124,6 +1124,10 @@ By default , all system calls are denied when SELinux is enabled. To allow a sys
 
 Up to RHEL 8 , SELINUX=disabled would also disable selinux at boot. You can also use grubby to persistently set the bootloader to boot with selinux=0. You can also add selinux=0 at the end of the kernel command line arguments to disable selinux at boot
 
+For the exam , you will be expected to know how to work with context types, working with roles and users is not a requirement for the exam.  
+
+
+
 ### SELinux Modes
 
 Enforcing Mode: 
@@ -1155,6 +1159,11 @@ Mls:
 `ls -Z`:
     view selinux context label on object. 
 
+`ps Zaux`: 
+    List processes and their context labels 
+
+`ss -Ztul`:
+    List ports and their context labels 
 `user:role:type:level`:
     full security context label , or context. "User" is the SELinux user ( not linux user , They're different ). "Role" is the role the selinux user can transition to. "Type" is the SELinux type , which is used for access control decisions. "Level" is the optional field used for an MLS label. 
 
@@ -1190,3 +1199,14 @@ Mls:
 `sestatus -v`:
     If used with -v , this command shows detailed info about the current status of SELinux. Shows the current version of the policy and the context labels for some critical parts of the system.
 
+`sepolicy generate`:
+    Tool used to allow almost any application to run in a SELinux enabled environment. Note , you must install an additional package to support this , past RHEL 7 , you can install the "policycoreutils-python-utils" package.
+
+
+## Add Context type to directory 
+
+`semanage fcontext -a -t httpd_sys_content_t "/mydir/(/.*)?"`:
+    Adds httpd_sys_content_t context type to directory. the **-a** is used to add a context type , **-t** is used to change the context type. Once this is done , the changes will only be written to the policy and not the filesystem. To finalize this change , you will need to run the restorecon command below 
+
+`restorecon -R -v /mydir`: 
+    Follow up from the previous command adding the httpd_sys_content_t context type to the specified directory, to finalize the changes and write this change to the filesystem , use the command above to do so.
