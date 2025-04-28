@@ -2159,15 +2159,21 @@ yt-dlp --verbose --skip-download --write-subs --write-auto-subs --sub-lang en --
 > ![Link here](https://github.com/ohmyzsh/ohmyzsh)
 
 
----
 
 # Curl 
+---
 
 `curl -L https://somedir.com` -> used to follow links using https, "-L" option tells curl to follow redirects  
 
 
 # Snapper 
+---
 
 Used to create snapshots of BTRFS subvolumes 
 
 
+# Bspwm 
+---
+
+`bspc wm -r`:
+    restart bspwm 
