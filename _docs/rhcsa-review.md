@@ -1205,8 +1205,28 @@ Mls:
 
 ## Add Context type to directory 
 
+### Make directory used for storing HTML files for Web Server 
+
 `semanage fcontext -a -t httpd_sys_content_t "/mydir/(/.*)?"`:
     Adds httpd_sys_content_t context type to directory. the **-a** is used to add a context type , **-t** is used to change the context type. Once this is done , the changes will only be written to the policy and not the filesystem. To finalize this change , you will need to run the restorecon command below 
 
 `restorecon -R -v /mydir`: 
     Follow up from the previous command adding the httpd_sys_content_t context type to the specified directory, to finalize the changes and write this change to the filesystem , use the command above to do so.
+
+### Alternate home directory under root directory 
+
+```bash
+semanage fcontext -a -t home_root_t "/newhome"
+semanage fcontext -a -e /home /newhome/home
+restorecon -R -v /newhome
+```
+
+### Change port used for Web Server ( Apache )
+
+```bash
+semanage port -a -t http_port_t -p tcp 8008 
+```
+
+> Tip: When changing ports,  you do not have to run the restorecon command. The changes will be effective immediately. However , you still should restart the service whose port you are changing to make sure it still works.    
+
+
