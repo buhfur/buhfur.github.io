@@ -1150,11 +1150,23 @@ Mls:
 
 ## General Commands / Snippets 
 
+`seinfo -t`: 
+    Requires the setools-console package , the command above shows you all selinux context types. 
+
 `semanage`:
     SELinux policy management tool 
 
 `semanage port -a -t ssh_port_t -p tcp <port>`:
     enable non-traditional port for ssh 
+
+`getsebool -a`:
+    Get booleans for specific service 
+
+`getsebool -l`:
+    Same as previous command , with more info.
+
+`setsebool <type> <on|off>`:
+    Syntax for disabling or enabling a boolean. 
 
 `ls -Z`:
     view selinux context label on object. 
