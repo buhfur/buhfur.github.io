@@ -1,7 +1,7 @@
 ---
 
 layout: default
-title: "General Linux Snippets / Notes"
+title: "General Linux Snippets"
 
 ---
 
