@@ -7,6 +7,8 @@ title: "Bash Scripting Snippets"
 
 # TOC 
 
+{: .no_toc }
+
 1. TOC 
 {:toc}
 
