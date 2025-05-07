@@ -5,10 +5,14 @@ title: "Wget Snippets"
 
 ---
 
-# TOC 
+# Table of Contents 
+
+{: .no_toc }
 
 1. TOC 
 {:toc}
+
+---
 
 # Useful `wget` Snippets
 

@@ -5,10 +5,15 @@ title: "Ansible Notes"
 
 ---
 
-# TOC 
+# Table of Contents 
+
+{: .no_toc }
 
 1. TOC 
 {:toc}
+
+---
+
 
 # Ansible notes 
 

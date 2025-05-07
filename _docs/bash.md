@@ -5,16 +5,14 @@ title: "Bash Scripting Snippets"
 
 ---
 
-# TOC 
+# Table of Contents 
 
 {: .no_toc }
 
 1. TOC 
 {:toc}
 
-# Bash Notes 
-
-This page is dedicated to info regarding bash scripting  
+--- 
 
 # Bash Conditionals Examples
 

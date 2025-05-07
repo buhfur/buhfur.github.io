@@ -6,14 +6,14 @@ title: "General Linux Snippets"
 ---
 
 
-# Linux notes for reference ( WORK IN PROGRESS )
+# Table of Contents 
 
----
-
-# TOC 
+{: .no_toc }
 
 1. TOC
 {:toc}
+
+---
 
 # Package managers 
 

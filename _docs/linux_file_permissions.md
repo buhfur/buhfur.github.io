@@ -5,8 +5,14 @@ title: "Linux File Permissions"
 
 ---
 
-# Linux file permissions 
+# Table of Contents 
 
+{: .no_toc }
+
+1. TOC 
+{:toc}
+
+---
 
 # Chmod table 
 

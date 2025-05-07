@@ -5,9 +5,9 @@ title: "Windows Snippets"
 
 ---
 
-# Windows 10 notes **WORK IN PROGRESS**
+# Table of Contents 
 
-# TOC 
+{: .no_toc }
 
 1. TOC 
 {:toc}

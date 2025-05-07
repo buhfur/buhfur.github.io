@@ -5,12 +5,14 @@ title: "Linux Plus"
 
 ---
 
-# Linux + study guide 
+# Table of Contents 
 
-# TOC 
+{: .no_toc }
 
 1. TOC 
 {:toc}
+
+--- 
 
 # Managing storage 
 

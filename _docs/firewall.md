@@ -5,10 +5,14 @@ title: "Fortigate Firewall Changelog"
 
 ---
 
-# TOC 
+# Table of Contents 
+
+{: .no_toc }
 
 1. TOC 
 {:toc}
+
+--- 
 
 # Fortigate Firewall configuration 
 

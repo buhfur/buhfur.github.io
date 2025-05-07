@@ -5,10 +5,14 @@ title: "Awk Snippets"
 
 ---
 
-# TOC 
+# Table of Contents  
+
+{: .no_toc }
 
 1. TOC 
 {:toc}
+
+--- 
 
 # Awk snippets 
 

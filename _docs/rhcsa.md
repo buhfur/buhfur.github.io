@@ -4,14 +4,15 @@ layout: default
 title: "RHCSA Old notes"
 
 ---
-# Notes about RHCSA 
 
+# Table of Contents  
 
-# TOC 
+{: .no_toc }
 
 1. TOC 
 {:toc}
 
+---
 
 # Mananging disks
 

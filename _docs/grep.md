@@ -5,9 +5,7 @@ title: "Grep Snippets"
 
 ---
 
-# Useful `grep` Snippets
-
-# TOC 
+# Table of Contents 
 
 1. TOC 
 {:toc}

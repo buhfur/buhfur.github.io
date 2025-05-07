@@ -5,12 +5,14 @@ title: "Syslog Notes"
 
 ---
 
-# Syslog 
+# Table of Contents 
 
-# TOC 
+{: .no_toc }
 
 1. TOC 
 {:toc}
+
+---
 
 # Configuration 
 

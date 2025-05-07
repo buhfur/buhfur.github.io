@@ -5,12 +5,6 @@ title: "Markdown Syntax Guide"
 
 ---
 
-# Markdown Syntax Guide
-
-Markdown is a lightweight markup language for creating formatted text using a plain-text editor.
-
----
-
 ## Headings
 Use `#` for headings. Add more `#` for smaller headings.
 

@@ -5,11 +5,15 @@ title: "Systemd Info & Templates"
 
 ---
 
+# Table of Contents 
 
-# TOC 
+{: .no_toc }
 
 1. TOC 
 {:toc}
+
+---
+
 
 # Systemd unit syntax 
 ---

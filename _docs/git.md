@@ -5,10 +5,14 @@ title: "Git Snippets"
 
 ---
 
-# TOC 
+# Table of Contents 
+
+{: .no_toc }
 
 1. TOC 
 {:toc}
+
+--- 
 
 # Git CLI snippets  
 

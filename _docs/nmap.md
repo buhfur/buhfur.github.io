@@ -4,9 +4,10 @@ layout: default
 title: "NMAP Snippets"
 
 ---
-# Useful `nmap` Snippets
 
-# TOC 
+# Table of Contents 
+
+{: .no_toc }
 
 1. TOC 
 {:toc}

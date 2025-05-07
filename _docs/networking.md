@@ -5,6 +5,15 @@ title: "Networking"
 
 ---
 
+# Table of Contents 
+
+{: .no_toc }
+
+1. TOC 
+{:toc}
+
+---
+
 # Networking 
 
 This page is dedicated to all my notes / research dedicated to learning the foundational concepts of computer networking. My intention with this page is to serve as a reference while working on my hypervisor and implementing new tools / technologies to make my setup more complex in what it can do.
