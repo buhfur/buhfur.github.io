@@ -2,7 +2,6 @@
 
 layout: default
 title: "Windows Snippets"
-nav_order: 17
 
 ---
 

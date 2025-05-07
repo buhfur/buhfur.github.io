@@ -2,7 +2,6 @@
 
 layout: default
 title: "Wget Snippets"
-nav_order: 16
 
 ---
 

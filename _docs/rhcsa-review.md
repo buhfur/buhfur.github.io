@@ -179,7 +179,9 @@ F= Files , D=Directories
 
 `env` -> shows environment variables 
 
-## Bash environment 
+## Bash Environment 
+
+`su` -> Runs an **interactive** shell as root.  
 
 `/etc/profile` -> generic file , processed by all users upon login
 
@@ -188,6 +190,8 @@ F= Files , D=Directories
 `~/.bash_profile` -> user-specific login shell variables 
 
 `~/.bashrc` -> user-specific file , subshell variables can be defined
+
+> Note: The "su" command **WILL NOT** source a .bashrc in the root directory , according to the documentation of su , only the $SHELL, $HOME, $USER ( if not root user ) , and $LOGNAME are set. To avoid this , use the "--login" option instead of the "-" shortcut. 
 
 ## man 
 
