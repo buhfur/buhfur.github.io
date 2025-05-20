@@ -725,10 +725,13 @@ gpgcheck=<1|0>
 `tuned-adm profile <profile-name>` -> enable specific profile 
 
 
-## systemctl 
+## systemctl
 
 `systemctl --failed -t service` -> lists failed services 
 
+`systemctl set-default name.target` -> Configures default target when system boots 
+
+`systemctl list-units --type target` -> list all target units 
 
 ## Journalctl 
 
