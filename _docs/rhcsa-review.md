@@ -251,7 +251,7 @@ ls -R
 
 `tar -xzvf /tmp/home.tar /home/user` -> Create gzip archive  
 
-
+`tar cvzf backup-$(date +%Y-%m-%d).tar.gz ...` -> tar backup with timestamp 
 
 ## gzip & bzip2 & xz 
 

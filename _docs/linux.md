@@ -204,10 +204,12 @@ The best information can be found on the man page. Use man ln for further detail
     timestamp=$(date +"%Y-%m-%d_%H-%M-%S")
     ```
 
+
     - Then to make the directory , use the following syntax 
         ```bash
         mkdir "directory_$(date +%Y%m%d_%H%M%S)"
         ```
+
 
 - Enable vi keybinds for bash
     ```bash
