@@ -30,6 +30,10 @@ This document mainly contains command snippets of the various CLI tools used for
 4. `passwd root` 
 
 5. `touch /.autorelabel` , if using selinux 
+f
+### Why Re-Labeling the filesystem is necessary 
+
+If you fail to relabel the filesystem after changing the root password. The /etc/shadow file will be updated , but in this instance the file is update outside of a selinux aware envionrment. If not relabeled , selinux will see an updated file with a wrong or missing label. As a result of this , assuming SElinux is booted into enforcing mode, PAM or login processes will be denied access to /etc/shadow. Which will need to be readable to allow access to the system.
 
 ## Managing disks
 
