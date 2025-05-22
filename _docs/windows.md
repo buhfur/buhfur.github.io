@@ -19,6 +19,19 @@ title: "Windows Snippets"
     Get-ChildItem c:\ -r -ErrorAction SilentlyContinue –Force |sort -descending -property length | select -first 10 name, DirectoryName, @{Name="MB";Expression={[Math]::round($_.length / 1MB, 2)}}
     ```
 
+## Basic Networking Snippets
+
+- Flush DNS 
+    ```bash
+    ipconfig /flushdns
+    ```
+
+- Clear Routing Table  
+    ```bash
+    netsh int ip reset
+    
+    route -f 
+    ```
 
 ## Environment Variables 
 
