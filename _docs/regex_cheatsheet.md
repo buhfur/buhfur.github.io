@@ -1,7 +1,7 @@
 ---
 
 layout: default
-title: "Regex Cheatsheet"
+title: "Regex Cheatsheet & Useful Snippets"
 
 ---
 
@@ -83,5 +83,122 @@ Regular expressions (regex) are patterns used to match character combinations in
 
 ---
 
-*This cheatsheet is a quick reference for common regular expression patterns.*
+
+# 📚 Advanced `sed` + Regex Snippets Cheatsheet
+
+This cheatsheet covers advanced `sed` use-cases with powerful regular expressions for modifying files.
+
+---
+
+## 🔗 Append a Link to the End of All Markdown Headers
+
+Matches headers starting with either `#` or `##` and appends a `[🔗](#link)` at the end of each.
+
+```bash
+sed -E '/^#{1,2} /s/$/ [🔗](#link)/' file.md
+```
+
+---
+
+## 📝 Replace "foo" with "bar" Only in Lines Starting with `##`
+
+```bash
+sed -E '/^## /s/foo/bar/g' file.md
+```
+
+---
+
+## 🌟 Insert a Line After Every Level-1 (`#`) Header
+
+```bash
+sed -E '/^# /a\
+This is an inserted line.
+' file.md
+```
+
+---
+
+## Add a "Back to Top" Link After All `##` Headers
+
+```bash
+sed -E '/^## /a\
+[Back to Top](#top)
+' file.md
+```
+
+---
+
+## Prepend a Tag to All Headers (Any Level)
+
+```bash
+sed -E '/^#+ /s/^/(TAG) /' file.md
+```
+
+---
+
+## Match Headers with Optional Whitespace and Append a Link
+
+Handles `# Header`, `## Header`, and even `#    Header`.
+
+```bash
+sed -E '/^#{1,2}[[:space:]]+/s/$/ [🔗](#link)/' file.md
+```
+
+---
+
+## Remove Trailing Spaces from All Lines
+
+```bash
+sed -E 's/[[:space:]]+$//' file.md
+```
+
+---
+
+## Insert "NEW HEADER" Before All `##` Headers
+
+```bash
+sed -E '/^## /i\
+NEW HEADER
+' file.md
+```
+
+---
+
+##  Backup & Replace in One Go
+
+Replaces `foo` with `bar` **in-place**, making a `.bak` backup.
+
+```bash
+sed -E -i.bak 's/foo/bar/g' file.md
+```
+
+---
+
+##  Combine Multiple Modifications
+
+Append a link to level-1 or level-2 headers, remove trailing spaces, and add a tag to each header.
+
+```bash
+sed -E '
+  /^#{1,2} /s/$/ [🔗](#link)/
+  s/[[:space:]]+$//
+  /^#+ /s/^/(TAG) /
+' file.md
+```
+
+---
+
+## Key `sed` Concepts
+
+- `-E`: Extended regex (no need to escape `+`, `?`, `{}`).
+- `/pattern/`: Match lines containing `pattern`.
+- `s/pattern/replacement/`: Substitute matched pattern.
+- `a\`, `i\`: Append/Insert lines.
+- `-i`: In-place editing.
+
+---
+
+*This cheatsheet is a quick reference for advanced `sed` with regex patterns.*
+
+
 
