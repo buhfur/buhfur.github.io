@@ -1,8 +1,7 @@
-
 ---
 
 layout: default
-title: "Markdown Syntax Guide"
+title: "Music Theory Basics"
 
 ---
 
@@ -16,7 +15,7 @@ title: "Markdown Syntax Guide"
 ---
 
 
-# Basics 
+# Sheet Music Basics 
 
 - top cleft is treble , bottom is bass 
 
@@ -29,3 +28,16 @@ Treble :
 Bass:
     - Good Boys Deserve Fudge Always ( GBDFA, lines 1-5 ) 
     - All Cows Eat Grass ( ACEG, spaces 1-4 )
+
+
+
+- Dot above 
+
+
+# Major & Minor Scales 
+---
+
+
+## Major Scales 
+
+- Second note is 4 semi-tones ( half-steps ) away from first note , secon
