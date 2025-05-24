@@ -14,72 +14,74 @@ title: "Regex Cheatsheet"
 
 ---
 
-# Regular Expressions (Regex) Cheatsheet
+# Regex Cheatsheet
+
+Regular expressions (regex) are patterns used to match character combinations in strings.
+
+## Basic Syntax
+
+| Pattern   | Description                               |
+|:----------|:------------------------------------------|
+| `.`       | Any character except newline              |
+| `^`       | Start of string                          |
+| `$`       | End of string                            |
+| `*`       | 0 or more of preceding element           |
+| `+`       | 1 or more of preceding element           |
+| `?`       | 0 or 1 of preceding element              |
+| `{n}`     | Exactly n of preceding element           |
+| `{n,}`    | n or more of preceding element           |
+| `{n,m}`   | Between n and m of preceding element     |
+| `|`       | OR                                       |
+| `()`      | Grouping                                 |
+| `[]`      | Character class                          |
+| `[^ ]`    | Negated character class                  |
+| `\`       | Escape special character                 |
+
+## Common Escaped Characters
+
+| Pattern   | Description                               |
+|:----------|:------------------------------------------|
+| `\d`      | Digit (0-9)                              |
+| `\D`      | Non-digit                                |
+| `\w`      | Word character (alphanumeric & underscore)|
+| `\W`      | Non-word character                       |
+| `\s`      | Whitespace                               |
+| `\S`      | Non-whitespace                           |
+| `\b`      | Word boundary                            |
+| `\B`      | Non-word boundary                        |
+| `\\`      | Literal backslash                        |
 
 ## Character Classes
-| Pattern | Description |
-|---------|-------------|
-| `.`     | Any character except newline |
-| `\d`    | Digit (0-9) |
-| `\D`    | Not a digit |
-| `\w`    | Word character (alphanumeric + `_`) |
-| `\W`    | Not a word character |
-| `\s`    | Whitespace character |
-| `\S`    | Not a whitespace character |
 
-## Anchors
-| Pattern | Description |
-|---------|-------------|
-| `^`     | Start of string |
-| `$`     | End of string |
-| ``    | Word boundary |
-| `\B`    | Not a word boundary |
+| Pattern        | Description                               |
+|:---------------|:------------------------------------------|
+| `[abc]`        | Match 'a', 'b', or 'c'                   |
+| `[a-z]`        | Match lowercase letters                  |
+| `[A-Z]`        | Match uppercase letters                  |
+| `[0-9]`        | Match digits                             |
+| `[a-zA-Z0-9]`  | Match alphanumeric characters            |
+| `[^abc]`       | Match any character except 'a','b','c'   |
 
-## Quantifiers
-| Pattern   | Description |
-|-----------|-------------|
-| `*`       | 0 or more times |
-| `+`       | 1 or more times |
-| `?`       | 0 or 1 time |
-| `{n}`     | Exactly n times |
-| `{n,}`    | n or more times |
-| `{n,m}`   | Between n and m times |
+## Assertions
 
-## Groups and Ranges
-| Pattern        | Description |
-|----------------|-------------|
-| `(abc)`        | Capture group |
-| `(?:abc)`      | Non-capturing group |
-| `[abc]`        | a, b, or c |
-| `[^abc]`       | Not a, b, or c |
-| `[a-z]`        | Lowercase a-z |
-| `[A-Z]`        | Uppercase A-Z |
-| `[0-9]`        | Digits 0-9 |
-
-## Escaping Special Characters
-| Pattern | Description |
-|---------|-------------|
-| `\`    | Escape character |
-| `\.`    | Literal dot |
-| `\*`   | Literal asterisk |
-
-## Lookahead and Lookbehind (Advanced)
-| Pattern        | Description |
-|----------------|-------------|
-| `(?=abc)`      | Positive lookahead |
-| `(?!abc)`      | Negative lookahead |
-| `(?<=abc)`     | Positive lookbehind |
-| `(?<!abc)`     | Negative lookbehind |
-
-## Substitution Syntax
-| Pattern    | Description |
-|------------|-------------|
-| `$1`, `$2` | Refer to captured groups |
+| Pattern        | Description                               |
+|:---------------|:------------------------------------------|
+| `(?=...)`      | Positive lookahead                       |
+| `(?!...)`      | Negative lookahead                       |
+| `(?<=...)`     | Positive lookbehind                      |
+| `(?<!...)`     | Negative lookbehind                      |
 
 ## Common Examples
-| Pattern       | Description |
-|---------------|-------------|
-| `\d{3}-\d{2}-\d{4}` | US Social Security number |
-| `[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}` | Email address |
-| `https?://[^\s]+` | URL |
+
+| Pattern                                             | Description                               |
+|:---------------------------------------------------|:------------------------------------------|
+| `^hello`                                           | String starts with "hello"                |
+| `world$`                                           | String ends with "world"                  |
+| `\bword\b`                                         | Matches the whole word "word"             |
+| `\d{3}-\d{2}-\d{4}`                                | Social Security Number pattern            |
+| `^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}$`| Email pattern                             |
+
+---
+
+*This cheatsheet is a quick reference for common regular expression patterns.*
 
