@@ -84,13 +84,13 @@ Regular expressions (regex) are patterns used to match character combinations in
 ---
 
 
-# 📚 Advanced `sed` + Regex Snippets Cheatsheet
+# Advanced `sed` + Regex Snippets Cheatsheet
 
 This cheatsheet covers advanced `sed` use-cases with powerful regular expressions for modifying files.
 
 ---
 
-## 🔗 Append a Link to the End of All Markdown Headers
+## Append a Link to the End of All Markdown Headers
 
 Matches headers starting with either `#` or `##` and appends a `[🔗](#link)` at the end of each.
 
@@ -100,7 +100,7 @@ sed -E '/^#{1,2} /s/$/ [🔗](#link)/' file.md
 
 ---
 
-## 📝 Replace "foo" with "bar" Only in Lines Starting with `##`
+## Replace "foo" with "bar" Only in Lines Starting with `##`
 
 ```bash
 sed -E '/^## /s/foo/bar/g' file.md
@@ -108,7 +108,7 @@ sed -E '/^## /s/foo/bar/g' file.md
 
 ---
 
-## 🌟 Insert a Line After Every Level-1 (`#`) Header
+## Insert a Line After Every Level-1 (`#`) Header
 
 ```bash
 sed -E '/^# /a\
