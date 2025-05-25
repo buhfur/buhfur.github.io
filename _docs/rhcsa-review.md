@@ -5,12 +5,7 @@ title: "RHCSA Review"
 
 ---
 
-## Back to Top {#back-to-top-doc}
-
-{: .no_toc }
-
 # Table of Contents 
-
 
 {: .no_toc }
 
