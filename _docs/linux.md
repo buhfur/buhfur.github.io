@@ -2179,3 +2179,43 @@ Used to create snapshots of BTRFS subvolumes
 
 `bspc wm -r`:
     restart bspwm 
+
+
+# Tmux
+---
+
+`tmux attach-session -t <int or string> ` -> Re-attach to tmux session , detach with Prefix-D
+
+
+## Tmux work environment startup script 
+
+This script below sets up 3 windows , the first opens up 3 files in separate tabs in vim , the second and the third opens a directory in ranger. 
+
+```bash
+
+#!/bin/bash
+
+# Name for tmux session
+session="Work"
+# Create new session
+tmux new-session -d -s $session
+
+# New window, open tickets.md notes.md scratch.md in individual tabs in vim
+# Command: vim $HOME/notes/tickets.md -p $HOME/notes/notes.md -p $HOME/notes/scratch.md
+tmux rename-window -t 0 'work'
+tmux send-keys -t 'work' 'vim $HOME/notes/tickets.md -p $HOME/notes/notes.md -p $HOME/notes/scratch.md' C-m
+
+# New window named 'todo' , open todo directory  in ranger
+# Command: ranger $HOME/todo
+tmux new-window -t $session:1 -n 'todo'
+tmux send-keys -t 'todo' 'ranger $HOME/todo' C-m
+
+# New window named 'notes' , open wiki document directory in ranger
+# Command: ranger $HOME/wiki/_docs
+tmux new-window -t $session:2 -n 'notes'
+tmux send-keys -t 'notes' 'ranger $HOME/wiki/_docs' C-m
+
+# Attach to the newly created session
+tmux attach-session -t $session:0
+
+```
