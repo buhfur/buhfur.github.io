@@ -9,7 +9,7 @@ title: "test RHCSA Review"
 
 {: .no_toc }
 
-# Table of Contents  [🔗](#-table-of-contents)
+# Table of Contents  
 
 
 {: .no_toc }
