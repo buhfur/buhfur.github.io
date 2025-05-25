@@ -5,11 +5,11 @@ title: "RHCSA Review"
 
 ---
 
-## Back to Top {#back-to-top-doc}
+## Back to Top {#back-to-top-doc} [🔗](#-table-of-contents)
 
 {: .no_toc }
 
-# Table of Contents 
+# Table of Contents  [🔗](#-table-of-contents)
 
 
 {: .no_toc }
@@ -20,12 +20,12 @@ title: "RHCSA Review"
 
 ---
 
-# Review notes for RHCSA 
+# Review notes for RHCSA  [🔗](#-table-of-contents)
 
 This document mainly contains command snippets of the various CLI tools used for the exam 
 
 
-## Resetting Root Password 
+## Resetting Root Password  [🔗](#-table-of-contents)
 
 1. Reboot to grub menu 
 
@@ -41,7 +41,7 @@ f
 
 If you fail to relabel the filesystem after changing the root password. The /etc/shadow file will be updated , but in this instance the file is update outside of a selinux aware envionrment. If not relabeled , selinux will see an updated file with a wrong or missing label. As a result of this , assuming SElinux is booted into enforcing mode, PAM or login processes will be denied access to /etc/shadow. Which will need to be readable to allow access to the system.
 
-## Managing disks
+## Managing disks [🔗](#-table-of-contents)
 
 ### Change label of disk 
 
@@ -53,7 +53,7 @@ If you fail to relabel the filesystem after changing the root password. The /etc
 
 
 
-## unrelated helpful snippets  
+## unrelated helpful snippets   [🔗](#-table-of-contents)
 
 `echo "password" | sudo -S dnf update` -> pipes password into sudo commandfrom STDIN  
 
@@ -65,7 +65,7 @@ If you fail to relabel the filesystem after changing the root password. The /etc
 `. /usr/share/bash-completion/bash_completion` -> Add this line to your bashrc to enable bash-completion 
 
 
-## output redirection & piping 
+## output redirection & piping  [🔗](#-table-of-contents)
 
 STDIN:
     - `<` or `0<` 
@@ -93,7 +93,7 @@ STDERR:
 
 `ls /home/ryan 2>&1 > /dev/null` -> redirects STDERR to same location as stdout and sends to /dev/null device file. 
 
-## swapfiles
+## swapfiles [🔗](#-table-of-contents)
 
 ### Swapfile as file 
 
@@ -122,12 +122,12 @@ Create a 32G swapfile
 
 
 
-## crontab 
+## crontab  [🔗](#-table-of-contents)
 
 - /var/spool/cron/username -> crontab for user 
 - do man 5 crontab for possible combinations 
 
-## chmod 
+## chmod  [🔗](#-table-of-contents)
 
 SUID -> chmod u+s , chmod 4XXX
 
@@ -135,7 +135,7 @@ SGID -> chmod g+s , chmod 2xxx /somedir
 
 Sticky Bit -> chmod +t , chmod 1XXX
 
-## history 
+## history  [🔗](#-table-of-contents)
 
 `history -c` -> clears current history 
 
@@ -143,7 +143,7 @@ Sticky Bit -> chmod +t , chmod 1XXX
 
 `history -d <number> ` -> deletes item from history 
 
-## umask 
+## umask  [🔗](#-table-of-contents)
 
 F= Files , D=Directories
 
@@ -164,7 +164,7 @@ F= Files , D=Directories
 7 -> F: Nothing, D: Nothing 
 
 
-## Find 
+## Find  [🔗](#-table-of-contents)
 
 `find / -user <user>`
 
@@ -185,13 +185,13 @@ F= Files , D=Directories
 
 `find / -user <user> -type f -exec cp --parents -a {} /somedir \;` -> copy all files owned by specific user to directory 
 
-## Variables 
+## Variables  [🔗](#-table-of-contents)
 
 `$LANG=en_US.UTF-8` -> sets language for system , using UTF-8 encoding 
 
 `env` -> shows environment variables 
 
-## Bash Environment 
+## Bash Environment  [🔗](#-table-of-contents)
 
 `su` -> Runs an **interactive** shell as root.  
 
@@ -205,7 +205,7 @@ F= Files , D=Directories
 
 > Note: The "su" command **WILL NOT** source a .bashrc in the root directory , according to the documentation of su , only the $SHELL, $HOME, $USER ( if not root user ) , and $LOGNAME are set. To avoid this , use the "--login" option instead of the "-" shortcut. 
 
-## man 
+## man  [🔗](#-table-of-contents)
 
 `man -k <keyword` 
 
@@ -214,13 +214,13 @@ F= Files , D=Directories
 `mandb` -> update mandb 
 
 
-## mount & mount related commands   
+## mount & mount related commands    [🔗](#-table-of-contents)
 
 df -Th -> Shows available disk space on mounted devices , lists disk type 
 
 findmnt -> shows mounts and relationships , lists mount options 
 
-## ls 
+## ls  [🔗](#-table-of-contents)
 
 ls -l -> view permissions set on each file 
 
@@ -232,7 +232,7 @@ ls -d
 
 ls -R 
 
-## tar 
+## tar  [🔗](#-table-of-contents)
 
 `tar -rvf /root/archive.tar /etc/hosts` -> adds /etc/hosts file to the archive 
 `tar -tvf archive.tar` -> list contents of archive , shows permissions on each file in archive as well. 
@@ -259,20 +259,20 @@ ls -R
 
 `tar cvzf backup-$(date +%Y-%m-%d).tar.gz ...` -> tar backup with timestamp 
 
-## gzip & bzip2 & xz 
+## gzip & bzip2 & xz  [🔗](#-table-of-contents)
 
 bunzip2 -> decompresses bzip2 archive  
 
 gunzip -> decompresses gzip archive 
 
 
-## cat & tac 
+## cat & tac  [🔗](#-table-of-contents)
 
 cat -> outputs contents from beginning to end of file 
 
 tac -> outputs contents of file from end to beginning 
 
-## head & tail 
+## head & tail  [🔗](#-table-of-contents)
 
 head -> shows first 10 lines in file by default 
 
@@ -284,7 +284,7 @@ tail -> shows last 10 lines in file by default
 
 `tail -f file` -> outputs last lines of file ,updates when new lines are added. 
 
-## cut 
+## cut  [🔗](#-table-of-contents)
 
 `cut -d :` -> specifies delimeter , in this case it's the ":" character
 
@@ -292,7 +292,7 @@ tail -> shows last 10 lines in file by default
 
 `tail /etc/passwd | cut -d : -f 1` -> outputs the last 10 users listed in the /etc/passwd file 
 
-## sort 
+## sort  [🔗](#-table-of-contents)
 
 sort -> by default sorts content in byte order , aka the order they appear in the ascii text table 
 
@@ -302,14 +302,14 @@ sort -> by default sorts content in byte order , aka the order they appear in th
 
 `sort -k3 -t : /etc/passwd` -> sorts the third column in /etc/passwd in numeric order 
 
-## wc 
+## wc  [🔗](#-table-of-contents)
 
 wc -> outputs number lines , words , and characters 
 
 `ps aux | wc ` -> outputs total processes are running on the system as each line in the output represents a running process. 
 
 
-## grep & regex 
+## grep & regex  [🔗](#-table-of-contents)
 
 `grep -i` -> case insensitive 
 
@@ -357,7 +357,7 @@ wc -> outputs number lines , words , and characters
 `(..)` -> parentheses are used to group multiple characters in the expression  
 
 
-## lsblk 
+## lsblk  [🔗](#-table-of-contents)
 
 `lsblk -f ` -> view info about filesystems 
 
@@ -365,7 +365,7 @@ wc -> outputs number lines , words , and characters
 
 `lsblk -o +UUID,FSTYPE` -> view UUID and filesystem type of disks 
 
-## awk 
+## awk  [🔗](#-table-of-contents)
 
 `awk -F : '{ print $4 }' /etc/passwd` -> prints out the 4th column of the /etc/passwd file , uses ":" as a delimeter.  
 
@@ -377,7 +377,7 @@ wc -> outputs number lines , words , and characters
 `lsblk -o +UUID | tail -n1 | awk -F " " '{print $7}'` -> used this snippet to get the UUID of the installation disk 
 
 
-## sed 
+## sed  [🔗](#-table-of-contents)
 
 `sed -n 5p /etc/passwd` -> prints fifth line from /etc/passwd file 
 
@@ -393,12 +393,12 @@ wc -> outputs number lines , words , and characters
 
 
 
-## emergency reset 
+## emergency reset  [🔗](#-table-of-contents)
 
 `echo b > /proc/sysrq-trigger`
 
 
-## User and Group management 
+## User and Group management  [🔗](#-table-of-contents)
 
 chmod -> change permissions for directories and files  
 
@@ -424,17 +424,17 @@ groupmems -> view users apart of a specific group
 
 * /etc/login.defs  -> defaults for users 
 
-## usermod 
+## usermod  [🔗](#-table-of-contents)
 
 `usermod -aG wheel <user>` -> adds user to wheel group to make them admin privs 
 
-## useradd 
+## useradd  [🔗](#-table-of-contents)
 
 `useradd -m -u 1201 -G sales,ops linda` -> creates user with home dir and UID of 1201 , adds user to groups sales & ops 
 
 `useradd -aG <group-name> [user1..userx]` -> syntax for adding one or multiple users to a group  
 
-## sudo file 
+## sudo file  [🔗](#-table-of-contents)
 
 `<username> ALL=/usr/sbin/useradd, /usr/sbin/passwd` -> give user the ability to execute useradd and passwd commands without requiring root privs. User still needs to prepend 'sudo' before running command   
 
@@ -451,7 +451,7 @@ groupmems -> view users apart of a specific group
 `vigr` -> same as vipw but for changing configs for groups 
 
 
-## chage & passwd  
+## chage & passwd   [🔗](#-table-of-contents)
 
 `passwd -n 30 -w 3 -x 90 linda ` -> sets minimal password usage to 30 days , with 3 days of warning , expires after 90 days 
 
@@ -475,7 +475,7 @@ exit
 ```
 
 4. User will only be able to change their own password 
-## Special permissions basics 
+## Special permissions basics  [🔗](#-table-of-contents)
 
 SUID -> on files , files are executed with the permissions of of the file owner 
 
@@ -486,7 +486,7 @@ Sticky bit -> prevents users from deleting files from other users
 
 > Tip: Don't use sticky bit on files, it's ignored. Use on directories.
 
-## chmod 
+## chmod  [🔗](#-table-of-contents)
 
 4 -> read 
 
@@ -521,11 +521,11 @@ T -> only sticky bit is set
 
 `chmod +t /somedir`
 
-## groupmems 
+## groupmems  [🔗](#-table-of-contents)
 
 `groupmems -l -g workers` -> lists users in workers group 
 
-## umask 
+## umask  [🔗](#-table-of-contents)
 
 > Subtract perm values 
 
@@ -542,7 +542,7 @@ You could also change the default umask by changing /etc/profile
 
 For individual users you could also add a .profile file in the /etc/skel directory and change the umask there 
 
-## User-extended attributes 
+## User-extended attributes  [🔗](#-table-of-contents)
 
 > Package: e2fsprogs 
 
@@ -571,11 +571,11 @@ u -> saves undelete info , allows a utility that can work with that info to salv
 
 `lsattr <somefile>` -> view attributes of file or all files in current directory  
 
-## firewalld && firewall-cmd 
+## firewalld && firewall-cmd  [🔗](#-table-of-contents)
 
 - `/usr/lib/firewalld/services` -> default location for xml service files for built in services 
 
-## classed networks   
+## classed networks    [🔗](#-table-of-contents)
 
 10.0.0.0/8 -> a single A class network 
 
@@ -583,7 +583,7 @@ u -> saves undelete info , allows a utility that can work with that info to salv
 
 192.168.0.0/16 -> 256 Class C networks 
 
-## nmcli
+## nmcli [🔗](#-table-of-contents)
 
 > Tip: make sure the bash-completion package is installed and the lines mentioned in "unrelated helpful snippets" is put into your bashrc 
 
@@ -624,7 +624,7 @@ Change the config in either /etc/sysconfig/network-scripts/ or /etc/NetworkManag
 
 
 
-## hostname 
+## hostname  [🔗](#-table-of-contents)
 
 `hostnamectl set-hostname <hostname>` -> changes hostname 
 
@@ -632,7 +632,7 @@ Change the config in either /etc/sysconfig/network-scripts/ or /etc/NetworkManag
 
 
 
-## ip 
+## ip  [🔗](#-table-of-contents)
 
 `ip -s link show ` -> show links and packet transmissions 
 
@@ -642,14 +642,14 @@ Change the config in either /etc/sysconfig/network-scripts/ or /etc/NetworkManag
 
 
 
-## ss 
+## ss  [🔗](#-table-of-contents)
 
 `ss -lt` -> listening TCP sockets 
 
 `ss -tul` -> listening TCP and UDP ports 
 
 
-## dnf 
+## dnf  [🔗](#-table-of-contents)
 
 **basic repo file syntax**
 
@@ -691,7 +691,7 @@ gpgcheck=<1|0>
 
 `dnf module info <module-name> ` -> get info about specific module , like dependencies and versioning. 
 
-## rpm 
+## rpm  [🔗](#-table-of-contents)
 
 `rpm -q --scripts ` -> query for scripts in package 
 
@@ -713,7 +713,7 @@ gpgcheck=<1|0>
 
 `repoquery <repo-or-package>` -> scans repo or package before installing it. 
 
-## ps 
+## ps  [🔗](#-table-of-contents)
 
 `ps -ef ` -> show command used to start process  
 
@@ -725,7 +725,7 @@ gpgcheck=<1|0>
 
 `ps aux | grep defunct` -> checks for zombie processes 
 
-## tuned 
+## tuned  [🔗](#-table-of-contents)
 
 `systemctl enable --now tuned` -> enables tuned daemon 
 
@@ -735,7 +735,7 @@ gpgcheck=<1|0>
 `tuned-adm profile <profile-name>` -> enable specific profile 
 
 
-## systemctl
+## systemctl [🔗](#-table-of-contents)
 
 `systemctl --failed -t service` -> lists failed services 
 
@@ -743,7 +743,7 @@ gpgcheck=<1|0>
 
 `systemctl list-units --type target` -> list all target units 
 
-## Journalctl 
+## Journalctl  [🔗](#-table-of-contents)
 
 `journalctl -f` -> Live view of logs 
 
@@ -767,24 +767,24 @@ gpgcheck=<1|0>
 
 ---
 
-# LVM Snippets  
+# LVM Snippets   [🔗](#-table-of-contents)
 
 
 
-## pvcreate 
+## pvcreate  [🔗](#-table-of-contents)
 
 `pvcreate /dev/sdxY` -> mark partition as physical volume 
 
-## lvcreate 
+## lvcreate  [🔗](#-table-of-contents)
 
 `lvcreate -n <lvname> -l <size> <vgname> ` -> create logical volume with absolute size 
 
-## vgcreate 
+## vgcreate  [🔗](#-table-of-contents)
 
 `vgcreate <name> /dev/sdxY` -> create volume group on LVM partition 
 
 
-# Volume naming scheme 
+# Volume naming scheme  [🔗](#-table-of-contents)
 
 Volumes are named by the device mapper and can be referenced two ways shown below 
 
@@ -795,7 +795,7 @@ or
 `/dev/<vgname>/<lvname>`
 
 
-# Steps to create a LVM 
+# Steps to create a LVM  [🔗](#-table-of-contents)
 ---
 
 1. Create a LVM partition on the block device with type "8e00" if using gdisk , and "8E" if using fdisk , or in fdisk just type "LVM"
@@ -816,18 +816,18 @@ or
 7. After creating the logical volume, use `mkfs` to create a filesystem on top of it , using the naming scheme of the logical volume `/dev/<vgname>/<lvname>`
 
 
-# Resizing LVM's  
+# Resizing LVM's   [🔗](#-table-of-contents)
 ---
 
 > Tip: unmount volumes that are being shrunk 
 
-## Resizing Physical Volumes 
+## Resizing Physical Volumes  [🔗](#-table-of-contents)
 
 `pvresize /dev/sdX` -> resize physical volume 
 
 > Tip: Make sure to expand the filesystem using the logical volume 
 
-## Resizing Logical Volumes 
+## Resizing Logical Volumes  [🔗](#-table-of-contents)
 
 `lvextend -L +10G /dev/vgname-lvname` -> extend size of logical volume by 10G. 
 
@@ -835,7 +835,7 @@ or
 
 `lvreduce -L 10G /dev/vgname/lvname` -> Shrink logical volume. 
 
-## Resizing Root Logical Volume on Proxmox 
+## Resizing Root Logical Volume on Proxmox  [🔗](#-table-of-contents)
 
 1. After updating size of disk , rescan the disk for the updated space , replace 'sdx' with the name of the block device. 
 
@@ -861,7 +861,7 @@ or
 
 6. reboot and verify changes have been made 
 
-## Resizing Filesystems 
+## Resizing Filesystems  [🔗](#-table-of-contents)
 
 ### Ext4 
 
@@ -883,7 +883,7 @@ Physical volumes are broken into chunks , these chunks are called *physical exte
 ---
 
 
-# Podman
+# Podman [🔗](#-table-of-contents)
 
 - Registries config file location 
     ```bash
@@ -1047,9 +1047,9 @@ Physical volumes are broken into chunks , these chunks are called *physical exte
     podman run -e SOME_VARIABLE=something ...
     ```
 
-# NFS 
+# NFS  [🔗](#-table-of-contents)
 
-## Summary 
+## Summary  [🔗](#-table-of-contents)
 
 - download nfs-utils package 
 - default version is version 4 
@@ -1059,7 +1059,7 @@ Physical volumes are broken into chunks , these chunks are called *physical exte
 - add nfs, rpc-bind, mountd services to firewall-cmd, should be builtin
 - in nfs version 4 you can use root mounts to mount the root directory of the server and only see shares you have access to 
 
-## /etc/exports example
+## /etc/exports example [🔗](#-table-of-contents)
 
 ```bash
 /nfsdata *(rw,no_root_squash)
@@ -1068,17 +1068,17 @@ Physical volumes are broken into chunks , these chunks are called *physical exte
 
 `no_root_squash` -> maps root UID "0" to nobody or anonymous UID , this option disables that feature, therefore the root user on the client would have root privilleges on files in the shares. Be very careful with this.  
 
-## Get list of exported directories from NFS server  
+## Get list of exported directories from NFS server   [🔗](#-table-of-contents)
 
 `showmount -e nfsserver` -> show shares that are available  
 
-## Mounting NFS share through fstab 
+## Mounting NFS share through fstab  [🔗](#-table-of-contents)
 
 ```bash
 servername:/sharename /nfs/mount/point nfs sync 0 0 
 ```
 
-## autofs summary 
+## autofs summary  [🔗](#-table-of-contents)
 
 - no root perms required 
 - setup on both client and server 
@@ -1087,7 +1087,7 @@ servername:/sharename /nfs/mount/point nfs sync 0 0
 - in secondary file , you specify name of subdir to be created , mount opts , and servername:share
 - use wildcard mounts for mounting home directories 
 
-## Autofs Configuration Example 
+## Autofs Configuration Example  [🔗](#-table-of-contents)
 
 ### /etc/auto.master ( non home exported directory )
 
@@ -1122,10 +1122,10 @@ subdirname -rw servername:/sharename
 > Note: the '\*' represents the local mount point on the client machine configured in auto.users, the "&" is a placeholder that gets replaced by the key of the current mount request. 
 
 
-# SELinux 
+# SELinux  [🔗](#-table-of-contents)
 ---
 
-## Terminology 
+## Terminology  [🔗](#-table-of-contents)
 
 **Source Domain:** In a SELinux Policy , represents the object trying to access something. For example a process( PID ) or user( UID ).
 
@@ -1137,7 +1137,7 @@ subdirname -rw servername:/sharename
 
 **Rule:** Part of a policy that determines which source domain has which access permissions to which target domain.  
 
-## Notes 
+## Notes  [🔗](#-table-of-contents)
 
 By default , all system calls are denied when SELinux is enabled. To allow a system call through , SELinux policies are used. Each policy defines which source domains are allowed to access which target domains.
 
@@ -1167,7 +1167,7 @@ Minimum:
 Mls:
     Multi Level Security Protection.  
 
-## General Commands / Snippets 
+## General Commands / Snippets  [🔗](#-table-of-contents)
 
 `seinfo -t`: 
     Requires the setools-console package , the command above shows you all selinux context types. 
@@ -1234,7 +1234,7 @@ Mls:
     Tool used to allow almost any application to run in a SELinux enabled environment. Note , you must install an additional package to support this , past RHEL 7 , you can install the "policycoreutils-python-utils" package.
 
 
-## Add Context type to directory 
+## Add Context type to directory  [🔗](#-table-of-contents)
 
 ### Make directory used for storing HTML files for Web Server 
 

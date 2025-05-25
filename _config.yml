@@ -4,6 +4,8 @@ remote_theme: just-the-docs/just-the-docs
 color_scheme: dark
 url: https://ryanm.dev/wiki
 nav_enabled: true
+back_to_top: true
+back_to_top_text: "Back to Top"
 docs_dir: _docs
 include:
   - _docs
