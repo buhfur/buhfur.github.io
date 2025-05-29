@@ -178,6 +178,8 @@ F= Files , D=Directories
 
 `find / -user <user> -type f -exec cp --parents -a {} /somedir \;` -> copy all files owned by specific user to directory 
 
+`find /usr/share/man -type f -name "*.gz" -exec zgrep 'pattern' {} + ` -> Grep for pattern in files with `*.gz` extension , in this case the man pages.
+
 ## Variables 
 
 `$LANG=en_US.UTF-8` -> sets language for system , using UTF-8 encoding 
@@ -1162,8 +1164,20 @@ Mls:
 
 ## General Commands / Snippets 
 
+> Note: seinfo is installed with the setools-console package 
+
+`seinfo -u`:
+    Lists all available users on the system 
+
+`seinfo -r`:
+    Lists all available roles on the system 
+
 `seinfo -t`: 
-    Requires the setools-console package , the command above shows you all selinux context types. 
+    Lists all available types on the system 
+
+`seinfo -b`
+    Lists all available SELinux booleans on the system 
+    
 
 `semanage`:
     SELinux policy management tool 
