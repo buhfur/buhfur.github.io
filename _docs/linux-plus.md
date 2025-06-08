@@ -851,6 +851,8 @@ This configures the `vtnet0` interface with a static IP and a persistent default
 
 * `/etc/nsswitch.conf` -> defines the order of which services will be used for name resolution 
 
+
+
 ### DNS process 
 
 1. Client sends DNS request to DNS server on port 53. If server is authoritive , the IP of the domain is sent to the host. If not , continue to step 2.  

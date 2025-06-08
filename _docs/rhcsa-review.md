@@ -646,6 +646,9 @@ Change the config in either /etc/sysconfig/network-scripts/ or /etc/NetworkManag
 
 ## dnf 
 
+### Yum Repo Syntax 
+---
+
 **basic repo file syntax**
 
 ```bash
@@ -654,7 +657,46 @@ name=<string>
 baseurl=<url>
 metalink=<url>
 gpgcheck=<1|0>
+# If gpgcheck=1 , add the line below 
+# gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-release-version
 ```
+
+### Steps to Create Repo with Mounted Installation Media
+
+1. Setup directory to mount ROM 
+    `mkdir /repo`
+
+2. Mount ROM onto newly created Directory 
+    `mount /dev/sr0`
+
+3. Generate repo file using newly created directory as source
+    `dnf config-manager --add-repo=file:///repo/BaseOS`
+
+    
+> Note: The directory name might be different , on the AlmaLinux minimal installation , it's named "Minimal" , look out for the directory in the installation media that contains the "Packages" and "repodata" directories
+
+4. Search repos to validate it's working 
+    ```
+    dnf search httpd --repo BaseOS
+    dnf search httpd --repo AppStream
+    ```
+
+5. ( Optional ) Further Steps to create a Repo server
+
+6. Install httpd and createrepo\_c 
+    `dnf install -y httpd createrepo_c`
+
+7. Create HTML directory for repositories 
+    `mkdir /var/www/html/repo`
+
+8. Copy repos to the html directory 
+    ```
+    cp -r -v /repo/BaseOS /var/www/html/repo
+    cp -r -v /repo/AppStream /var/www/html/repo
+    ```
+
+### DNF Snippets 
+---
 
 `dnf config-manager` -> command to create repo client file 
 
@@ -686,6 +728,7 @@ gpgcheck=<1|0>
 
 `dnf module info <module-name> ` -> get info about specific module , like dependencies and versioning. 
 
+`/etc/pki/rpm-gpg/RPM-GPG-KEY-DISTRONAMEHERE-VERSION` -> Location for gpg key , this is used when a repo has 'gpgcheck=1' , you must also add this path to the repo file 
 ## rpm 
 
 `rpm -q --scripts ` -> query for scripts in package 
@@ -738,6 +781,10 @@ gpgcheck=<1|0>
 
 `systemctl list-units --type target` -> list all target units 
 
+`systemd-resolve --flush-caches` -> flush DNS using systemd-resolved
+
+`sudo resolvectl flush-caches` -> flush DNS 
+
 ## Journalctl 
 
 `journalctl -f` -> Live view of logs 
@@ -778,6 +825,14 @@ gpgcheck=<1|0>
 
 `vgcreate <name> /dev/sdxY` -> create volume group on LVM partition 
 
+
+## vgextend 
+
+> Tip: this is used to add another physical volume to a volume group 
+
+`vgextend myvg /dev/sdXY`
+
+`vgextend myvg /dev/sdXY /dev/sdZY` -> adds multiple physical volumes to the volume group 
 
 # Volume naming scheme 
 

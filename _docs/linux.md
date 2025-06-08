@@ -742,6 +742,7 @@ Simply delete all lines in /etc/network/interfaces and re-install the package an
     nmcli con mod <con-name> ipv4.dns <dns-server-ip>
     ```
 
+
 - To add additional dns servers
     ```bash
     nmcli con mod <con-name> +ipv4.dns 8.8.8.8
