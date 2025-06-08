@@ -646,10 +646,8 @@ Change the config in either /etc/sysconfig/network-scripts/ or /etc/NetworkManag
 
 ## dnf 
 
-### Yum Repo Syntax 
+### Repo file Syntax 
 ---
-
-**basic repo file syntax**
 
 ```bash
 [label]
@@ -662,6 +660,7 @@ gpgcheck=<1|0>
 ```
 
 ### Steps to Create Repo with Mounted Installation Media
+---
 
 1. Setup directory to mount ROM 
     `mkdir /repo`
