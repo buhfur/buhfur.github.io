@@ -46,4 +46,6 @@ title: "Android"
 
 `fusermount -u mountpoint` -> unmount device at mountpoint 
 
-`simple-mtpfs <device> mountpoint` -> mount device at mountpoint 
+`simple-mtpfs --device 1 mountpoint` -> mount first connected device at mountpoint 
+
+`simple-mtpfs -l` -> list available devices 
