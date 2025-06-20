@@ -594,6 +594,12 @@ u -> saves undelete info , allows a utility that can work with that info to salv
 
 `nmcli con show` -> show specific connections  
 
+**Add ipv4 address and gateway to existing connection**
+
+`nmcli con modify <connection-name> ipv4.addresses <ip-address>/<prefix> ipv4.gateway <gateway-ip> ipv4.method manual`
+
+`nmcli con down <con-name> && nmcli con up <con-name>`
+
 **Create ipv4 connection using DHCP** 
 
 `nmcli con add con-name <name> type <type> ifname <ifname> ipv4.method auto` -> creates a connection using the ipv4.method which uses DHCP
@@ -645,19 +651,23 @@ Change the config in either /etc/sysconfig/network-scripts/ or /etc/NetworkManag
 
 
 ## dnf 
+---
+
+- Only required fields when creating repo server are the name, baseurl , 
 
 ### Repo file Syntax 
 ---
 
 ```bash
 [label]
-name=<string>
-baseurl=<url>
-metalink=<url>
-gpgcheck=<1|0>
+name=<string> ( Required )
+baseurl=<url> ( Required ) 
+metalink=<url>( Optional )
+gpgcheck=<1|0>( Optional )
 # If gpgcheck=1 , add the line below 
 # gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-release-version
 ```
+
 
 ### Steps to Create Repo with Mounted Installation Media
 ---
@@ -671,6 +681,7 @@ gpgcheck=<1|0>
 3. Generate repo file using newly created directory as source
     `dnf config-manager --add-repo=file:///repo/BaseOS`
 
+    After doing this , change the [label] to match the repo name. Then add gpgcheck=0 if not using signed packages.
     
 > Note: The directory name might be different , on the AlmaLinux minimal installation , it's named "Minimal" , look out for the directory in the installation media that contains the "Packages" and "repodata" directories
 

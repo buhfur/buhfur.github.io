@@ -41,9 +41,11 @@ Goal is to allow certbot to renew the cert automatically.
 ### Old
 
 Source URL: free-shit.pro 
-
 Dest URL: https://free-shit.pro
 
+- Removed redirect domain : free-shit.pro -> https://free-shit.pro
+
+- changed jellyfin published server URI's from https to http
 ### New 
 
 Source URL: free-shit.pro 
