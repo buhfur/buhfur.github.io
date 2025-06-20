@@ -208,6 +208,8 @@ F= Files , D=Directories
 
 `mandb` -> update mandb 
 
+`zgrep -i 'keyword' /usr/share/man/man*/\*.gz` -> grep man pages for keyword , man pages are compressed 
+
 
 ## mount & mount related commands   
 
@@ -419,6 +421,19 @@ groupmems -> view users apart of a specific group
 
 * /etc/login.defs  -> defaults for users 
 
+### Script to verify if group exists in bash 
+
+```bash
+#!/bin/bash
+
+GROUP_NAME="mygroup"
+
+if getent group "$GROUP_NAME" > /dev/null 2>&1; then
+    echo "Group '$GROUP_NAME' exists."
+else
+    echo "Group '$GROUP_NAME' does not exist."
+fi
+```
 ## usermod 
 
 `usermod -aG wheel <user>` -> adds user to wheel group to make them admin privs 
