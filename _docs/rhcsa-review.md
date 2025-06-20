@@ -596,7 +596,7 @@ u -> saves undelete info , allows a utility that can work with that info to salv
 
 **Add ipv4 address and gateway to existing connection**
 
-`nmcli con modify <connection-name> ipv4.addresses <ip-address>/<prefix> ipv4.gateway <gateway-ip> ipv4.method manual`
+`nmcli con mod <connection-name> ipv4.addresses <ip-address>/<prefix> ipv4.gateway <gateway-ip> ipv4.method manual`
 
 `nmcli con down <con-name> && nmcli con up <con-name>`
 
