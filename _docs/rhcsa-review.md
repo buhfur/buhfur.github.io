@@ -86,6 +86,9 @@ STDERR:
 
 `ls /home/ryan 2>&1 > /dev/null` -> redirects STDERR to same location as stdout and sends to /dev/null device file. 
 
+`passwd manny --stdin < pass.txt` -> use file as stdin for setting password for user 
+
+`for x in $(tail -n6 /etc/passwd | awk -F ":" '{print $1}'); do echo 'password' | passwd $x --stdin` -> Change password for 6 users 
 ## swapfiles
 
 ### Swapfile as file 
@@ -460,6 +463,11 @@ fi
 
 `vigr` -> same as vipw but for changing configs for groups 
 
+`Cmnd_Alias MESSAGES = /bin/tail -f /var/log/messages` -> sudo command alias that runs tail on /var/log/messages 
+
+- Command aliases allow you to let selected users / groups to launch specific commands without prompting for a password 
+
+`ryan ALL=(ALL) NOPASSWD: MESSAGES` -> Enables the use of the command alias made earlier to be executed without a password 
 
 ## chage & passwd  
 
