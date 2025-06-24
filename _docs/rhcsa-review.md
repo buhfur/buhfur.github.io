@@ -469,6 +469,17 @@ fi
 
 `ryan ALL=(ALL) NOPASSWD: MESSAGES` -> Enables the use of the command alias made earlier to be executed without a password 
 
+### Rule syntax 
+
+```bash
+#---
+root ALL=(ALL:ALL) ALL
+#---
+root         → the user this rule applies to  
+ALL          → from any host  
+(ALL:ALL)    → may run commands as any user (1st ALL) and any group (2nd ALL)  
+ALL          → may run **all commands**
+```
 ## chage & passwd  
 
 `passwd -n 30 -w 3 -x 90 linda ` -> sets minimal password usage to 30 days , with 3 days of warning , expires after 90 days 
