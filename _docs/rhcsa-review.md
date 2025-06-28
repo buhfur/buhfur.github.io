@@ -1288,11 +1288,14 @@ Mls:
 `getsebool -a`:
     Get booleans for specific service 
 
+
 `getsebool -l`:
     Same as previous command , with more info.
 
 `setsebool <type> <on|off>`:
     Syntax for disabling or enabling a boolean. 
+
+`setsebool <boolean_name> <on(1) | off(0)> -P` -> write boolean changes to disk to make persistent across reboots.
 
 `ls -Z`:
     view selinux context label on object. 
