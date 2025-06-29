@@ -122,6 +122,7 @@ Create a 32G swapfile
 
 - /var/spool/cron/username -> crontab for user 
 - do man 5 crontab for possible combinations 
+- cronnext -i root -> get time in seconds from now when next cronjob from user will run  
 
 ### Get date when next cronjob will run 
 
