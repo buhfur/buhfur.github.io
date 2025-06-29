@@ -123,6 +123,15 @@ Create a 32G swapfile
 - /var/spool/cron/username -> crontab for user 
 - do man 5 crontab for possible combinations 
 
+### Get date when next cronjob will run 
+
+`date -d "@$(cronnext -i root | awk -F " " '{print $2}'" ` -> get date when next cronjob for root user will run 
+
+## at 
+
+`atq` -> lists pending jobs 
+
+`echo "echo \'this is easy\!'\ >> /some_dir/file.txt" | at now + 10 minutes`
 ## chmod 
 
 SUID -> chmod u+s , chmod 4XXX
