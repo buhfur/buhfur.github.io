@@ -1,3 +1,9 @@
+---
+
+layout: default
+title: "Bashrc Configuration"
+
+---
 
 # `.bashrc` Configuration Cheat Sheet
 
