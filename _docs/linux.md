@@ -2220,3 +2220,11 @@ tmux send-keys -t 'notes' 'ranger $HOME/wiki/_docs' C-m
 tmux attach-session -t $session:0
 
 ```
+
+
+# Unsorted helpful one liners 
+
+Ping all hosts in /etc/hosts file 
+```bash
+for x in $(cat /etc/hosts | grep -v '#' | awk -F " " '{print $1}'); do ping -c 4 $x; done
+```

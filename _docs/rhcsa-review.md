@@ -321,6 +321,7 @@ wc -> outputs number lines , words , and characters
 
 ## grep & regex 
 
+
 `grep -i` -> case insensitive 
 
 `grep -v` -> show only lins that do not contain the regular expression  
