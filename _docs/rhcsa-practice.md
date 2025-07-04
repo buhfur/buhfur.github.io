@@ -8,7 +8,7 @@ Made by [soficx](https://github.com/soficx) - https://github.com/soficx/rhcsa
 The information below is gatehered  from different [resources](#resources) books (Asghar Ghori, Sander van Vugt) github repos, telegram and slack channels
 
 ---
-## Talble of Contents
+## Table of Contents
 - [Understand and use essential tools](#understand-and-use-essential-tools)
 - [Create simple shell scripts](#create-simple-shell-scripts)
 - [Operate running systems](#operate-running-systems)
