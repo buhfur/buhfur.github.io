@@ -124,7 +124,27 @@ epel-cisco-openh264 Extra Packages for Enterprise Linux 9 openh264 (From Cisco) 
 
 Install avahi
 ```bash
-ansible rhel-hosts -m shell -a 'sudo dnf install avahi avahi-tools' -b
+ansible rhel-hosts -m shell -a 'sudo dnf install avahi avahi-tools -y' -b
 ```
 
 
+### Setup avahi and mDNS 
+
+Enabled the service 
+```bash
+ansible rhel-hosts -m shell -a 'systemctl enable --now avahi-daemon'
+```
+
+Added service into firewall 
+```bash
+ansible rhel-hosts -m shell -a 'firewall-cmd --add-service=mdns --permanent && firewall-cmd --reload' -b
+```
+
+Make sure the /etc/nsswitch.conf file contains the following line 
+```bash
+hosts: files mdns4_minimal [NOTFOUND=return] dns
+```
+
+```bash
+ansible rhel-hosts -m shell -a 'cat /etc/nsswitch.conf | grep mdns4' 
+```
