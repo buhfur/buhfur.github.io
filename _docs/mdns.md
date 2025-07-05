@@ -57,17 +57,74 @@ sudo reposync --repoid=epel --download-path=/var/www/html/repo/epel --download-m
 
 ### Host repo 
 
+To accomplish this , I created the EPEL repo file and used ansible with a script to add the repo file to every host 
 
-### Copy client repo file to all RHEL hosts
-
-### Install nss-mdns on all RHEL hosts
-
-> Note: After doing this , all machines should install the package nss
-
-
-Install avahi and nss-mdns for RHEL 
+First I created the Client repo file and copied it to a newly made directory /var/www/html/repofiles
+```bash
+[epel]
+name=EPEL RHEL 9 self hosted repo
+baseurl=http://192.168.3.180/repo/epel
+gpgcheck=0
 ```
-sudo dnf install avahi avahi-tools nss-mdns 
+
+
+### Copy repo file to all hosts 
+
+Created this small script download-repo.sh which requests the file from the web server and pipes the output into the /etc/yum.repos.d/ directory under the name "epel.repo" 
+```bash
+#!/bin/bash
+# download-repo.sh
+curl http://192.168.3.180/repofiles/epel.repo > /etc/yum.repos.d/epel.repo
+```
+
+On the ansible master host, I used this ansible command to execute it across all hosts in my lab 
+```bash
+ansible rhel-hosts -m script -a /root/download-repo.sh -b
+```
+
+Then executed another ansible command to download the 'nss-mdns' package! 
+```bash
+ansible rhel-hosts -m shell -a 'sudo dnf install -y nss-mdns' -b 
+```
+
+Checked all hosts now have the installed package ( with ansible of course )
+```bash
+root@ansible-master:~# ansible rhel-hosts -m shell -a 'sudo dnf list | grep nss-mdns' -b
+[WARNING]: Invalid characters were found in group names but not replaced, use -vvvv to see details
+192.168.3.111 | CHANGED | rc=0 >>
+nss-mdns.x86_64                                                                          0.15.1-3.1.el9                       @epel
+192.168.3.112 | CHANGED | rc=0 >>
+nss-mdns.x86_64                                                                          0.15.1-3.1.el9                       @epel
+192.168.3.180 | CHANGED | rc=0 >>
+nss-mdns.x86_64                                                                          0.15.1-3.1.el9                       @epel
+```
+
+Also checked to make sure it was using the epel repo file copied ( the repo-server already had and epel repo from cisco , the main goal was to ensure only server1 and server2 are using the epel file )
+```bash
+root@ansible-master:~# ansible rhel-hosts -m shell -a 'dnf repolist'
+[WARNING]: Invalid characters were found in group names but not replaced, use -vvvv to see details
+192.168.3.111 | CHANGED | rc=0 >>
+repo id                           repo name
+AppStream                         Red hat AppStream repo
+BaseOS                            Red hat BaseOS repo
+192.168.3.112 | CHANGED | rc=0 >>
+repo id                           repo name
+AppStream                         Red hat AppStream repo
+BaseOS                            Red hat BaseOS repo
+192.168.3.180 | CHANGED | rc=0 >>
+repo id             repo name
+AppStream           Red Hat Enterprise Linux 9.0 AppStream RPMs (DVD)
+BaseOS              Red Hat Enterprise Linux 9.0 BaseOS RPMs (DVD)
+epel                EPEL RHEL 9 self hosted repo
+epel-cisco-openh264 Extra Packages for Enterprise Linux 9 openh264 (From Cisco) - x86_64
+```
+
+### Install tools on all RHEL hosts
+
+
+Install avahi
+```bash
+ansible rhel-hosts -m shell -a 'sudo dnf install avahi avahi-tools' -b
 ```
 
 

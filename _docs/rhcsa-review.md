@@ -759,6 +759,10 @@ gpgcheck=<1|0>( Optional )
 `dnf config-manager --add-repo=file:///repo/BaseOS` -> if the installation disk files have been copied to /repo , use this command to create a client repo file using the BaseOS 
 
 
+`dnf repolist all` -> lists all enabled/disabled repos being used on the server
+
+`dnf repolist` -> only lists active repos being used on the server 
+
 `dnf info <package>`
 
 `dnf group list` -> list diff packages groups which are bundles of packages you can install at the same time 
