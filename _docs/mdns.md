@@ -14,7 +14,7 @@ title: "Setting up mDNS and DNS-SD in my lab environment"
 
 ---
 
-# mDNS and DNS-SD 
+# mDNS and DNS-SD for my lab environment
 
 What is mDNS and DNS-SD ? I've pasted the following paragraph below from wikipedia which has a nice description.
 
