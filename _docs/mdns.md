@@ -119,6 +119,8 @@ epel                EPEL RHEL 9 self hosted repo
 epel-cisco-openh264 Extra Packages for Enterprise Linux 9 openh264 (From Cisco) - x86_64
 ```
 
+## Setting up Avahi & mDNS on all hosts 
+
 ### Install tools on all RHEL hosts
 
 
@@ -188,5 +190,6 @@ root@ansible-master:~#
 ```
 
 And voila! We have successfully enabled mDNS and DNS-SD on my network for all rhel hosts in my lab , that way if I add more hosts , I won't need to add their hostnames manually in the /etc/hosts file. 
+
 
 
