@@ -121,8 +121,7 @@ epel-cisco-openh264 Extra Packages for Enterprise Linux 9 openh264 (From Cisco) 
 
 ## Setting up Avahi & mDNS on all hosts 
 
-### Install tools on all RHEL hosts
-
+### Installation 
 
 Install avahi
 ```bash
@@ -131,6 +130,7 @@ ansible rhel-hosts -m shell -a 'sudo dnf install avahi avahi-tools -y' -b
 
 
 ### Setup avahi and mDNS 
+
 
 Enabled the service 
 ```bash
@@ -152,6 +152,7 @@ ansible rhel-hosts -m shell -a 'cat /etc/nsswitch.conf | grep mdns4'
 ```
 
 ### Test to make sure it works 
+
 
 ```bash
 root@ansible-master:~# ansible rhel-hosts -m shell -a 'ping -c 4 server2.local'
