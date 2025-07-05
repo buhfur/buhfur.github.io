@@ -148,3 +148,41 @@ hosts: files mdns4_minimal [NOTFOUND=return] dns
 ```bash
 ansible rhel-hosts -m shell -a 'cat /etc/nsswitch.conf | grep mdns4' 
 ```
+
+### Test to make sure it works 
+
+```bash
+root@ansible-master:~# ansible rhel-hosts -m shell -a 'ping -c 4 server2.local'
+[WARNING]: Invalid characters were found in group names but not replaced, use -vvvv to see details
+192.168.3.180 | CHANGED | rc=0 >>
+PING server2.local (192.168.3.112) 56(84) bytes of data.
+64 bytes from 192.168.3.112 (192.168.3.112): icmp_seq=1 ttl=64 time=0.312 ms
+64 bytes from 192.168.3.112 (192.168.3.112): icmp_seq=2 ttl=64 time=0.331 ms
+64 bytes from 192.168.3.112 (192.168.3.112): icmp_seq=3 ttl=64 time=0.464 ms
+64 bytes from 192.168.3.112 (192.168.3.112): icmp_seq=4 ttl=64 time=0.375 ms
+
+--- server2.local ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3004ms
+rtt min/avg/max/mdev = 0.312/0.370/0.464/0.058 ms
+192.168.3.112 | CHANGED | rc=0 >>
+PING server2.local (192.168.3.112) 56(84) bytes of data.
+64 bytes from server2 (192.168.3.112): icmp_seq=1 ttl=64 time=0.038 ms
+64 bytes from server2 (192.168.3.112): icmp_seq=2 ttl=64 time=0.016 ms
+64 bytes from server2 (192.168.3.112): icmp_seq=3 ttl=64 time=0.022 ms
+64 bytes from server2 (192.168.3.112): icmp_seq=4 ttl=64 time=0.038 ms
+
+--- server2.local ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3057ms
+rtt min/avg/max/mdev = 0.016/0.028/0.038/0.009 ms
+192.168.3.111 | CHANGED | rc=0 >>
+PING server2.local (192.168.3.112) 56(84) bytes of data.
+64 bytes from server2 (192.168.3.112): icmp_seq=1 ttl=64 time=0.378 ms
+64 bytes from server2 (192.168.3.112): icmp_seq=2 ttl=64 time=0.296 ms
+64 bytes from server2 (192.168.3.112): icmp_seq=3 ttl=64 time=0.293 ms
+64 bytes from server2 (192.168.3.112): icmp_seq=4 ttl=64 time=0.244 ms
+
+--- server2.local ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3098ms
+rtt min/avg/max/mdev = 0.244/0.302/0.378/0.048 ms
+root@ansible-master:~#
+```
