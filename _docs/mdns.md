@@ -6,7 +6,6 @@ title: "Setting up mDNS and DNS-SD in my lab environment"
 ---
 
 # Table of Contents 
-
 {: .no_toc }
 
 1. TOC 
