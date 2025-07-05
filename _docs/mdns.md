@@ -33,7 +33,7 @@ What is mDNS and DNS-SD ? I've pasted the following paragraph below from wikiped
 I wanted to learn about this as I wanted a quicker way to access hosts in my LAN without modifying each machines /etc/hosts file. and mDNS coupled with DNS-SD will allow me to do this with the small limited hosts in my network and give me the oppertunity to play around with some network stuff in between studying for my RHCSA. 
 
 
-## Setup 
+## Intro 
 
 In my lab , here are the steps i've taken to get this up and running across all my RHEl and Debian hosts. For the first part of this setup , I decided that I wanted to also install everything on all hosts using ansible. After modifying the ansible config and enabling token-based auth on all hosts. I ran into an issue with the machines I use for my RHCSA lab work. 
 
@@ -129,7 +129,7 @@ ansible rhel-hosts -m shell -a 'sudo dnf install avahi avahi-tools -y' -b
 ```
 
 
-### Setup avahi and mDNS 
+### Setting up avahi and mDNS 
 
 
 Enabled the service 
