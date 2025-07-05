@@ -186,3 +186,7 @@ PING server2.local (192.168.3.112) 56(84) bytes of data.
 rtt min/avg/max/mdev = 0.244/0.302/0.378/0.048 ms
 root@ansible-master:~#
 ```
+
+And voila! We have successfully enabled mDNS and DNS-SD on my network for all rhel hosts in my lab , that way if I add more hosts , I won't need to add their hostnames manually in the /etc/hosts file. 
+
+
