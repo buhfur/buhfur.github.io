@@ -122,7 +122,6 @@ epel-cisco-openh264 Extra Packages for Enterprise Linux 9 openh264 (From Cisco) 
 
 ### Installation 
 
-Install avahi
 ```bash
 ansible rhel-hosts -m shell -a 'sudo dnf install avahi avahi-tools -y' -b
 ```
