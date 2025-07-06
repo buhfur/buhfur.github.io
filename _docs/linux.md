@@ -2221,8 +2221,16 @@ tmux attach-session -t $session:0
 
 ```
 
+# Ranger 
+---
+
+Generate config for ranger 
+```bash
+ranger --copy-config=all
+```
 
 # Unsorted helpful one liners 
+---
 
 Ping all hosts in /etc/hosts file 
 ```bash
