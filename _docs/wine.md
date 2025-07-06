@@ -81,6 +81,11 @@ Check prefix for 32-bit:
 file "$WINEPREFIX/drive_c/windows/explorer.exe"
 ```
 
+# Setup 64+32 bit prefix 
+
+```bash
+WINEPREFIX=~/wineprefix winecfg
+```
 # Issues
 
 Anytime you encounter errors , it's usually a good idea to delete the ~/.wine cache
