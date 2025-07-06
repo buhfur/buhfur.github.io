@@ -192,3 +192,6 @@ And voila! We have successfully enabled mDNS and DNS-SD on my network for all rh
 
 
 
+# Installation Script
+
+This is a small script that will install the necessary tools and configuration for nss-mdns & avahi for both Debian , RHEL based systems. 
