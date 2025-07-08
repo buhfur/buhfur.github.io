@@ -92,3 +92,9 @@ Anytime you encounter errors , it's usually a good idea to delete the ~/.wine ca
 ```bash
 rm -rf ~/.wine 
 ```
+
+
+# Run wine with debug output limited to errors 
+```bash
+WINEDEBUG=-all wine your_app.exe
+```
