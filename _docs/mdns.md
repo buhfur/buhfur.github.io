@@ -195,3 +195,60 @@ And voila! We have successfully enabled mDNS and DNS-SD on my network for all rh
 # Installation Script
 
 This is a small script that will install the necessary tools and configuration for nss-mdns & avahi for both Debian , RHEL based systems. 
+
+```bash
+#!/bin/bash
+# Simple script that setups tools and configuration for setting up nss-mdns & avahi
+
+PLATFORM=$(awk -F= '/^ID=/{gsub(/"/,"",$2); print $2}' /etc/os-release)
+
+error_exit() {
+    echo "Error: $1";
+    exit 1;
+}
+
+warning(){
+    echo "WARNING: $1"
+}
+
+
+firewall_config() { # Detects firewall being used Adds mdns service/ports to firewall
+
+    if systemctl is-active --quiet firewalld 2>/dev/null; then
+        sudo firewall-cmd --add-service=mdns --permanent && firewall-cmd --reload;
+    elif systemctl is-active --quiet ufw 2>/dev/null; then
+        echo "ufw"
+        for x in 5353 51570 40200; do sudo ufw allow $x/udp && sudo ufw reload; done
+    else
+        echo "No active firewall detected"
+    fi
+}
+
+enable_avahi() {
+    systemctl enable --now avahi-daemon && systemctl start avahi-daemon;
+}
+
+install() {
+    case "$1" in # Install nss-mdns & avahi, method based on platform
+        rhel|centos|fedora|rocky|almalinux)
+            (sudo dnf install avahi-tools avahi nss-mdns -y || dnf install -y epel-release && dnf install -y avahi-tools avahi nss-mdns) && sudo sed -i '/^hosts:/ s/files dns/files mdns4_minimal [NOTFOUND=return] dns/' /etc/nsswitch.conf
+            ;;
+        debian|ubuntu|linuxmint)
+            sudo apt install avahi-daemon avahi-utils libnss-mdns -y && \
+                sudo sed -i '/^hosts:/ s/files dns/files mdns4_minimal [NOTFOUND=return] dns/' /etc/nsswitch.conf
+            ;;
+        arch|manjaro)
+            sudo pacman -Syu avahi nss-mdns && \
+                sudo sed -i '/^hosts:/ s/files dns/files mdns4_minimal [NOTFOUND=return] dns/' /etc/nsswitch.conf
+            ;;
+        *)
+            echo 'ERROR: Distro not detected';
+            exit 1;
+            ;;
+    esac
+}
+
+install $PLATFORM || error_exit "Unable to install required tools"
+firewall_config $PLATFORM || warning "Unable to configure firewall" # Setup firewall config
+enable_avahi || error_exit "Unable to start avahi-daemon";             # Start and enable avahi
+```

@@ -6,7 +6,6 @@ title: "Linux File Permissions"
 ---
 
 # Table of Contents 
-
 {: .no_toc }
 
 1. TOC 

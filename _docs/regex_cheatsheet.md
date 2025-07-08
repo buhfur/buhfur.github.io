@@ -6,7 +6,6 @@ title: "Regex Cheatsheet & Useful Snippets"
 ---
 
 # Table of Contents 
-
 {: .no_toc }
 
 1. TOC 

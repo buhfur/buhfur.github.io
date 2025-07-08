@@ -6,7 +6,6 @@ title: "Music Theory Basics"
 ---
 
 # Table of Contents 
-
 {: .no_toc }
 
 1. TOC

@@ -1,3 +1,4 @@
+
 1. Break into server2 and set the password as password. Set the target as multi-user and make sure it boots into that automatically. Reboot to confirm.
 
 2. Configure the network interfaces and hostnames on both servers.
