@@ -6,7 +6,6 @@ title: "Fortigate Firewall Changelog"
 ---
 
 # Table of Contents 
-
 {:.no_toc}
 
 1. TOC 

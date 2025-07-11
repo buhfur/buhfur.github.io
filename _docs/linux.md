@@ -7,7 +7,6 @@ title: "General Linux Snippets"
 
 
 # Table of Contents 
-
 {: .no_toc }
 
 1. TOC

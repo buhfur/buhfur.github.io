@@ -6,7 +6,6 @@ title: "RHCSA Old notes"
 ---
 
 # Table of Contents  
-
 {: .no_toc }
 
 1. TOC 

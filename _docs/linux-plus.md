@@ -6,7 +6,6 @@ title: "Linux Plus"
 ---
 
 # Table of Contents 
-
 {: .no_toc }
 
 1. TOC 

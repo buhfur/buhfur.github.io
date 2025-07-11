@@ -6,7 +6,6 @@ title: "Android Backup"
 ---
 
 # Table of Contents 
-
 {: .no_toc }
 
 1. TOC 

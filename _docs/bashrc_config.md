@@ -5,6 +5,12 @@ title: "Bashrc Configuration"
 
 ---
 
+# Table of Contents 
+{: .no_toc }
+
+1. TOC 
+{:toc}
+
 # `.bashrc` Configuration Cheat Sheet
 
 ## Purpose
@@ -15,7 +21,6 @@ The `.bashrc` file is executed for interactive non-login shells. It is commonly 
 ---
 
 # Table of Contents 
-
 {: .no_toc }
 
 1. TOC

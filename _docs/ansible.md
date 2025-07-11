@@ -6,7 +6,6 @@ title: "Ansible Notes"
 ---
 
 # Table of Contents 
-
 {: .no_toc }
 
 1. TOC 
