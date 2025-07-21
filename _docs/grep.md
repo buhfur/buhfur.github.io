@@ -71,6 +71,15 @@ title: "Grep Snippets"
     grep -o "pattern" filename
     ```
 
+11. **Show dotfiles from ls output**
+    ```bash
+    ls -A | grep '^\.'
+    ```
+12. **Remove all vim swapfiles**
+    ```bash
+    for x in $(ls -a | grep  '^\.' | grep swp); do rm $x; done
+    ```
+
 ---
 
 ### **Contextual Search**
@@ -262,5 +271,6 @@ These snippets cover a wide variety of use cases. Let me know if you'd like more
     ```
 
 ---
+
 
 

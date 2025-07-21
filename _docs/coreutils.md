@@ -35,6 +35,10 @@ ls -l
 ls -a
 ```
 
+Exclude ".." and "." and only show files
+```bash
+ls -d .[^.]*
+```
 
 
 

@@ -321,6 +321,9 @@ wc -> outputs number lines , words , and characters
 
 ## grep & regex 
 
+`for x in $(ls -a | grep  '^\.' | grep swp); do rm $x; done`
+
+`ls -a | grep  '^\.'` -> list all dotfiles 
 
 `grep -i` -> case insensitive 
 
