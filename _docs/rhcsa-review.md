@@ -151,6 +151,8 @@ Sticky Bit -> chmod +t , chmod 1XXX
 
 ## umask 
 
+> Umask values subtract from the max value for files/directories. Files=666, Directories=777
+
 F= Files , D=Directories
 
 0 -> F: Read and write , D: everything 
@@ -169,6 +171,15 @@ F= Files , D=Directories
 
 7 -> F: Nothing, D: Nothing 
 
+**Set default permissions for all newly created files**
+
+In /etc/login.defs as root , change the following line to below.
+
+```bash
+umask 007 
+```
+
+The change above makes all newly created files with 660 permissions and directories with 770 permissions by default.  
 
 ## Find 
 
