@@ -33,6 +33,11 @@ title: "Windows Snippets"
     route -f 
     ```
 
+- Traceroute 
+    ```bash
+    # Don't resolve hostnames , specified max hops 
+    tracert -d <ip> -h <max-hops>
+    ```
 ## Environment Variables 
 
 The commands below are used to modify existing Environment Variables.
