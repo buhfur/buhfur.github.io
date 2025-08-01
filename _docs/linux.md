@@ -2256,6 +2256,11 @@ function ranger
 end
 ```
 
+Ensure ranger will output the last dir to the file specified by `--choosedir`
+```bash
+set choose_dir=True
+```
+
 # Unsorted helpful one liners 
 ---
 
