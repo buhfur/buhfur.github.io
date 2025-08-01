@@ -2228,7 +2228,7 @@ Generate config for ranger
 ranger --copy-config=all
 ```
 
-Bashrc function to CD to dir when exiting
+Bashrc function to CD to dir when exiting ( Bash / zsh )
 ```bash
 ranger() {
     tempfile="$(mktemp -t ranger-cd.XXXXXX)"
@@ -2238,6 +2238,22 @@ ranger() {
     fi
     rm -f "$tempfile"
 }
+```
+
+Same as above but for fish shell 
+
+```bash
+function ranger
+    set tempfile (mktemp -t ranger-cd.XXXXXX)
+    command ranger --choosedir=$tempfile $argv
+    if test -f $tempfile
+        set dir (cat $tempfile)
+        if test -d "$dir" -a "$dir" != (pwd)
+            cd $dir
+        end
+        rm -f $tempfile
+    end
+end
 ```
 
 # Unsorted helpful one liners 
