@@ -2228,6 +2228,18 @@ Generate config for ranger
 ranger --copy-config=all
 ```
 
+Bashrc function to CD to dir when exiting
+```bash
+ranger() {
+    tempfile="$(mktemp -t ranger-cd.XXXXXX)"
+    command ranger --choosedir="$tempfile" "$@"
+    if [ -f "$tempfile" ] && [ "$(cat "$tempfile")" != "$(pwd)" ]; then
+        cd -- "$(cat "$tempfile")"
+    fi
+    rm -f "$tempfile"
+}
+```
+
 # Unsorted helpful one liners 
 ---
 
@@ -2235,3 +2247,4 @@ Ping all hosts in /etc/hosts file
 ```bash
 for x in $(cat /etc/hosts | grep -v '#' | awk -F " " '{print $1}'); do ping -c 4 $x; done
 ```
+
