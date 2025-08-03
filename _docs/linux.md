@@ -1128,6 +1128,13 @@ Note: Put this line into your kernel boot args
     firewall-cmd --add-source=<ipaddress/netmask>
     ```
 
+- Enable verbose logging for all or specific dropped packets 
+   ```bash
+    firewall-cmd --set-log-denied=off
+    firewall-cmd --set-log-denied=unicast
+    firewall-cmd --set-log-denied=broadcast
+    firewall-cmd --set-log-denied=all
+    ```
 
 ---
 
