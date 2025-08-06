@@ -1,7 +1,7 @@
 ---
 
 layout: default
-title: "Android"
+title: "MTP and ADB snippets"
 
 ---
 

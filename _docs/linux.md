@@ -324,6 +324,10 @@ The best information can be found on the man page. Use man ln for further detail
     lsblk |awk 'NR==1{print $0" DEVICE-ID(S)"}NR>1{dev=$1;printf $0" ";system("find /dev/disk/by-id -lname \"*"dev"\" -printf \" %p\"");print "";}'|grep -v -E 'part|lvm'
     ```
 
+- Keep aliases when running scripts 
+    ```bash
+    shopt -s expand_aliases
+    ```
 
 
 - Get UUID of drive 
@@ -2267,6 +2271,8 @@ Ensure ranger will output the last dir to the file specified by `--choosedir`
 ```bash
 set choose_dir=True
 ```
+
+
 
 # Unsorted helpful one liners 
 ---
