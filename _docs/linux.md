@@ -1513,33 +1513,6 @@ Some containers contain a "usage" line that may say how the container needs to r
 
 ---
 
-# NMAP 
-
-- Scan for all IP's on your network with nmap
-    ```bash
-    nmap -sn 192.168.0.0/24
-    ```
-
-> Note: You can substitute the ip in the command above for one or multiple networks 
-> The '-sn' option tells nmap to not search for open ports 
-
-- Check if certain port is open
-    ```bash
-    nmap <ip><prefix> -p <port-number>
-    ```
-
-
-    - If you know the port the service might be using
-        ```bash
-        lsof -i :<port>
-        ```
-
-    - Using Netstat
-        ```bash
-        sudo netstat -nlp  | grep <port-number>
-        ```
-
----
 
 # GRUB 
 
