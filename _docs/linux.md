@@ -2140,6 +2140,11 @@ yt-dlp --verbose --skip-download --write-subs --write-auto-subs --sub-lang en --
     sh -c "$(fetch -o - https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     ```
 
+## **Verify which source file zsh is going to use**
+
+```bash
+print -r -- ${ZDOTDIR:-$HOME}
+```
 
 > Note: All of this was taken from the README.md for Zsh on their Github. I'll paste a link below for easy reference
 > ![Link here](https://github.com/ohmyzsh/ohmyzsh)
