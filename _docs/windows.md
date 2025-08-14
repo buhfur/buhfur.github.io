@@ -366,3 +366,11 @@ Get info for specific driver
 Shutdown station through telnet 
 
 `shutdown /r /t 0`
+
+# Display Info 
+---
+
+```bash
+wmic path Win32_PnPEntity where "PNPClass='Monitor'" get Name,DeviceID
+```
+Gets names and device ID of connected monitors 
