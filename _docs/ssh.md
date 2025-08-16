@@ -1,7 +1,7 @@
 ---
 
 layout: default
-title: "Ssh notes"
+title: "SSH notes"
 
 ---
 
@@ -48,7 +48,14 @@ ssh -X user@remote_host
 ssh -Y user@remote_host ( less strict )
 ```
 
+After connected , test with xclock 
+
+```bash
+xclock
+```
+
 # Configuring SSH 
+---
 
 dictionary attacks are commonly used to break into ssh servers , from what i've seen on my machine they typically use usernames and passwords that might be setup by default on the server. 
 
