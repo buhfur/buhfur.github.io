@@ -24,6 +24,11 @@ title: "Git Snippets"
 
 > Note: You don't need to include `-b` if the local branch you are checking out to already exists. 
 
+- Remove local branch 
+    ```bash
+    git branch -d <branch-name> 
+    ```
+
 - Merge two local branches together 
     1. Switch to target branch you want to merge changes into 
         ```bash
@@ -59,6 +64,7 @@ title: "Git Snippets"
     ```bash
     git remote set-url origin <link-here> 
     ```
+
 - Ignore vim swap files
     ```bash
     *~

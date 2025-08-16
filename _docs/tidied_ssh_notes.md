@@ -158,3 +158,18 @@ ssh-add
 ```
 
 You can set a passphrase for the private key which is, in most cases, more secure. However, it is inconvenient for the user as they will have to enter this key every time they attempt to connect to the server. You can cache the key for a short amount of time using the `ssh-agent` and `ssh-add` commands (see above).
+
+
+## Local Client Host Configuration 
+
+You can specify specific IP's , Hostnames , and ports for unique hosts in a file located in the users `/home/user/.ssh` directory. This allows you to specify specific ssh Configuration options per host.  
+
+Configure Port , Host and User for ssh connection 
+
+```bash
+Host hostname-1
+    ServerAliveInterval 0
+    Port 6225
+    X11Forwarding no
+```
+
