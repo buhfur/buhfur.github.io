@@ -2251,6 +2251,102 @@ set choose_dir=True
 ```
 
 
+# Diff 
+---
+
+## Basic Usage
+
+```bash
+diff old_file new_file
+```
+
+- Compares line-by-line.
+- Symbols:
+  - `<` = line only in `old_file`
+  - `>` = line only in `new_file`
+
+---
+
+## Unified Format (Recommended for Readability)
+
+```bash
+diff -u old_file new_file
+```
+
+- "Unified diff" format with context.
+- Symbols:
+  - `-` = line removed
+  - `+` = line added
+  - context lines are unchanged lines
+
+### Example:
+
+```diff
+@@ -1,3 +1,4 @@
++New line added
+ Line 1
+-Line 2
++Line 2 modified
+ Line 3
+```
+
+---
+
+## Side-by-Side Comparison
+
+```bash
+diff -y old_file new_file
+```
+
+- Shows files side-by-side.
+- Indicators:
+  - `|` = difference
+  - `<` = only in `old_file`
+  - `>` = only in `new_file`
+
+To hide matching lines:
+
+```bash
+diff -y --suppress-common-lines old_file new_file
+```
+
+---
+
+## Ignore Whitespace Changes
+
+If formatting differences don't matter:
+
+```bash
+diff -u -w old_file new_file
+```
+
+Or side-by-side ignoring whitespace:
+
+```bash
+diff -y -w old_file new_file
+```
+
+---
+
+## Test with Sample Files
+
+```bash
+echo -e "one\ntwo\nthree" > file1.txt
+echo -e "one\n2\nthree" > file2.txt
+diff -u file1.txt file2.txt
+```
+
+---
+
+## Summary of Flags
+
+| Flag | Description |
+|------|-------------|
+| `-u` | Unified diff (recommended) |
+| `-y` | Side-by-side comparison |
+| `-w` | Ignore all whitespace |
+| `--suppress-common-lines` | Hide lines that are the same |
+
 
 # Unsorted helpful one liners 
 ---

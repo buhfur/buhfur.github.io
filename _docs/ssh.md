@@ -110,7 +110,8 @@ UseDNS -> Very inefficient if other users connections are slow , turn off for pe
 MaxSessions -> specifies max number of sessions from the same remote IP. If you have users connecting to the server with multiple sessions it's a good practice to increase the amount of max sessions.  
 
 TCPKeepAlive -> ensures clients that are unavailable are released 
-ClientALiveInterval -> time before the server sends a packet to the client when no activity is detected. 
+
+ClientAliveInterval -> time before the server sends a packet to the client when no activity is detected. 
 
 ClientAliveCountMax -> specifies how many of these packets are sent. if set to 30 and ClientAliveCountMax is set to 10 , connections are kept alive for about 5 minutes. 
 
