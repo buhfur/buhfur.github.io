@@ -771,6 +771,8 @@ gpgcheck=<1|0>( Optional )
 
 `dnf repoquery -l packagename` -> lists all files included in the repo 
 
+`dnf repoquery -l packagename | grep bin/` -> lists all binaries installed by repo 
+
 `dnf config-manager --add-repo=file:///repo/BaseOS` -> if the installation disk files have been copied to /repo , use this command to create a client repo file using the BaseOS 
 
 
@@ -1296,7 +1298,7 @@ Mls:
 
 > Note: seinfo is installed with the setools-console package 
 
-> Note: sepolicycoreutils is mandatory for managing SELinux at all from the command line.
+> Note: policycoreutils is mandatory for managing SELinux at all from the command line.
 
 `seinfo -u`:
     Lists all available users on the system 
