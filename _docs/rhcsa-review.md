@@ -769,6 +769,7 @@ gpgcheck=<1|0>( Optional )
 
 `dnf config-manager` -> command to create repo client file 
 
+`dnf repoquery -l packagename` -> lists all files included in the repo 
 
 `dnf config-manager --add-repo=file:///repo/BaseOS` -> if the installation disk files have been copied to /repo , use this command to create a client repo file using the BaseOS 
 
