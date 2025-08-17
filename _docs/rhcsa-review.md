@@ -773,6 +773,7 @@ gpgcheck=<1|0>( Optional )
 
 `dnf repoquery -l packagename | grep bin/` -> lists all binaries installed by repo 
 
+
 `dnf config-manager --add-repo=file:///repo/BaseOS` -> if the installation disk files have been copied to /repo , use this command to create a client repo file using the BaseOS 
 
 
@@ -805,9 +806,12 @@ gpgcheck=<1|0>( Optional )
 `dnf module info <module-name> ` -> get info about specific module , like dependencies and versioning. 
 
 `/etc/pki/rpm-gpg/RPM-GPG-KEY-DISTRONAMEHERE-VERSION` -> Location for gpg key , this is used when a repo has 'gpgcheck=1' , you must also add this path to the repo file 
-## rpm 
+
+## RPM 
 
 `rpm -q --scripts ` -> query for scripts in package 
+
+`rpm -ql packagename` -> list all files installed by package 
 
 `rpm -qp <pkg>` -> query RPM files instead of the RPM database 
 
