@@ -813,6 +813,8 @@ gpgcheck=<1|0>( Optional )
 
 `rpm -ql packagename` -> list all files installed by package 
 
+`rpm -ql packagename | grep bin/` -> list all binaries installed by package 
+
 `rpm -qp <pkg>` -> query RPM files instead of the RPM database 
 
 `rpm -qR` -> show dependencies for a specific package 
