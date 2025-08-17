@@ -17,7 +17,6 @@ title: "RHCSA Review"
 
 This document mainly contains command snippets of the various CLI tools used for the exam 
 
-
 ## Resetting Root Password 
 
 1. Reboot to grub menu 
@@ -44,8 +43,6 @@ If you fail to relabel the filesystem after changing the root password. The /etc
 
 `fatlabel` -> set or get label on dos filesystem 
 
-
-
 ## unrelated helpful snippets  
 
 `echo "password" | sudo -S dnf update` -> pipes password into sudo commandfrom STDIN  
@@ -54,27 +51,25 @@ If you fail to relabel the filesystem after changing the root password. The /etc
 
 `for x in /mnt/somedir/*; do chown -R $(basename $x):$(basename $x) $x; done` -> recursively assign ownership for all subdirectories where the subdir is the name of the user. 
 
-
 `. /usr/share/bash-completion/bash_completion` -> Add this line to your bashrc to enable bash-completion 
-
 
 ## output redirection & piping 
 
 STDIN:
-    - `<` or `0<` 
-    - destination: keyboard 
-    - File Decriptor: 0
+- `<` or `0<` 
+- destination: keyboard 
+- File Decriptor: 0
 
 STDOUT:
-    - `>` or `1>` 
-    - destination: monitor 
-    - File Decriptor: 1
+- `>` or `1>` 
+- destination: monitor 
+- File Decriptor: 1
     
 
 STDERR:
-    - `2>`
-    - destination: monitor 
-    - File Decriptor: 2
+- `2>`
+- destination: monitor 
+- File Decriptor: 2
 
 ### redirection Examples 
 
@@ -101,7 +96,6 @@ Create a 32G swapfile
 
 `swapon /swapfile`
 
-
 ### Swapfile As Partition 
 
 1. Create partition on disk using fdisk or gdisk 
@@ -116,10 +110,7 @@ Create a 32G swapfile
 
 6. `swapon /dev/sdxY to activate swapfile`
 
-
-
 ## crontab 
-
 - /var/spool/cron/username -> crontab for user 
 - do man 5 crontab for possible combinations 
 - cronnext -i root -> get time in seconds from now when next cronjob from user will run  
@@ -187,16 +178,13 @@ The change above makes all newly created files with 660 permissions and director
 
 `find / -group <group>`
 
-
 `find / -perm -u=s ` -> finds all files with SUID permission bit set  
 
 `find / -perm -4000` -> same as above but in octal notation 
 
-
 `find / -perm -g=s` -> finds all files with SGID perm bit set 
 
 `find / -perm -2000` -> octal notation for above 
-
 
 `find / -perm -1000` -> finds all files with sticky bit set 
 
@@ -233,7 +221,6 @@ The change above makes all newly created files with 660 permissions and director
 `mandb` -> update mandb 
 
 `zgrep -i 'keyword' /usr/share/man/man*/\*.gz` -> grep man pages for keyword , man pages are compressed 
-
 
 ## mount & mount related commands   
 
@@ -286,7 +273,6 @@ bunzip2 -> decompresses bzip2 archive
 
 gunzip -> decompresses gzip archive 
 
-
 ## cat & tac 
 
 cat -> outputs contents from beginning to end of file 
@@ -329,7 +315,6 @@ wc -> outputs number lines , words , and characters
 
 `ps aux | wc ` -> outputs total processes are running on the system as each line in the output represents a running process. 
 
-
 ## grep & regex 
 
 `for x in $(ls -a | grep  '^\.' | grep swp); do rm $x; done`
@@ -367,9 +352,7 @@ wc -> outputs number lines , words , and characters
 
 `r.t` -> wildcard , searches for one character that matches the single character that matches the pattern 
 
-
 > Note: put regex expression in quotes if you don't wanna escape characters avoid misinterpretation 
-
 
 `+` -> indicates character should occur one or more times 
 
@@ -380,7 +363,6 @@ wc -> outputs number lines , words , and characters
 `\{1,3\}` -> matches a minimum of one and a mx of three of the previous character 
 
 `(..)` -> parentheses are used to group multiple characters in the expression  
-
 
 ## lsblk 
 
@@ -398,9 +380,7 @@ wc -> outputs number lines , words , and characters
 
 `ps aux | awk -F" " '{print $2"\t"$4}` -> Prints out the PID and MEM columns from `ps aux` command. 
 
-
 `lsblk -o +UUID | tail -n1 | awk -F " " '{print $7}'` -> used this snippet to get the UUID of the installation disk 
-
 
 ## sed 
 
@@ -416,12 +396,9 @@ wc -> outputs number lines , words , and characters
 
 `ps aux --sort=-%mem` -> sorts the mem column of sort 
 
-
-
 ## emergency reset 
 
 `echo b > /proc/sysrq-trigger`
-
 
 ## User and Group management 
 
@@ -444,15 +421,13 @@ groupmems -> view users apart of a specific group
 `id -u <username>`  -> just UID 
 
 `id -u <username>`  -> just GID 
-
-* /etc/default/useradd -> defaults for users 
-
-* /etc/login.defs  -> defaults for users 
+- /etc/default/useradd -> defaults for users 
+- /etc/login.defs  -> defaults for users 
 
 ### Script to verify if group exists in bash 
 
 ```bash
-#!/bin/bash
+# !/bin/bash
 
 GROUP_NAME="mygroup"
 
@@ -489,7 +464,6 @@ fi
 `vigr` -> same as vipw but for changing configs for groups 
 
 `Cmnd_Alias MESSAGES = /bin/tail -f /var/log/messages` -> sudo command alias that runs tail on /var/log/messages 
-
 - Command aliases allow you to let selected users / groups to launch specific commands without prompting for a password 
 
 `ryan ALL=(ALL) NOPASSWD: MESSAGES` -> Enables the use of the command alias made earlier to be executed without a password 
@@ -497,9 +471,9 @@ fi
 ### Rule syntax 
 
 ```bash
-#---
+# ---
 root ALL=(ALL:ALL) ALL
-#---
+# ---
 root         → the user this rule applies to  
 ALL          → from any host  
 (ALL:ALL)    → may run commands as any user (1st ALL) and any group (2nd ALL)  
@@ -523,7 +497,7 @@ ALL          → may run **all commands**
 3. then change the users shell using the tool of your preference 
 
 ```bash
-#!/bin/bash
+# !/bin/bash
 /usr/bin/passwd
 exit
 ```
@@ -556,7 +530,6 @@ t -> sticky bit and execute are set
 
 T -> only sticky bit is set 
 
-
 `chmod 755 file.txt` -> user has full rwx , group has rx , others has rx 
 
 `chmod -R a+X /home/somedir` -> sets execute perm for all users and sub dirs contained within 
@@ -565,11 +538,9 @@ T -> only sticky bit is set
 
 `chmod u+s /somedir` 
 
-
 `chmod 2755 /somdir` -> set SGID on dir  
 
 `chmod g+s /somedir` 
-
 
 `chmod 1755 /somedir ` -> set sticky 
 
@@ -584,7 +555,6 @@ T -> only sticky bit is set
 > Subtract perm values 
 
 Umask changes default permissions for all users 
-
 
 `umask 777 somedir ` -> defaults for directories 
 
@@ -618,7 +588,6 @@ s -> overwrites blocks where file was stored with 0's after file is deleted , ma
 
 u -> saves undelete info , allows a utility that can work with that info to salvage deleted files  
 
-
 `chattr +s somefile` -> adds s attribute to file 
 
 `chattr -s somefile` -> removes s attribute from file 
@@ -626,7 +595,6 @@ u -> saves undelete info , allows a utility that can work with that info to salv
 `lsattr <somefile>` -> view attributes of file or all files in current directory  
 
 ## firewalld && firewall-cmd 
-
 - `/usr/lib/firewalld/services` -> default location for xml service files for built in services 
 
 ## classed networks   
@@ -675,22 +643,15 @@ u -> saves undelete info , allows a utility that can work with that info to salv
 
 `nmcli con mod <con-name> +ipv4.dns <ip>`
 
-
 **Make changes persist after reboot**
 
 Change the config in either /etc/sysconfig/network-scripts/ or /etc/NetworkManager/system-connections 
-
-
-
-
 
 ## hostname 
 
 `hostnamectl set-hostname <hostname>` -> changes hostname 
 
 `hostnamectl` -> shows basic info about machine , including hostname and kernel version 
-
-
 
 ## ip 
 
@@ -700,14 +661,11 @@ Change the config in either /etc/sysconfig/network-scripts/ or /etc/NetworkManag
 
 `ip route add default via <ip> dev <interface>` -> add default route using ip tool
 
-
-
 ## ss 
 
 `ss -lt` -> listening TCP sockets 
 
 `ss -tul` -> listening TCP and UDP ports 
-
 
 ## dnf 
 ---
@@ -726,7 +684,6 @@ gpgcheck=<1|0>( Optional )
 # If gpgcheck=1 , add the line below 
 # gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-release-version
 ```
-
 
 ### Steps to Create Repo with Mounted Installation Media
 ---
@@ -773,9 +730,7 @@ gpgcheck=<1|0>( Optional )
 
 `dnf repoquery -l packagename | grep bin/` -> lists all binaries installed by repo 
 
-
 `dnf config-manager --add-repo=file:///repo/BaseOS` -> if the installation disk files have been copied to /repo , use this command to create a client repo file using the BaseOS 
-
 
 `dnf repolist all` -> lists all enabled/disabled repos being used on the server
 
@@ -854,7 +809,6 @@ gpgcheck=<1|0>( Optional )
 `tuned-adm recommend` -> view which profile is recommended for the system  
 `tuned-adm profile <profile-name>` -> enable specific profile 
 
-
 ## systemctl
 
 `systemctl --failed -t service` -> lists failed services 
@@ -882,18 +836,13 @@ gpgcheck=<1|0>( Optional )
 `journalctl -b` -> show logs from last boot
 
 `journalctl -u sshd` -> see logs for specific unit 
-
 - journal is stored in /run/log/journal, cleared when system reboots 
-
 - to   make journal persistent through reboots , create /var/log/journal directory 
-
 - /etc/systemd/journald.conf -> config file for journal 
 
 ---
 
 # LVM Snippets  
-
-
 
 ## pvcreate 
 
@@ -906,7 +855,6 @@ gpgcheck=<1|0>( Optional )
 ## vgcreate 
 
 `vgcreate <name> /dev/sdxY` -> create volume group on LVM partition 
-
 
 ## vgextend 
 
@@ -925,7 +873,6 @@ Volumes are named by the device mapper and can be referenced two ways shown belo
 or 
 
 `/dev/<vgname>/<lvname>`
-
 
 # Steps to create a LVM 
 ---
@@ -946,7 +893,6 @@ or
     3. `lvcreate -n <lvname> -l 50%FREE <vgname> ` to create a volume with an relative size
 
 7. After creating the logical volume, use `mkfs` to create a filesystem on top of it , using the naming scheme of the logical volume `/dev/<vgname>/<lvname>`
-
 
 # Resizing LVM's  
 ---
@@ -1011,178 +957,141 @@ or
 
 Physical volumes are broken into chunks , these chunks are called *physical extents* , these physical extents map one to one to *logical extents*. The size determines how big these chunks are. A logical volume size is always a size that is a multiple of the physical extent size. Therefore if you require bigger logical volumes , it is more efficient to create larger physical extent size since the LVM would require less physical extents to store larger data, thus leading to quicker seek times( how long it takes the LVM to locate the relevant extents needed to store the data )
 
-
 ---
 
-
 # Podman
-
 - Registries config file location 
     ```bash
-    /etc/containers/registries.conf
+/etc/containers/registries.conf
 
     ~/.config/containers/registries.conf
     ```
-
 - Run container in detached mode
     ```bash
-    podman run -d nginx
+podman run -d nginx
     ```
-
 - Run container in TTY mode
     ```bash
-    podman run -it nginx /bin/sh
+podman run -it nginx /bin/sh
     ```
-
 - View running containers
     ```bash
-    podman ps
+podman ps
     ```
-
 - View all inactive and active containers
     ```bash
-    podman ps -a
+podman ps -a
     ```
-
 - Attach to running container
     ```bash
-    podman attach <name>
+podman attach <name>
     ```
-
 - Stop running container
     ```bash
-    podman stop <name>
+podman stop <name>
     ```
-
 - Search which registries are currently used
     ```bash
-    podman info
+podman info
     ```
-
 - Filter images in search
     ```bash
-    podman search --filter official=true alpine
+podman search --filter official=true alpine
 
     or 
 
     podman search --filter stars=5 alpine
     ```
-
 - Pull image
     ```bash
-    podman pull <image>
+podman pull <image>
     ```
-
-
 - Build custom image
     ```bash
-    podman build -t imagename:tag -f /path/to/Containerfile
+podman build -t imagename:tag -f /path/to/Containerfile
     ```
-
-    - Example  
+- Example  
         ```bash
-        podman build -t mymap:1.0
+podman build -t mymap:1.0
         ```
-
-
 - Verify custom image was built
     ```bash
-    podman images
+podman images
     ```
-
 - Remove images with None tag
     ```bash
-    podman image prune
+podman image prune
     ```
-
-
-
 - Send SIGTERM signal to the container , 
         ```bash
-        podman stop
+podman stop
         ``` 
 
 > Note : If no results after 10 seconds , the SIGKILL signal is sent.
-
 - Kill container
     ```bash
-    podman kill
+podman kill
     ``` 
 
 > Note: Immediately sends the SIGKILL command 
-
 - Restart container
     ```bash
-    podman restart
+podman restart
     ``` 
-
 - Remove container
     ```bash
-    podman rm
+podman rm
     ``` 
 
 > Note: Removes container files written to the writable layer 
-
 - Run container and delete container files automatically 
     ```bash
-    podman run --rm
+podman run --rm
     ``` 
-
 - Running Commands inside containers
     ```bash
-    podman exec mycontainer uname -r
+podman exec mycontainer uname -r
     ```
-
-    - TTY MODE
+- TTY MODE
         ```bash
-        podman exec -it mycontainer /bin/bash
+podman exec -it mycontainer /bin/bash
         ```
-
 - Managing Container Ports
     ```bash
-    podman run --name nginxport -d -p <hostport>:<containerport> nginx
+podman run --name nginxport -d -p <hostport>:<containerport> nginx
     ```
-
 - Bind directory to container for persistent storage 
     ```bash
-    podman run -it -v /hostdir:/container/dir:Z ( use ":Z" if container is owned by user running container )
+podman run -it -v /hostdir:/container/dir:Z ( use ":Z" if container is owned by user running container )
     ```
 
 > Note: bind options must come before image name is passed in order of arguments 
-
 - Configure bind mount to be owned by running user for mounting storage 
     ```bash
-    semanage fcontext -a -t container_file_t "hostdir(/.*)?"; restorecon
+semanage fcontext -a -t container_file_t "hostdir(/.*)?"; restorecon
     ```
-
 - Rename container 
     ```bash
-    podman container rename <id> 
+podman container rename <id> 
     ```
-
-
 - Generate systemd service for container , then copy to /etc/systemd/system
     ```bash
-    podman generate systemd --name containername --files 
+podman generate systemd --name containername --files 
     ```
 
 > Note: You must first generate the  ~/.config/systemd/"user" directory before running the command. 
-
-
 - Run container under specific user 
     ```bash
-    podman run --user <uid-or-username
+podman run --user <uid-or-username
     ```
-
 - Change environment variable of container 
     ```bash
-    podman run -e SOME_VARIABLE=something ...
+podman run -e SOME_VARIABLE=something ...
     ```
 
 # NFS 
 
 ## Summary 
-
 - download nfs-utils package 
 - default version is version 4 
 - mount option 'nfsvers'
@@ -1211,7 +1120,6 @@ servername:/sharename /nfs/mount/point nfs sync 0 0
 ```
 
 ## autofs summary 
-
 - no root perms required 
 - setup on both client and server 
 - wildcard mounts supported 
@@ -1233,27 +1141,23 @@ servername:/sharename /nfs/mount/point nfs sync 0 0
 subdirname -rw servername:/sharename
 ```
 ### Wildcard Mount Setup on Server Machine 
-
 - /etc/exports
     ```bash
-    /users *(rw,no_root_squash)
+/users *(rw,no_root_squash)
     ```
 
 ### Wildcard Mount Setup on Client Machine 
-
 - /etc/auto.master
     ```bash
-    /users  /etc/auto.users
+/users  /etc/auto.users
     ```
-
 - /etc/auto.users 
 
     ```bash
-     *   -rw     servername:/users/& 
+ -rw     servername:/users/& 
     ```
 
 > Note: the '\*' represents the local mount point on the client machine configured in auto.users, the "&" is a placeholder that gets replaced by the key of the current mount request. 
-
 
 # SELinux 
 ---
@@ -1278,8 +1182,6 @@ Up to RHEL 8 , SELINUX=disabled would also disable selinux at boot. You can also
 
 For the exam , you will be expected to know how to work with context types, working with roles and users is not a requirement for the exam.  
 
-
-
 ### SELinux Modes
 
 Enforcing Mode: 
@@ -1287,7 +1189,6 @@ Enforcing Mode:
  
 Permissive Mode: 
     All SELinux activity is logged, however no access is blocked. Best used for troubleshooting , however your system will be insecure temporarily.   
-
 
 ### SELinux types 
 
@@ -1332,7 +1233,6 @@ Mls:
 `getsebool -a`:
     Get booleans for specific service 
 
-
 `getsebool -l`:
     Same as previous command , with more info.
 
@@ -1364,7 +1264,6 @@ Mls:
 `grubby --update-kernel ALL --remove-args selinux`:
     reverts change from previous command.
 
-
 `selinux=0`:
     Kernel argument for disabling selinux at boot.
 
@@ -1380,13 +1279,11 @@ Mls:
 `setenforce 1`:
     Temporarily puts SELinux in enforcing mode. 
 
-
 `sestatus -v`:
     If used with -v , this command shows detailed info about the current status of SELinux. Shows the current version of the policy and the context labels for some critical parts of the system.
 
 `sepolicy generate`:
     Tool used to allow almost any application to run in a SELinux enabled environment. Note , you must install an additional package to support this , past RHEL 7 , you can install the "policycoreutils-python-utils" package.
-
 
 ## Add Context type to directory 
 
@@ -1413,5 +1310,4 @@ semanage port -a -t http_port_t -p tcp 8008
 ```
 
 > Tip: When changing ports,  you do not have to run the restorecon command. The changes will be effective immediately. However , you still should restart the service whose port you are changing to make sure it still works.    
-
 
