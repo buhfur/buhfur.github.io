@@ -2356,3 +2356,5 @@ Ping all hosts in /etc/hosts file
 for x in $(cat /etc/hosts | grep -v '#' | awk -F " " '{print $1}'); do ping -c 4 $x; done
 ```
 
+
+
