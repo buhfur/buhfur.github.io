@@ -1295,6 +1295,8 @@ Mls:
 
 > Note: seinfo is installed with the setools-console package 
 
+> Note: sepolicycoreutils is mandatory for managing SELinux at all from the command line.
+
 `seinfo -u`:
     Lists all available users on the system 
 
@@ -1309,7 +1311,11 @@ Mls:
     
 
 `semanage`:
-    SELinux policy management tool 
+    SELinux policy management tool
+    Install setroubleshoot package through DNF to acquire this tool 
+
+`semanage port -l`:
+    Lists all SELinux ports 
 
 `semanage port -a -t ssh_port_t -p tcp <port>`:
     enable non-traditional port for ssh 
