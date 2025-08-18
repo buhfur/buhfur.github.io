@@ -204,7 +204,7 @@ StartLimitIntervalSec=0
 
 [Service]
 # CPU: remove quota
-CPUQuota=infinity
+CPUQuota=0 # Replace with percentage if wanted
 
 # Memory: remove hard cap (and swap cap if set)
 MemoryMax=infinity
