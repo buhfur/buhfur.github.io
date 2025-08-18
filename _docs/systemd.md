@@ -193,6 +193,38 @@ NotifyAccess=main
 WantedBy=multi-user.target
 ```
 
+## Performance limiting/relaxing 
+
+> Note: Add any of these fields to a systemd unit to relax / limit default limits on CPU and memory usage 
+
+```bash
+[Unit]
+# Disable restart rate limiting entirely
+StartLimitIntervalSec=0
+
+[Service]
+# CPU: remove quota
+CPUQuota=infinity
+
+# Memory: remove hard cap (and swap cap if set)
+MemoryMax=infinity
+MemorySwapMax=infinity
+
+# Tasks/threads: uncap
+TasksMax=infinity
+
+# I/O: remove any bandwidth throttles
+IOReadBandwidthMax=
+IOWriteBandwidthMax=
+# or explicitly:
+# IOReadBandwidthMax=/dev/sda infinity
+# IOWriteBandwidthMax=/dev/sda infinity
+
+# (If you used weights instead of max, they’re not caps—but you can reset)
+CPUWeight=
+IOWeight=
+
+```
 
 # Template Timers
 ---
