@@ -50,3 +50,26 @@ firewall-cmd --reload
 systemctl mask firewalld.service
 ```
 
+## 7. Created systemd unit to hog up CPU usage 
+
+```bash
+[Unit]
+Description=Hog up CPU usage 
+StartLimitIntervalSec=0
+
+[Service]
+ExecStart=/usr/bin/yes
+StandardOutput=null
+StandardError=null
+Restart=always
+RestartSec=0
+
+# Remove caps on resource usage 
+CPUQuota=0 
+MemoryMax=infinity
+MemorySwapMax=infinity
+TasksMax=infinity
+
+[Install]
+WantedBy=multi-user.target
+```
