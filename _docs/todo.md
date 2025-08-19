@@ -30,8 +30,6 @@ title: "TODO list"
     - [ ] change file permissions on default ssh keys directory /etc/ssh
 
 
-
-
 - [ ] document all changes into the wiki 
 
 - [ ] ways to break SELinux that fall in line with exam objectives ? 
@@ -47,3 +45,9 @@ title: "TODO list"
 ## SDDM theme todo
 
 - [ ] add install script to sddm theme main branch 
+
+## buhfur-pc todo 
+
+- [x] make vim the default editor when running sudo ( for example when opening ranger as sudo )
+- [x] remove openrgb 
+
