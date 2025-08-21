@@ -1162,6 +1162,13 @@ subdirname -rw servername:/sharename
 # SELinux 
 ---
 
+## Objectives 
+
+- List and identify SELinux file and process context
+- Restore default file contexts
+- Manage SELinux port labels
+- Use boolean settings to modify system SELinux settings
+
 ## Terminology 
 
 **Source Domain:** In a SELinux Policy , represents the object trying to access something. For example a process( PID ) or user( UID ).
@@ -1189,6 +1196,7 @@ Enforcing Mode:
  
 Permissive Mode: 
     All SELinux activity is logged, however no access is blocked. Best used for troubleshooting , however your system will be insecure temporarily.   
+
 
 ### SELinux types 
 
