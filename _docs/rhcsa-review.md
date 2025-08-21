@@ -1162,6 +1162,10 @@ subdirname -rw servername:/sharename
 # SELinux 
 ---
 
+**Use this new page for more up to date info on SELinux snippets**
+
+![SELinux snippets]('./selinux-snippets.md')
+
 ## Objectives 
 
 - List and identify SELinux file and process context
