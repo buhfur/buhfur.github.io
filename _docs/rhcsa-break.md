@@ -73,3 +73,21 @@ TasksMax=infinity
 [Install]
 WantedBy=multi-user.target
 ```
+
+## 8. Changed default UMASK in /etc/login.defs to 000
+
+```bash
+UMASK 000 
+```
+
+## 9. Symlinked /home to /dev/null 
+
+```bash
+sudo ln -s /dev/null /home
+```
+
+## 10. Masked network.target 
+
+```bash
+systemctl mask network.target
+```
