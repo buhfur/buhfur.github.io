@@ -50,4 +50,6 @@ title: "TODO list"
 
 - [x] make vim the default editor when running sudo ( for example when opening ranger as sudo )
 - [x] remove openrgb 
-
+- [ ] setup windows 10 vm in virtualbox 
+    - [ ] install thermaltake plus 
+    - [ ] turn off fan leds 
