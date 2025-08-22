@@ -594,9 +594,6 @@ u -> saves undelete info , allows a utility that can work with that info to salv
 
 `lsattr <somefile>` -> view attributes of file or all files in current directory  
 
-## firewalld && firewall-cmd 
-- `/usr/lib/firewalld/services` -> default location for xml service files for built in services 
-
 ## classed networks   
 
 10.0.0.0/8 -> a single A class network 
