@@ -34,6 +34,10 @@ title: "TODO list"
 
 - [ ] ways to break SELinux that fall in line with exam objectives ? 
 
+- [ ] generate script to change selinux context types on random files 
+- [ ] configure firewalld to send logging to rsyslog file 
+- [ ] add section in firewalld on how to stop console spam from log denied packets 
+
 
 
 ## Server TODO

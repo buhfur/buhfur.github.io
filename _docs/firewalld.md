@@ -279,6 +279,27 @@ sudo systemctl restart rsyslog
 sudo tail -f /var/log/firewalld-denied.log
 ```
 
+## Prevent Console Spam Globally   
+
+Kernel messages get printed to the console if their log level is less than or equal to the console log level , firewalld logs denied packets with KERN_WARNING or higher by default so they will output to the console.
+
+Check current log level 
+```bash
+cat /proc/sys/kernel/printk
+```
+
+If file looks like this 
+```
+7   4   1   7
+^
+└─ console log level
+```
+
+Use this command to supress kernel logs on the console 
+```bash
+sysctl -w kernel.printk="3 4 1 3"
+```
+
 ---
 
 ## Inspecting nftables Rules
