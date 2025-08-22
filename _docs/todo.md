@@ -53,3 +53,8 @@ title: "TODO list"
 - [ ] setup windows 10 vm in virtualbox 
     - [ ] install thermaltake plus 
     - [ ] turn off fan leds 
+
+## wiki todo 
+
+- [ ] add snippets and generate document for info about firewalld
+

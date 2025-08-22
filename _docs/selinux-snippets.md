@@ -219,6 +219,8 @@ setsebool -P ftp_home_dir on
 
 ## Troubleshooting AVC denials quickly
 
+> Tip: you should also enable the auditd systemd unit 
+
 ```bash
 # View denials live
 ausearch -m AVC,USER_AVC -ts recent
@@ -231,6 +233,7 @@ sealert -a /var/log/audit/audit.log
 ```
 
 > Tip: If a denial suggests a boolean, prefer toggling the boolean. If it suggests a file label, use `semanage fcontext` + `restorecon`. Avoid `chcon` for long-term fixes.
+
 
 ---
 

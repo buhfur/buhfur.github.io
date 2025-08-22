@@ -91,3 +91,18 @@ sudo ln -s /dev/null /home
 ```bash
 systemctl mask network.target
 ```
+
+
+## 11. Change default port for httpd to random port 
+
+## 13. Changed attributes on login.defs , hosts , and sudoers file to make it immutable 
+
+```bash 
+chattr +i /etc/login.defs
+chattr +i /etc/hosts
+chattr +i /etc/sudoers
+```
+
+## 14. Disable http related selinux booleans 
+
+
