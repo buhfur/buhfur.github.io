@@ -250,6 +250,35 @@ sudo firewall-cmd --permanent   --add-rich-rule='rule family="ipv4" port port="8
 sudo firewall-cmd --reload
 ```
 
+## Configure firewalld logging to rsyslog file 
+
+**Create rsyslog config file** 
+```bash
+sudo vim /etc/rsyslog.d/firewalld-denied.conf
+```
+
+**Add content** 
+```bash
+:msg, contains, "FINAL_REJECT" -/var/log/firewalld-denied.log
+& stop
+```
+
+**Create logfile**
+```bash
+sudo touch /var/log/firewalld-denied.log
+sudo chmod 600 /var/log/firewalld-denied.log
+```
+
+**Restart rsyslog**
+```bash
+sudo systemctl restart rsyslog
+```
+
+**Read log file**
+```bash
+sudo tail -f /var/log/firewalld-denied.log
+```
+
 ---
 
 ## Inspecting nftables Rules
