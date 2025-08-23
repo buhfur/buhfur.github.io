@@ -17,6 +17,8 @@ title: "SELinux"
 
 > A comprehensive, exam-ready reference covering **SELinux** concepts, commands, troubleshooting, and logging for **RHEL 9** and **RHCSA 9**.
 
+> Tip: Download  selinux-policy-doc package, this will allow you to run `man -k _selinux` and view specific man pages for your service in order to know which type to use for a specific directory. 
+
 
 ## **Basics & Concepts**
 
@@ -140,7 +142,9 @@ sudo semanage fcontext -l | grep '/srv'
 sudo restorecon -Rv /srv/mywebsite
 ```
 
-### **Change File Context For Specific Files
+> Tip: This command will also remove any non-persistent changes 
+
+### **Change File Context For Specific Files**
 ```bash
 sudo semanage fcontext -a -t ssh_home_t "/home/ryan/.ssh(/.*)?"
 sudo restorecon -Rv /home/ryan/.ssh
