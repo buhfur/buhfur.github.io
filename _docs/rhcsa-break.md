@@ -103,10 +103,9 @@ chattr +i /etc/hosts
 chattr +i /etc/sudoers
 ```
 
-## 14. Disable http related selinux booleans 
 
 
-## 15. Used script to change selinux type of 20 random files in /etc and /var
+## 14. Used script to change selinux type of 20 random files in /etc and /var
 
 Script used 
 
@@ -361,4 +360,5 @@ main "$@"
 ```
 
 Changes are logged in /tmp 
+
 

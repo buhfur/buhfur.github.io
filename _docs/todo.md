@@ -31,18 +31,18 @@ title: "TODO list"
 
 
 - [ ] document all changes into the wiki 
-
 - [ ] ways to break SELinux that fall in line with exam objectives ? 
-
-- [ ] generate script to change selinux context types on random files 
+- [x] generate script to change selinux context types on random files 
+    - [x] use script 
 - [ ] configure firewalld to send logging to rsyslog file 
+
 
 
 ## Server TODO
  
 - [ ] point free-shit.pro to the media server again 
-
 - [ ] forward port to jellyfin nginx proxy in router 
+
 
 ## SDDM theme todo
 

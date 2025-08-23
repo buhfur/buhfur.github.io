@@ -113,9 +113,37 @@ sudo semanage port -l | grep http
 
 ## **Changing Contexts**
 
-### **Temporarily Change File Context**
+### **Add New File Context Mapping**
 ```bash
-sudo chcon -t httpd_sys_content_t /var/www/html/index.html
+sudo semanage fcontext -a -t httpd_sys_content_t "/srv/mywebsite(/.*)?"
+```
+
+### **Modify Existing Context Mapping**  
+```bash
+sudo semanage fcontext -m -t samba_share_t "/data/share(/.*)?"
+sudo restorecon -Rv /data/share
+```
+
+### **Delete Context Mapping**
+```bash
+sudo semanage fcontext -d "/srv/oldsite(/.*)?"
+sudo restorecon -Rv /srv/oldsite
+```
+
+### **View All Custom Context Mappings on directory**
+```bash
+sudo semanage fcontext -l | grep '/srv'
+```
+
+### **Save changes**
+```bash
+sudo restorecon -Rv /srv/mywebsite
+```
+
+### **Change File Context For Specific Files
+```bash
+sudo semanage fcontext -a -t ssh_home_t "/home/ryan/.ssh(/.*)?"
+sudo restorecon -Rv /home/ryan/.ssh
 ```
 
 ### **Recursively Change Context**
