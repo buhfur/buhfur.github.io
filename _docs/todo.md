@@ -36,8 +36,6 @@ title: "TODO list"
 
 - [ ] generate script to change selinux context types on random files 
 - [ ] configure firewalld to send logging to rsyslog file 
-- [ ] add section in firewalld on how to stop console spam from log denied packets 
-
 
 
 ## Server TODO
@@ -60,5 +58,6 @@ title: "TODO list"
 
 ## wiki todo 
 
-- [ ] add snippets and generate document for info about firewalld
-
+- [x] add snippets and generate document for info about firewalld
+- [x] add section in firewalld on how to stop console spam from log denied packets 
+- [ ] add section for how to read logging for firewalld when things go wrong 
