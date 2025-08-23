@@ -263,6 +263,8 @@ sudo setsebool -P httpd_can_network_connect on
 
 ## **Viewing & Configuring Logging**
 
+> Tip: enable auditd daemon 
+
 By default, SELinux logs denials to:
 ```
 /var/log/audit/audit.log
