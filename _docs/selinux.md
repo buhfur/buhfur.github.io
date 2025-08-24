@@ -240,9 +240,14 @@ sudo semodule -r mypolicy
 ### **1. Check Audit Logs**
 ```bash
 sudo ausearch -m avc -ts recent
+
+journalctl | grep sealert
 ```
 
 ### **2. Generate Human-Readable Reports**
+
+> Tip: Install setroubleshoot-server to get the sealert command 
+
 ```bash
 sudo sealert -a /var/log/audit/audit.log
 ```

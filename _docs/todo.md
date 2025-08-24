@@ -36,6 +36,8 @@ title: "TODO list"
     - [x] use script 
 - [ ] configure firewalld to send logging to rsyslog file 
 
+- [ ] learn how to review and troubleshoot firewalld and selinux.  
+
 
 
 ## Server TODO
