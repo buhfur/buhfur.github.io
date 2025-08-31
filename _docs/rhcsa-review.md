@@ -144,6 +144,10 @@ This document mainly contains command snippets of the various CLI tools used for
 - Manage SELinux port labels
 - Use boolean settings to modify system SELinux settings
 
+## Time based studying tasks 
+
+- [ ] Setup token based auth on both test servers in 4 minutes or less 
+
 ## Resetting Root Password 
 
 1. Reboot to grub menu 
@@ -967,6 +971,8 @@ gpgcheck=<1|0>( Optional )
 `systemctl set-default name.target` -> Configures default target when system boots 
 
 `systemctl list-units --type target` -> list all target units 
+
+`systemctl list-units --state=masked` -> list all masked units 
 
 `systemd-resolve --flush-caches` -> flush DNS using systemd-resolved
 
