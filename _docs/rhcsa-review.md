@@ -21,17 +21,17 @@ This document mainly contains command snippets of the various CLI tools used for
 
 **Understand and use essential tools**
 
-        - Access a shell prompt and issue commands with correct syntax
-        - Use input-output redirection (>, >>, |, 2>, etc.)
-        - Use grep and regular expressions to analyze text
-        - Access remote systems using SSH
-        - Log in and switch users in multiuser targets
-        - Archive, compress, unpack, and uncompress files using tar, gzip, and bzip2
-        - Create and edit text files
-        - Create, delete, copy, and move files and directories
-        - Create hard and soft links
-        - List, set, and change standard ugo/rwx permissions
-        - Locate, read, and use system documentation including man, info, and files in /usr/share/doc
+- Access a shell prompt and issue commands with correct syntax
+- Use input-output redirection (>, >>, |, 2>, etc.)
+- Use grep and regular expressions to analyze text
+- Access remote systems using SSH
+- Log in and switch users in multiuser targets
+- Archive, compress, unpack, and uncompress files using tar, gzip, and bzip2
+- Create and edit text files
+- Create, delete, copy, and move files and directories
+- Create hard and soft links
+- List, set, and change standard ugo/rwx permissions
+- Locate, read, and use system documentation including man, info, and files in /usr/share/doc
 
 **Manage software**
 
@@ -155,7 +155,8 @@ This document mainly contains command snippets of the various CLI tools used for
 4. `passwd root` 
 
 5. `touch /.autorelabel` , if using selinux 
-f
+
+
 ### Why Re-Labeling the filesystem is necessary 
 
 If you fail to relabel the filesystem after changing the root password. The /etc/shadow file will be updated , but in this instance the file is update outside of a selinux aware envionrment. If not relabeled , selinux will see an updated file with a wrong or missing label. As a result of this , assuming SElinux is booted into enforcing mode, PAM or login processes will be denied access to /etc/shadow. Which will need to be readable to allow access to the system.
@@ -871,6 +872,8 @@ gpgcheck=<1|0>( Optional )
 
 ### DNF Snippets 
 ---
+
+`dnf history rollback <id>` -> rollback all changes from the ID. ( fresh re install ) 
 
 `dnf config-manager` -> command to create repo client file 
 
