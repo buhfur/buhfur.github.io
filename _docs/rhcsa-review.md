@@ -36,30 +36,34 @@ This document mainly contains command snippets of the various CLI tools used for
 **Manage software**
 
 - Configure access to RPM repositories
-        ```bash
-        [label]
-        name=<string> ( Required )
-        baseurl=<url> ( Required ) 
-        metalink=<url>( Optional )
-        gpgcheck=<1|0>( Optional )
-        # If gpgcheck=1 , add the line below 
-        # gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-release-version
-        ```
+
+```bash
+[label]
+name=<string> ( Required )
+baseurl=<url> ( Required ) 
+metalink=<url>( Optional )
+gpgcheck=<1|0>( Optional )
+# If gpgcheck=1 , add the line below 
+# gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-release-version
+```
 
 - Install and remove RPM software packages
-        ```bash
-        dnf remove/install/search packagename
-        dnf whatprovides */toolname
-        ```
+
+```bash
+dnf remove/install/search packagename
+dnf whatprovides */toolname
+```
+
 - Configure access to Flatpak repositories
 
-        ```bash
-        sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+```bash
+sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-        flatpak remotes 
-        flatpak search <app> 
-        sudo flatpak install flathub <app> 
-        ```
+flatpak remotes 
+flatpak search <app> 
+sudo flatpak install flathub <app> 
+```
+
 - Install and remove Flatpak software packages
 
 **Create simple shell scripts**
@@ -76,17 +80,19 @@ This document mainly contains command snippets of the various CLI tools used for
 - Interrupt the boot process in order to gain access to a system
 - Identify CPU/memory intensive processes and kill processes
 - Adjust process scheduling
-    ```bash
-    # ==== RENICE ====
-    # Increase processes priority, larger value -> higher priority  
-    # Normal Processes: 100-139
-    # Real Time Processes: 0-99 
-    renice 99 <pid> 
 
-    # ==== NICE ====
+```bash
+# ==== RENICE ====
+# Increase processes priority, larger value -> higher priority  
+# Normal Processes: 100-139
+# Real Time Processes: 0-99 
+renice 99 <pid> 
+
+# ==== NICE ====
 
 
-    ```
+```
+
 - Manage tuning profiles
 - Locate and interpret system log files and journals
 - Preserve system journals
