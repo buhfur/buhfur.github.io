@@ -13,13 +13,9 @@ title: "RHCSA Review"
 
 ---
 
-# Review notes for RHCSA 
+# RHCSA Objectives 
 
-This document mainly contains command snippets of the various CLI tools used for the exam 
-
-## RHCSA Objectives 
-
-**Understand and use essential tools**
+##**Understand and use essential tools**
 
 - Access a shell prompt and issue commands with correct syntax
 - Use input-output redirection (>, >>, |, 2>, etc.)
@@ -33,11 +29,15 @@ This document mainly contains command snippets of the various CLI tools used for
 - List, set, and change standard ugo/rwx permissions
 - Locate, read, and use system documentation including man, info, and files in /usr/share/doc
 
-**Manage software**
+##**Manage software**
 
-- Configure access to RPM repositories
+### Configure access to RPM repositories
+
+> Note: Install dnf-utils package to use "repoquery" tool 
+> Note: Install yum-utils package to use "yumdownloader" tool 
 
 ```bash
+# Repo file syntax 
 [label]
 name=<string> ( Required )
 baseurl=<url> ( Required ) 
@@ -45,16 +45,32 @@ metalink=<url>( Optional )
 gpgcheck=<1|0>( Optional )
 # If gpgcheck=1 , add the line below 
 # gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-release-version
+
+## RPM snipets 
+
+rpm -qp # query package from downloaded RPM file 
+rpm -qp --scripts # list helper scripts used to install package , good for vetting 
+repoquery # query packages from repositories before they are installed 
+yumdownloader # download package from repository to local directory  
+rpm -qf $(which dnsmasq) # runs RPM file query on file location of dnsmasq command to get package name that provides the command
+rpm -qi <package> # gets detailed info on package 
+rpm -qi $(rpm -qf $(which dnsmasq)) # gets info on package that provides the dnsmasq command 
+rpm -ql <package>
+rpm -ql $(rpm -qf $(which vim)) # lists all files in package that provides the vim command 
+rpm -qd <# show file locations of package documentation 
+rpm -qc <package> # Get configuration files for package 
 ```
 
-- Install and remove RPM software packages
+
+
+### Install and remove RPM software packages
 
 ```bash
 dnf remove/install/search packagename
 dnf whatprovides */toolname
 ```
 
-- Configure access to Flatpak repositories
+### Configure access to Flatpak repositories
 
 ```bash
 sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
@@ -66,20 +82,21 @@ sudo flatpak install flathub <app>
 
 - Install and remove Flatpak software packages
 
-**Create simple shell scripts**
+##**Create simple shell scripts**
 
 - Conditionally execute code (use of: if, test, [], etc.)
 - Use Looping constructs (for, etc.) to process file, command line input
 - Process script inputs ($1, $2, etc.)
 - Processing output of shell commands within a script
 
-**Operate running systems**
+##**Operate running systems**
 
 - Boot, reboot, and shut down a system normally
 - Boot systems into different targets manually
 - Interrupt the boot process in order to gain access to a system
 - Identify CPU/memory intensive processes and kill processes
-- Adjust process scheduling
+
+### Adjust process scheduling
 
 ```bash
 # ==== RENICE ====
@@ -97,7 +114,7 @@ nice -n 10 ./script.sh  # Start script with lower priority
 
 ```
 
-- Manage tuning profiles
+### Manage tuning profiles
 
 ```bash
 tuned-adm list # view all possible profiles  
