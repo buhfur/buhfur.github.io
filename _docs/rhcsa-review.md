@@ -90,10 +90,21 @@ renice 99 <pid>
 
 # ==== NICE ====
 
+# -20 -> high prio 
+# 19 -> low prio 
+
+nice -n 10 ./script.sh  # Start script with lower priority 
 
 ```
 
 - Manage tuning profiles
+
+```bash
+tuned-adm list # view all possible profiles  
+
+tuned-adm recommend # view which profile is recommended for the system  
+tuned-adm profile <profile-name> # enable specific profile 
+```
 - Locate and interpret system log files and journals
 - Preserve system journals
 - Start, stop, and check the status of network services
