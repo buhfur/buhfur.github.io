@@ -46,6 +46,16 @@ gpgcheck=<1|0>( Optional )
 # If gpgcheck=1 , add the line below 
 # gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-release-version
 
+
+## DNF snippets 
+
+dnf history 
+dnf list 
+dnf search 
+dnf provides 
+dnf update kernel  # updates the kernel 
+dnf whatprovides */vim # lists packages w/ repo names that provides the vim command 
+
 ## RPM snipets 
 
 rpm -qp # query package from downloaded RPM file 
