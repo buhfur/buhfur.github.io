@@ -648,5 +648,5 @@ WantedBy=sockets.target
 * "**x-systemd.device-timeout=10**"
     Sets the time (in seconds) to wait for the device before failing. Adjust as needed.
 
-* "**retry=forever"
+* "**retry=forever**"
     Instructs the mount helper to retry indefinitely instead of failing once.
