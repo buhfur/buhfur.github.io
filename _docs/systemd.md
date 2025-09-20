@@ -634,3 +634,19 @@ WantedBy=sockets.target
 
 
 
+## CIFS mount options 
+
+* "**x-systemd.automount**" 
+    Creates an .automount unit. The filesystem will be mounted automatically on access (and re-mounted if dropped).
+
+* "**x-systemd.requires=network-online.target**"
+    Ensures systemd waits until networking is up before attempting the mount.
+
+* "**_netdev**"
+    Marks it as a network device, so systemd knows not to try until networking is ready.
+
+* "**x-systemd.device-timeout=10**"
+    Sets the time (in seconds) to wait for the device before failing. Adjust as needed.
+
+* "**retry=forever"
+    Instructs the mount helper to retry indefinitely instead of failing once.

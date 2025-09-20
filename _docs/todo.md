@@ -26,6 +26,8 @@ title: "TODO list"
  
 - [ ] point free-shit.pro to the media server again 
 - [ ] forward port to jellyfin nginx proxy in router 
+- [ ] create cron job on deluge to reconnect shared drive if it disconnects. 
+- [ ] create cron job on jellyfin to reconnect shared drive if it disconnects. 
 
 
 ## SDDM theme todo
