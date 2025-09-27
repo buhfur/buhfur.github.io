@@ -1930,10 +1930,10 @@ du -k *
 du . | sort -nr | head -n10
 ```
 
-- List largest directories in current directory
+- List largest files directory and subdirectories in current directory
 
 ```bash
-du -s * | sort -nr | head -n10
+du -ah . | sort -rh | head -n 10 
 ```
 
 - List disk size of all dotfiles 
