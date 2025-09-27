@@ -18,9 +18,11 @@ title: "Cisco IPSec tunneling"
 ## **General Info**
 
 ```bash
+# Command
 sh crypto session detail
 
 # Output example
+
 Interface: GigabitEthernet0/0
 Crypto map tag: VPN-MAP, local addr 198.51.100.1
 
