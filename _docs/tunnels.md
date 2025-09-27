@@ -19,6 +19,17 @@ title: "Cisco IPSec tunneling"
 
 ```bash
 sh crypto session detail
+
+# Output example
+Interface: GigabitEthernet0/0
+Crypto map tag: VPN-MAP, local addr 198.51.100.1
+
+  Peer 203.0.113.5 port 500
+    Session ID: 123
+    IKEv1 SA: local 198.51.100.1/500 remote 203.0.113.5/500 Active
+    FVRF: Internet
+    IVRF: Customer_A
+
 ``` 
 
 * Shows detailed info about IPSec tunnels. 
