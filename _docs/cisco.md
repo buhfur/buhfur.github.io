@@ -36,7 +36,32 @@ Filter logging
     ```
 
 
+Traceroute
+    ```bash
+    traceroute 8.8.8.8 source GigabitEthernet0/0
+    traceroute 8.8.8.8 source 192.0.2.1
+    ```
 
+EIGRP Neighbors 
+    ```bash
+    sh ip eigrp nei 
+    ```
+
+IPSec Tunnel info 
+    ```bash
+    sh crypto session detail 
+    sh crypto session brief 
+    ```
+
+IKE Phase 1 
+    ```bash
+    show crypto isakmp sa detail      (IKEv1)
+    show crypto ikev2 sa detail       (IKEv2)
+    ```
+Check IPSec phase 2 status 
+    ```bash
+    show crypto ipsec sa
+    ```
 # General notes 
 ---
 
