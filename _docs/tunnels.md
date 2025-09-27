@@ -17,12 +17,15 @@ title: "Cisco IPSec tunneling"
 
 ## **General Info**
 
-`sh crypto session detail` 
-    * Shows detailed info about IPSec tunnels. 
-    * FVRF is the VRF used to reach the VPN peers public IP 
-    * IVRF is the VRF that holds the private networks being tunneled. If blank than you might be looking at a Single VRF environment where all internal traffic lives in the global routing table. ( AKA uses default configuration ) 
-    * using the global table is simpler and less headache ( according to the internet ) 
-    * The `IKEv1` header shows info about the protocol being used to setup the IPSec tunnel 
+```bash
+sh crypto session detail
+``` 
+
+* Shows detailed info about IPSec tunnels. 
+* FVRF is the VRF used to reach the VPN peers public IP 
+* IVRF is the VRF that holds the private networks being tunneled. If blank than you might be looking at a Single VRF environment where all internal traffic lives in the global routing table. ( AKA uses default configuration ) 
+* using the global table is simpler and less headache ( according to the internet ) 
+* The `IKEv1` header shows info about the protocol being used to setup the IPSec tunnel 
 
 ## **Troubleshooting**
 
