@@ -51,6 +51,7 @@ fi
 ## 2. Comparison Operators
 
 ### Numeric Comparisons:
+
 | Operator | Description                   | Example                |
 |----------|-------------------------------|------------------------|
 | `-eq`    | Equal to                      | `[ $a -eq $b ]`       |
@@ -61,6 +62,7 @@ fi
 | `-le`    | Less than or equal to         | `[ $a -le $b ]`       |
 
 ### String Comparisons:
+
 | Operator | Description                   | Example                |
 |----------|-------------------------------|------------------------|
 | `=`      | Strings are equal            | `[ "$a" = "$b" ]`      |
@@ -106,6 +108,13 @@ if [[ $str == H* ]]; then
 fi
 ```
 
+## 5. Ternary statement 
+
+```bash
+# Will assign variable to value of $2 if present , if not , /tmp will be used as the value
+
+FILE_LOC=${2:-/tmp}
+```
 ---
 
 ## 5. Case Statement

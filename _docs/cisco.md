@@ -47,6 +47,11 @@ EIGRP Neighbors
     sh ip eigrp nei 
     ```
 
+BGP Neighbors 
+    ```bash
+    sh ip bgp nei 
+    ```
+
 IPSec Tunnel info 
     ```bash
     sh crypto session detail 
