@@ -1,10 +1,10 @@
 ---
-
+title: Grep Snippets
+parent: Utils
+grand_parent: Linux
+nav_order: 80
 layout: default
-title: "Grep Snippets"
-
 ---
-
 # Table of Contents 
 {: .no_toc }
 

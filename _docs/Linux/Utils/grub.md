@@ -1,11 +1,10 @@
 ---
-
+title: GRUB
+parent: Utils
+grand_parent: Linux
+nav_order: 90
 layout: default
-title: "GRUB"
-
 ---
-
-
 # Table of Contents 
 {: .no_toc }
 

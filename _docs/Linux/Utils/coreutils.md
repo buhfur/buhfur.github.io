@@ -1,10 +1,10 @@
 ---
-
+title: Coreutils Tools Snippets
+parent: Utils
+grand_parent: Linux
+nav_order: 50
 layout: default
-title: "Coreutils Tools Snippets"
-
 ---
-
 # Table of Contents 
 {: .no_toc }
 
@@ -203,7 +203,8 @@ uniq -c file.txt
 Translate or delete characters.
 ```bash
 tr 'a-z' 'A-Z' < file.txt
-tr -d '' < file.txt
+tr -d '
+' < file.txt
 ```
 
 ### `paste`

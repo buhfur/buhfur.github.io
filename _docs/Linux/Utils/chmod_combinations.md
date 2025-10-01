@@ -1,10 +1,10 @@
 ---
-
+title: Chmod Numeric Combinations
+parent: Utils
+grand_parent: Linux
+nav_order: 40
 layout: default
-title: "Chmod Numeric Combinations"
-
 ---
-
 # All chmod Combinations with Numeric Notation
 
 > Disclaimer: I used ChatGPT to generate all of these for reference purposes, also for the fun of it. 

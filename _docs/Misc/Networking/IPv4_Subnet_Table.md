@@ -1,10 +1,10 @@
 ---
-
+title: IPv4 Subnet Table
+parent: Networking
+grand_parent: Misc
+nav_order: 20
 layout: default
-title: "IPv4 Subnet Table"
-
 ---
-
 # IPv4 Subnet Table
 
 | CIDR Notation | Subnet Mask     | Total Hosts | Usable Hosts | Usable IP Range                                  |

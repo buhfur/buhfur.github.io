@@ -1,10 +1,10 @@
 ---
-
+title: Setting up mDNS and DNS-SD in my lab environment
+parent: Networking
+grand_parent: Linux
+nav_order: 20
 layout: default
-title: "Setting up mDNS and DNS-SD in my lab environment"
-
 ---
-
 # Table of Contents 
 {: .no_toc }
 

@@ -1,10 +1,10 @@
 ---
-
+title: Bash Scripting Snippets
+parent: Bash
+grand_parent: Linux
+nav_order: 10
 layout: default
-title: "Bash Scripting Snippets"
-
 ---
-
 # Table of Contents 
 {: .no_toc }
 

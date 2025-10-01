@@ -1,19 +1,35 @@
-title: Buhfur's Wiki 
-description: The wiki for all things linux / IT / Tech related. 
-remote_theme: just-the-docs/just-the-docs
+title: "Buhfur's Wiki"
+description: "The wiki for all things linux / IT / Tech related."
+remote_theme: just-the-docs/just-the-docs@v0.10.1
+
+# Site location (custom domain at root)
+url: "https://ryanm.dev"
+baseurl: ""   # MUST be empty for an apex or subdomain custom domain
+
 color_scheme: dark
-url: https://ryanm.dev/wiki
-nav_enabled: true
 back_to_top: true
 back_to_top_text: "Back to Top"
-docs_dir: _docs
-include:
-  - _docs
-    #aux_links:
-    #Template Repository: https://github.com/just-the-docs/just-the-docs-template
 
+# Use _docs as your nav source
+collections:
+  docs:
+    output: true
+    permalink: /:collection/:path/
 
 just_the_docs:
-  nav:
-    - title: "Linux"
-      url: "/docs/linux/"
+  collections:
+    docs: {}   # no "name" => no extra "DOCS" section header
+
+# Keep root pages out of the sidebar (prevents duplicate top section)
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      nav_exclude: true
+  - scope:
+      path: ""
+      type: "docs"
+    values:
+      layout: "default"
+

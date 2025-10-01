@@ -1,10 +1,10 @@
 ---
-
+title: Wake on LAN setup
+parent: Networking
+grand_parent: Linux
+nav_order: 30
 layout: default
-title: "Wake on LAN setup"
-
 ---
-
 # Table of Contents  
 {: .no_toc }
 

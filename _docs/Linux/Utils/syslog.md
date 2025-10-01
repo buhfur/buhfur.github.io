@@ -1,10 +1,10 @@
 ---
-
+title: Syslog Notes
+parent: Utils
+grand_parent: Linux
+nav_order: 160
 layout: default
-title: "Syslog Notes"
-
 ---
-
 # Table of Contents 
 
 {: .no_toc }

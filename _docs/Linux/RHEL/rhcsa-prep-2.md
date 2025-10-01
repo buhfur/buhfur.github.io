@@ -1,10 +1,10 @@
 ---
-
+title: RHCSA Practice Test
+parent: RHEL
+grand_parent: Linux
+nav_order: 50
 layout: default
-title: "RHCSA Practice Test"
-
 ---
-
 # Table of Contents 
 {: .no_toc }
 

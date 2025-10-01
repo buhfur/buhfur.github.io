@@ -1,10 +1,10 @@
 ---
-
+title: Linux File Permissions
+parent: Utils
+grand_parent: Linux
+nav_order: 110
 layout: default
-title: "Linux File Permissions"
-
 ---
-
 # Table of Contents 
 {: .no_toc }
 

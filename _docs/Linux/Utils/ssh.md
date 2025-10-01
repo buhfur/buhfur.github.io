@@ -1,10 +1,10 @@
 ---
-
+title: SSH
+parent: Utils
+grand_parent: Linux
+nav_order: 150
 layout: default
-title: "SSH"
-
 ---
-
 # Table of Contents  
 {: .no_toc }
 

@@ -1,10 +1,10 @@
 ---
-
+title: MTP and ADB snippets
+parent: Android
+grand_parent: Misc
+nav_order: 20
 layout: default
-title: "MTP and ADB snippets"
-
 ---
-
 # Table of Contents 
 {: .no_toc }
 

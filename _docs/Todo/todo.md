@@ -1,10 +1,9 @@
 ---
-
+title: TODO list
+parent: Todo
+nav_order: 20
 layout: default
-title: "TODO list"
-
 ---
-
 # Table of Contents  
 {: .no_toc }
 

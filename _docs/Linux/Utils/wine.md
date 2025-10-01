@@ -1,10 +1,10 @@
 ---
-
+title: Wine Snippets / Info
+parent: Utils
+grand_parent: Linux
+nav_order: 190
 layout: default
-title: "Wine Snippets / Info"
-
 ---
-
 # Table of Contents 
 {: .no_toc }
 

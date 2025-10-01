@@ -1,10 +1,10 @@
 ---
-
+title: Networking
+parent: Networking
+grand_parent: Misc
+nav_order: 30
 layout: default
-title: "Networking"
-
 ---
-
 # Table of Contents 
 {: .no_toc }
 

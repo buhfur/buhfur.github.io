@@ -1,10 +1,10 @@
 ---
-
+title: Bashrc Configuration
+parent: Bash
+grand_parent: Linux
+nav_order: 20
 layout: default
-title: "Bashrc Configuration"
-
 ---
-
 # Table of Contents 
 {: .no_toc }
 

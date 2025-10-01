@@ -1,10 +1,10 @@
 ---
-
+title: SELinux
+parent: RHEL
+grand_parent: Linux
+nav_order: 70
 layout: default
-title: "SELinux"
-
 ---
-
 # Table of Contents  
 {: .no_toc }
 

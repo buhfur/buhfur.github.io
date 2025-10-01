@@ -1,10 +1,9 @@
 ---
-
+title: Cisco Switch/Router Snippets & Notes
+parent: Cisco
+nav_order: 10
 layout: default
-title: "Cisco Switch/Router Snippets & Notes"
-
 ---
-
 # TOC
 {:.no_toc}
 

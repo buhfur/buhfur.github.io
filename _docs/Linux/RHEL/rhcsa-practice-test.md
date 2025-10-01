@@ -1,3 +1,9 @@
+---
+title: Rhcsa Practice Test
+parent: RHEL
+grand_parent: Linux
+nav_order: 30
+---
 
 1. Break into server2 and set the password as password. Set the target as multi-user and make sure it boots into that automatically. Reboot to confirm.
 

@@ -1,10 +1,9 @@
 ---
-
+title: EIGRP Troubleshooting
+parent: Cisco
+nav_order: 20
 layout: default
-title: "EIGRP Troubleshooting"
-
 ---
-
 # Table of Contents  
 {: .no_toc }
 

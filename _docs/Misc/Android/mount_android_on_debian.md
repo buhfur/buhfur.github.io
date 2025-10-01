@@ -1,10 +1,10 @@
 ---
-
+title: Mounting Android device on ubuntu
+parent: Android
+grand_parent: Misc
+nav_order: 40
 layout: default
-title: "Mounting Android device on ubuntu"
-
 ---
-
 # Table of Contents 
 {: .no_toc }
 

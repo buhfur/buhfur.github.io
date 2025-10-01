@@ -1,10 +1,10 @@
 ---
-
+title: Certbot auto-renewal
+parent: Utils
+grand_parent: Linux
+nav_order: 30
 layout: default
-title: "Certbot auto-renewal"
-
 ---
-
 # Table of Contents 
 {: .no_toc }
 

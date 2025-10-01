@@ -1,0 +1,33 @@
+title: Buhfur's Wiki 
+description: The wiki for all things linux / IT / Tech related. 
+remote_theme: just-the-docs/just-the-docs
+color_scheme: dark
+url: https://ryanm.dev/wiki
+nav_enabled: true
+back_to_top: true
+back_to_top_text: "Back to Top"
+  #docs_dir: _docs
+  #include:
+  #- _docs
+    #aux_links:
+    #Template Repository: https://github.com/just-the-docs/just-the-docs-template
+
+    #collections:
+    #  docs:
+    #    output: true
+    #
+    #just_the_docs:
+    #  nav:
+    #    - title: "Linux"
+    #      url: "/_docs/linux/"
+collections:
+  docs:
+    output: true
+    permalink: /:collection/:path/
+
+just_the_docs:
+  collections:
+    docs:
+      name: Docs         # Hidden if it’s your only collection
+      # nav_fold: true   # optional: collapsible top-level section
+      # search_enabled: true # default is true

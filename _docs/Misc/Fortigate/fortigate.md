@@ -1,10 +1,10 @@
 ---
-
+title: Fortigate Firewall Changelog
+parent: Fortigate
+grand_parent: Misc
+nav_order: 10
 layout: default
-title: "Fortigate Firewall Changelog"
-
 ---
-
 # Table of Contents 
 {:.no_toc}
 
