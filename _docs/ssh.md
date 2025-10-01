@@ -1,25 +1,23 @@
 ---
 
 layout: default
-title: "SSH notes"
+title: "SSH"
 
 ---
 
 # Table of Contents  
 {: .no_toc }
 
-1. TOC 
+1. TOC  
 {:toc}
 
 ---
 
-
-# SSH 
-
+# SSH
 
 ## **Enable X11 forwarding on remote host**
 
-On remote host, change these settings in your /etc/ssh/sshd\_config
+On the remote host, change these settings in your `/etc/ssh/sshd_config`:
 
 ```bash
 X11Forwarding yes
@@ -27,125 +25,151 @@ X11DisplayOffset 10
 X11UseLocalhost yes
 ```
 
-
-On remote host , install xauth 
+Install `xauth` on the remote host:
 
 ```bash
-sudo apt install xauth     # Debian/Ubuntu
-sudo yum install xorg-x11-xauth  # RHEL/CentOS
+sudo apt install xauth              # Debian/Ubuntu
+sudo yum install xorg-x11-xauth    # RHEL/CentOS
 ```
 
-Restart SSH systemd daemon 
+Restart the SSH systemd daemon:
 
 ```bash
 systemctl restart sshd
 ```
 
-Connect on local host with `-X` or `-Y` option 
+Connect on the local host with the `-X` or `-Y` option:
 
 ```bash
 ssh -X user@remote_host
-ssh -Y user@remote_host ( less strict )
+ssh -Y user@remote_host    # Less strict
 ```
 
-After connected , test with xclock 
+After connecting, test with `xclock`:
 
 ```bash
 xclock
 ```
 
-# Configuring SSH 
 ---
 
-dictionary attacks are commonly used to break into ssh servers , from what i've seen on my machine they typically use usernames and passwords that might be setup by default on the server. 
+# Configuring SSH
 
-These are things you can do to harden your ssh server 
-- Disable root login ( disabled by default) 
-- Disable password login ( not disabled by default ) 
-- Configure a non-default port for SSH  ( already done for most of my servers )
-- Allow specific users only to login to ssh ( I haven't done this yet )
+Dictionary attacks are commonly used to break into SSH servers. From what I've seen on my machine, they typically use usernames and passwords that might be set up by default on the server.
+
+These are things you can do to harden your SSH server:
+
+- Disable root login (disabled by default)
+- Disable password login (not disabled by default)
+- Configure a non-default port for SSH (already done for most of my servers)
+- Allow specific users only to log in to SSH (I haven't done this yet)
+
+To configure these things, you can make all configuration changes in the `/etc/ssh/sshd_config` file. This config file is the default config used for an SSH server.
+
+## Config option for disallowing the root user to log in to SSH
+
+```bash
+PermitRootLogin prohibit-password
+```
+
+This only allows the root user to log in if they have a valid public/private key pair.
+
+## Changing the default SSH port
+
+Edit the config file in `/etc/ssh/sshd_config`.
+
+Add port to SELinux label:
+
+```bash
+semanage port -a -t ssh_port_t -p tcp <PORTNUMBER>
+```
+
+Allow port through `firewall-cmd`:
+
+```bash
+firewall-cmd --add-port=<port>/tcp --permanent
+```
+
+Then reload the configuration for the service:
+
+```bash
+systemctl reload sshd
+```
+
+Then reload the `firewall-cmd` config:
+
+```bash
+firewall-cmd --reload
+```
+
+You shouldn't really use the `MaxAuthTries` option since it's susceptible to DDoS attacks. When this option is enabled, it locks out the specified user trying to log in. So someone could just try to log in as that user a bunch to lock up the account. It's still good for monitoring security events as this option starts logging the failed attempts.
+
+Logs are written to the `AUTHPRIV` syslog utility. By default, it writes the logs to `/var/log/secure`.
+
+## Restricting which users can log in to your SSH server
+
+You can enable access to your server by the usernames of the users. To do this, add the `AllowUsers` field in the `/etc/ssh/sshd_config` file.
+
+## Other useful sshd options
+
+- `UseDNS` — Very inefficient if users' connections are slow. Turn off for performance. This option verifies the remote hostname is the same as the remote address.
+- `MaxSessions` — Specifies max number of sessions from the same remote IP. If users connect to the server with multiple sessions, it's a good practice to increase this.
+- `TCPKeepAlive` — Ensures clients that are unavailable are released.
+- `ClientAliveInterval` — Time before the server sends a packet to the client when no activity is detected.
+- `ClientAliveCountMax` — Specifies how many of these packets are sent. If set to 30 and `ClientAliveCountMax` is set to 10, connections are kept alive for about 5 minutes.
+
+The two options above can only be used for the server side of SSH connections.
+
+You can try using these two options for clients which attempt the same behavior:
+
+- `ServerAliveInterval`
+- `ServerAliveCountMax`
+
+Modify the `~/.ssh/config` for local users.
+
+### Other options used with SSH
+
+- `HostBasedAuthentication` — Allows only users whose keys are already present in `/etc/ssh/ssh_known_hosts`. To enable this, add the key to the user’s `.ssh/authorized_keys` and copy it to the directory mentioned previously.
+
+## Key locations
+
+- Client/Server public/private keys → `/etc/ssh`
+- Client's pub/priv key → `/home/user/.ssh`
+
+## Key pair authentication
+
+Generate public/private key:
+
+```bash
+ssh-keygen
+```
+
+Then copy the key over to your server (make sure password auth is enabled):
+
+```bash
+ssh-copy-id -p 1234 user@192.1.1.1
+```
+
+If you set a passphrase, cache the passphrase to save time:
+
+```bash
+ssh-agent /bin/bash
+ssh-add
+```
+
+You can set a passphrase for the private key which is, in most cases, more secure. However, it is inconvenient for the user as they will have to enter this key every time they attempt to connect to the server. You can cache the key for a short amount of time using the `ssh-agent` and `ssh-add` commands (see above).
 
 
-To configure these things , you can make all configuration changes in the /etc/ssh/sshd_config file. This config file is the default config used for an ssh server.
+## Local Client Host Configuration 
 
-## Config option for disallowing the root user to login to ssh 
+You can specify specific IP's , Hostnames , and ports for unique hosts in a file located in the users `/home/user/.ssh` directory. This allows you to specify specific ssh Configuration options per host.  
 
-PermitRootLogin prohibit-password 
+Configure Port , Host and User for ssh connection 
 
-This only allows the root user to login if they have a valid pub/private key pair 
-
-
-## Changing default ssh port 
-
-Edit config file in /etc/ssh/sshd_config 
-
-Add port to SELinux label 
-`semanage port -a -t ssh_port_t -p tcp <PORTNUMBER>`
-
-Allow port through firewall-cmd 
-
-`firewall-cmd --add-port=<port>/tcp --permanent `
-
-Then reload the configuration for the service 
-
-`systemctl reload sshd`
-
-
-Then reload the firewall-cmd config 
-
-`firewall-cmd --reload`
-
-You shoulden't really use the MaxAuthTries option since it's suseptible to ddos attacks. When this option is enabled it locks out the specified user trying to login. So someone could just try to login as that usera bunch to lock up the account. It's still good for monitoring security events as this option starts logging the failed attempts. 
-
-Logs are written to the AUTHPRIV syslog utility. By default it writes the logs to /var/log/secure
-
-## Restriciting which users can login to your ssh server 
-
-You can enable access to your server by the usernames of the users. To do this , you must add the AllowUsers field in the /etc/ssh/sshd_config file 
-
-## Other useful sshd options 
-
-UseDNS -> Very inefficient if other users connections are slow , turn off for performance. This option verifies remote hostname is same as remote address 
-
-MaxSessions -> specifies max number of sessions from the same remote IP. If you have users connecting to the server with multiple sessions it's a good practice to increase the amount of max sessions.  
-
-TCPKeepAlive -> ensures clients that are unavailable are released 
-
-ClientAliveInterval -> time before the server sends a packet to the client when no activity is detected. 
-
-ClientAliveCountMax -> specifies how many of these packets are sent. if set to 30 and ClientAliveCountMax is set to 10 , connections are kept alive for about 5 minutes. 
-
-The two options above can only be used for the server side of ssh connections. 
-You can try using two options for clients which try to do the same thing 
-
-ServerAliveInterval & ServerAliveCountMax 
-
-modify the ~/.ssh/config for local users 
-
-I'd also like to note other options that are used with ssh as well 
-
-HostBasedAuthentication -> Allows only users who's keys are already present in /etc/ssh/ssh_known_hosts. To enable this , add the key in the users .ssh/authorized_keys and copy it over to the directory mentioned previously.
-
-
-## Key locations 
-
-Client/Sever public/private keys -> /etc/ssh
-
-Clients pub pri key -> /home/user/.ssh
-
-## Key pair authentication 
-
-Generate public / private key 
-`ssh-keygen`
-
-Then copy the key over to your server , make sure password auth is enabled 
-`ssh-copy-id -p 1234 user@192.1.1.1`
-
-If you set a passphrase , cache the passphrase to save time 
-
-`ssh-agent /bin/bash`
-
-`ssh-add`
-
-You can set a passphrase for the private key which is in most cases more secure, however it is inconveinient for the user as they will have to enter this key everytime they attempt to connect to the server. However you can cache the key for a short amount of time using the ssh-agent and ssh-add commands. To do so , see below 
+```bash
+Host hostname-1
+    ServerAliveInterval 0
+    Port 6225
+    X11Forwarding no
+```
 
