@@ -20,10 +20,10 @@ include:
     #  nav:
     #    - title: "Linux"
     #      url: "/docs/linux/"
-collections:
-  docs:
-    output: true
-    permalink: /:collection/:path/
+    #collections:
+    #  docs:
+    #    output: true
+    #    permalink: /:collection/:path/
 
       #just_the_docs:
       #  collections:
