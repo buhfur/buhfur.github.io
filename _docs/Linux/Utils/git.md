@@ -1,10 +1,10 @@
 ---
-
+title: Git Snippets
+parent: Utils
+grand_parent: Linux
+nav_order: 70
 layout: default
-title: "Git Snippets"
-
 ---
-
 # Table of Contents 
 {: .no_toc }
 

@@ -1,10 +1,10 @@
 ---
-
+title: Python
+parent: Utils
+grand_parent: Linux
+nav_order: 130
 layout: default
-title: "Python"
-
 ---
-
 # Table of Contents 
 {: .no_toc }
 

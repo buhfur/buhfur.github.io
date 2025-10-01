@@ -1,10 +1,10 @@
 ---
-
+title: Regex Cheatsheet & Useful Snippets
+parent: Utils
+grand_parent: Linux
+nav_order: 140
 layout: default
-title: "Regex Cheatsheet & Useful Snippets"
-
 ---
-
 # Table of Contents 
 {: .no_toc }
 

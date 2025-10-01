@@ -1,10 +1,10 @@
 ---
-
+title: RHCSA Review
+parent: RHEL
+grand_parent: Linux
+nav_order: 60
 layout: default
-title: "RHCSA Review"
-
 ---
-
 # Table of Contents 
 {: .no_toc }
 

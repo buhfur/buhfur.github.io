@@ -1,10 +1,10 @@
 ---
-
+title: NMAP snippets
+parent: Utils
+grand_parent: Linux
+nav_order: 120
 layout: default
-title: "NMAP snippets"
-
 ---
-
 # Table of Contents 
 {: .no_toc }
 

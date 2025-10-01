@@ -1,11 +1,10 @@
 ---
-
+title: General Linux Snippets
+parent: Misc
+grand_parent: Linux
+nav_order: 30
 layout: default
-title: "General Linux Snippets"
-
 ---
-
-
 # Table of Contents 
 {: .no_toc }
 

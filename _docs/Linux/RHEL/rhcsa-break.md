@@ -1,10 +1,10 @@
 ---
-
+title: RHEL VM DESTRUCTION
+parent: RHEL
+grand_parent: Linux
+nav_order: 20
 layout: default
-title: "RHEL VM DESTRUCTION"
-
 ---
-
 # Table of Contents 
 {: .no_toc }
 

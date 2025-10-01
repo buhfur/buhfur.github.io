@@ -1,10 +1,10 @@
 ---
-
+title: Wget Snippets
+parent: Utils
+grand_parent: Linux
+nav_order: 180
 layout: default
-title: "Wget Snippets"
-
 ---
-
 # Table of Contents 
 
 {: .no_toc }

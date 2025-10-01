@@ -1,10 +1,10 @@
 ---
-
+title: Secure boot setup
+parent: Misc
+grand_parent: Linux
+nav_order: 40
 layout: default
-title: "Secure boot setup"
-
 ---
-
 # Table of Contents  
 {: .no_toc }
 

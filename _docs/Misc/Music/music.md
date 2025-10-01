@@ -1,10 +1,10 @@
 ---
-
+title: Music Theory Basics
+parent: Music
+grand_parent: Misc
+nav_order: 20
 layout: default
-title: "Music Theory Basics"
-
 ---
-
 # Table of Contents 
 {: .no_toc }
 

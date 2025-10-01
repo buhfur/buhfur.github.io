@@ -1,10 +1,10 @@
 ---
-
+title: Markdown Syntax Guide
+parent: Markdown
+grand_parent: Misc
+nav_order: 20
 layout: default
-title: "Markdown Syntax Guide"
-
 ---
-
 ## Headings
 Use `#` for headings. Add more `#` for smaller headings.
 

@@ -12,8 +12,22 @@ include:
     #aux_links:
     #Template Repository: https://github.com/just-the-docs/just-the-docs-template
 
+    #collections:
+    #  docs:
+    #    output: true
+    #
+    #just_the_docs:
+    #  nav:
+    #    - title: "Linux"
+    #      url: "/docs/linux/"
+collections:
+  docs:
+    output: true
+    permalink: /:collection/:path/
 
 just_the_docs:
-  nav:
-    - title: "Linux"
-      url: "/docs/linux/"
+  collections:
+    docs:
+      name: Docs         # Hidden if it’s your only collection
+      # nav_fold: true   # optional: collapsible top-level section
+      # search_enabled: true # default is true

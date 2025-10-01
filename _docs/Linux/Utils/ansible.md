@@ -1,10 +1,10 @@
 ---
-
+title: Ansible Notes
+parent: Utils
+grand_parent: Linux
+nav_order: 10
 layout: default
-title: "Ansible Notes"
-
 ---
-
 # Table of Contents 
 {: .no_toc }
 

@@ -1,10 +1,10 @@
 ---
-
+title: Linux Plus
+parent: Misc
+grand_parent: Linux
+nav_order: 20
 layout: default
-title: "Linux Plus"
-
 ---
-
 # Table of Contents 
 {: .no_toc }
 

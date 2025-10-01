@@ -1,10 +1,10 @@
 ---
-
+title: Awk Snippets
+parent: Utils
+grand_parent: Linux
+nav_order: 20
 layout: default
-title: "Awk Snippets"
-
 ---
-
 # Table of Contents  
 {: .no_toc }
 

@@ -1,3 +1,9 @@
+---
+title: Rhcsa Practice
+parent: RHEL
+grand_parent: Linux
+nav_order: 40
+---
 Made by [soficx](https://github.com/soficx) - https://github.com/soficx/rhcsa
 
   ---

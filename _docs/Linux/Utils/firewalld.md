@@ -1,10 +1,10 @@
 ---
-
+title: Firewalld
+parent: Utils
+grand_parent: Linux
+nav_order: 60
 layout: default
-title: "Firewalld"
-
 ---
-
 # Table of Contents 
 {: .no_toc }
 

@@ -1,10 +1,9 @@
 ---
-
+title: Cisco IPSec tunneling
+parent: Cisco
+nav_order: 40
 layout: default
-title: "Cisco IPSec tunneling"
-
 ---
-
 # Table of Contents  
 {: .no_toc }
 

@@ -1,10 +1,9 @@
 ---
-
+title: Windows Snippets
+parent: Windows
+nav_order: 20
 layout: default
-title: "Windows Snippets"
-
 ---
-
 # Table of Contents 
 
 {: .no_toc }

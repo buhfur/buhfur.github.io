@@ -1,10 +1,10 @@
 ---
-
+title: RHCSA Test practice tests from Book
+parent: Misc
+grand_parent: Linux
+nav_order: 50
 layout: default
-title: "RHCSA Test practice tests from Book"
-
 ---
-
 # Test practice TODO  
 
 1. [x] Set default values for new users. Set the default password validity to 90 days, and set the first
