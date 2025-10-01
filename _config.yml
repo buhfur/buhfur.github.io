@@ -25,9 +25,9 @@ collections:
     output: true
     permalink: /:collection/:path/
 
-just_the_docs:
-  collections:
-    docs:
-      name: Docs         # Hidden if it’s your only collection
-      # nav_fold: true   # optional: collapsible top-level section
-      # search_enabled: true # default is true
+      #just_the_docs:
+      #  collections:
+      #    docs:
+      #      name: Docs         # Hidden if it’s your only collection
+      #      # nav_fold: true   # optional: collapsible top-level section
+      #      # search_enabled: true # default is true
