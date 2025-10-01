@@ -1903,26 +1903,28 @@ rlcone copy /source/dir mydrive:/drive/dir
 
 # Du 
 
-> **show all files in current directory size in different units**
-> The 3 lines below shows the sizes in kilobytes 
->
-> ```bash
+## **show all files in current directory size in different units**
+ The 3 lines below shows the sizes in kilobytes 
+
+```bash
 du -k * 
-> ```
->
-> ```bash
-> du --block-size=1K * 
-> ```
->
-> ```bash
-> du -B 1K *
-> ```
->
-> # Note
->
-> - You can substitute the 'k' for other letters which represent other file size units : M,K,G,T,E,Z,Y
->
-> 
+```
+
+```bash
+du --block-size=1K * 
+```
+
+```bash
+du -B 1K *
+```
+
+## **finding largest files in directory**
+
+# Note
+
+- You can substitute the 'k' for other letters which represent other file size units : M,K,G,T,E,Z,Y
+
+ 
 
 - List largest files in current directory
 
