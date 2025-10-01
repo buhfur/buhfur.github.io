@@ -30,9 +30,5 @@ title: "TODO list"
 - [ ] create cron job on jellyfin to reconnect shared drive if it disconnects. 
 
 
-## SDDM theme todo
-
-- [ ] add install script to sddm theme main branch 
-
 
 

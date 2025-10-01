@@ -1,7 +1,7 @@
 ---
 
 layout: default
-title: "NEW SSH notes"
+title: "SSH"
 
 ---
 
