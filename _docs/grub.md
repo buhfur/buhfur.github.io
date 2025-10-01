@@ -253,7 +253,7 @@ sudo efibootmgr -o <linux-entry>,<windows-entry>
 
 ---
 
-## ✅ Summary
+## Summary
 
 - Use `os-prober` + `grub-mkconfig` for automatic detection.
 - If that fails, add a manual chainloader entry pointing to `bootmgfw.efi`.
