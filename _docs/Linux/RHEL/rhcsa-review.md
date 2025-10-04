@@ -562,23 +562,6 @@ wc -> outputs number lines , words , and characters
 
 `lsblk -o +UUID | tail -n1 | awk -F " " '{print $7}'` -> used this snippet to get the UUID of the installation disk 
 
-## sed 
-
-`sed -n 5p /etc/passwd` -> prints fifth line from /etc/passwd file 
-
-`sed -i s/<old-text>/<new-text>/g` -> replaces "old-text" in file with "new-text" , "g" means changes are added to all matching lines 
-
-`sed -i` -> options writes changes to file 
-
-`sed -i -e '2d' file.txt ` -> deletes specific line from file , in this example line 2 
-
-`sed -i -e '2d;5,10d' file.txt` -> deletes lines 2 and 5 through 10 
-
-`sed -i.bak 's/old/new/g' file.txt` -> edits file and creates backup text file 
-
-`sed 's/old$/new/' file.txt` -> replace text at end of line 
-
-`sed 's/^old/new/' file.txt` -> replace text at start of line 
 
 ## emergency reset 
 
