@@ -14,11 +14,15 @@ layout: default
 
 ## Server TODO 
 
-- [ ] disable power button at home , either disconnect or something in bios  
 
 ## Studying TODO 
 
 - [ ] practice configuring access to RPM repositories 
+- [ ] LVM practice 
+- [ ] create basic LVM 
+- [ ] extend volume group 
+- [ ] create swap partition on logical volume
+
 
 
 ## Server TODO
