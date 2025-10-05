@@ -1,5 +1,5 @@
 ---
-title: Rhcsa Practice Test
+title: Rhcsa Practice Test 2
 parent: RHEL
 grand_parent: Linux
 nav_order: 30
