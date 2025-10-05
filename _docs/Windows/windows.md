@@ -369,7 +369,21 @@ Shutdown station through telnet
 # Display Info 
 ---
 
+## **Get names and device ID of connected monitors**
 ```bash
 wmic path Win32_PnPEntity where "PNPClass='Monitor'" get Name,DeviceID
 ```
-Gets names and device ID of connected monitors 
+
+## **Get graphics card info**
+
+On Powershell: 
+```bash
+Get-WmiObject Win32_VideoController | Select-Object Name, AdapterRAM, DriverVersion, DriverDate
+```
+
+Or on Command Prompt: 
+```bash
+wmic path win32_VideoController get name
+```
+
+
