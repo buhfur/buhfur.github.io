@@ -1,5 +1,5 @@
 ---
-title: RHCSA Practice Test
+title: RHCSA prep
 parent: RHEL
 grand_parent: Linux
 nav_order: 50
