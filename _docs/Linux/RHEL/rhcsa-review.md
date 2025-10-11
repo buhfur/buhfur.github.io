@@ -605,7 +605,10 @@ groupmems -> view users apart of a specific group
 
 `id -u <username>`  -> just GID 
 - /etc/default/useradd -> defaults for users 
-- /etc/login.defs  -> defaults for users 
+
+- /etc/security/pwquality.conf -> file for password settings 
+
+- /etc/pam.d/system-auth && /etc/pam.d/password-auth  -> PAM password settings 
 
 ### Script to verify if group exists in bash 
 
