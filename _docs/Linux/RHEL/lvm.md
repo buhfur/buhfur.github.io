@@ -34,12 +34,17 @@ pvs
 
 # Remove a physical volume from LVM
 pvremove /dev/sdb
+
+
 ```
 
 ### 2. Managing Volume Groups
 ```bash
 # Create a volume group
 vgcreate vg_data /dev/sdb /dev/sdc
+
+# Create Volume group with custom PE size ( no rounding in LV creation )
+vgcreate -s 1M vgname /dev/sdc 
 
 # Display volume groups
 vgdisplay
