@@ -174,6 +174,19 @@ tuned-adm profile <profile-name> # enable specific profile
 
 - Create, delete, and modify local user accounts
 - Change passwords and adjust password aging for local user accounts
+```bash
+# Set password requirements for 
+
+# /etc/pam.d/system-auth or /etc/pam.d/password-auth 
+password    requisite     pam_pwquality.so try_first_pass local_users_only minlen=12
+
+# in /etc/security/pwquality.conf    
+minlen = 12
+dcredit = -1   # require at least 1 digit
+ucredit = -1   # require at least 1 uppercase
+lcredit = -1   # require at least 1 lowercase
+ocredit = -1   # require at least 1 special char
+```
 - Create, delete, and modify local groups and group memberships
 - Configure superuser access
 
