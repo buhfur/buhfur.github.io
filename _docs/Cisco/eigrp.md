@@ -41,3 +41,7 @@ Look at EIGRP topology
 sh ip route eigrp  
 ```
 
+
+## **Issues**
+
+* If eigrp fails to come back up , but circuit is ok , check if carrier is blocking multicast traffic  
