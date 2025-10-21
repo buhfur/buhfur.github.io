@@ -387,3 +387,9 @@ wmic path win32_VideoController get name
 ```
 
 
+# Swap caps and ctrl 
+---
+
+```bash
+cmd /c 'reg add "HKLM\SYSTEM\CurrentControlSet\Control\Keyboard Layout" /v "Scancode Map" /t REG_BINARY /f /d 0000000000000000030000001d003a003a001d0000000000'
+```
