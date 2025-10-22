@@ -11,6 +11,11 @@ layout: default
 1. TOC 
 {:toc}
 
+## Killing tasks 
+
+```bash
+taskkill /F /IM app.exe 
+```
 ## Managing files  
 
 - List 10 largest files for C:\ in megabytes
