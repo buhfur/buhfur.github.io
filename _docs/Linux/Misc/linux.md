@@ -1844,24 +1844,6 @@ rlcone copy /source/dir mydrive:/drive/dir
 
 --- 
 
-# Du 
-
-## **show all files in current directory size in different units**
- The 3 lines below shows the sizes in kilobytes 
-
-```bash
-du -k * 
-```
-
-```bash
-du --block-size=1K * 
-```
-
-```bash
-du -B 1K *
-```
-
-## **finding largest files in directory**
 
 # Note
 

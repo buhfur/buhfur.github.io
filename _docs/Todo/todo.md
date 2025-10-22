@@ -17,7 +17,9 @@ layout: default
 
 ## Studying TODO 
 
-- [ practice ]
+- [ ] partitioning MBR 
+- [ ] practice renice & nice 
+- [ ] 
 
 
 ## Server TODO

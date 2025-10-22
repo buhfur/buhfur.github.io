@@ -138,6 +138,30 @@ du
 du -h directory_name
 ```
 
+Show largest files and subdirs on system 
+```bash
+sudo du -xh / | sort -hr | head -n 10
+
+#show largest in current directory 
+sudo du -h --max-depth=1 | sort -hr
+#mixed 
+sudo du -ahx / | sort -rh | head -n 20
+```
+
+Show all files in current directory size in different units.The 3 lines below shows the sizes in kilobytes 
+```bash
+du -k * 
+```
+
+```bash
+du --block-size=1K * 
+```
+
+```bash
+du -B 1K *
+```
+
+## **finding largest files in directory**
 ---
 
 ## File Permissions and Ownership
