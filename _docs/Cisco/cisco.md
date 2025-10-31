@@ -13,59 +13,59 @@ layout: default
 # General Snippets
 ---
 
-Get time/timezone
-    ```bash
-    show clock
-    ```
+## **Get time/timezone**
+```bash
+show clock
+```
 
-Show all VRF Interfaces 
-    ```bash
-    show vrf 
+## **Show all VRF Interfaces**
+```bash
+show vrf 
 
-    show ip vrf 
-    ```
-Ping IP through VRF interface 
-    ```bash
-    ping vrf <vrf-name> <ip> 
-    ```
+show ip vrf 
+```
+## **Ping IP through VRF interface**
+```bash
+ping vrf <vrf-name> <ip> 
+```
 
-Filter logging 
-    ```bash
-    sh logging | include May 16 
-    ```
+## **Filter logging**
+```bash
+sh logging | include May 16 
+```
 
 
-Traceroute
-    ```bash
-    traceroute 8.8.8.8 source GigabitEthernet0/0
-    traceroute 8.8.8.8 source 192.0.2.1
-    ```
+## **Traceroute**
+```bash
+traceroute 8.8.8.8 source GigabitEthernet0/0
+traceroute 8.8.8.8 source 192.0.2.1
+```
 
-EIGRP Neighbors 
-    ```bash
-    sh ip eigrp nei 
-    ```
+## **EIGRP Neighbors**
+```bash
+sh ip eigrp nei 
+```
 
-BGP Neighbors 
-    ```bash
-    sh ip bgp nei 
-    ```
+## **BGP Neighbors** 
+```bash
+sh ip bgp nei 
+```
 
-IPSec Tunnel info 
-    ```bash
-    sh crypto session detail 
-    sh crypto session brief 
-    ```
+## **IPSec Tunnel info**
+```bash
+sh crypto session detail 
+sh crypto session brief 
+```
 
-IKE Phase 1 
-    ```bash
-    show crypto isakmp sa detail      (IKEv1)
-    show crypto ikev2 sa detail       (IKEv2)
-    ```
-Check IPSec phase 2 status 
-    ```bash
-    show crypto ipsec sa
-    ```
+## **IKE Phase 1**
+```bash
+show crypto isakmp sa detail      (IKEv1)
+show crypto ikev2 sa detail       (IKEv2)
+```
+## **Check IPSec phase 2 status**
+```bash
+show crypto ipsec sa
+```
 # General notes 
 ---
 
