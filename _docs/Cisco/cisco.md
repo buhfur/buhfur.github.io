@@ -232,8 +232,6 @@ parent: Network Troubleshooting
 - Disable paging for long outputs:  
   `terminal length 0`
 
----
-
 
 # General notes 
 ---
