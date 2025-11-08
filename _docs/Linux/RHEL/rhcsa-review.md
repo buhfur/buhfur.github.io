@@ -230,18 +230,31 @@ If you fail to relabel the filesystem after changing the root password. The /etc
 ## Labels
 
 ### **EXT2/3/4**
+
+**Change label**
 ```bash
 sudo e2label /dev/your_device_name new_label_name
+```
+
+**Get label**
+```bash
+sudo e2label /dev/sdx0 
 ```
 
 
 ### **DOS/FAT32/FAT16** 
 
+**Change label**
 ```bash
-sudo dosfslabel LABEL DEVICE 
+sudo fatlabel /dev/your_device_name new_label_name
 ```
 
-> Note: dosfstools package is required 
+**Get label**
+```bash
+sudo fatlabel /dev/sdx0 
+```
+
+> Note: dosfstools package is required to use dosfslabel
 
 ### **XFS**
 
