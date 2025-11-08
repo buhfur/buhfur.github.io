@@ -234,6 +234,8 @@ If you fail to relabel the filesystem after changing the root password. The /etc
 
 `fatlabel` -> set or get label on dos filesystem 
 
+`xfs_admin` -> change label for xfs disk 
+
 ## unrelated helpful snippets  
 
 `echo "password" | sudo -S dnf update` -> pipes password into sudo commandfrom STDIN  
