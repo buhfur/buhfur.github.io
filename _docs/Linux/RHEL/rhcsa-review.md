@@ -224,17 +224,48 @@ ocredit = -1   # require at least 1 special char
 
 If you fail to relabel the filesystem after changing the root password. The /etc/shadow file will be updated , but in this instance the file is update outside of a selinux aware envionrment. If not relabeled , selinux will see an updated file with a wrong or missing label. As a result of this , assuming SElinux is booted into enforcing mode, PAM or login processes will be denied access to /etc/shadow. Which will need to be readable to allow access to the system.
 
-## Managing disks
+# Managing disks
+---
 
-### Change label of disk 
+## Labels
 
-`dosfslabel` -> Used for changing labels on dos filesystems 
+### **EXT2/3/4**
+```bash
+sudo e2label /dev/your_device_name new_label_name
+```
 
-`e2label` -> used for changing labels on ext[1-4] disks 
 
-`fatlabel` -> set or get label on dos filesystem 
+### **DOS/FAT32/FAT16** 
 
-`xfs_admin` -> change label for xfs disk 
+```bash
+sudo dosfslabel LABEL DEVICE 
+```
+
+> Note: dosfstools package is required 
+
+### **XFS**
+
+**Change label**
+```bash
+sudo xfs_admin -L "NEW_XFS_LABEL" /dev/sdb1
+```
+
+**Get label**
+```bash
+sudo xfs_admin -l /dev/sdx0
+```
+
+
+> Note: dosfslabel and fatlabel are the basically the same tool , only difference is that dosfslabel was packaged by canonical.  
+
+
+## Get UUID of disk 
+
+```bash
+blkid -s UUID -o value /dev/sdb1 
+```
+
+---
 
 ## unrelated helpful snippets  
 
