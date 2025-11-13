@@ -252,6 +252,14 @@ sudo firewall-cmd --reload
 
 ## Configure firewalld logging to rsyslog file 
 
+> Note: logging for firewalld goes to journal first or /var/log/messages when using rsyslog 
+
+
+**Configure rich logging rule to filter out dropped traffic** 
+```
+sudo firewall-cmd --permanent   --add-rich-rule='rule family="ipv4" port port="8080" protocol="tcp" log prefix="FIREWALL_LOG: " level="info" drop'
+sudo firewall-cmd --reload
+```
 **Create rsyslog config file** 
 ```bash
 sudo vim /etc/rsyslog.d/firewalld-denied.conf
