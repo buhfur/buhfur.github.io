@@ -367,7 +367,8 @@ Get info for specific driver
 
 ---
 
-Shutdown station through telnet 
+## Shutdown station through telnet 
+---
 
 `shutdown /r /t 0`
 
