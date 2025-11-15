@@ -11,42 +11,100 @@ layout: default
 1. TOC 
 {:toc}
 
-## Killing tasks 
+# Killing tasks 
 
 ```bash
 taskkill /F /IM app.exe 
 ```
-## Managing files  
+# Managing files  
 
-- List 10 largest files for C:\ in megabytes
+### **List 10 largest files for C:\ in megabytes**
     ```bash
     Get-ChildItem c:\ -r -ErrorAction SilentlyContinue –Force |sort -descending -property length | select -first 10 name, DirectoryName, @{Name="MB";Expression={[Math]::round($_.length / 1MB, 2)}}
     ```
 
-## Basic Networking Snippets
 
-- Flush DNS 
-    ```bash
-    ipconfig /flushdns
-    ```
+# Windows Network Commands Cheatsheet
 
-- Clear Routing Table  
-    ```bash
-    netsh int ip reset
-    
-    route -f 
-    ```
+## IP Configuration
 
-- Traceroute 
-    ```bash
-    # Don't resolve hostnames , specified max hops 
-    tracert -d <ip> -h <max-hops>
-    ```
+-   `ipconfig` --- Show basic IP configuration.
+-   `ipconfig /all` --- Show detailed network adapter info.
+-   `ipconfig /flushdns` --- Clear DNS resolver cache.
+-   `ipconfig /release` --- Release DHCP lease.
+-   `ipconfig /renew` --- Renew DHCP lease.
+
+## Network Connections & Ports
+
+-   `netstat -ano` --- Show all active connections and listening ports
+    with PIDs.
+-   `netstat -ab` --- Show ports with owning process names (requires
+    admin).
+-   `netstat -an | more` --- Paginate long netstat output.
+-   `netstat -ano | findstr :80` --- Find what is using port 80.
+-   `tasklist /FI "PID eq <PID>"` --- Map a PID to its process.
+
+## DNS Tools
+
+-   `nslookup <domain>` --- Perform DNS lookup.
+-   `nslookup` → `server <DNS-IP>` --- Query a specific DNS server.
+-   `nslookup -type=mx <domain>` --- Query MX email records.
+
+## Routing
+
+-   `route print` --- Display routing table.
+-   `route add <network> mask <mask> <gateway>` --- Add static route.
+-   `route delete <network>` --- Delete static route.
+
+## Connectivity Tests
+
+-   `ping <address>` --- Basic connectivity test.
+-   `ping -t <address>` --- Continuous ping.
+-   `tracert <address>` --- Trace route hops to the destination.
+-   `pathping <address>` --- Combined ping + traceroute analysis.
+
+## ARP
+
+-   `arp -a` --- View ARP table.
+-   `arp -d *` --- Clear ARP cache.
+
+## Netsh -- Network Management
+
+### Interface Management
+
+-   `netsh interface show interface` --- Show all network interfaces.
+-   `netsh interface ip show config` --- Show IPv4 configuration.
+-   `netsh interface ip set address name="<IF>" static <IP> <MASK> <GW>`
+    --- Assign static IP.
+-   `netsh interface ip set dns name="<IF>" static <DNS-IP>` --- Set DNS
+    server.
+
+### Wi‑Fi Commands
+
+-   `netsh wlan show profiles` --- List saved Wi‑Fi networks.
+-   `netsh wlan show profile name="<SSID>" key=clear` --- Show Wi‑Fi
+    password.
+-   `netsh wlan delete profile name="<SSID>"` --- Delete Wi‑Fi profile.
+-   `netsh wlan show interfaces` --- Show Wi‑Fi adapter status.
+
+### Firewall Commands
+
+-   `netsh advfirewall show allprofiles` --- Display firewall
+    configurations.
+-   `netsh advfirewall firewall add rule name="Allow8080" dir=in action=allow protocol=TCP localport=8080`
+-   `netsh advfirewall firewall delete rule name="Allow8080"`
+
+## Network Resets / Repairs
+
+-   `netsh int ip reset` --- Reset TCP/IP stack.
+-   `netsh winsock reset` --- Reset Winsock catalog.
+-   `netsh advfirewall reset` --- Reset firewall rules to default.
+
+
 ## Environment Variables 
-
+---
 The commands below are used to modify existing Environment Variables.
 
-### Command Snippets 
 
 - List Environment Variables 
     ```bash
