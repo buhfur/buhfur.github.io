@@ -6,6 +6,14 @@ nav_order: 110
 layout: default
 ---
 
+# Table of Contents 
+{: .no_toc }
+
+1. TOC 
+{:toc}
+
+---
+
 # RPM & DNF Guide (RHCSA Exam Focus)
 
 This guide covers **RPM** and **DNF** package management commands

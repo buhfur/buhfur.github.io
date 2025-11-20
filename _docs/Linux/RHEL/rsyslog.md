@@ -6,6 +6,14 @@ nav_order: 100
 layout: default
 ---
 
+# Table of Contents 
+{: .no_toc }
+
+1. TOC 
+{:toc}
+
+---
+
 # Rsyslog: Practical Guide (commands, snippets, tips & tricks)
 
 This guide focuses on **modern RainerScript syntax** (rsyslog v7/v8+). Paths and units are for Linux.

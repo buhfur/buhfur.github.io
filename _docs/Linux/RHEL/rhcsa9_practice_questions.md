@@ -6,6 +6,13 @@ nav_order: 120
 layout: default
 ---
 
+# Table of Contents 
+{: .no_toc }
+
+1. TOC 
+{:toc}
+
+---
 
 # RHCSA 9 Practice Questions
 

@@ -6,6 +6,13 @@ nav_order: 90
 layout: default
 ---
 
+# Table of Contents 
+{: .no_toc }
+
+1. TOC 
+{:toc}
+
+
 # `systemd-journald` / `journalctl` Guide
 
 This guide focuses on practical commands, helpful snippets, and tips & tricks for working with the systemd journal on Linux (RHEL/Alma, Fedora, Debian/Ubuntu, Arch, etc.). It assumes `systemd` is the init system.

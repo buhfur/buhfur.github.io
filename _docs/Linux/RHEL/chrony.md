@@ -6,6 +6,12 @@ nav_order: 130
 layout: default
 ---
 
+# Table of Contents 
+{: .no_toc }
+
+1. TOC 
+{:toc}
+
 
 # Chrony 
 
