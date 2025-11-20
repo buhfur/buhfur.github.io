@@ -308,6 +308,8 @@ Use this command to supress kernel logs on the console
 sysctl -w kernel.printk="3 4 1 3"
 ```
 
+To make these changes persist across reboots, add the variable setting `kernel.printk=3 4 1 3` in either /etc/sysctl.conf 
+
 ---
 
 ## Inspecting nftables Rules
