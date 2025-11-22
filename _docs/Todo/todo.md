@@ -17,15 +17,11 @@ layout: default
 
 ## Studying TODO 
 
-- [ ] partitioning MBR 
-- [ ] practice renice & nice 
-- [ ] 
+- [ ] use GPT generated practice test 
+- [ ] practice non confident tasks 
 
 
-## Server TODO
  
-- [ ] point free-shit.pro to the media server again 
-- [ ] forward port to jellyfin nginx proxy in router 
 
 
 

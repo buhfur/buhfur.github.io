@@ -353,6 +353,7 @@ Create a 32G swapfile
 - do man 5 crontab for possible combinations 
 - cronnext -i root -> get time in seconds from now when next cronjob from user will run  
 
+
 ### Get date when next cronjob will run 
 
 `date -d "@$(cronnext -i root | awk -F " " '{print $2}'" ` -> get date when next cronjob for root user will run 
