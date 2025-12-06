@@ -1274,7 +1274,7 @@ subdirname -rw servername:/sharename
 - /etc/auto.users 
 
     ```bash
- -rw     servername:/users/& 
+    \*  -rw     servername:/users/& 
     ```
 
 > Note: the '\*' represents the local mount point on the client machine configured in auto.users, the "&" is a placeholder that gets replaced by the key of the current mount request. 
