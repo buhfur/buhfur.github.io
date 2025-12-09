@@ -20,6 +20,12 @@ layout: default
 > Tip: Download  selinux-policy-doc package, this will allow you to run `man -k _selinux` and view specific man pages for your service in order to know which type to use for a specific directory. 
 
 
+## **Required Packages** 
+
+* semanage tool: policycoreutils-python-utils 
+
+* sealert tool: setroubleshoot-server 
+
 ## **Basics & Concepts**
 
 - **SELinux** = **Security-Enhanced Linux**  
