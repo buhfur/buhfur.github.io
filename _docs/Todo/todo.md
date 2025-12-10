@@ -17,9 +17,8 @@ layout: default
 
 ## Studying TODO 
 
-- [ ] use GPT generated practice test 
-- [ ] practice non confident tasks 
-
+- [ ] complete practice test C & B 
+- [ ] add practice test questions into wiki 
 
  
 
