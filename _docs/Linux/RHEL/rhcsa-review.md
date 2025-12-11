@@ -1252,30 +1252,41 @@ servername:/sharename /nfs/mount/point nfs sync 0 0
 ### /etc/auto.master ( non home exported directory )
 
 ```bash
+# /dirname -> directory on local host where share will be mounted 
+# /etc/auto.dirname -> name of secondary configuration file 
 /dirname    /etc/auto.dirname
 ```
 
 ### /etc/auto.dirname  
 
 ```bash
+# SUBDIR NAME -OPTIONS REMOTEHOST:/REMOTE_PATH
 subdirname -rw servername:/sharename
 ```
 ### Wildcard Mount Setup on Server Machine 
-- /etc/exports
-    ```bash
+
+**/etc/exports**
+
+```bash
+# /users -> directory to be shared or "exported" , options follow after
+# no_root_squash allows root user on client to have root privilleges on files in share directory
 /users *(rw,no_root_squash)
-    ```
+```
 
 ### Wildcard Mount Setup on Client Machine 
-- /etc/auto.master
-    ```bash
-/users  /etc/auto.users
-    ```
-- /etc/auto.users 
+**/etc/auto.master**
 
-    ```bash
-     *  -rw     servername:/users/& 
-    ```
+```bash
+/users  /etc/auto.users
+```
+
+**/etc/auto.users**
+
+```bash
+# "*" -> wildcard , used to match any name of a directory on the local machine attempting to be accessed 
+# "&" -> wildcard used to match the name of the matching item on the remote server  
+ *  -rw     servername:/users/& 
+```
 
 > Note: the '\*' represents the name of the subdir that will be created on the local machine, you can use the asterisk wildcard if you do not want a subdirectory created. The "&" is a placeholder that gets replaced by the key of the current mount request. Which can be the username of a local user if you're using an NFS share to mount user home directories   
 
