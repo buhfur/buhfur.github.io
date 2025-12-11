@@ -72,6 +72,13 @@ To configure these things, you can make all configuration changes in the `/etc/s
 PermitRootLogin prohibit-password
 ```
 
+### **ONLY allow root to login**
+
+```bash
+# Up to you if you want to use password or token based
+PermitRootLogin prohibit-password
+AllowUsers root
+```
 This only allows the root user to log in if they have a valid public/private key pair.
 
 ## Changing the default SSH port

@@ -1274,10 +1274,10 @@ subdirname -rw servername:/sharename
 - /etc/auto.users 
 
     ```bash
-    \*  -rw     servername:/users/& 
+     *  -rw     servername:/users/& 
     ```
 
-> Note: the '\*' represents the local mount point on the client machine configured in auto.users, the "&" is a placeholder that gets replaced by the key of the current mount request. 
+> Note: the '\*' represents the name of the subdir that will be created on the local machine, you can use the asterisk wildcard if you do not want a subdirectory created. The "&" is a placeholder that gets replaced by the key of the current mount request. Which can be the username of a local user if you're using an NFS share to mount user home directories   
 
 # SELinux 
 ---

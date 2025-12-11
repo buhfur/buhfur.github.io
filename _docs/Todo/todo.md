@@ -17,9 +17,7 @@ layout: default
 
 ## Studying TODO 
 
-- [ ] complete practice test C & B 
-- [ ] add practice test questions into wiki 
-
+- [ ] redo wiki article for nfs home dir setup 
  
 
 
