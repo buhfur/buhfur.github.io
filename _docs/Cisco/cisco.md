@@ -76,6 +76,8 @@ parent: Network Troubleshooting
   `ping [destination] source [interface/IP] repeat 10`
 - Traceroute to destination:  
   `traceroute [destination]`
+
+> Note: Hit "Ctrl + Shift + 6" to cancel traceroute 
 - Display ARP table:  
   `show ip arp`
 - Clear ARP cache:  
