@@ -1247,7 +1247,7 @@ servername:/sharename /nfs/mount/point nfs sync 0 0
 - in secondary file , you specify name of subdir to be created , mount opts , and servername:share
 - use wildcard mounts for mounting home directories 
 
-- **IF SERVER/CLIENT ARE THE SAME MACHINE** Use "nobind" as a mount option to prevent the system from binding the share as a mount on the underlying filesystem 
+- **IF SERVER/CLIENT ARE THE SAME MACHINE** Use "nobind" as a mount option in secondary config file to prevent the system from binding the share as a mount on the underlying filesystem 
 
 ## Autofs Configuration Example 
 
