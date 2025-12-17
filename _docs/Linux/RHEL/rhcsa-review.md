@@ -1292,6 +1292,14 @@ subdirname -rw servername:/sharename
 
 > Note: the '\*' represents the name of the subdir that will be created on the local machine, you can use the asterisk wildcard if you do not want a subdirectory created. The "&" is a placeholder that gets replaced by the key of the current mount request. Which can be the username of a local user if you're using an NFS share to mount user home directories   
 
+
+
+### Tips 
+
+- use findmnt to verify how the share is mounted 
+
+- showmount -e with nfs-server for finding which directories are being exported 
+
 # SELinux 
 ---
 
