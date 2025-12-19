@@ -291,6 +291,10 @@ blkid -s UUID -o value /dev/sdb1
 
 `. /usr/share/bash-completion/bash_completion` -> Add this line to your bashrc to enable bash-completion 
 
+### Read password from user input 
+
+`IFS= read -sr -p "Enter password: " password`
+
 ## output redirection & piping 
 
 STDIN:
