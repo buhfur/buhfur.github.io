@@ -356,7 +356,7 @@ Create a 32G swapfile
 
 ### Get date when next cronjob will run 
 
-`date -d "@$(cronnext -i root | awk -F " " '{print $2}'" ` -> get date when next cronjob for root user will run 
+`date -d "@$(cronnext -i root | awk -F " " '{print $2}')" ` -> get date when next cronjob for root user will run 
 
 ## at 
 
