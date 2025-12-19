@@ -12,13 +12,10 @@ layout: default
 
 ---
 
-## Server TODO 
-
-
 ## Studying TODO 
 
 - [ ] redo wiki article for nfs home dir setup 
- 
+- [ ] complete practice tests A-D without help  
 
 
 
