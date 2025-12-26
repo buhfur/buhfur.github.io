@@ -42,6 +42,7 @@ Each of the permissions in the 3 digits you see above translate to the following
 | 6               | rw-                     | Read & Write          | None                  | None                   | `chmod 600 file`               |
 | 7               | rwx                     | Read, Write & Execute | None                  | None                   | `chmod 700 file` (full access for owner) |
 
+
 ## Common Full chmod Examples
 
 | Command         | Numerical Value | Owner Permissions | Group Permissions | Other Permissions | Description                                      |
