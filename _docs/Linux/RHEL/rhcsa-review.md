@@ -326,9 +326,9 @@ STDERR:
 `passwd manny --stdin < pass.txt` -> use file as stdin for setting password for user 
 
 `for x in $(tail -n6 /etc/passwd | awk -F ":" '{print $1}'); do echo 'password' | passwd $x --stdin` -> Change password for 6 users 
-## swapfiles
+# swap & swapfiles
 
-### Swapfile as file 
+## Swapfile as file 
 
 Create a 32G swapfile 
 
@@ -338,7 +338,7 @@ Create a 32G swapfile
 
 `swapon /swapfile`
 
-### Swapfile As Partition 
+## Swapfile As Partition 
 
 1. Create partition on disk using fdisk or gdisk 
 
@@ -351,6 +351,43 @@ Create a 32G swapfile
 5. Add disk by PARTLABEL or UUID into fstab 
 
 6. `swapon /dev/sdxY to activate swapfile`
+
+## Troubleshooting 
+
+### Swapfile is full , no available memory 
+
+1. Toggle off/on swap if RAM permits 
+
+2. Expand swap space using a swapfile 
+
+3. long term solutions include reducing swappiness or adding physical RAM
+
+### Reducing swappiness 
+
+**Temporary**
+
+```bash
+# Reduces swappiness 
+sudo sysctl vm.swappiness=10
+
+# Check current swappiness value 
+cat /proc/sys/vm/swappiness
+# OR 
+sysctl vm.swappiness 
+```
+
+**Survives Reboot**
+
+```bash
+# Create config file  
+vim /etc/sysctl.d/99-swappiness.conf
+# Add the following line below to the file 
+
+vm.swappiness = 10
+```
+
+
+
 
 ## crontab 
 - /var/spool/cron/username -> crontab for user 
@@ -521,6 +558,16 @@ gunzip -> decompresses gzip archive
 cat -> outputs contents from beginning to end of file 
 
 tac -> outputs contents of file from end to beginning 
+
+### Write multiple lines of data 
+
+```bash
+cat >> multi_line_file.txt << EOF
+This is the first line
+This is the second line
+This is the third line
+EOF
+```
 
 ## head & tail 
 
