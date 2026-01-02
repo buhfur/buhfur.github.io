@@ -332,12 +332,15 @@ STDERR:
 
 Create a 32G swapfile 
 
-`dd if=/dev/zero of=/swapfile bs=1G count=32` 
+```bash
+# Create swapfile the size of 32G 
+dd if=/dev/zero of=/swapfile bs=1G count=32
+# Creates swap area on file 
+mkswap /swapfile
+# Adds the newly made swapfile to be used as swap 
+swapon /swapfile
 
-`mkswap /swapfile`
-
-`swapon /swapfile`
-
+```
 ## Swapfile As Partition 
 
 1. Create partition on disk using fdisk or gdisk 
@@ -1214,7 +1217,10 @@ or
 
 `lvreduce -L 10G /dev/vgname/lvname` -> Shrink logical volume. 
 
-## Resizing Root Logical Volume on Proxmox 
+## Resizing Root Logical Volume 
+
+
+### If using Proxmox 
 
 1. After updating size of disk , rescan the disk for the updated space , replace 'sdx' with the name of the block device. 
 
@@ -1223,6 +1229,8 @@ or
 2. Delete the partition , DON'T format , create new partition with LVM type ( use fdisk , cfdisk , parted)
 
 > Tip: before using gdisk , check to make sure your boot partition is MBR or GPT. gdisk should say at the top after opening it.   
+
+### Normal resizing 
 
 3. Expand the physical volume 
 
