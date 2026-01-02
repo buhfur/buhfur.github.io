@@ -1226,27 +1226,28 @@ or
 
     `echo 1 > /sys/class/block/sdx/device/rescan`
 
-2. Delete the partition , DON'T format , create new partition with LVM type ( use fdisk , cfdisk , parted)
+### Normal resizing 
+
+
+1. Delete the partition , DON'T format , create new partition with LVM type ( use fdisk , cfdisk , parted)
 
 > Tip: before using gdisk , check to make sure your boot partition is MBR or GPT. gdisk should say at the top after opening it.   
 
-### Normal resizing 
-
-3. Expand the physical volume 
+2. Expand the physical volume 
 
     `pvresize /dev/sdxY`
 
-4. Expand the logical volume using lvextend 
+3. Expand the logical volume using lvextend 
 
     `lvextend -l +100%FREE /dev/mapper/vgname-lvname`
 
-5. expand the filesystem 
+4. expand the filesystem 
 
     `resize2fs /dev/mapper/vgname-lvname` 
 
     `xfs_growfs /`
 
-6. reboot and verify changes have been made 
+5. reboot and verify changes have been made 
 
 ## Resizing Filesystems 
 
