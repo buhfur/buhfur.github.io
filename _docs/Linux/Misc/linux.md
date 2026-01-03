@@ -2011,10 +2011,6 @@ print -r -- ${ZDOTDIR:-$HOME}
 
 
 
-# Curl 
----
-
-`curl -L https://somedir.com` -> used to follow links using https, "-L" option tells curl to follow redirects  
 
 
 # Snapper 
