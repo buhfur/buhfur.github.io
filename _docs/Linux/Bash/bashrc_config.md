@@ -1,5 +1,5 @@
 ---
-title: Handy One-liners 
+title: Bashrc configuration 
 parent: Bash
 grand_parent: Linux
 nav_order: 20
