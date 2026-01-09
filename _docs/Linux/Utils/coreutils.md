@@ -380,7 +380,15 @@ Transfer data from URLs.
 ```bash
 curl https://example.com
 ```
-
+Download book off libgen-like sites 
+```bash
+curl -
+```
+Pipe verbose logging output of headers into file 
+```bash
+# Curl redirects output of logging to stderr
+curl -v --stderr curl.log https://example.com
+```
 
 
 ---

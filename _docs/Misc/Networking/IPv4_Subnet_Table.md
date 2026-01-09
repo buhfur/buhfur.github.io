@@ -2,7 +2,7 @@
 title: IPv4 Subnet Table
 parent: Networking
 grand_parent: Misc
-nav_order: 20
+nav_order: 80
 layout: default
 ---
 # IPv4 Subnet Table

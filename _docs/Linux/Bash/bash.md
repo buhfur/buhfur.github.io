@@ -2,7 +2,7 @@
 title: Bash Scripting Snippets
 parent: Bash
 grand_parent: Linux
-nav_order: 10
+nav_order: 30
 layout: default
 ---
 # Table of Contents 

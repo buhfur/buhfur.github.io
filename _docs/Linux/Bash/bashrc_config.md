@@ -1,5 +1,5 @@
 ---
-title: Bashrc Configuration
+title: Handy One-liners 
 parent: Bash
 grand_parent: Linux
 nav_order: 20
@@ -11,20 +11,10 @@ layout: default
 1. TOC 
 {:toc}
 
-# `.bashrc` Configuration Cheat Sheet
-
 ## Purpose
 The `.bashrc` file is executed for interactive non-login shells. It is commonly used to set environment variables, aliases, shell options, and prompt customizations.
 
 > Disclosure: Initially Generated with ChatGPT, updated manually over time.  
-
----
-
-# Table of Contents 
-{: .no_toc }
-
-1. TOC
-{:toc}
 
 ---
 
