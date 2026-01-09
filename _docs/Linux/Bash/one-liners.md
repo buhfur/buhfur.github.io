@@ -13,6 +13,8 @@ layout: default
 {:toc}
 
 
+![Found this on the Bash-Oneliner github repo](https://github.com/onceupon/Bash-Oneliner)
+
 ## Terminal Tricks
 
 #####  Using Ctrl keys
