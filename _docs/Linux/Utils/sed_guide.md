@@ -206,6 +206,16 @@ sed ':a;N;$!ba;s/old/new/g' file.txt
 
 ---
 
+## One-Liners 
+
+### 1. Enable root login with password in sshd_config 
+```bash
+# -i.bak creates backup with .bak file ext in the location where the originating file resides 
+sed -i.bak 's/^#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config 
+```
+
+---
 ## References
 - GNU sed manual: <https://www.gnu.org/software/sed/manual/sed.html>
 - `man sed`
+
