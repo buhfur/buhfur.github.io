@@ -14,8 +14,10 @@ layout: default
 
 ## Studying TODO 
 
-- [x] redo wiki article for nfs home dir setup 
-- [ ] complete practice tests A-D without help  
+- [ ] create bash scripts that automate practice tests A-D  
+    - [ ] create cleanup scripts alongside these scripts that undo all changes 
+
+    - [x] mount iso repo 
 
 
 

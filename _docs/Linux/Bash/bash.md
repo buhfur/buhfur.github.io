@@ -442,4 +442,275 @@ Parameter expansion allows you to modify and manipulate the values of variables.
 ## Miscellaneous
 - `Ctrl+G`: Exit the current editing mode or cancel a command.
 
+---
+
+# Bash Arrays (Indexed and Associative)
+
+This page documents **practical, exam-safe, and script-ready usage of arrays in Bash**.
+
+Covers:
+
+* Indexed arrays
+* Associative arrays
+* Common patterns
+* Pitfalls
+* RHCSA / real-world scripting tips
+
+Targeted for **Bash 4+** (RHEL / Alma / Rocky / Debian).
+
+---
+
+## 1. What Is a Bash Array?
+
+An array allows a variable to hold **multiple values**.
+
+Bash supports:
+
+* **Indexed arrays** (numeric index)
+* **Associative arrays** (key/value)
+
+---
+
+## 2. Indexed Arrays (Most Common)
+
+### Declare and Assign
+
+```bash
+arr=(one two three)
+```
+
+Explicit indices:
+
+```bash
+arr[0]="one"
+arr[1]="two"
+arr[2]="three"
+```
+
+---
+
+## 3. Accessing Array Elements
+
+```bash
+echo "${arr[0]}"     # one
+echo "${arr[@]}"     # all elements
+echo "${arr[*]}"     # all elements (single word)
+```
+
+### Length
+
+```bash
+echo "${#arr[@]}"    # number of elements
+```
+
+---
+
+## 4. Iterating Over Arrays
+
+### Safe Loop (Recommended)
+
+```bash
+for item in "${arr[@]}"; do
+  echo "$item"
+done
+```
+
+### Index-Based Loop
+
+```bash
+for i in "${!arr[@]}"; do
+  echo "$i => ${arr[$i]}"
+done
+```
+
+---
+
+## 5. Adding and Removing Elements
+
+### Append
+
+```bash
+arr+=(four)
+```
+
+### Remove Element
+
+```bash
+unset arr[1]
+```
+
+(Indices are not reindexed automatically.)
+
+---
+
+## 6. Associative Arrays (Key/Value)
+
+> Requires **Bash 4+**
+
+### Declare
+
+```bash
+declare -A ports
+```
+
+### Assign
+
+```bash
+ports[http]=80
+ports[https]=443
+ports[ssh]=22
+```
+
+### Access
+
+```bash
+echo "${ports[http]}"
+```
+
+---
+
+## 7. Iterating Associative Arrays
+
+```bash
+for key in "${!ports[@]}"; do
+  echo "$key => ${ports[$key]}"
+done
+```
+
+---
+
+## 8. Reading Command Output Into Arrays
+
+### Using mapfile / readarray (Best)
+
+```bash
+mapfile -t users < <(cut -d: -f1 /etc/passwd)
+```
+
+### Using read (Legacy)
+
+```bash
+IFS=$'\n' read -r -d '' -a users < <(command)
+```
+
+---
+
+## 9. Arrays From Globs
+
+```bash
+files=(/var/log/*.log)
+```
+
+Check before use:
+
+```bash
+(( ${#files[@]} )) || echo "No files found"
+```
+
+---
+
+## 10. Passing Arrays to Functions
+
+### Function Definition
+
+```bash
+print_array() {
+  local arr=("$@")
+  for i in "${arr[@]}"; do
+    echo "$i"
+  done
+}
+```
+
+### Call
+
+```bash
+print_array "${arr[@]}"
+```
+
+---
+
+## 11. Common Real-World Patterns
+
+### Loop Over Disks
+
+```bash
+disks=(/dev/sdb /dev/sdc)
+
+for d in "${disks[@]}"; do
+  parted -s "$d" print
+done
+```
+
+### Parallel Arrays (Avoid if Possible)
+
+```bash
+users=(alice bob)
+uids=(1001 1002)
+```
+
+Prefer associative arrays instead.
+
+---
+
+## 12. Sorting Arrays
+
+```bash
+sorted=( $(printf "%s\n" "${arr[@]}" | sort) )
+```
+
+---
+
+## 13. Copying Arrays
+
+```bash
+copy=("${arr[@]}")
+```
+
+---
+
+## 14. Common Mistakes (Very Important)
+
+❌ Using `${arr}` instead of `${arr[@]}`
+
+❌ Forgetting quotes around `${arr[@]}`
+
+❌ Assuming indices are contiguous after `unset`
+
+❌ Using associative arrays without `declare -A`
+
+❌ Running scripts with `/bin/sh` instead of `bash`
+
+---
+
+## 15. Quick Reference Cheat Sheet
+
+```bash
+arr=(a b c)                 # declare indexed
+arr+=(d)                    # append
+${arr[0]}                   # element
+${arr[@]}                   # all elements
+${#arr[@]}                  # length
+
+unset arr[1]                # remove element
+
+declare -A map              # associative
+map[key]=value              # assign
+${map[key]}                 # access
+${!map[@]}                  # keys
+```
+
+---
+
+## Summary
+
+* Use arrays to avoid word-splitting bugs
+* Always quote `"${array[@]}"`
+* Prefer associative arrays over parallel arrays
+* `mapfile` is the cleanest way to populate arrays
+* Arrays are essential for safe Bash automation
+
+---
+
+*Suitable for RHCSA prep, production scripting, and personal wiki use.*
 
