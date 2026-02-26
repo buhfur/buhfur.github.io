@@ -219,17 +219,8 @@ lvs
 
 ---
 
-## 12. Common Mistakes (RHCSA Killers)
+## 12. Resize & Repartition disk 
 
-❌ Forgetting `partprobe`
-
-❌ Forgetting to set the `lvm` flag
-
-❌ Running `pvcreate` on the disk instead of the partition
-
-❌ Creating a filesystem before LVM
-
-❌ Using interactive `fdisk` in scripts
 
 ---
 
@@ -239,9 +230,6 @@ lvs
 - Always align with `1MiB`
 - Use GPT unless legacy requires MBR
 - Mark LVM partitions explicitly
-- Follow partition → LVM → filesystem order
-
 ---
 
-*Suitable for RHCSA 9 / 10 exam prep and real‑world automation.*
 
