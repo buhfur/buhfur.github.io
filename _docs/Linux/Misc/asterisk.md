@@ -5,7 +5,13 @@ grand_parent: Linux
 nav_order: 100
 layout: default
 ---
+# Table of Contents 
+{: .no_toc }
 
+1. TOC 
+{:toc}
+
+--- 
 
 # Terminology 
 
