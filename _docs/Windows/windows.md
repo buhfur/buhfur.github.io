@@ -363,6 +363,12 @@ This error indicates the user does not have the execution policy set for a speci
 
 
 
+## Check last 3 times station was rebooted 
+
+```bash
+wevtutil qe System /q:"*[System[(EventID=6005)]]" /rd:true /c:3 /f:text
+```
+
 # USB Info
 ---
 
