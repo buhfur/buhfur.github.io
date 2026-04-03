@@ -313,6 +313,11 @@ STDERR:
 - destination: monitor 
 - File Decriptor: 2
 
+### Pipe all output to /dev/null 
+
+```bash
+command > /dev/null 2>&1 
+```
 ### redirection Examples 
 
 `>> or 1>>` -> redirects STDOUT in append mode 
