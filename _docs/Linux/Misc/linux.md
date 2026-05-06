@@ -2065,6 +2065,16 @@ tmux attach-session -t $session:0
 
 ```
 
+## Change default keybinding 
+
+The snippet below changes the Ctrl+b to Ctrl+a 
+
+```bash 
+unbind-key C-b
+set-option -g prefix C-a
+bind-key C-a send-prefix
+```
+
 # Ranger 
 ---
 
