@@ -13,6 +13,7 @@ layout: default
 
 ---
 
+
 # Pre setup for 32 bit mode 
 
 Debian/Ubuntu: 
@@ -55,6 +56,42 @@ sudo pacman -S wine wine-mono wine-gecko lib32-mesa lib32-libpulse lib32-alsa-li
 
 See next section for creating a 32-bit prefix.
 
+# Prefix info 
+
+* A wine prefix is a environment variable which contains a path to a directory which stores the isolated windows environment. 
+
+* AKA all the files like `dosdevices` and the imitation windows C drive directory structure.   
+
+* This allows you to configure indpendent environments for different windows applications  
+
+* I've created a directory in `/home/buhfur/wine-prefixes` that acts as the main folder for storing different wine environments 
+
+## Steps to create new prefix with windows environments 
+
+> For this example we're going to be using the /home/buhfur/wine-prefixes/minesweeper folder 
+1. Set this environment variable or add as an alias. run this command in your shell 
+```bash
+# Run this in a shell to temporarily set the wineprefix the specified directory 
+# Any further commands or apps run with wine will use this prefix 
+export WINEPREFIX="/home/buhfur/wine-prefixes/minesweeper" 
+
+# Then run the command below , this initiates the prefix and creates the directory structure 
+wineboot -u 
+```
+2. You can add an export to your environment ( i.e bash , zsh etc ) to point to wine environment to make it easy to switch between prefixes 
+
+```bash
+# in my ~/.bashrc , points to prefix I have for a specific app 
+export MYPREFIX="$HOME/wine-prefixes/myprefix"
+
+# Then after you set that you can change your prefix by adding an alias or manually 
+alias myprefix="WINEPREFIX=$MYPREFIX"
+
+
+```
+
+
+
 # Setup 32-bit prefix
 
 There are multiple ways to do this , you can create a prefix on the CLI or add it to your bashrc to make default 
@@ -92,6 +129,7 @@ Anytime you encounter errors , it's usually a good idea to delete the ~/.wine ca
 ```bash
 rm -rf ~/.wine 
 ```
+
 
 
 # Run wine with debug output limited to errors 
