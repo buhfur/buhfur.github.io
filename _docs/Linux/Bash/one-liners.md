@@ -1542,14 +1542,15 @@ iostat -x -t 1
 # Use watch command to show only one table of output 
 watch -n 1 'iostat -xz'
 ```
-
-| Symptom                                      | Likely Bottleneck                    |
-| -------------------------------------------- | ------------------------------------ |
-| Disk `%util` ≈ 100%                          | HDD/SSD                              |
-| CPU cores ≈ 100%                             | CPU                                  |
-| Network near link speed                      | Network                              |
-| Nonzero swap activity                        | RAM                                  |
-| Low utilization everywhere, many small files | Filesystem seeks/metadata operations |
+| Bottleneck                | Columns to Watch | What Indicates a Problem                             |
+| ------------------------- | ---------------- | ---------------------------------------------------- |
+| Disk Saturation           | `%util`          | Consistently near 100%                               |
+| Disk Latency              | `await`          | Tens to hundreds of ms on HDDs                       |
+| Device Queueing           | `aqu-sz`         | Greater than ~1 for a single HDD, growing steadily   |
+| Slow Writes               | `w_await`        | High write latency                                   |
+| Slow Reads                | `r_await`        | High read latency                                    |
+| High IOPS / Seek Activity | `r/s`, `w/s`     | Thousands of small I/O operations can overwhelm HDDs |
+| Throughput Limit          | `rkB/s`, `wkB/s` | Near expected max disk throughput                    |
 
 ##### Display bandwidth usage on an network interface (e.g. enp175s0f0)
 ```bash
