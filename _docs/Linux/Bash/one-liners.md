@@ -1542,15 +1542,50 @@ iostat -x -t 1
 # Use watch command to show only one table of output 
 watch -n 1 'iostat -xz'
 ```
-| Bottleneck                | Columns to Watch | What Indicates a Problem                             |
-| ------------------------- | ---------------- | ---------------------------------------------------- |
-| Disk Saturation           | `%util`          | Consistently near 100%                               |
-| Disk Latency              | `await`          | Tens to hundreds of ms on HDDs                       |
-| Device Queueing           | `aqu-sz`         | Greater than ~1 for a single HDD, growing steadily   |
-| Slow Writes               | `w_await`        | High write latency                                   |
-| Slow Reads                | `r_await`        | High read latency                                    |
-| High IOPS / Seek Activity | `r/s`, `w/s`     | Thousands of small I/O operations can overwhelm HDDs |
-| Throughput Limit          | `rkB/s`, `wkB/s` | Near expected max disk throughput                    |
+
+###### iostat Bottleneck Reference
+
+| Bottleneck | Columns to Watch | What Indicates a Problem |
+|------------|------------------|--------------------------|
+| Disk Saturation | `%util` | Consistently near 100% |
+| Device Queueing | `aqu-sz` | Greater than ~1 on a single HDD and growing steadily |
+| Read Latency | `r_await` | Sustained tens to hundreds of ms on an HDD |
+| Write Latency | `w_await` | Sustained tens to hundreds of ms on an HDD |
+| High Read IOPS / Seek Activity | `r/s` | Hundreds to thousands of read operations per second on an HDD |
+| High Write IOPS / Seek Activity | `w/s` | Hundreds to thousands of write operations per second on an HDD |
+| Read Throughput Limit | `rkB/s` | Near the expected maximum throughput of the device |
+| Write Throughput Limit | `wkB/s` | Near the expected maximum throughput of the device |
+| Source Disk Bottleneck | High `%util`, `aqu-sz`, `r_await` | Source device cannot supply data fast enough |
+| Destination Disk Bottleneck | High `%util`, `aqu-sz`, `w_await` | Destination device cannot accept data fast enough |
+
+###### Quick Interpretation
+
+| Observation | Likely Cause |
+|-------------|--------------|
+| `%util` ≈ 100%, high `w_await`, high `aqu-sz` | Destination HDD bottleneck |
+| `%util` ≈ 100%, high `r_await`, high `aqu-sz` | Source HDD bottleneck |
+| `%util` low, throughput low, CPU high | CPU bottleneck (compression, checksums, encryption) |
+| `%util` low, CPU low, network saturated | Network bottleneck |
+| `%util` high, throughput low, `r/s` or `w/s` very high | Many small files causing seek overhead |
+| `%util` high, throughput near drive maximum | Sequential transfer limited by disk bandwidth |
+
+###### Typical Healthy HDD Values During a Large Sequential Copy
+
+| Metric | Typical Range |
+|---------|---------------|
+| `%util` | 80–100 |
+| `aqu-sz` | < 2 |
+| `r_await` / `w_await` | < 20 ms |
+| `rkB/s` / `wkB/s` | 100,000–250,000 kB/s (100–250 MB/s) |
+
+###### Typical HDD Values When Overwhelmed by Small Files
+
+| Metric | Typical Range |
+|---------|---------------|
+| `%util` | 95–100 |
+| `aqu-sz` | 5–50+ |
+| `r_await` / `w_await` | 100–1000+ ms |
+| `rkB/s` / `wkB/s` | Surprisingly low despite high utilization |
 
 ##### Display bandwidth usage on an network interface (e.g. enp175s0f0)
 ```bash
