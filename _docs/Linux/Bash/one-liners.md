@@ -1543,6 +1543,43 @@ iostat -x -t 1
 watch -n 1 'iostat -xz'
 ```
 
+##### Understanding disk throughput 
+
+* larger the value the better 
+
+* `w/s` is the write requests per second 
+
+* `wkB/s` is the amount of data written per second ( throughput )
+
+* `wareq-sz` is the average size of each write request ( shown in kilobytes )
+
+
+##### Useful HDD metrics 
+
+| Metric    | Purpose              |
+| --------- | -------------------- |
+| `wkB/s`   | Write throughput     |
+| `rkB/s`   | Read throughput      |
+| `%util`   | Disk busy percentage |
+| `w_await` | Write latency        |
+| `r_await` | Read latency         |
+| `aqu-sz`  | Queue depth          |
+| `w/s`     | Write IOPS           |
+| `r/s`     | Read IOPS            |
+
+
+##### Common iostat columns 
+
+| Column     | Units          | Meaning                            |
+| ---------- | -------------- | ---------------------------------- |
+| `w/s`      | operations/sec | Number of writes                   |
+| `wkB/s`    | kB/sec         | Write throughput                   |
+| `wareq-sz` | kB             | Average size of each write request |
+| `w_await`  | ms             | Average write latency              |
+| `aqu-sz`   | requests       | Average queue depth                |
+| `%util`    | percent        | Device busy time                   |
+
+
 ###### iostat Bottleneck Reference
 
 | Bottleneck | Columns to Watch | What Indicates a Problem |
