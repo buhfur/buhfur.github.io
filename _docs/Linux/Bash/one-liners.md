@@ -3265,6 +3265,16 @@ tar -C source -cf - . | pv | tar -C /mnt/hdd/destination -xf -
 
 # For first-time local bulk copy, "tar | tar" can be faster than rsync. For repeat syncs, use rsync.
 ```
+**Notes about compression** 
+
+* --whole-file avoids rsync's delta-transfer algorithm, which can reduce CPU and disk reads during a first-time copy.
+
+* For a large initial transfer to a spinning disk, the bottleneck is usually:
+    - HDD seek time (many small files), or
+    - HDD write throughput (large files),
+
+* not the amount of CPU available for compression. Therefore compression is generally not recommended unless the network is significantly slower than the disk.
+
 ##### Create a temporary directory and `cd` into it
 ```bash
 cd $(mktemp -d)
