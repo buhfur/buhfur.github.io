@@ -1543,6 +1543,14 @@ iostat -x -t 1
 watch -n 1 'iostat -xz'
 ```
 
+| Symptom                                      | Likely Bottleneck                    |
+| -------------------------------------------- | ------------------------------------ |
+| Disk `%util` ≈ 100%                          | HDD/SSD                              |
+| CPU cores ≈ 100%                             | CPU                                  |
+| Network near link speed                      | Network                              |
+| Nonzero swap activity                        | RAM                                  |
+| Low utilization everywhere, many small files | Filesystem seeks/metadata operations |
+
 ##### Display bandwidth usage on an network interface (e.g. enp175s0f0)
 ```bash
 iftop -i enp175s0f0
