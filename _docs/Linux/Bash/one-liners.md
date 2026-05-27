@@ -1026,6 +1026,35 @@ find . -type f -empty -delete
 find . -type f | wc -l
 ```
 
+##### Run checksum on all files in directory 
+```bash
+find /path/to/directory -type f -exec sha256sum {} \;
+
+# Same thing but saves checksums to a file 
+find /path/to/directory -type f -exec sha256sum {} \; > checksums.txt
+```
+
+##### Create a single hash representing the entire directory 
+```bash
+find /path/to/directory -type f -print0 \
+| sort -z \
+| xargs -0 sha256sum \
+| sha256sum
+```
+
+##### Compare two directory trees 
+```bash
+find /source -type f -print0 \
+| sort -z \
+| xargs -0 sha256sum \
+| sha256sum
+
+# Destination 
+find /destination -type f -print0 \
+| sort -z \
+| xargs -0 sha256sum \
+| sha256sum
+```
 ## Condition and loop
 [[back to top](#table-of-contents)]
 
@@ -3201,6 +3230,30 @@ rsync -av directory user@ip_address:/path/to/directory.bak
 # skip files that are newer on receiver (i prefer this one!)
 ```
 
+##### Fastest method for copying to a spinning HDD 
+```bash
+rsync -aHAX --info=progress2 --numeric-ids source/ /mnt/hdd/destination/
+
+# For local copies ,avoid compression
+rsync -aHAX --whole-file --info=progress2 source/ /mnt/hdd/destination/
+
+# For network copy 
+rsync -aHAX --info=progress2 --numeric-ids source/ user@host:/mnt/hdd/destination/
+
+# Avoid '-Z' as compression unless the network is slow and the CPU is fast , compression suffers if the destination is the bottleneck 
+
+# Speedy snippet 
+ionice -c2 -n0 nice -n -5 rsync -aHAX --whole-file --info=progress2 source/ /mnt/hdd/destination/
+
+# Use this only when you are okay with partially updated destination files if the transfer is interrupted.
+# Use "--inplace" for large existing files that have changed   
+rsync -aHAX --inplace --info=progress2 source/ /mnt/hdd/destination/
+
+# For lots of small files, HDDs are slow because of seek time. Consider making a tar stream instead
+tar -C source -cf - . | pv | tar -C /mnt/hdd/destination -xf -
+
+# For first-time local bulk copy, "tar | tar" can be faster than rsync. For repeat syncs, use rsync.
+```
 ##### Create a temporary directory and `cd` into it
 ```bash
 cd $(mktemp -d)
