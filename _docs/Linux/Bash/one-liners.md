@@ -1538,6 +1538,9 @@ free -c 10 -mhs 1
 ```bash
 # refresh every second
 iostat -x -t 1
+
+# Use watch command to show only one table of output 
+watch -n 1 'iostat -xz'
 ```
 
 ##### Display bandwidth usage on an network interface (e.g. enp175s0f0)
