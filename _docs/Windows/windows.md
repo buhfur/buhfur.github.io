@@ -43,6 +43,8 @@ taskkill /F /IM app.exe
 -   `netstat -an | more` --- Paginate long netstat output.
 -   `netstat -ano | findstr :80` --- Find what is using port 80.
 -   `tasklist /FI "PID eq <PID>"` --- Map a PID to its process.
+-   `systeminfo | findstr /B /C:"Domain" /C:"Logon Server"` --- Check domain 
+-   `wmic computersystem get domain` --- Check domain using wmic 
 
 ## DNS Tools
 
