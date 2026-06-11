@@ -20,10 +20,12 @@ Computer's Commandments :
 
 ## Know thy enemy 
 
+```
 What do we want to prevent ? 
-- i.e player 20+ levels ganking low level players 
+- i.e player 20+ levels ganking low level players without any recourse for the gankee 
 - imbalance of power between a lower level player and a higher level player 
-
+ 
+```
 
 # Ideas 
 
