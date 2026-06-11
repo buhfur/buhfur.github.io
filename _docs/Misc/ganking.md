@@ -1,3 +1,7 @@
+---
+title: WPVP ideas for classic+ 
+nav_order: 40
+---
 
 # Fixing the Ganking epidemic on WoW PVP servers 
 
