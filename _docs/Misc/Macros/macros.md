@@ -14,4 +14,5 @@ nav_order: 40
 # Resources 
 
 [WoW Addon Resources](https://github.com/NSO73/wow-vanilla-addon-resources)
+[VanillaWoWAPI](https://github.com/MikeBeloborodov/VanillaWowApi)
 [WoW Vanilla API](https://vanilla-wow-archive.fandom.com/wiki/World_of_Warcraft_API)
