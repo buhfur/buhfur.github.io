@@ -3,6 +3,8 @@ title: WPVP ideas for classic+
 nav_order: 40
 ---
 
+By: Computer / Microchip 
+
 # Fixing the Ganking epidemic on WoW PVP servers 
 
 Goal: Make wpvp fun and engaging for all sides. 
