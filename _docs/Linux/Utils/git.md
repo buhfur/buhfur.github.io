@@ -106,6 +106,13 @@ layout: default
 git push <remote-name> <local-branch-name>:<remote-branch-name>
 ```
 
+- Checkout into remote branch 
+    ```bash
+    git fetch origin && git checkout -b branch-name origin/branch-name
+    # You can also do this if you have a newer version of git 
+    git fetch 
+    git switch branch-name
+    ```
 > WARNING: DO NOT omit the `:<remote-branch-name>` or the remote branch will be DELTED
 
 
