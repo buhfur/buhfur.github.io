@@ -650,8 +650,6 @@ qm set VMID --serial0 socket --vga serial0
 
 ---
 
-## LXC Container Commands
-
 ### List containers
 
 ```bash
