@@ -241,7 +241,7 @@ git branch --set-upstream-to=origin/feature-x
 ### Delete Remote Branch
 
 ```bash
-git push origin --delete feature-x
+git push origin --relete feature-x
 ```
 
 ---
