@@ -58,42 +58,8 @@ command -v 7zz || command -v 7z
 
 ---
 
-## 2. Inspect the Game File
 
-### Identify File Format
-
-```bash
-file game.nup
-```
-
-### Inspect Binary File Header
-
-```bash
-xxd -l 32 game.nup
-```
-
-### Check File Size
-
-```bash
-ls -lh game.nup
-```
-
-### NUP File Signature
-
-```text
-4e 55 50 01
-```
-
-### Inspect NUP Container
-
-```bash
-nup info game.nup
-nup list game.nup
-```
-
----
-
-## 3. Test File Compressibility
+## 2. Test File Compressibility
 
 ### Compress a 1 GiB Sample
 
