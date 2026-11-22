@@ -741,7 +741,7 @@ For Docker, a VM is usually cleaner and safer than LXC, but nesting can work for
 ### Change root password for root user on LXC 
 
 ```bash
-pct <container-id> -- passwd root
+pct exec <container-id> -- passwd root
 ```
 
 ### Change root password interactively 
