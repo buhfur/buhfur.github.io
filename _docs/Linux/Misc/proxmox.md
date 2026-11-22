@@ -737,7 +737,40 @@ pct set CTID --features nesting=1
 
 For Docker, a VM is usually cleaner and safer than LXC, but nesting can work for lab environments.
 
+
+### Change root password for root user on LXC 
+
+```bash
+pct <container-id> -- passwd root
+```
+
+### Change root password interactively 
+
+#### All systems  
+
+```bash
+echo 'root:NewPassword123' | pct exec <container-id> -- chpasswd
+```
+
+#### On Debian , RHEL 
+
+```bash
+echo 'NewPassword123' | pct exec <container-id> -- passwd --stdin root
+```
+
+### Securely change root password 
+
+> Avoids exposing password in shell history 
+
+```bash
+read -rsp "New root password: " PASSWORD
+echo
+printf 'root:%s\n' "$PASSWORD" | pct exec 101 -- chpasswd
+unset PASSWORD
+```
+
 ---
+
 
 ## Storage Commands
 
