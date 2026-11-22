@@ -938,6 +938,15 @@ qm set VMID --delete unused0
 
 ---
 
+## SMB share configuration 
+
+### Mount SMB share on lxc container 
+
+**On proxmox host:**
+```bash
+pct set <id> -mp0 /mnt/proxmox/share,mp=/mnt/container/share
+```
+
 ## Networking Snippets
 
 ### Show interfaces
