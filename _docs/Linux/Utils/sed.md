@@ -218,9 +218,26 @@ sed ':a;N;$!ba;s/old/new/g' file.txt
 ### 1. Enable root login with password in sshd_config 
 
 > -i.bak creates backup with .bak file ext in the location where the originating file resides 
-
 ```bash
 sed -i.bak 's/^#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config 
+```
+
+### 2. Revert changes 
+
+replace existing config with .bak file backup or run sed command below 
+
+```bash
+cp /etc/ssh/sshd_config.bak /etc/ssh/sshd_config && systemctl restart sshd
+```
+
+```bash
+sed -i.bak 's/^PermitRootLogin yes/PermitRootLogin prohibit-password/' /etc/ssh/sshd_config && systemctl restart sshd
+```
+
+**Then verify** 
+
+```bash
+grep -E "PermitRootLogin|Password" /etc/ssh/sshd_config
 ```
 
 ---
